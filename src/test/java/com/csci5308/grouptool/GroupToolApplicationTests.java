@@ -1,13 +1,13 @@
-package com.example.Milestone1Test;
+package com.csci5308.grouptool;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Milestone1TestApplicationTests {
+class GroupToolApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
