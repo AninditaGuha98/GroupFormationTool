@@ -8,11 +8,11 @@ public class UserModel {
     private String fname;
     private String message;
 
-    public String getFname() {
+    public String getfname() {
         return fname;
     }
 
-    public void setFname(String fname) {
+    public void setfname(String fname) {
         this.fname = fname;
     }
 
