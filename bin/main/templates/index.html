@@ -9,8 +9,7 @@
 
     <div>Welcome to the Group Formation Tool.</div>
     <br>
-    <form action="#" th:action="@{/submit}" method="post"
-          th:object="${userModel}">
+    <form action="#" th:action="@{/submit}" method="post" th:object="${userModel}">
         <div>
             <label>First Name</label> <br/> <input type="text" th:field="*{fname}" required />
         </div>

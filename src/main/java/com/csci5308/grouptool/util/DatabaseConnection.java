@@ -16,10 +16,7 @@ public class DatabaseConnection {
 	    {     	
 	        try { 
 	        	System.out.println("check:"+dbConfiguration.getPassword());
-	        //	Class.forName(dbConfiguration.getDriver()).getClass(); 
-	        	System.out.println("check:"+dbConfiguration.getUrl());
-	        	System.out.println("check:"+dbConfiguration.getUsername());
-	        	System.out.println("check:"+dbConfiguration.getPassword());
+	        //	Class.forName(dbConfiguration.getDriver()).getClass();
 	            con = DriverManager.getConnection(dbConfiguration.getUrl(), dbConfiguration.getUsername(), dbConfiguration.getPassword()); 
 	        } 
 	        catch (Exception e) { 
