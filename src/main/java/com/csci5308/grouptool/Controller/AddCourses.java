@@ -29,8 +29,6 @@ public class AddCourses
 	@RequestMapping(value ="/InsertCourse",method = RequestMethod.POST)
 	public String assignCourseController(@ModelAttribute Course course)
 	{
-		System.out.println("Controller ID"+course.getCourseID());
-		System.out.println("Controller Name"+course.getCourseName());
 		UpdateCourse updc=new UpdateCourse();
 		updc.addCourse(course);
 		return "assigninstructor";

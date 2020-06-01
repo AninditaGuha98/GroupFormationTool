@@ -20,8 +20,6 @@ public class UpdateCourseDao implements UpdateCourseDaoI
 	int rowsEffected;
 	@Override
 	public String addCourse(Course course) {
-		System.out.println("DAO ID"+course.getCourseID());
-		System.out.println("DAO Name"+course.getCourseName());
 		//Insert into db
 		query = "INSERT " + " INTO " + "Courses" + " (courseCode,courseName) " + " values(?,?); ";		
 		connection = DatabaseConnection.getConnection();
