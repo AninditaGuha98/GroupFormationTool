@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+</head>
+<body>
+<div class="container">
+
+    <div>Welcome to the Group Formation Tool.</div>
+    <br>
+    <form action="#" th:action="@{/submit}" method="post"
+          th:object="${userModel}">
+        <div>
+            <label>First Name</label> <br/> <input type="text" th:field="*{fname}" required />
+        </div>
+            <input type="submit" class="button" value=" Submit" />
+
+
+    </form>
+    <div>
+        <p th:text="*{message}"></p> <br/>
+    </div>
+</div>
+</body>
+</html>
