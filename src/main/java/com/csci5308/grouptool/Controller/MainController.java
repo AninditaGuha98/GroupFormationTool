@@ -14,11 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MainController implements WebMvcConfigurer {
 
     @GetMapping("/index")
-    public ModelAndView FrontPage(UserModel userModel){
-        ModelAndView mv = new ModelAndView("index");
-        mv.addObject("message", userModel.getMessage());
-        mv.setViewName("index");
-        return mv;
+    public String FrontPage(UserModel userModel){
+        return "index";
     }
 
     @PostMapping("/submit")
@@ -33,6 +30,5 @@ public class MainController implements WebMvcConfigurer {
             mv.setViewName("index");
         }
         return mv;
-
     }
 }
