@@ -30,10 +30,13 @@ public class DBConnector {
     public ResultSet executeQuery(String query) throws SQLException {
         Statement stmnt=conn.createStatement();
         ResultSet result = stmnt.executeQuery(query);
-        while(result.next()) {
-            System.out.println(result.getRow());
-        }
         return result ;
+    }
+
+    public int executeUpdate(String query) throws SQLException{
+        Statement stmnt = conn.createStatement();
+        int rows = stmnt.executeUpdate(query);
+        return rows;
     }
     public void execute(String query) throws SQLException {
         Statement stmnt=conn.createStatement();
