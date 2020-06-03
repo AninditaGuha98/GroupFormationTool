@@ -11,8 +11,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.csci5308.grouptool.Repository.UpdateCourseDao;
-import com.csci5308.grouptool.Service.UpdateCourse;
+import com.csci5308.grouptool.AdminDashboard.Repository.UpdateCourseDao;
+import com.csci5308.grouptool.AdminDashboard.Service.UpdateCourse;
 
 @SuppressWarnings("deprecation")
 @RunWith(MockitoJUnitRunner.class)

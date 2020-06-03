@@ -3,6 +3,7 @@ package com.csci5308.grouptool.Controller;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import com.csci5308.grouptool.GroupToolApplication;
+import com.csci5308.grouptool.AdminDashboard.Controller.AdminDashboard;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

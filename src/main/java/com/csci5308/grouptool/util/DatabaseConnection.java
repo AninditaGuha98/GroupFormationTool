@@ -15,14 +15,12 @@ public class DatabaseConnection {
 	    public static Connection getConnection() 
 	    {     	
 	        try { 
-	        	System.out.println("check:"+dbConfiguration.getPassword());
 	        //	Class.forName(dbConfiguration.getDriver()).getClass();
 	            con = DriverManager.getConnection(dbConfiguration.getUrl(), dbConfiguration.getUsername(), dbConfiguration.getPassword()); 
 	        } 
 	        catch (Exception e) { 
 	        	System.out.println(e.getMessage());
-	            con = null;
-	        	
+	            con = null;	        	
        } 
 	        return con; 
     } 

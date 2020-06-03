@@ -13,22 +13,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Controller
 public class MainController implements WebMvcConfigurer {
 
-    @GetMapping("/index")
-    public String FrontPage(UserModel userModel){
-        return "index";
-    }
+	@GetMapping("/index")
+	public String FrontPage(UserModel userModel) {
+		return "index";
+	}
 
-    @PostMapping("/submit")
-    public ModelAndView CheckIfUserDetailsExistElseCreate(UserModel userModel) {
-        UserService userService = new UserServiceImpl();
-        ModelAndView mv = new ModelAndView("index");
-        if (userService.checkifuserexists(userModel)) {
-              mv.addObject("message","User Exists");
-              mv.setViewName("index");
-        } else {
-            mv.addObject("message","User Created");
-            mv.setViewName("index");
-        }
-        return mv;
-    }
+	@PostMapping("/submit")
+	public ModelAndView CheckIfUserDetailsExistElseCreate(UserModel userModel) {
+		UserService userService = new UserServiceImpl();
+		ModelAndView mv = new ModelAndView("index");
+		if (userService.checkifuserexists(userModel)) {
+			mv.addObject("message", "User Exists");
+			mv.setViewName("index");
+		} else {
+			mv.addObject("message", "User Created");
+			mv.setViewName("index");
+		}
+		return mv;
+	}
 }
