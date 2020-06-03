@@ -1,6 +1,5 @@
-package com.csci5308.grouptool.ModelTest;
+package com.csci5308.grouptool.Model;
 
-import com.csci5308.grouptool.Model.UserModel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

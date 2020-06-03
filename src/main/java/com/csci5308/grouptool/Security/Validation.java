@@ -3,15 +3,13 @@ package com.csci5308.grouptool.Security;
 import com.csci5308.grouptool.Database.DBConnector;
 import com.csci5308.grouptool.Model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Validation {
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     public boolean validateIfUserExists(UserModel userModel){
         boolean value = false;
@@ -20,6 +18,7 @@ public class Validation {
         String query = String.format("select bannerID from Users where bannerID= '%S';",userModel.getId());
         System.out.println(query);
         try {
+            db.execute("use CSCI5308_7_DEVINT;");
             ResultSet result = db.executeQuery(query);
             value = result.next();
             db.connectionClose();
@@ -40,7 +39,10 @@ public class Validation {
     }
 
     public boolean checkIfPasswordMatches(UserModel userModel){
-        return userModel.getPassword().equals(userModel.getConfirmPassword());
+        Encryption_Decryption encryptionDecryption = new Encryption_Decryption();
+        BCryptPasswordEncoder passwordEncoder =(BCryptPasswordEncoder) encryptionDecryption.passwordEncoder();
+        userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
+        return passwordEncoder.matches(userModel.getConfirmPassword(),userModel.getPassword());
     }
 }
 

@@ -22,8 +22,8 @@ public class DBConnector {
             Class.forName(driver);
             conn=DriverManager.getConnection(url, user, pass);
         }
-        catch (Exception ignored){
-
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 

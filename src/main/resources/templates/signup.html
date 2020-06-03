@@ -9,14 +9,36 @@
 <div class="container" align="center">
     <h1>Sign up</h1>
     <form method="post" th:action="@{/signup}" th:object="${userModel}">
-        <p>First name: <input type="text" th:field="*{fname}" required></p>
-        <p>Last name: <input type="text" th:field="*{lname}" required></p>
-        <p>Banner ID:<input type="text" id="bannerid" th:field="*{id}" required></p>
-<!--        <p>Date of Birth:<input type="date" th:field="*{dob}" required></p>-->
-        <p>Email:<input type="text" th:field="*{email}" required></p>
-        <p>Password:<input type="password" th:field="*{password}" required></p>
-        <p>Confirm password:<input type="password" th:field="*{confirmPassword}" required></p>
-        <p><input type="submit" value="Submit"/>
+        <table>
+            <tr>
+                <td><label for="firstName">First Name</label></td>
+                <td><input type="text" th:field="*{fname}" id="firstName" required></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Last Name</label></td>
+                <td><input type="text" th:field="*{lname}" id="lastName"></input></td>
+            </tr>
+            <tr>
+                <td><label for="bannerid">BannerID</label></td>
+                <td><input type="text" th:field="*{id}" id="bannerid" required></input></td>
+            </tr>
+            <tr>
+                <td><label for="emailId">Email</label></td>
+                <td><input type="text" th:field="*{email}" id="emailId" required></input></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" th:field="*{password}" id="password" required></input></td>
+            </tr>
+            <tr>
+                <td><label for="confirmPassword">Confirm Password</label></td>
+                <td><input type="password" th:field="*{confirmPassword}" id="confirmPassword" required></input></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"></input></td>
+            </tr>
+        </table>
     </form>
 </div>
 </body>

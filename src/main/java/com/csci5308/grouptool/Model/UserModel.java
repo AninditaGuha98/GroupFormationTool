@@ -10,6 +10,7 @@ public class UserModel {
     private String email;
     private String password;
     private String confirmPassword;
+    private String message;
 
     public String getId() {
         return id;
@@ -58,12 +59,12 @@ public class UserModel {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-//
-//    public Date getDob() {
-//        return dob;
-//    }
-//
-//    public void setDob(Date dob) {
-//        this.dob = dob;
-//    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

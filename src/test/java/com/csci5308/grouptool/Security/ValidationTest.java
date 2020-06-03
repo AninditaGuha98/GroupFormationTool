@@ -1,7 +1,6 @@
-package com.csci5308.grouptool.SecurityTest;
+package com.csci5308.grouptool.Security;
 
 import com.csci5308.grouptool.Model.UserModel;
-import com.csci5308.grouptool.Security.Validation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

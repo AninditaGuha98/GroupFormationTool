@@ -18,12 +18,12 @@ import javax.naming.Binding;
 @Controller
 public class MainController implements WebMvcConfigurer {
 
-//    @GetMapping("/index")
-//    public String FrontPage(UserModel userModel){
-//        return "index";
-//    }
+    @GetMapping("/index")
+    public String FrontPage(UserModel userModel){
+        return "index";
+    }
 
-    @GetMapping("/")
+    @GetMapping("/signup")
     public String showSignup(Model model){
         model.addAttribute("userModel", new UserModel());
         return "signup";
