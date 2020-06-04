@@ -38,7 +38,7 @@ public class UserAuthTest {
 	public void userAuthConstrctor() {
 		IAuthMechanism mechanism = new AuthMechanismMock();
 		UserAuth user = new UserAuth("raouf@example.com", "1234", mechanism);
-		List<String> expectedRoles = Arrays.asList("ADMIN", "INSTRUCTOR", "TA");
+		List<String> expectedRoles = Arrays.asList("ROLE_ADMIN", "ROLE_INSTRUCTOR", "ROLE_TA");
 		
 		assertEquals(user.getProvidedEmail(), "raouf@example.com");
 		assertEquals(user.getProvidedPassword(), "1234");
@@ -94,7 +94,7 @@ public class UserAuthTest {
 	public void getRoles() {
 		IAuthMechanism mechanism = new AuthMechanismMock();
 		UserAuth user = new UserAuth("raouf@example.com", "1234", mechanism);
-		List<String> expectedRoles = Arrays.asList("ADMIN", "INSTRUCTOR", "TA");
+		List<String> expectedRoles = Arrays.asList("ROLE_ADMIN", "ROLE_INSTRUCTOR", "ROLE_TA");
 		
 		List<String >actualRoles = user.getRoles();
 		for(int i = 0; i < expectedRoles.size(); i++)
@@ -119,7 +119,7 @@ public class UserAuthTest {
 //	public void getRolesDB() {
 //		IAuthMechanism mechanism = new AuthMechanismDB();
 //		UserAuth user = new UserAuth("raouf.rokhjavan@dal.ca", "16546", mechanism);
-//		List<String> expectedRoles = Arrays.asList("ADMIN", "USER");
+//		List<String> expectedRoles = Arrays.asList("ROLE_ADMIN", "ROLE_USER");
 //		
 //		List<String >actualRoles = user.getRoles();
 //		for(int i = 0; i < expectedRoles.size(); i++)

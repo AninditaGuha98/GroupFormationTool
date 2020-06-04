@@ -26,7 +26,7 @@ public class AuthMechanismMock implements IAuthMechanism {
 
 	@Override
 	public List<String> getUserRoles(String userEmail) {
-		List<String> rolesList = Arrays.asList( "ADMIN", "INSTRUCTOR", "TA");
+		List<String> rolesList = Arrays.asList( "ROLE_ADMIN", "ROLE_INSTRUCTOR", "ROLE_TA");
 		if (this.isAvailableUser(userEmail)) {
 			return rolesList;
 		}
