@@ -21,8 +21,8 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
             throws AuthenticationException {
     	
     	IAuthMechanism mechanism = new AuthMechanismDB();
-    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String email;
+        String rawPassword;
         
         email = authentication.getName();
         Object credentials = authentication.getCredentials();
@@ -30,9 +30,9 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
         if (!(credentials instanceof String)) {
             return null;
         }
-        String inputPassword = credentials.toString();
+        rawPassword = credentials.toString();
         
-    	UserAuth user = new UserAuth(email, inputPassword, mechanism);
+    	UserAuth user = new UserAuth(email, rawPassword, mechanism);
 
                
         if (!user.isUserValid()) {
@@ -44,7 +44,7 @@ public class DBAuthenticationProvider implements AuthenticationProvider {
         for (String role: user.getRoles())
         	grantedAuthorities.add(new SimpleGrantedAuthority(role));
         Authentication auth = new
-                UsernamePasswordAuthenticationToken(email, inputPassword, grantedAuthorities);
+                UsernamePasswordAuthenticationToken(email, rawPassword, grantedAuthorities);
         return auth;
     }
 

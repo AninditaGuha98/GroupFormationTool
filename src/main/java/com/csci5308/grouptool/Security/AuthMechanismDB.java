@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.*;
 
-@PropertySource("classpath:db.properties")
 public class AuthMechanismDB implements IAuthMechanism {
 
 //	@Value("${development.url}")
@@ -58,24 +58,24 @@ public class AuthMechanismDB implements IAuthMechanism {
 	}
 
 	@Override
-	public boolean isValidUser(String userEmail, String password) {
+	public boolean isValidUser(String userEmail, String rawPassword) {
 		boolean isValidleUser = false;
-		int rows = 0;
+		String hashedPassword = "";
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		PreparedStatement stat = null;
 		Connection conn = null;
-		String query = "SELECT COUNT(*) FROM Users WHERE email = ? AND password = ?;";
+		String query = "SELECT password FROM Users WHERE email = ?;";
 		try {
 		    conn = DriverManager.getConnection(url, dbUserName, dbPassword);
 		    stat = conn.prepareStatement(query);
 		    stat.setString(1, userEmail);
-		    stat.setString(2, password);
 		    
 		    ResultSet rs = stat.executeQuery();
 		    if(rs.next()) {
-		       rows = rs.getInt(1);
+		       hashedPassword = rs.getString(1);
 		    }
-		    if (rows == 1)
+		    if (passwordEncoder.matches(rawPassword, hashedPassword))
 		    	isValidleUser = true;
 		}
 		catch (Exception e )
@@ -112,7 +112,7 @@ public class AuthMechanismDB implements IAuthMechanism {
 		    
 		    ResultSet rs = stat.executeQuery();
 		    while (rs.next()) {
-		       roles.add(rs.getString(1));
+		       roles.add("ROLE_"+ rs.getString(1));
 		    }
 		}
 		catch (Exception e )
