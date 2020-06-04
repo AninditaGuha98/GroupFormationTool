@@ -26,7 +26,7 @@ public class AssignInstructorDao implements AssignInstructorDaoI {
 		connection = DatabaseConnection.getConnection();
 		try {
 			selectStatement = connection.createStatement();
-			query = "SELECT bannerID,firstName,lastName from users";
+			query = "SELECT bannerID,firstName,lastName from Users";
 			rs = selectStatement.executeQuery(query);
 			User user;
 			while (rs.next()) {

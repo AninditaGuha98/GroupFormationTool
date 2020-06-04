@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 public class DBConfigure implements InterfaceDBConfigure {
 
     String driver="com.mysql.cj.jdbc.Driver";
-    String url="jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_7_DEVINT?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    String user="CSCI5308_7_DEVINT_USER";
-    String pass="CSCI5308_7_DEVINT_7061";
+    String url="jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_7_TEST?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    String user="CSCI5308_7_TEST_USER";
+    String pass="CSCI5308_7_TEST_7612";
 
     @Override
     public String getDriver() {
