@@ -1,0 +1,134 @@
+package com.csci5308.grouptool.Security;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.*;
+
+@PropertySource("classpath:db.properties")
+public class AuthMechanismDB implements IAuthMechanism {
+
+//	@Value("${development.url}")
+//	private String url;
+	private String url = "jdbc:mysql://localhost:3306/csci5308_7_devint?useSSL=false&serverTimezone=UTC";
+	private String dbUserName = "root";
+	private String dbPassword = "!@#$%^&*";
+	
+	@Override
+	public boolean isAvailableUser(String userEmail) {
+		
+		boolean isAvailableUser = false;
+		int rows = 0;
+		
+		PreparedStatement stat = null;
+		Connection conn = null;
+		String query = "SELECT COUNT(*) FROM Users WHERE email = ?;";
+		try {
+		    conn = DriverManager.getConnection(url, dbUserName, dbPassword);
+		    stat = conn.prepareStatement(query);
+		    stat.setString(1, userEmail);
+		    
+		    ResultSet rs = stat.executeQuery();
+		    if(rs.next()) {
+		       rows = rs.getInt(1);
+		    }
+		    if (rows == 1)
+		    	isAvailableUser = true;
+		}
+		catch (Exception e )
+		{
+		} 
+		finally
+		{
+			try {
+				stat.close();
+				conn.close();
+			} 
+			catch (Exception e)
+			{
+			}
+		}
+		return isAvailableUser;
+		
+	}
+
+	@Override
+	public boolean isValidUser(String userEmail, String password) {
+		boolean isValidleUser = false;
+		int rows = 0;
+		
+		PreparedStatement stat = null;
+		Connection conn = null;
+		String query = "SELECT COUNT(*) FROM Users WHERE email = ? AND password = ?;";
+		try {
+		    conn = DriverManager.getConnection(url, dbUserName, dbPassword);
+		    stat = conn.prepareStatement(query);
+		    stat.setString(1, userEmail);
+		    stat.setString(2, password);
+		    
+		    ResultSet rs = stat.executeQuery();
+		    if(rs.next()) {
+		       rows = rs.getInt(1);
+		    }
+		    if (rows == 1)
+		    	isValidleUser = true;
+		}
+		catch (Exception e )
+		{
+		} 
+		finally
+		{
+			try {
+				stat.close();
+				conn.close();
+			} 
+			catch (Exception e)
+			{
+			}
+		}
+		return isValidleUser;
+
+	}
+
+	@Override
+	public List<String> getUserRoles(String userEmail) {
+		List<String> roles = new ArrayList<String>();
+		
+		PreparedStatement stat = null;
+		Connection conn = null;
+		String query = "SELECT Roles.roleName From Users, SystemRole, Roles "
+				+ "WHERE Users.bannerID = SystemRole.bannerID "
+				+ "AND SystemRole.roleID = Roles.roleID "
+				+ "AND email = ?";
+		try {
+		    conn = DriverManager.getConnection(url, dbUserName, dbPassword);
+		    stat = conn.prepareStatement(query);
+		    stat.setString(1, userEmail);
+		    
+		    ResultSet rs = stat.executeQuery();
+		    while (rs.next()) {
+		       roles.add(rs.getString(1));
+		    }
+		}
+		catch (Exception e )
+		{
+		} 
+		finally
+		{
+			try {
+				stat.close();
+				conn.close();
+			} 
+			catch (Exception e)
+			{
+			}
+		}
+		return roles;
+	}
+
+}

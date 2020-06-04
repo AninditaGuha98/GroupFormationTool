@@ -6,6 +6,6 @@ public interface IAuthMechanism {
 	
 	public boolean isAvailableUser(String userEmail);
 	public boolean isValidUser(String userEmail, String password);
-	public List<String> getUserRoles(String userEmail, String password);
+	public List<String> getUserRoles(String userEmail);
 	
 }

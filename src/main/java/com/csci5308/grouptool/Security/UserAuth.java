@@ -26,7 +26,7 @@ public class UserAuth {
 		if (mechanism != null) {
 			this.isUserAvailable = mechanism.isAvailableUser(providedEmail);
 			this.isUserValid = mechanism.isValidUser(providedEmail, providedPassword);
-			this.roles = mechanism.getUserRoles(providedEmail, providedPassword);
+			this.roles = mechanism.getUserRoles(providedEmail);
 		}
 	}
 	

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+
+import com.csci5308.grouptool.Security.AuthMechanismDB;
 import com.csci5308.grouptool.Security.IAuthMechanism;
 import com.csci5308.grouptool.Security.UserAuth;
 
@@ -98,4 +100,29 @@ public class UserAuthTest {
 		for(int i = 0; i < expectedRoles.size(); i++)
 			assertEquals(expectedRoles.get(i), actualRoles.get(i));
 	}
+	
+//	@Test
+//	public void isUserAvailableDB() {
+//		IAuthMechanism mechanism = new AuthMechanismDB();
+//		UserAuth user = new UserAuth("raouf.rokhjavan@dal.ca", "1234", mechanism);
+//		assertTrue(user.isUserAvailable());
+//	}
+//	
+//	@Test
+//	public void isUserValidDB() {
+//		IAuthMechanism mechanism = new AuthMechanismDB();
+//		UserAuth user = new UserAuth("raouf.rokhjavan@dal.ca", "16546", mechanism);
+//		assertTrue(user.isUserValid());
+//	}
+//	
+//	@Test
+//	public void getRolesDB() {
+//		IAuthMechanism mechanism = new AuthMechanismDB();
+//		UserAuth user = new UserAuth("raouf.rokhjavan@dal.ca", "16546", mechanism);
+//		List<String> expectedRoles = Arrays.asList("ADMIN", "USER");
+//		
+//		List<String >actualRoles = user.getRoles();
+//		for(int i = 0; i < expectedRoles.size(); i++)
+//			assertEquals(expectedRoles.get(i), actualRoles.get(i));
+//	}
 }
