@@ -29,7 +29,6 @@ public class AuthMechanismDB implements IAuthMechanism {
 	@Override
 	public boolean isAvailableUser(String userEmail) {
 		
-		
 		boolean isAvailableUser = false;
 		int rows = 0;
 		
@@ -108,13 +107,11 @@ public class AuthMechanismDB implements IAuthMechanism {
 			}
 		}
 		return isValidleUser;
-
 	}
 
 	@Override
 	public List<String> getUserRoles(String userEmail) {
 		List<String> roles = new ArrayList<String>();
-		
 		PreparedStatement stat = null;
 		Connection conn = null;
 		String query = "SELECT Roles.roleName From Users, SystemRole, Roles "

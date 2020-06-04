@@ -27,7 +27,7 @@ public class RegistrationController implements WebMvcConfigurer {
             }
         }
         modelAndView.addObject("message",userModel.getMessage());
-        modelAndView.setViewName("error");
+        modelAndView.setViewName("homeredirect");
         return modelAndView;
     }
 }
