@@ -2,6 +2,7 @@ package com.csci5308.grouptool.Signup.Repository;
 
 import com.csci5308.grouptool.Database.DBConnector;
 import com.csci5308.grouptool.Signup.Model.UserModel;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.validateMockitoUsage;
 import static org.mockito.Mockito.when;
 
 class UserDAOImplTest {
@@ -51,6 +53,11 @@ class UserDAOImplTest {
         when(c.createStatement()).thenReturn(stmt);
         when(stmt.executeUpdate(Mockito.any())).thenReturn(1);
         when(stmt.execute(any())).thenReturn(false);
+    }
+
+    @AfterEach
+    public void validate() {
+        validateMockitoUsage();
     }
 
     @Test
