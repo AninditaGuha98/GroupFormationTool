@@ -42,6 +42,8 @@ public class AuthMechanismDB implements IAuthMechanism {
 		}
 		catch (Exception e )
 		{
+			//TODO
+			e.printStackTrace();
 		} 
 		finally
 		{
@@ -51,6 +53,8 @@ public class AuthMechanismDB implements IAuthMechanism {
 			} 
 			catch (Exception e)
 			{
+				//TODO
+				e.printStackTrace();
 			}
 		}
 		return isAvailableUser;
@@ -80,6 +84,8 @@ public class AuthMechanismDB implements IAuthMechanism {
 		}
 		catch (Exception e )
 		{
+			// TODO
+			e.printStackTrace();
 		} 
 		finally
 		{
@@ -89,6 +95,8 @@ public class AuthMechanismDB implements IAuthMechanism {
 			} 
 			catch (Exception e)
 			{
+				// TODO
+				e.printStackTrace();
 			}
 		}
 		return isValidleUser;
@@ -117,6 +125,8 @@ public class AuthMechanismDB implements IAuthMechanism {
 		}
 		catch (Exception e )
 		{
+			// TODO
+			e.printStackTrace();
 		} 
 		finally
 		{
@@ -126,6 +136,8 @@ public class AuthMechanismDB implements IAuthMechanism {
 			} 
 			catch (Exception e)
 			{
+				// TODO
+				e.printStackTrace();
 			}
 		}
 		return roles;
