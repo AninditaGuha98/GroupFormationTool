@@ -7,71 +7,49 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-/*
- * This code was added from 
- * https://www.logicbig.com/tutorials/spring-framework/spring-security/custom-authentication-provider.html
- * 
- * It provides the a sample AuthenticatonProvider.
- */
 @Component
 public class DBAuthenticationProvider implements AuthenticationProvider {
-    private static List<User> users = new ArrayList();
-
-    public DBAuthenticationProvider() {
-        users.add(new User("erin", "123", "ROLE_ADMIN"));
-        users.add(new User("mike", "234", "ROLE_ADMIN"));
-    }
 
     @Override
     public Authentication authenticate(Authentication authentication)
             throws AuthenticationException {
-        String name = authentication.getName();
+    	
+    	IAuthMechanism mechanism = new AuthMechanismDB();
+    	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String email;
+        
+        email = authentication.getName();
         Object credentials = authentication.getCredentials();
-        System.out.println("credentials class: " + credentials.getClass());
+//        System.out.println("credentials class: " + credentials.getClass());
         if (!(credentials instanceof String)) {
             return null;
         }
-        String password = credentials.toString();
+        String inputPassword = credentials.toString();
+        
+    	UserAuth user = new UserAuth(email, inputPassword, mechanism);
 
-        Optional<User> userOptional = users.stream()
-                                           .filter(u -> u.match(name, password))
-                                           .findFirst();
-
-        if (!userOptional.isPresent()) {
-            throw new BadCredentialsException("Authentication failed for " + name);
+               
+        if (!user.isUserValid()) {
+            throw new BadCredentialsException("Authentication failed for " + email);
         }
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(userOptional.get().role));
+        
+        for (String role: user.getRoles())
+        	grantedAuthorities.add(new SimpleGrantedAuthority(role));
         Authentication auth = new
-                UsernamePasswordAuthenticationToken(name, password, grantedAuthorities);
+                UsernamePasswordAuthenticationToken(email, inputPassword, grantedAuthorities);
         return auth;
     }
 
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
-    }
-
-    private static class User {
-        private String name;
-        private String password;
-        private String role;
-
-        public User(String name, String password, String role) {
-            this.name = name;
-            this.password = password;
-            this.role = role;
-        }
-
-        public boolean match(String name, String password) {
-            return this.name.equals(name) && this.password.equals(password);
-        }
     }
 }
