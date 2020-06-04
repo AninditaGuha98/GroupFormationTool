@@ -57,7 +57,7 @@ public class AssignInstructorDao implements AssignInstructorDaoI {
 		// Insert into db
 		String message = "Select a course against an instructor";
 		query = "insert into courserole(courseID,roleID,bannerID) SELECT courseID,'2','" + bannerId
-				+ "' from courses where courseCode='" + courseId + "';";
+				+ "' from Courses where courseCode='" + courseId + "';";
 		connection = DatabaseConnection.getConnection();
 		try {
 			statement = connection.prepareStatement(query);
