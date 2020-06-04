@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Admin dashboard</title>
+</head>
+<body>
+	<div class="container">
+		<div>Admin Dashboard</div>
+		<br> <a th:href="@{/AssignInstructor}"><button>Assign instructor</button></a> 
+		<a th:href="@{/AddCourse}"><button>Add course</button></a> 
+		<a th:href="@{/DelCourse}"><button>Delete course</button></a>
+	</div>
+</body>
+</html>

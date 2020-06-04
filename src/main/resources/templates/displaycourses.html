@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Assign Instructor</title>
+</head>
+<style>
+th {
+	text-align: left;
+}
+</style>
+<body>
+	<div>
+		
+		<br> 
+		<a th:href="@{/AssignInstructor}"><button>Assign instructor</button></a>
+		<a th:href="@{/AddCourse}"><button>Add course</button></a> 
+		<a th:href="@{/DelCourse}"><button>Delete course</button></a>
+	</div>
+	<div class="container">
+		<form th:if="${courseList.size() > 0}" action="#" th:action="@{/checkedCourse}" method="post">
+			<table class="table">
+				<thead>
+					<th>CourseID</th>
+					<th>CourseName</th>
+				</thead>
+				<tbody>
+					<tr th:each="data, iterstat: ${courseList}">
+						<td th:text="${data.getCourseID()}" th:id="|td${iterstat.index}|"></td>
+						<td th:text="${data.getCourseName()}"
+							th:id="|td${iterstat.index}|"></td>
+						<td><input type="checkbox" name="checkedCourse"
+							th:value="${data.getCourseID()}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="Submit" value="Submit">
+		</form>
+		<label>
+			<p th:text="${message}"></p>
+		</label>
+	</div>
+</body>
+</html>
