@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.csci5308.grouptool.AdminDashboard.Service.UpdateCourse;
+import com.csci5308.grouptool.AdminDashboard.Service.UpdateCourseI;
 import com.csci5308.grouptool.ControllerObjects.Course;
 
 @Controller
@@ -26,7 +27,7 @@ public class AddCourses {
 
 	@RequestMapping(value = "/InsertCourse", method = RequestMethod.POST)
 	public String assignCourseController(@ModelAttribute Course course, Model model) {
-		UpdateCourse updc = new UpdateCourse();
+		UpdateCourseI updc = new UpdateCourse();
 		String message = updc.addCourse(course);
 		model.addAttribute("message", message);
 		return "addcourse";

@@ -8,5 +8,6 @@ public interface UpdateCourseDaoI {
 	String addCourse(Course course);
 	ArrayList<Course> displayCourse();
 	String deleteCourse(ArrayList<String> coursesToDelete);
+	boolean checkIfCourseExists(Course course);
 
 }

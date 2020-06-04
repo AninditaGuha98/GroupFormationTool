@@ -1,4 +1,4 @@
-package com.csci5308.grouptool.Controller;
+package com.csci5308.grouptool.AdminDashboard.Controller;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;

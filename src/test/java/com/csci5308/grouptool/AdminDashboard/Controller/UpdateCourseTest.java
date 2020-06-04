@@ -1,4 +1,4 @@
-package com.csci5308.grouptool.Controller;
+package com.csci5308.grouptool.AdminDashboard.Controller;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

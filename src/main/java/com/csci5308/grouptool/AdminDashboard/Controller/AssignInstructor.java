@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.csci5308.grouptool.AdminDashboard.Service.AssignInstructorService;
+import com.csci5308.grouptool.AdminDashboard.Service.AssignInstructorServiceI;
 import com.csci5308.grouptool.AdminDashboard.Service.UpdateCourse;
 import com.csci5308.grouptool.ControllerObjects.Course;
 import com.csci5308.grouptool.ControllerObjects.User;
@@ -21,7 +22,7 @@ public class AssignInstructor {
 	@RequestMapping(value = "/AssignInstructor", method = RequestMethod.GET)
 	public String assignCoursePageLaunch(Model model) {
 		userList = new ArrayList<User>();
-		AssignInstructorService instructorServiceObj = new AssignInstructorService();
+		AssignInstructorServiceI instructorServiceObj = new AssignInstructorService();
 		userList = instructorServiceObj.displayUsers();
 		model.addAttribute("userList", userList);
 		courseList = new ArrayList<Course>();
@@ -35,7 +36,7 @@ public class AssignInstructor {
 	public String assignRole(@RequestParam("CourseCode") String courseCode, User user, Model model) {
 		model.addAttribute("courseList", courseList);
 		model.addAttribute("userList", userList);
-		AssignInstructorService instructorServiceObj = new AssignInstructorService();
+		AssignInstructorServiceI instructorServiceObj = new AssignInstructorService();
 		String[] courseID = courseCode.split("-");
 		String message = instructorServiceObj.assignInstructor(courseID[0].trim(), user.getBannerId());
 		model.addAttribute("message", message);

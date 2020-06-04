@@ -25,32 +25,65 @@ public class UpdateCourseDao implements UpdateCourseDaoI {
 	int rowsEffected;
 	ResultSet rs;
 
+	
+	@Override
+	public boolean checkIfCourseExists(Course course)
+	{
+		//
+		Boolean result=false;
+		connection = DatabaseConnection.getConnection();
+		try {
+			selectStatement = connection.createStatement();
+			query = "SELECT courseID FROM Courses WHERE courseCode='"+course.getCourseID()+"';";
+			rs = selectStatement.executeQuery(query);			
+			while (rs.next()) {
+				result=true;
+			}
+		} catch (SQLException e) {
+			result=false;
+			e.printStackTrace();
+		} finally {
+			try {
+				selectStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		//
+		return result;		
+	}
+	
 	@Override
 	public String addCourse(Course course) {
 		String message = "Course added successfully";
-		// Insert into db
-		query = "INSERT " + " INTO " + "Courses" + " (courseCode,courseName) " + " values(?,?); ";
-		connection = DatabaseConnection.getConnection();
-		try {
-			statement = connection.prepareStatement(query);
-			System.out.println("ps " + statement);
-			statement.setString(1, course.getCourseID());
-			statement.setString(2, course.getCourseName());
-			rowsEffected = statement.executeUpdate();
-//			if (rowsEffected > 0) {
-//				System.out.println("value added");
-//			}
-		} catch (SQLIntegrityConstraintViolationException ex) {
-			message = "Course with ID " + course.getCourseID() + " already exists";
-		} catch (SQLException e) {
-			message = "Course could not be added";
-		} finally {
+
+		if(checkIfCourseExists(course))
+		{
+			message = "Course already exists";
+		}
+		else
+		{
+			query = "INSERT " + " INTO " + "Courses" + " (courseCode,courseName) " + " values(?,?); ";
+			connection = DatabaseConnection.getConnection();
 			try {
-				statement.close();
-				connection.close();
+				System.out.println("ps " + statement);
+				statement.setString(1, course.getCourseID());
+				statement.setString(2, course.getCourseName());
+				rowsEffected = statement.executeUpdate();
+			} catch (SQLIntegrityConstraintViolationException ex) {
+				message = "Course with ID " + course.getCourseID() + " already exists";
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				message = "Course could not be added";
+			} finally {
+				try {
+					statement.close();
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		return message;
@@ -74,7 +107,6 @@ public class UpdateCourseDao implements UpdateCourseDaoI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			System.out.println("value finally");
 			try {
 				selectStatement.close();
 				connection.close();
