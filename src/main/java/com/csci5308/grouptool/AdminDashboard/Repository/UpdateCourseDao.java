@@ -125,12 +125,12 @@ public class UpdateCourseDao implements UpdateCourseDaoI {
 		connection = DatabaseConnection.getConnection();
 		while (i.hasNext()) {
 			String currentCourse = i.next();
-			query = "DELETE FROM courserole WHERE courseID IN (SELECT courseID FROM courses WHERE courseCode ='"
+			query = "DELETE FROM courserole WHERE courseID IN (SELECT courseID FROM Courses WHERE courseCode ='"
 					+ currentCourse + "');";
 			try {
 				statement = connection.prepareStatement(query);
 				statement.executeUpdate();
-					query = "DELETE FROM courses WHERE courseCode='" + currentCourse + "';";
+					query = "DELETE FROM Courses WHERE courseCode='" + currentCourse + "';";
 					statement = connection.prepareStatement(query);
 					rowsEffected = statement.executeUpdate();
 					if(rowsEffected>0)
