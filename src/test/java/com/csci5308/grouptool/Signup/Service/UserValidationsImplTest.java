@@ -52,7 +52,7 @@ class UserValidationsImplTest {
         when(stmt.execute(any())).thenReturn(false);
         when(userValidations.validateIfUserExists(userModel)).thenReturn(true);
     }
-    
+
     @AfterEach
     public void validate() {
         validateMockitoUsage();

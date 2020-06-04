@@ -15,20 +15,30 @@ import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.validateMockitoUsage;
+import static org.mockito.Mockito.verify;
 
 class DBConnectorTest {
-    @InjectMocks
+//    @InjectMocks
+//    private DBConnector dbConnection;
+
+    @Mock
     private DBConnector dbConnection;
+
     @Mock
     private Connection mockConnection;
+
     @Mock private Statement mockStatement;
 
     @Mock
     private ResultSet rs;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws SQLException {
         MockitoAnnotations.initMocks(this);
+        Mockito.when(mockConnection.createStatement()).thenReturn(mockStatement);
+        Mockito.when(mockConnection.createStatement().executeUpdate(Mockito.any())).thenReturn(1);
+        Mockito.when(dbConnection.executeQuery("")).thenReturn(rs);
+        Mockito.when(mockConnection.createStatement().execute(Mockito.any())).thenReturn(false);
     }
 
     @AfterEach
@@ -38,10 +48,8 @@ class DBConnectorTest {
 
     @Test
     void createConnection() throws SQLException {
-        Mockito.when(mockConnection.createStatement()).thenReturn(mockStatement);
-        Mockito.when(mockConnection.createStatement().executeUpdate(Mockito.any())).thenReturn(1);
-        Mockito.when(dbConnection.executeQuery("")).thenReturn(rs);
-        Mockito.when(mockConnection.createStatement().execute(Mockito.any())).thenReturn(false);
-        Mockito.verify(mockConnection.createStatement(), Mockito.times(1));
+        dbConnection.createConnection();
+        Mockito.verify(dbConnection).createConnection();
+
     }
 }
