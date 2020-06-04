@@ -1,4 +1,4 @@
-package com.csci5308.grouptool.Security;
+package com.csci5308.grouptool.Security.AuthMechanism;
 
 import java.util.List;
 

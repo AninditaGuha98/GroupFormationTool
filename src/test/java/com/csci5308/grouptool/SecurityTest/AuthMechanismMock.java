@@ -3,7 +3,7 @@ package com.csci5308.grouptool.SecurityTest;
 import java.util.Arrays;
 import java.util.List;
 
-import com.csci5308.grouptool.Security.IAuthMechanism;
+import com.csci5308.grouptool.Security.AuthMechanism.IAuthMechanism;
 
 public class AuthMechanismMock implements IAuthMechanism {
 

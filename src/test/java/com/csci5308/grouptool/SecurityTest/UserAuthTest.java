@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-import com.csci5308.grouptool.Security.AuthMechanismDB;
-import com.csci5308.grouptool.Security.IAuthMechanism;
-import com.csci5308.grouptool.Security.UserAuth;
+import com.csci5308.grouptool.Security.AuthMechanism.AuthMechanismDB;
+import com.csci5308.grouptool.Security.AuthMechanism.IAuthMechanism;
+import com.csci5308.grouptool.Security.AuthMechanism.UserAuth;
 
 public class UserAuthTest {
 

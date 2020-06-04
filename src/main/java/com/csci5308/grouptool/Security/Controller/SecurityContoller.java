@@ -1,4 +1,4 @@
-package com.csci5308.grouptool.Security;
+package com.csci5308.grouptool.Security.Controller;
 
 import java.security.Principal;
 

@@ -1,4 +1,4 @@
-package com.csci5308.grouptool.Security;
+package com.csci5308.grouptool.Security.AuthMechanism;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

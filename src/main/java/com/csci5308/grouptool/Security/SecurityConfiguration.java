@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.csci5308.grouptool.Security.AuthMechanism.DBAuthenticationProvider;
+
 @EnableWebSecurity
 @ComponentScan("com.csci5308.grouptool.Security")
 @Configuration
