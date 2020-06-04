@@ -15,7 +15,7 @@ build:
     - grad
   script: ./gradlew --build-cache assemble
   only:
-  - feature_admin_dashboard
+  - develop
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -31,7 +31,7 @@ test:
     - grad
   script: ./gradlew check
   only:
-  - feature_admin_dashboard
+  - develop
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
