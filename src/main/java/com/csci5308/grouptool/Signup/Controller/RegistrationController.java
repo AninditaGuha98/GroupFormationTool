@@ -1,9 +1,7 @@
-package com.csci5308.grouptool.Controller;
+package com.csci5308.grouptool.Signup.Controller;
 
-import com.csci5308.grouptool.Interface.UserDAO;
-import com.csci5308.grouptool.Model.UserModel;
-import com.csci5308.grouptool.Repository.UserDAOImpl;
-import com.csci5308.grouptool.Security.Validation;
+import com.csci5308.grouptool.Signup.Interface.UserDAO;
+import com.csci5308.grouptool.Signup.Model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

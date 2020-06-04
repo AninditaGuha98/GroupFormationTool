@@ -1,10 +1,11 @@
-package com.csci5308.grouptool.Repository;
+package com.csci5308.grouptool.Signup.Repository;
 
 import com.csci5308.grouptool.Database.DBConnector;
-import com.csci5308.grouptool.Interface.IUserValidations;
-import com.csci5308.grouptool.Interface.UserDAO;
-import com.csci5308.grouptool.Model.UserModel;
-import com.csci5308.grouptool.Service.UserValidationsImpl;
+import com.csci5308.grouptool.Signup.Interface.IUserValidations;
+import com.csci5308.grouptool.Signup.Interface.UserDAO;
+import com.csci5308.grouptool.Signup.Model.UserModel;
+import com.csci5308.grouptool.Signup.Service.UserValidationsImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
@@ -34,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
     public void addUser(UserModel userModel) throws SQLException {
         DBConnector db = new DBConnector();
         db.createConnection();
-        db.execute("use CSCI5308_7_DEVINT;");
+        db.execute("use CSCI5308_7_TEST;");
         String query1 = String.format("Insert into Users values ('%s','%s','%s','%s','%s');",userModel.getId(), userModel.getFname(),userModel.getLname(),userModel.getEmail(),userModel.getPassword());
         String query2 = String.format("Insert into SystemRole values(5,'%s');", userModel.getId());
         int a = db.executeUpdate(query1);

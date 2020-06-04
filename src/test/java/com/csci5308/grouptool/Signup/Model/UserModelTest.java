@@ -1,4 +1,4 @@
-package com.csci5308.grouptool.Model;
+package com.csci5308.grouptool.Signup.Model;
 
 import org.junit.jupiter.api.Test;
 

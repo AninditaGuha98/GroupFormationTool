@@ -1,6 +1,6 @@
-package com.csci5308.grouptool.Interface;
+package com.csci5308.grouptool.Signup.Interface;
 
-import com.csci5308.grouptool.Model.UserModel;
+import com.csci5308.grouptool.Signup.Model.UserModel;
 
 public interface IUserValidations {
     public boolean validateIfUserExists(UserModel userModel);

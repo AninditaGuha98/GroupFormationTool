@@ -1,8 +1,8 @@
-package com.csci5308.grouptool.Service;
+package com.csci5308.grouptool.Signup.Service;
 
 import com.csci5308.grouptool.Database.DBConnector;
-import com.csci5308.grouptool.Interface.IUserValidations;
-import com.csci5308.grouptool.Model.UserModel;
+import com.csci5308.grouptool.Signup.Interface.IUserValidations;
+import com.csci5308.grouptool.Signup.Model.UserModel;
 import com.csci5308.grouptool.Security.Encryption_Decryption;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -17,7 +17,7 @@ public class UserValidationsImpl implements IUserValidations {
         String query = String.format("select bannerID from Users where bannerID= '%S';",userModel.getId());
         System.out.println(query);
         try {
-            db.execute("use CSCI5308_7_DEVINT;");
+            db.execute("use CSCI5308_7_TEST;");
             ResultSet result = db.executeQuery(query);
             value = result.next();
             db.connectionClose();

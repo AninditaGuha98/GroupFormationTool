@@ -1,5 +1,6 @@
 package com.csci5308.grouptool.Database;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -7,10 +8,12 @@ import java.sql.*;
 
 @Component
 public class DBConnector {
+    private static DBConfigure dbConfiguration;
     private java.sql.Connection conn;
     private ResultSet resultSet;
     private Statement stmnt;
-    DBConfigure dbConfigure=new DBConfigure();
+
+    DBConfigure dbConfigure = new DBConfigure();
 
     public void createConnection() {
         String driver = dbConfigure.getDriver();

@@ -1,8 +1,7 @@
-package com.csci5308.grouptool.Repository;
+package com.csci5308.grouptool.Signup.Repository;
 
 import com.csci5308.grouptool.Database.DBConnector;
-import com.csci5308.grouptool.Model.UserModel;
-import com.csci5308.grouptool.Service.UserValidationsImpl;
+import com.csci5308.grouptool.Signup.Model.UserModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

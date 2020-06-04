@@ -1,6 +1,6 @@
-package com.csci5308.grouptool.Controller;
+package com.csci5308.grouptool.Signup.Controller;
 
-import com.csci5308.grouptool.Model.UserModel;
+import com.csci5308.grouptool.Signup.Model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
