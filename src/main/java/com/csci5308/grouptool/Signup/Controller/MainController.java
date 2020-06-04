@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Controller
 public class MainController implements WebMvcConfigurer {
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String FrontPage(UserModel userModel){
         return "index";
     }
