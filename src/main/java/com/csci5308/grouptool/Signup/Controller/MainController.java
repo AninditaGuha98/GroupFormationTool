@@ -19,4 +19,8 @@ public class MainController implements WebMvcConfigurer {
         model.addAttribute("userModel", new UserModel());
         return "signup";
     }
+
+
+
+
 }

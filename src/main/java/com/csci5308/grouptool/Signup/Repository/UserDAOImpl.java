@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
     public void addUser(UserModel userModel) throws SQLException {
         DBConnector db = new DBConnector();
         db.createConnection();
-        db.execute("use CSCI5308_7_TEST;");
+//        db.execute("use CSCI5308_7_TEST;");
         String query1 = String.format("Insert into Users values ('%s','%s','%s','%s','%s');",userModel.getId(), userModel.getFname(),userModel.getLname(),userModel.getEmail(),userModel.getPassword());
         String query2 = String.format("Insert into SystemRole values(5,'%s');", userModel.getId());
         int a = db.executeUpdate(query1);
