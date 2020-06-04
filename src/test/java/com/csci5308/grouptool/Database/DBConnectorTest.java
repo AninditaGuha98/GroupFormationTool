@@ -1,5 +1,6 @@
 package com.csci5308.grouptool.Database;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.validateMockitoUsage;
 
 class DBConnectorTest {
     @InjectMocks
@@ -27,6 +29,11 @@ class DBConnectorTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
+    }
+
+    @AfterEach
+    public void validate() {
+        validateMockitoUsage();
     }
 
     @Test

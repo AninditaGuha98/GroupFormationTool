@@ -2,6 +2,7 @@ package com.csci5308.grouptool.Signup.Service;
 
 import com.csci5308.grouptool.Database.DBConnector;
 import com.csci5308.grouptool.Signup.Model.UserModel;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.validateMockitoUsage;
 import static org.mockito.Mockito.when;
 
 class UserValidationsImplTest {
@@ -49,6 +51,11 @@ class UserValidationsImplTest {
         when(stmt.executeQuery("")).thenReturn(rs);
         when(stmt.execute(any())).thenReturn(false);
         when(userValidations.validateIfUserExists(userModel)).thenReturn(true);
+    }
+    
+    @AfterEach
+    public void validate() {
+        validateMockitoUsage();
     }
 
     @Test
