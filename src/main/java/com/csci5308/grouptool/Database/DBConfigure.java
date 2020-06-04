@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DBConfigure {
-   public static final String driver= "com.mysql.cj.jdbc.Driver";
+	public static final String driver= "com.mysql.cj.jdbc.Driver";
     public static final String url="jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_7_TEST?serverTimezone=AST";
     public static final String user="CSCI5308_7_TEST_USER";
     public static final String pass="CSCI5308_7_TEST_7612";
-
+   
 
     public String getDriver() {
         return driver;

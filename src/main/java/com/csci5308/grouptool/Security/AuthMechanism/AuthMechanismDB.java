@@ -1,4 +1,4 @@
-package com.csci5308.grouptool.Security;
+package com.csci5308.grouptool.Security.AuthMechanism;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +9,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.csci5308.grouptool.Database.DBConfigure;
+
 import java.sql.*;
 
 public class AuthMechanismDB implements IAuthMechanism {
 
-//	@Value("${development.url}")
-//	private String url;
-	private String url = "jdbc:mysql://localhost:3306/csci5308_7_devint?useSSL=false&serverTimezone=UTC";
-	private String dbUserName = "root";
-	private String dbPassword = "!@#$%^&*";
+	private String url;
+	private String dbUserName;
+	private String dbPassword;
+	
+	public AuthMechanismDB() {
+		DBConfigure dbConfigure = new DBConfigure();
+		this.url = dbConfigure.getUrl();
+		this.dbUserName = dbConfigure.getUser();
+		this.dbPassword = dbConfigure.getPass();
+	}
 	
 	@Override
 	public boolean isAvailableUser(String userEmail) {
+		
 		
 		boolean isAvailableUser = false;
 		int rows = 0;
