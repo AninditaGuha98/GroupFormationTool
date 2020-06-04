@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AdminDashboard {
-	@RequestMapping(value = "/AdminDashboard", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String greeting() {
 		return "admindashboard";
 	}

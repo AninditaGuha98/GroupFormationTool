@@ -55,16 +55,16 @@ public class AssignInstructorDao implements AssignInstructorDaoI {
 	public String assignInstructor(String courseId, String bannerId) {
 
 		// Insert into db
-		String message = "Instructor assigned";
+		String message = "Select a course against an instructor";
 		query = "insert into courserole(courseID,roleID,bannerID) SELECT courseID,'2','" + bannerId
 				+ "' from courses where courseCode='" + courseId + "';";
 		connection = DatabaseConnection.getConnection();
 		try {
 			statement = connection.prepareStatement(query);
 			rowsEffected = statement.executeUpdate();
-//			if (rowsEffected > 0) {
-//				message="Instructor assigned";
-//			}
+			if (rowsEffected > 0) {
+				message="Instructor assigned";
+			}
 		} catch (SQLIntegrityConstraintViolationException ex) {
 			message = "Instructor could not be assigned";
 		} catch (SQLException e) {

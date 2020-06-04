@@ -15,6 +15,7 @@ import com.csci5308.grouptool.ControllerObjects.Course;
 public class AddCourses {
 	@RequestMapping(value = "/AddCourse", method = RequestMethod.GET)
 	public String assignCoursePageLaunch(Model model) {
+		
 		model.addAttribute("course", new Course());
 		return "addcourse";
 	}
