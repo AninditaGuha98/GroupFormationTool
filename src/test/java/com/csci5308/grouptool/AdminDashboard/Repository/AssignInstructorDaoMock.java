@@ -6,7 +6,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.junit.jupiter.api.Test;
 import com.csci5308.grouptool.AdminDashboard.Repository.AssignInstructorDao;
@@ -15,7 +14,6 @@ import com.csci5308.grouptool.AdminDashboard.Repository.UpdateCourseDao;
 import com.csci5308.grouptool.AdminDashboard.Repository.UpdateCourseDaoI;
 import com.csci5308.grouptool.ControllerObjects.Course;
 
-@RunWith(MockitoJUnitRunner.class)
 public class AssignInstructorDaoMock 
 {
 	AssignInstructorDaoI assignInstructorDaoObjMock=mock(AssignInstructorDao.class);

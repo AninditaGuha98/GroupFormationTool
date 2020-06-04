@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.csci5308.grouptool.AdminDashboard.Repository.UpdateCourseDao;
 import com.csci5308.grouptool.AdminDashboard.Repository.UpdateCourseDaoI;
 import com.csci5308.grouptool.ControllerObjects.Course;
 
-@RunWith(MockitoJUnitRunner.class)
 public class UpdateCourseDaoMock
 {
 	UpdateCourseDaoI updateCourseObjectMock=mock(UpdateCourseDao.class);
