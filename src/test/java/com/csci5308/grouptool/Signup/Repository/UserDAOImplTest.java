@@ -58,8 +58,4 @@ class UserDAOImplTest {
         userDAO.addUser(userModel);
         Mockito.verify(userDAO).addUser(userModel);
     }
-
-    @Test
-    void addUser() {
-    }
 }
