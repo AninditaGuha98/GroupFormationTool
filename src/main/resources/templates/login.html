@@ -1,33 +1,42 @@
-<!Doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout}">
-	
-	<head>
-		<title> Log In </title>
-	</head>
-	<body>
-		<div layout:fragment="content">
-		<h1> Please Log In <h1>
-		<form method="post" th:action="@{/homeredirect}">
-			<div th:if="${param.error}" role="alert"> Invalid username and password. </div>
-			<div th:if="${param.logout}" role="alert"> You have been logged out.</div>
-			<p>
-				<label for="username"> Username </label>
-				<input type="text" id="username" name="username" placeholder="Username" required autofocus>
-			</p>
-			<p>
-				<label for="password"> Password </label>
-				<input type="password" id="password" name="password" placeholder="Password" required>
-			</p>
-			<button name="submit" type="submit"> Sign-in </button>
-		</form>
+<!DOCTYPE html>  
+<html xmlns:th="http://www.thymeleaf.org">  
+<head>  
+	<title>CSCI5308 Group Formation Tool - Login page</title>
+	<!-- Normalize.css by Nicolas Gallagher, used from https://necolas.github.io/normalize.css/ 
+	Necessary to reset some default browser styles for consistent appearance across browsers. -->
+	<link th:href="@{/styles/cssandjs/normalize.css}" rel="stylesheet" />
 
-			<form method="get" th:action="@{/signup}">
-				<label>Not a user? Register here</label>
-				<input type="submit" value="Sign Up">
+	<!-- This file includes all default styles for this application. -->
+	<link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" />
+</head>  
+<body class="bodyGridContainer">
+	<header class="bodyGridRow headerGridContainer">
+		<h1>CSCI5308 Group Formation Tool</h1>
+	</header>
+	<main class="bodyGridRow mainGridContainer">
+		<aside class="mainGridRow welcomeInfoBox">
+			<h2>Welcome to the group formation tool, please sign in.</h2>
+		</aside>
+
+		<div class="mainGridCentreInfoBox" th:if="${param.error}">
+			<p class="errorInfo">Invalid Banner ID or password.</p>
+		</div>
+		<div class="mainGridCentreInfoBox" th:if="${param.logout}">
+			<p class="confirmation">You have been logged out.</p>
+		</div>
+		<div class="mainGridCentreCard">
+			<form class="regnLoginGridContainer" th:action="@{/login}" method="post">
+				<label class="regnLoginGridLeftCol" for="lBannerInput"> Banner ID:</label> 
+				<input id="lBannerInput" class="regnLoginGridRightCol" type="text" name="username"/>
+				<label class="regnLoginGridLeftCol" for="lPswdInput"> Password:</label> 
+				<input id="lPswdInput" class="regnLoginGridRightCol" type="password" name="password"/>
+				<input class="regnLoginGridRightCol" type="submit" value="Log In"/>
 			</form>
-		<p><a href="/forgot-password">Forgot Password</a></p>
-	</body>
+		</div>
+		<a class="signupLogin mainGridRow mainGridCentreCard" th:href="@{signup}">Are you a new user? Click here to sign up!</a>
+	</main>
+	<footer class="bodyGridRow footerGridContainer">
+		<p><strong>CSCI5308 (Advanced Topics in Software Development)</strong> is a graduate course offered for students enrolled in the <a href="https://www.dal.ca/macs" target="_blank">Master of Applied Computer Science (MACS)</a> at the <a href="https://www.dal.ca/cs" target="_blank">Faculty of Computer Science</a>, <a href="https://www.dal.ca" target="_blank">Dalhousie University</a>.</p>
+</footer>
+</body>  
 </html>
