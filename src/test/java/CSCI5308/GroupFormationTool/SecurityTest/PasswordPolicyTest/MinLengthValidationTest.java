@@ -11,7 +11,7 @@ class MinLengthValidationTest {
 	@Test 
 	void minLengthValidationDefaultConstructor() {
 		MinLengthValidation validator = new MinLengthValidation();
-		assertTrue(validator.getMinLength() == 8);
+		assertTrue(validator.getMinLength() == 0);
 	}
 	
 	@Test 
@@ -20,10 +20,10 @@ class MinLengthValidationTest {
 		assertTrue(validator.getMinLength() == 10);
 		
 		validator = new MinLengthValidation(-1);
-		assertTrue(validator.getMinLength() == 8);
+		assertTrue(validator.getMinLength() == 0);
 		
 		validator = new MinLengthValidation(0);
-		assertTrue(validator.getMinLength() == 8);
+		assertTrue(validator.getMinLength() == 0);
 		
 		validator = new MinLengthValidation(4);
 		assertTrue(validator.getMinLength() == 4);
@@ -44,10 +44,10 @@ class MinLengthValidationTest {
 		assertTrue(validator.getMinLength() == 10);
 		
 		validator.setMinLength(-1);
-		assertTrue(validator.getMinLength() == 8);
+		assertTrue(validator.getMinLength() == 0);
 		
 		validator.setMinLength(0);
-		assertTrue(validator.getMinLength() == 8);
+		assertTrue(validator.getMinLength() == 0);
 		
 		validator.setMinLength(4);
 		assertTrue(validator.getMinLength() == 4);
@@ -55,8 +55,25 @@ class MinLengthValidationTest {
 	
 	@Test
 	void isValidPasswordTest() {
-		MinLengthValidation validator = new MinLengthValidation();
 		
+		// Default Constructor
+		MinLengthValidation validator = new MinLengthValidation();
+		assertTrue(validator.isValidPassword("1234567890"));
+		assertTrue(validator.isValidPassword("12345678"));
+		assertTrue(validator.isValidPassword("1234567"));
+		assertTrue(validator.isValidPassword(""));
+		assertFalse(validator.isValidPassword(null));
+		
+		// Negative minLength
+		validator = new MinLengthValidation(-1);
+		assertTrue(validator.isValidPassword("1234567890"));
+		assertTrue(validator.isValidPassword("12345678"));
+		assertTrue(validator.isValidPassword("1234567"));
+		assertTrue(validator.isValidPassword(""));
+		assertFalse(validator.isValidPassword(null));
+		
+		// > 0 minLength
+		validator = new MinLengthValidation(8);
 		assertTrue(validator.isValidPassword("1234567890"));
 		assertTrue(validator.isValidPassword("12345678"));
 		assertFalse(validator.isValidPassword("1234567"));

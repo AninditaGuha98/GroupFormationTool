@@ -4,10 +4,19 @@ public class MinLengthValidation implements IPasswordValidation {
 
 	private int minLength;
 	
+	/*
+	 * Default constructor sets minLength = 0.
+	 * It means minimum length validation is passed.
+	 */	
 	public MinLengthValidation() {
-		this.minLength = 8;
+		this.minLength = 0;
 	}
 	
+	
+	/*
+	 * For negative minimum length sets minLength =0
+	 * It means minimum length validation is passed.
+	 */
 	public MinLengthValidation(int minLength) {
 		this.setMinLength(minLength);
 	}
@@ -18,18 +27,19 @@ public class MinLengthValidation implements IPasswordValidation {
 	
 	public void setMinLength(int minLength) {
 		if ( minLength <= 0 )
-			this.minLength = 8;
+			this.minLength = 0;
 		else
 			this.minLength = minLength;
 	}
 	
 	@Override
 	public boolean isValidPassword(String password) {
-		// TODO Auto-generated method stub
 		if (null == password)
 			return false;
-		else if (password.isEmpty())
-			return false;
+
+		if (this.minLength == 0)
+			return true;
+		
 		if (password.length() >= this.minLength)
 			return true;
 		else 
