@@ -50,8 +50,6 @@ public class MinLowercaseValidation implements IPasswordValidation {
 			return false;
 		else
 			return true;
-				
-			
 	}
 
 }

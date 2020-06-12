@@ -9,25 +9,47 @@ public class MinUppercaseValidation implements IPasswordValidation {
 	 * It means Uppercase Validation is passed.
 	 */
 	public MinUppercaseValidation() {
+		this.minUppercase = 0;
 	}
 	
 	/*
-	 * For negative minLowercase sets minUppercase = 0
+	 * For negative minUppercase sets minUppercase = 0
 	 * It means Uppercase Validation is passed.
 	 */
-	public MinUppercaseValidation(int minLowercase) {
+	public MinUppercaseValidation(int minUppercase) {
+		this.setMinUppercase(minUppercase);
 	}
 	
 	public int getMinUppercase() {
-		return -1;
+		return this.minUppercase;
 	}
 	
 	public void setMinUppercase(int minUppercase) {
+		if (minUppercase <= 0)
+			this.minUppercase = 0;
+		else
+			this.minUppercase = minUppercase;
 	}
 	
 	@Override
 	public boolean isValidPassword(String password) {
-		return false;
+		int upperCase = 0;
+		
+		if (null == password)
+			return false;
+		
+		if (this.minUppercase == 0)
+			return true;
+
+		for (int i = 0; i < password.length(); i++) {
+		    // Check for uppercase letters.
+		    if (Character.isUpperCase(password.charAt(i))) 
+		    	upperCase++;
+		}
+		if (upperCase < this.minUppercase)
+			return false;
+		else
+			return true;
 	}
 
 }

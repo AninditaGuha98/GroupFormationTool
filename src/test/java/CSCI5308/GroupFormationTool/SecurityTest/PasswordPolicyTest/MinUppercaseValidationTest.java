@@ -82,7 +82,7 @@ class MinUppercaseValidationTest {
 		assertFalse(validator.isValidPassword("raOUF"));
 		assertFalse(validator.isValidPassword("RaoUF"));
 		assertFalse(validator.isValidPassword("RaUoF"));
-		assertFalse(validator.isValidPassword("RaUUf1@"));
+		assertFalse(validator.isValidPassword("RaOUf1@"));
 		// 0 lowercase letters 0<4
 		assertFalse(validator.isValidPassword("raouf"));
 		assertFalse(validator.isValidPassword("raouf1@"));
