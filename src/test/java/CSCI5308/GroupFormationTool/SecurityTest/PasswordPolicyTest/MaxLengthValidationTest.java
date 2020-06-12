@@ -12,7 +12,7 @@ class MaxLengthValidationTest {
 	@Test 
 	void maxLengthValidationDefaultConstructor() {
 		MaxLengthValidation validator = new MaxLengthValidation();
-		assertTrue(validator.getMaxLength() == 12);
+		assertTrue(validator.getMaxLength() == 0);
 	}
 	
 	@Test 
@@ -21,13 +21,10 @@ class MaxLengthValidationTest {
 		assertTrue(validator.getMaxLength() == 20);
 		
 		validator = new MaxLengthValidation(-1);
-		assertTrue(validator.getMaxLength() == 12);
+		assertTrue(validator.getMaxLength() == 0);
 		
 		validator = new MaxLengthValidation(0);
-		assertTrue(validator.getMaxLength() == 12);
-		
-		validator = new MaxLengthValidation(4);
-		assertTrue(validator.getMaxLength() == 4);
+		assertTrue(validator.getMaxLength() == 0);
 	}
 	
 	
@@ -45,23 +42,36 @@ class MaxLengthValidationTest {
 		assertTrue(validator.getMaxLength() == 20);
 		
 		validator.setMaxLength(-1);
-		assertTrue(validator.getMaxLength() == 12);
+		assertTrue(validator.getMaxLength() == 0);
 		
 		validator.setMaxLength(0);
-		assertTrue(validator.getMaxLength() == 12);
-		
-		validator.setMaxLength(8);
-		assertTrue(validator.getMaxLength() == 8);
+		assertTrue(validator.getMaxLength() == 0);
 	}
 	
 	@Test
 	void isValidPasswordTest() {
-		MaxLengthValidation validator = new MaxLengthValidation();
-		
+
+		MaxLengthValidation validator = new MaxLengthValidation(12);
 		assertTrue(validator.isValidPassword("abcdefghijkl"));
 		assertTrue(validator.isValidPassword("abcdefghij"));
 		assertFalse(validator.isValidPassword("abcdefghijklmn"));
-		assertFalse(validator.isValidPassword(""));
+		assertTrue(validator.isValidPassword(""));
+		assertFalse(validator.isValidPassword(null));
+
+		
+		// Default constructor
+		validator = new MaxLengthValidation();
+		assertTrue(validator.isValidPassword("abcdefghijkl"));
+		assertTrue(validator.isValidPassword("abcdefghij"));
+		assertTrue(validator.isValidPassword("abcdefghijklmn"));
+		assertTrue(validator.isValidPassword(""));
+		assertFalse(validator.isValidPassword(null));
+		
+		validator = new MaxLengthValidation(-1);
+		assertTrue(validator.isValidPassword("abcdefghijkl"));
+		assertTrue(validator.isValidPassword("abcdefghij"));
+		assertTrue(validator.isValidPassword("abcdefghijklmn"));
+		assertTrue(validator.isValidPassword(""));
 		assertFalse(validator.isValidPassword(null));
 	}
 

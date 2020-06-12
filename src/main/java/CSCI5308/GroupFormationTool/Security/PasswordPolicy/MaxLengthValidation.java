@@ -4,10 +4,18 @@ public class MaxLengthValidation implements IPasswordValidation {
 
 	private int maxLength;
 	
+	/*
+	 * Default constructor sets minLength = 0.
+	 * It means maximum length validation is passed.
+	 */
 	public MaxLengthValidation() {
-		this.maxLength = 12;
+		this.maxLength = 0;
 	}
 	
+	/*
+	 * For negative maximum length sets maxLength = 0
+	 * It means maximum length validation is passed.
+	 */
 	public MaxLengthValidation(int maxLength) {
 		this.setMaxLength(maxLength);
 	}
@@ -18,7 +26,7 @@ public class MaxLengthValidation implements IPasswordValidation {
 	
 	public void setMaxLength(int maxLength) {
 		if (maxLength <= 0)
-			this.maxLength = 12;
+			this.maxLength = 0;
 		else
 			this.maxLength = maxLength;
 	}
@@ -27,8 +35,9 @@ public class MaxLengthValidation implements IPasswordValidation {
 	public boolean isValidPassword(String password) {
 		if (null == password)
 			return false;
-		else if (password.isEmpty())
-			return false;
+		
+		if (this.maxLength == 0)
+			return true;
 		
 		if (password.length() > this.maxLength)
 			return false;
