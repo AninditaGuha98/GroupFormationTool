@@ -13,14 +13,18 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 	}
 	
 	public ForbiddenCharSetValidation(String forbideddenCharSet) {
-		this.forbiddenCharSet = forbideddenCharSet;
+		this.setForbiddernCharSet(forbideddenCharSet);
 	}
 
 	public String getForbiddenCharSet() {
 		return this.forbiddenCharSet;
 	}
 	
-	public void setForbiddernCharSet() {
+	public void setForbiddernCharSet(String forbiddernCharSet) {
+		if (null == forbiddernCharSet)
+			this.forbiddenCharSet = "";
+		else
+			this.forbiddenCharSet = forbiddernCharSet;
 	}
 	
 	@Override

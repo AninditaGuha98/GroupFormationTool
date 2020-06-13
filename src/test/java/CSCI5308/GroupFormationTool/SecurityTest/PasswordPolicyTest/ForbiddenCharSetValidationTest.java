@@ -33,6 +33,30 @@ class ForbiddenCharSetValidationTest {
 		}
 	}
 	
+	@Test
+	void getForbiddenCharSetTest() {
+		ForbiddenCharSetValidation validator;
+		Random random = new Random();
+		for (int i = 0; i < NUM_OF_TESTS; i++) {
+			int randomLength = random.nextInt(LENGTH_OF_FORBIDDEN_STRING + 1);
+			String forbiddenString = this.generateNotAllowedString(randomLength);
+			validator = new ForbiddenCharSetValidation(forbiddenString);
+			assertTrue(validator.getForbiddenCharSet().equals(forbiddenString));
+		}
+	}
+	
+	@Test
+	void setForbiddenCharSetTest() {
+		ForbiddenCharSetValidation validator = new ForbiddenCharSetValidation();
+		Random random = new Random();
+		for (int i = 0; i < NUM_OF_TESTS; i++) {
+			int randomLength = random.nextInt(LENGTH_OF_FORBIDDEN_STRING + 1);
+			String forbiddenString = this.generateNotAllowedString(randomLength);
+			validator.setForbiddernCharSet(forbiddenString);
+			assertTrue(validator.getForbiddenCharSet().equals(forbiddenString));
+		}
+	}
+	
 	private String generateAllowedString(int length) {
 		StringBuilder builder = new StringBuilder();
 		Random upperLowerSelector = new Random();
