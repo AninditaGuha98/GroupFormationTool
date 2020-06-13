@@ -29,8 +29,17 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 	
 	@Override
 	public boolean isValidPassword(String password) {
-		// TODO Auto-generated method stub
-		return false;
+		if (null == password)
+			return false;
+		
+		if (this.forbiddenCharSet.isEmpty())
+			return true;
+		
+		for (int i=0; i < this.forbiddenCharSet.length(); i++) {
+			if (password.contains(String.valueOf(this.forbiddenCharSet.charAt(i))))
+				return false;
+		}
+		return true;
 	}
 
 }

@@ -27,7 +27,7 @@ class ForbiddenCharSetValidationTest {
 	void forbiddenCharSetValidationConstructor() {
 		ForbiddenCharSetValidation validator;
 		for (int i = 0; i < NUM_OF_TESTS; i++) {
-			String notAllowedString = this.generateNotAllowedString(LENGTH_OF_FORBIDDEN_STRING);
+			String notAllowedString = this.generateForbiddenString(LENGTH_OF_FORBIDDEN_STRING);
 			validator = new ForbiddenCharSetValidation(notAllowedString);
 			assertTrue(validator.getForbiddenCharSet().equals(notAllowedString));
 		}
@@ -39,7 +39,7 @@ class ForbiddenCharSetValidationTest {
 		Random random = new Random();
 		for (int i = 0; i < NUM_OF_TESTS; i++) {
 			int randomLength = random.nextInt(LENGTH_OF_FORBIDDEN_STRING + 1);
-			String forbiddenString = this.generateNotAllowedString(randomLength);
+			String forbiddenString = this.generateForbiddenString(randomLength);
 			validator = new ForbiddenCharSetValidation(forbiddenString);
 			assertTrue(validator.getForbiddenCharSet().equals(forbiddenString));
 		}
@@ -51,9 +51,42 @@ class ForbiddenCharSetValidationTest {
 		Random random = new Random();
 		for (int i = 0; i < NUM_OF_TESTS; i++) {
 			int randomLength = random.nextInt(LENGTH_OF_FORBIDDEN_STRING + 1);
-			String forbiddenString = this.generateNotAllowedString(randomLength);
+			String forbiddenString = this.generateForbiddenString(randomLength);
 			validator.setForbiddernCharSet(forbiddenString);
 			assertTrue(validator.getForbiddenCharSet().equals(forbiddenString));
+		}
+		validator.setForbiddernCharSet(null);
+		assertTrue(validator.getForbiddenCharSet().equals(""));
+	}
+	
+	@Test
+	void isValidPasswordTest() {
+		ForbiddenCharSetValidation validator = new ForbiddenCharSetValidation();
+		Random random = new Random();
+		
+		for (int i = 0; i < NUM_OF_TESTS; i++) {
+			int randomAllowedLength = random.nextInt(LENGTH_OF_ALLOWED_STRING + 1);
+			int randomForbiddernLenght = random.nextInt(LENGTH_OF_FORBIDDEN_STRING + 1);
+			
+			String allowedString = this.generateAllowedString(randomAllowedLength);
+			String forbiddenString = this.generateForbiddenString(randomForbiddernLenght);
+			
+			validator.setForbiddernCharSet(forbiddenString);
+			if (forbiddenString.isEmpty()) {
+				assertTrue(validator.isValidPassword(allowedString));
+				assertTrue(validator.isValidPassword(forbiddenString+allowedString));
+				assertTrue(validator.isValidPassword(allowedString+forbiddenString));
+				assertTrue(validator.isValidPassword(forbiddenString+allowedString+
+						forbiddenString));
+			} else {
+				assertTrue(validator.isValidPassword(allowedString));
+				assertFalse(validator.isValidPassword(forbiddenString+allowedString));
+				assertFalse(validator.isValidPassword(allowedString+forbiddenString));
+				assertFalse(validator.isValidPassword(forbiddenString+allowedString+
+						forbiddenString));
+			}
+			assertFalse(validator.isValidPassword(null));
+			assertTrue(validator.isValidPassword(""));
 		}
 	}
 	
@@ -70,7 +103,7 @@ class ForbiddenCharSetValidationTest {
 		return builder.toString();
 	}
 	
-	private String generateNotAllowedString(int length) {
+	private String generateForbiddenString(int length) {
 		StringBuilder builder = new StringBuilder();
 		while (length-- != 0) {
 			int character = (int)(Math.random()* FORBIDDEN_CHARSET.length());
