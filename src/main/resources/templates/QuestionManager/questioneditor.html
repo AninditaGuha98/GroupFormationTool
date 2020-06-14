@@ -1,0 +1,137 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="ISO-8859-1">
+<title>Question Editor</title>
+<script>
+function displayResponses(option){
+	var question_type_value=option.options[option.selectedIndex].value;
+	console.log(question_type_value);
+	var container;
+	var input;
+	if('mcq1'== question_type_value|| 'mcq2'==question_type_value)
+		{
+		container=document.getElementById("container");
+		for(var i=0;i<1;i++)
+			{
+			//insert option box
+			input = document.createElement("input");
+	        input.type = "text";
+	        input.name = "member" + i;
+	        input.placeholder="display text";
+	        container.appendChild(input);
+	        
+	        //insert tab
+	        var tabspace = document.createElement("label");
+	        tabspace.innerHTML = "&nbsp";
+	        container.appendChild(tabspace);
+	        
+	        //insert stored value
+	        input = document.createElement("input");
+	        input.type = "text";
+	        input.name = "value" + i;
+	        input.placeholder="stored as value";
+	        container.appendChild(input);
+	        container.appendChild(document.createElement("br"));
+			}
+		
+		}	
+}
+
+</script>
+
+<style>
+  .main{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+  }
+  .welcome{
+    position: relative;
+    width: 800px;
+    text-align: center;
+    font-size: larger;
+    font-family: cursive;
+    margin: auto;
+  }
+  .Button{
+    margin: auto;
+    display: inline-flex;
+  }
+  Button{
+    padding: 14px;
+    border: 1px solid black;
+    font-family: cursive;
+    background: #8cffe0;
+    color: black;
+    font-size: medium;
+    margin: auto;
+  }
+  .nav-bar{
+
+  }
+  ul{
+    float: none;
+    background: black;
+    width: fit-content;
+    padding: 0;
+    margin: auto;
+  }
+
+  li{ text-align: center;
+    display: inline;
+  }
+  li a {
+    display: inline-block;
+    color: white;
+    font-family: cursive;
+    font-size: medium;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+</style>
+
+</head>
+<body>
+<div class="main">
+  <div class="nav-bar">
+    <ul>
+      <li><a href="">Welcome</a></li>
+      <li><a href="" style="background: #888888; color: black">Question Editor</a></li>
+      <li><a href="">Answer Editor</a></li>
+      <li><a href="">Finish</a></li>
+    </ul>
+  </div>
+
+  <div class="welcome">
+    <h1>Questionnaire section</h1>
+  </div>
+
+  <div>
+    <form>
+
+      Title:<input type="text" name="question_title"/>
+      QuestionText:<input type="text" name="question_title"/>
+      <label for="question_type">Choose response type:</label>
+      <select name="question_type" id="question_type" onchange="displayResponses(this)">
+        <option value="numeric">Numeric</option>
+        <option value="mcq1">Multiple Choice,Choose One</option>
+        <option value="mcq2">Multiple Choice,Choose Multiple</option>
+        <option value="text">Free Text</option>
+      </select>
+    </form>
+    <div id='container'>
+
+    </div>
+    <div class="Button">
+      <br/>
+      <a th:href="@{/welcomequestions}"><button type="submit" ><< Back</button></a>
+      <br/>
+      <a th:href="@{/answereditor}"><button type="submit" >Next >></button></a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

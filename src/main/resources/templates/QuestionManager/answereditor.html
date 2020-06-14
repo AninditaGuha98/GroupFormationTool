@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<style>
+    .main{
+        position: relative;
+        text-align: center;
+        width: 100%;
+        height: fit-content;
+    }
+    .Button{
+        margin: auto;
+        display: inline-flex;
+    }
+    Button{
+        padding: 14px;
+        border: 1px solid black;
+        font-family: cursive;
+        background: #8cffe0;
+        color: black;
+        font-size: medium;
+        margin: auto;
+    }
+    .nav-bar{
+
+    }
+    ul{
+        float: none;
+        background: black;
+        width: fit-content;
+        margin: 2px;
+        margin: auto;
+        padding: 0px;
+    }
+
+    li{ text-align: center;
+        display: inline;
+        /*padding: 10px;*/
+    }
+    li a {
+        display: inline-block;
+        color: white;
+        font-family: cursive;
+        font-size: medium;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="main">
+    <div class="nav-bar">
+        <ul>
+            <li><a href="" >Welcome</a></li>
+            <li><a href="">Question Editor</a></li>
+            <li><a href="" style="background: #888888; color: black">Answer Editor</a></li>
+            <li><a href="">Finish</a></li>
+        </ul>
+    </div>
+    <div>
+
+        <div class="Button">
+            <br/>
+            <a th:href="@{/questioneditor}"><button type="submit" ><< Back</button></a>
+            <br/>
+            <a th:href="@{/finish}" ><button type="submit" >Next >></button></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

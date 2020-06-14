@@ -131,8 +131,4 @@ public class InstructorAdminController
 			return mav;
 	   }
 
-	@GetMapping(value ="/course/questionnaire")
-	public String questionnaireAdmin() {
-		return "course/questionadmin";		
-	}
 }
