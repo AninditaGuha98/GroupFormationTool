@@ -16,6 +16,11 @@ public class CreateQuestionsController {
         return "QuestionManager/answereditor";
     }
 
+    @RequestMapping("/preview")
+    public String preview() {
+        return "QuestionManager/preview";
+    }
+
     @RequestMapping("/finish")
     public String finish() {
         return "QuestionManager/finish";
