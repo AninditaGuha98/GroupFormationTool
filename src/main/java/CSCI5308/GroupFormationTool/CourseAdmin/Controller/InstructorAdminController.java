@@ -98,7 +98,7 @@ public class InstructorAdminController
 	}
 
 	@RequestMapping(value = "/course/uploadcsv", consumes = {"multipart/form-data"})
-   public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID)
+	public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID)
    {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
 		Course course = new Course();
@@ -113,7 +113,7 @@ public class InstructorAdminController
    }
 	
 	@RequestMapping(value = "/course/assignTAtocourse")
-	   public ModelAndView assignInstructorToCourse(@RequestParam(name = "ta") List<Integer> instructor,
+	public ModelAndView assignInstructorToCourse(@RequestParam(name = "ta") List<Integer> instructor,
 	   		@RequestParam(name = ID) long courseID)
 	   {
 			Course c = new Course();
@@ -130,4 +130,9 @@ public class InstructorAdminController
 			mav.addObject("id",courseID);
 			return mav;
 	   }
+
+	@GetMapping(value ="/course/questionnaire")
+	public String questionnaireAdmin() {
+		return "course/questionadmin";		
+	}
 }
