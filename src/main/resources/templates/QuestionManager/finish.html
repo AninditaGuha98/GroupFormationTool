@@ -2,18 +2,21 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
+    <title></title>
 <style>
     .main{
         position: relative;
         text-align: center;
-        width: 100%;
         height: fit-content;
+        width: 100%;
     }
-    .Button{
+    .finish{
+        position: relative;
+        width: 800px;
+        text-align: center;
+        font-size: larger;
+        font-family: cursive;
         margin: auto;
-        display: inline-flex;
     }
     Button{
         padding: 14px;
@@ -24,21 +27,17 @@
         font-size: medium;
         margin: auto;
     }
-    .nav-bar{
 
-    }
     ul{
-        float: none;
         background: black;
         width: fit-content;
         margin: 2px;
-        margin: auto;
         padding: 0px;
+        margin: auto;
     }
 
     li{ text-align: center;
         display: inline;
-        /*padding: 10px;*/
     }
     li a {
         display: inline-block;
@@ -49,29 +48,31 @@
         padding: 14px 16px;
         text-decoration: none;
     }
+
 </style>
+
+
 </head>
 <body>
-
 <div class="main">
     <div class="nav-bar">
         <ul>
             <li><a href="" >Welcome</a></li>
             <li><a href="">Question Editor</a></li>
-            <li><a href="" style="background: #888888; color: black">Answer Editor</a></li>
-            <li><a href="">Finish</a></li>
+            <li><a href="">Answer Editor</a></li>
+            <li><a href="" style="background: #888888; color: black">Finish</a></li>
         </ul>
+    </div>
+    <div class="finish">
+        <h1>You have saved the question.</h1>
     </div>
     <div>
 
         <div class="Button">
             <br/>
-            <a th:href="@{/questioneditor}"><button type="submit" ><< Back</button></a>
-            <br/>
-            <a th:href="@{/finish}" ><button type="submit" >Next >></button></a>
+            <a th:href="@{/questionmanager}"><button type="submit" >Go to Question Manager</button></a>
         </div>
     </div>
 </div>
-
 </body>
 </html>
