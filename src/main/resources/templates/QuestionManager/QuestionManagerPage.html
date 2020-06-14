@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Manager Page</title>
+
+<style>
+    .Button{
+        text-align: center;
+        padding: 20px;
+        margin-top: 10px;
+        width: 100%;
+    }
+    Button{
+        padding: 20px;
+        border: 1px solid black;
+        font-family: cursive;
+        background: #8cffe0;
+        color: black;
+        font-size: medium;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="Button">
+    <br/>
+    <a th:href="@{/questionmanager}"><button type="submit" >List Questions</button></a>
+</div>
+<div class="Button">
+    <br/>
+    <a th:href="@{/questionmanager}"><button type="submit" >Delete Questions</button></a>
+</div>
+<div class="Button">
+    <br/>
+    <a th:href="@{/questionmanager}"><button type="submit" >Create Questions</button></a>
+</div>
+
+</body>
+</html>
