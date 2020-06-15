@@ -130,6 +130,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				while (results.next())
 				{
 					Role role = Role.valueOf(results.getString(1).toUpperCase());
+
 					roles.add(role);
 				}
 			}
