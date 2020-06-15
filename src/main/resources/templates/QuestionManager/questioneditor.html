@@ -1,43 +1,44 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Question Editor</title>
 <link rel="stylesheet" type="text/css" href="/styles/cssandjs/questionmanager.css">
-<script>
-function displayResponses(option){
-	var question_type_value=option.options[option.selectedIndex].value;
-	console.log(question_type_value);
-	var container;
-	var input;
-	if('mcq1'== question_type_value|| 'mcq2'==question_type_value)
-		{
-		container=document.getElementById("container");
-		for(var i=0;i<1;i++)
-			{
-			//insert option box
-			input = document.createElement("input");
-	        input.type = "text";
-	        input.name = "member" + i;
-	        input.placeholder="display text";
-	        container.appendChild(input);
-	        
-	        //insert tab
-	        var tabspace = document.createElement("label");
-	        tabspace.innerHTML = "&nbsp";
-	        container.appendChild(tabspace);
-	        
-	        //insert stored value
-	        input = document.createElement("input");
-	        input.type = "text";
-	        input.name = "value" + i;
-	        input.placeholder="stored as value";
-	        container.appendChild(input);
-	        container.appendChild(document.createElement("br"));
-			}
-		}	
-}
+<!--<script>-->
+<!--function displayResponses(option){-->
+<!--	var question_type_value=option.options[option.selectedIndex].value;-->
+<!--	console.log(question_type_value);-->
+<!--	var container;-->
+<!--	var input;-->
+<!--	if('mcq1'== question_type_value|| 'mcq2'==question_type_value)-->
+<!--		{-->
+<!--		container=document.getElementById("container");-->
+<!--		for(var i=0;i<1;i++)-->
+<!--			{-->
+<!--			//insert option box-->
+<!--			input = document.createElement("input");-->
+<!--	        input.type = "text";-->
+<!--	        input.name = "member" + i;-->
+<!--	        input.placeholder="display text";-->
+<!--	        container.appendChild(input);-->
+<!--	        -->
+<!--	        //insert tab-->
+<!--	        var tabspace = document.createElement("label");-->
+<!--	        tabspace.innerHTML = "&nbsp";-->
+<!--	        container.appendChild(tabspace);-->
+<!--	        -->
+<!--	        //insert stored value-->
+<!--	        input = document.createElement("input");-->
+<!--	        input.type = "text";-->
+<!--	        input.name = "value" + i;-->
+<!--	        input.placeholder="stored as value";-->
+<!--	        container.appendChild(input);-->
+<!--	        container.appendChild(document.createElement("br"));-->
+<!--			}-->
+<!--		}	-->
+<!--}-->
 
-</script>
+<!--</script>-->
 </head>
 <body>
 <div class="main">
@@ -56,29 +57,27 @@ function displayResponses(option){
   </div>
 
   <div>
-    <form>
-      Title:<input type="text" name="question_title"/>
-      QuestionText:<input type="text" name="question_title"/>
-      <label for="question_type">Choose response type:</label>
-      <select name="question_type" id="question_type" onchange="displayResponses(this)">
-        <option value="numeric">Numeric</option>
-        <option value="mcq1">Multiple Choice,Choose One</option>
-        <option value="mcq2">Multiple Choice,Choose Multiple</option>
-        <option value="text">Free Text</option>
+    <form th:action="@{/answereditor}" th:object="${questionModel}" method="post" >
+      Title:<input  th:field="*{questionTitle}"type="text" name="question_title" required/>
+      QuestionText:<input th:field ="*{questionText}"type="text" name="question_title" required/>
+      <label>Choose question type:</label>
+      <select th:field="*{typeSelect}">
+        <option th:each="que : ${questionModel.questionTypeList}"
+                th:value="${que.key}"
+                th:text="${que.value}">
+        </option>
       </select>
+     <div>
+        <div class="Button">
+<!--          <br/>-->
+<!--          <a href="welcome.html"><button>Return to Home</button></a>-->
+<!--          <br/>-->
+          <a th:href="@{/answereditor}"><button type="submit" >Next >></button></a>
+        </div>
+    </div>
     </form>
 
-    <div id='container'>
 
-    </div>
-    <div class="Button">
-      <br/>
-      <a th:href="@{/welcomequestions}"><button type="submit" ><< Back</button></a>
-      <br/>
-      <a th:href="@{/answereditor}"><button type="submit" >Next >></button></a>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
