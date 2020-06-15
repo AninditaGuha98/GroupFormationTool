@@ -15,10 +15,11 @@
 	           <input type="submit" value="Sign Out"/>
 	       </form>
 		</div>
-		<h1 th:text="'Choose from these users to assign as the instructor for ' + ${course.title} + ':'">
+		<h1 th:text="'Choose from these users to assign as the instructor for '+ ${course.title} + ':'">
 			Choose from these users to assign as the instructor:
 		</h1>
-		<form th:action="@{/admin/assigninstructor(id=${course.id})}" method="post">
+		<form th:action="@{/admin/assigninstructortocourse}" method="post">
+		<input type = "hidden" th:value = "${course.id}" name="id">
 			<div>
 		  		<table>
 					<tr th:each="user : ${users}">
@@ -29,7 +30,7 @@
 					</tr>
 		  		</table>
 			</div>
-			<input type="submit" value="Assign Instructors"/>
+			<input type="submit" value="Assign TA"/>
 		</form>
 	</body>
 </html>

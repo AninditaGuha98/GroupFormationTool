@@ -1,11 +1,13 @@
 package CSCI5308.GroupFormationTool.CourseAdmin.Controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
 import CSCI5308.GroupFormationTool.CourseAdmin.Interface.IStudentCSVParser;
 import CSCI5308.GroupFormationTool.CourseAdmin.Service.StudentCSVImport;
 import CSCI5308.GroupFormationTool.CourseAdmin.Service.StudentCSVParser;
+import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
+import CSCI5308.GroupFormationTool.AccessControl.User;
 
 @Controller
 public class InstructorAdminController
@@ -83,6 +86,9 @@ public class InstructorAdminController
 		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR) ||
 			 course.isCurrentUserEnrolledAsRoleInCourse(Role.TA))
 		{
+			ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance().getCourseUserRelationshipDB();
+			List<User> allUsersNotCurrentlyTA = courseUserRelationshipDB.findAllUsersWithoutCourseRole(Role.TA, courseID);
+			model.addAttribute("users", allUsersNotCurrentlyTA);
 			return "course/enrollta";
 		}
 		else
@@ -92,7 +98,7 @@ public class InstructorAdminController
 	}
 
 	@RequestMapping(value = "/course/uploadcsv", consumes = {"multipart/form-data"})
-   public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID)
+	public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID)
    {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
 		Course course = new Course();
@@ -102,8 +108,27 @@ public class InstructorAdminController
 		ModelAndView mav = new ModelAndView("redirect:/course/instructoradminresults?id=" + Long.toString(courseID));
 		mav.addObject("successful", importer.getSuccessResults());
 		mav.addObject("failures", importer.getFailureResults());
-		mav.addObject("displayresults", true);
-		
+		mav.addObject("displayresults", true);		
 		return mav;
    }
+	
+	@RequestMapping(value = "/course/assignTAtocourse")
+	public ModelAndView assignInstructorToCourse(@RequestParam(name = "ta") List<Integer> instructor,
+	   		@RequestParam(name = ID) long courseID)
+	   {
+			Course c = new Course();
+			c.setId(courseID);
+			Iterator<Integer> iter = instructor.iterator();
+			ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance().getCourseUserRelationshipDB();
+			while (iter.hasNext())
+			{
+				User u = new User();
+				u.setId(iter.next().longValue());
+				courseUserRelationshipDB.enrollUser(c, u, Role.TA);
+			}
+			ModelAndView mav = new ModelAndView("redirect:instructoradmin");
+			mav.addObject("id",courseID);
+			return mav;
+	   }
+
 }

@@ -18,10 +18,25 @@
 		<h1 th:text="'Course: ' + ${course.title}">Course: Title Not Found</h1>
 		<br/>
 		<p>
-			This tool allows you to import and enroll students in the system by uploading a CSV
-			file (banner ID, first name, last name, email). Each student will have an account
-			created if they do not already exist in the system, and will be emailed with their
-			login credentials.
+			<div>
+				<h1 th:text="'Choose from these users to assign as the TA for '+ ${course.title} + ':'">
+			Choose from these users to assign as the instructor:
+		</h1>
+		<form th:action="@{/course/assignTAtocourse}" method="post">
+		<input type = "hidden" th:value = "${course.id}" name="id">
+			<div>
+		  		<table>
+					<tr th:each="user : ${users}">
+						<td>
+							<input type="checkbox" name="ta" th:value="${user.id}">
+							<label th:text="${user.bannerID} + ', ' + ${user.firstName} + ' ' + ${user.lastName}"></label>
+						</td>
+					</tr>
+		  		</table>
+			</div>
+			<input type="submit" value="Assign Instructors"/>
+		</form>
+			</div>
 		</p>
 		<br/>
 		<a th:href="@{/course/enrollta(id=${course.id})}">Enroll TAs</a>
