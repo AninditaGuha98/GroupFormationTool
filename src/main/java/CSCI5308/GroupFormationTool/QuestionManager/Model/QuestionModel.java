@@ -1,18 +1,35 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
+import java.util.HashMap;
+
 public class QuestionModel {
-    private String questionType;
+    private String typeSelect;
     private String questionTitle;
     private String questionText;
     private String responseText;
     private int responseScore;
-
-    public String getQuestionType() {
-        return questionType;
+    private HashMap<String, String> questionTypeList = new HashMap<>();
+    public QuestionModel(){
+        this.questionTypeList.put("numeric","Numeric");
+        this.questionTypeList.put("mcq1","Multiple Choice Question, Choose One");
+        this.questionTypeList.put("mcq2","Multiple Choice Question, Choose Multiple");
+        this.questionTypeList.put("free","Free");
     }
 
-    public void setQuestionType(String questionType) {
-        this.questionType = questionType;
+    public String getTypeSelect() {
+        return typeSelect;
+    }
+
+    public void setTypeSelect(String typeSelect) {
+        this.typeSelect = typeSelect;
+    }
+
+    public HashMap<String, String> getQuestionTypeList() {
+        return questionTypeList;
+    }
+
+    public void setQuestionTypeList(HashMap<String, String> questionTypeList) {
+        this.questionTypeList = questionTypeList;
     }
 
     public String getQuestionTitle() {

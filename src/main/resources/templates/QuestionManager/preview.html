@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/styles/cssandjs/questionmanager.css">
@@ -21,6 +22,8 @@
     <div>
 
         <div class="Button">
+<!--            <br/>-->
+<!--            <a th:href="@{/welcome.html}"><button><< Return to Home</button></a>-->
             <br/>
             <a th:href="@{/finish}"><button type="submit" >Save and Finish</button></a>
         </div>

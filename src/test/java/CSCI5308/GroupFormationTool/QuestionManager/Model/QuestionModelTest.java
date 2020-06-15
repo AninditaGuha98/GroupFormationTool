@@ -3,23 +3,44 @@ package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class QuestionModelTest {
-
     @Test
-    void getQuestionType() {
+    void getTypeSelect() {
         QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionType("mcq1");
-        assertSame("mcq1",questionModel.getQuestionType());
+        questionModel.setTypeSelect("1");
+        assertSame("1",questionModel.getTypeSelect());
     }
 
     @Test
-    void setQuestionType() {
+    void setTypeSelect() {
         QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionType("mcq2");
-        assertSame("mcq2",questionModel.getQuestionType());
+        questionModel.setTypeSelect("1");
+        assertSame("1",questionModel.getTypeSelect());
     }
+
+    @Test
+    void getQuestionTypeList() {
+        HashMap<String,String> mock= new HashMap<>();
+        mock.put("numeric","Numeric");
+        QuestionModel questionModel=new QuestionModel();
+        questionModel.setQuestionTypeList(mock);
+        assertSame(mock,questionModel.getQuestionTypeList());
+    }
+
+    @Test
+    void setQuestionTypeList() {
+        HashMap<String,String> mock= new HashMap<>();
+        mock.put("numeric","Numeric");
+        QuestionModel questionModel=new QuestionModel();
+        questionModel.setQuestionTypeList(mock);
+        assertSame(mock,questionModel.getQuestionTypeList());
+    }
+
+
 
     @Test
     void getQuestionTitle() {
