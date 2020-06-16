@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLengthValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLowercaseValidation;
 import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinUppercaseValidation;
 
 class MinUppercaseValidationTest {
@@ -18,23 +16,23 @@ class MinUppercaseValidationTest {
 	
 	@Test 
 	void minUppercaseValidationConstructor() {
-		MinUppercaseValidation validator = new MinUppercaseValidation(4);
+		MinUppercaseValidation validator = new MinUppercaseValidation("4");
 		assertTrue(validator.getMinUppercase() == 4);
 		
-		validator = new MinUppercaseValidation(-1);
+		validator = new MinUppercaseValidation("-1");
 		assertTrue(validator.getMinUppercase() == 0);
 		
-		validator = new MinUppercaseValidation(0);
+		validator = new MinUppercaseValidation("0");
 		assertTrue(validator.getMinUppercase() == 0);
 		
-		validator = new MinUppercaseValidation(10);
+		validator = new MinUppercaseValidation("10");
 		assertTrue(validator.getMinUppercase() == 10);
 	}
 	
 	
 	@Test 
 	void getMinUppercaseTest() {
-		MinUppercaseValidation validator = new MinUppercaseValidation(1);
+		MinUppercaseValidation validator = new MinUppercaseValidation("1");
 		assertTrue(validator.getMinUppercase() == 1);
 	}
 	
@@ -68,7 +66,7 @@ class MinUppercaseValidationTest {
 		assertFalse(validator.isValidPassword(null));
 		
 		// a validator with 4 minimum uppercase letters
-		validator = new MinUppercaseValidation(4);
+		validator = new MinUppercaseValidation("4");
 		// 5 uppercase letters 5>4
 		assertTrue(validator.isValidPassword("RAOUF"));
 		assertTrue(validator.isValidPassword("RAOUF1@"));
@@ -93,7 +91,7 @@ class MinUppercaseValidationTest {
 		assertFalse(validator.isValidPassword(null));
 		
 		// Negative minimum uppercase leads to no validation checking.
-		validator = new MinUppercaseValidation(-1);
+		validator = new MinUppercaseValidation("-1");
 		assertTrue(validator.isValidPassword("RA"));
 		assertTrue(validator.isValidPassword("RA1234"));
 		assertTrue(validator.isValidPassword("RA12#$"));

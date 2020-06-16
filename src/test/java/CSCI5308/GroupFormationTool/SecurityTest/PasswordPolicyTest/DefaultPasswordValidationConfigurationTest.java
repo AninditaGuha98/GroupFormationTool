@@ -48,9 +48,9 @@ class DefaultPasswordValidationConfigurationTest {
 		try {
 			configMap = defaultConfig.getConfigMap(DefaultPasswordValidationConfigurationTest.passwordValidationList);
 			assertEquals("8", configMap.get(MIN_LENGTH));
-			assertEquals("20", configMap.get(MAX_LENGTH));
+			assertEquals("12", configMap.get(MAX_LENGTH));
 			assertEquals("2", configMap.get(MIN_LOWERCASE));
-			assertEquals("4", configMap.get(MIN_UPPERCASE));
+			assertEquals("2", configMap.get(MIN_UPPERCASE));
 			assertEquals("2", configMap.get(MIN_NON_ALPHANUM));
 			assertEquals("\\&\"'", configMap.get(FORBIDDEN_CHARSET));
 			assertEquals("4", configMap.get(HISTORY_CONSTRAINT));
