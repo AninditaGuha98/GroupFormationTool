@@ -12,22 +12,24 @@ class DefaultPasswordValidationManagerTest {
 	@Test
 	void isPasswordValidTest() {
 		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
-		// No lowercase and uppercase
+		// No lowercase & uppercase & special chars
 		assertFalse(passwordPolicyManager.isValidPassword("12345678")); 
-		// Less than 8 chars & No lowercase and uppercase
+		// Less than 8 chars & No lowercase & uppercase & special chars 
 		assertFalse(passwordPolicyManager.isValidPassword("1234567"));
-		// No uppercase
+		// No uppercase & special chars
 		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijkl"));
-		// More than 12 chars and No uppercase
+		// More than 12 chars & No uppercase & special chars
 		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijklm")); 
-		// Less than 2 lowercase
+		// Less than 2 lowercase & no special chars
 		assertFalse(passwordPolicyManager.isValidPassword("aBCDEFGHIJKL"));
-		// Less than 2 uppercase
+		// Less than 2 uppercase & no special chars
 		assertFalse(passwordPolicyManager.isValidPassword("Abcdefghijkl"));
+		// Less than 2 special chars
+		assertFalse(passwordPolicyManager.isValidPassword("abCDE12345!"));
 		// Accepted
-		assertTrue(passwordPolicyManager.isValidPassword("abCDE12345"));
-		assertTrue(passwordPolicyManager.isValidPassword("abCD1234"));
-		assertTrue(passwordPolicyManager.isValidPassword("abCDEFGHIJKL"));
+		assertTrue(passwordPolicyManager.isValidPassword("&abCDE12345!"));
+		assertTrue(passwordPolicyManager.isValidPassword("\"abCD1}234\\"));
+		assertTrue(passwordPolicyManager.isValidPassword("&abCD%EFGHI`"));
 		
 		assertFalse(passwordPolicyManager.isValidPassword(""));
 		assertFalse(passwordPolicyManager.isValidPassword(null));

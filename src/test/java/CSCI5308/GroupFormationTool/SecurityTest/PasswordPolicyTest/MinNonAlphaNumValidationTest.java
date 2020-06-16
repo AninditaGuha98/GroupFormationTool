@@ -16,19 +16,19 @@ class MinNonAlphaNumValidationTest {
 	
 	@Test
 	void minNonAlaphNumValidationConstructorTest() {
-		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation(2);
+		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation("2");
 		assertTrue(validator.getMinNonAlphaNum() == 2);
 		
-		validator = new MinNonAlphaNumValidation(-1);
+		validator = new MinNonAlphaNumValidation("-1");
 		assertTrue(validator.getMinNonAlphaNum() == 0);
 		
-		validator = new MinNonAlphaNumValidation(0);
+		validator = new MinNonAlphaNumValidation("0");
 		assertTrue(validator.getMinNonAlphaNum() == 0);
 	}
 	
 	@Test
 	void getMinNonAlaphNumTest() {
-		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation(4);
+		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation("4");
 		assertTrue(validator.getMinNonAlphaNum() == 4);
 	}
 	
@@ -58,7 +58,7 @@ class MinNonAlphaNumValidationTest {
 		assertTrue(validator.isValidPassword(""));
 		assertFalse(validator.isValidPassword(null));
 		
-		validator = new MinNonAlphaNumValidation(1);
+		validator = new MinNonAlphaNumValidation("1");
 		// 2 NonAlphaNum chars - 2>1
 		assertTrue(validator.isValidPassword("#Messi!"));
 		assertTrue(validator.isValidPassword("%me@SSi"));

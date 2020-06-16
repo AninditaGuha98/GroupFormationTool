@@ -15,8 +15,15 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		this.minNonAlphaNum = 0;
 	}
 	
-	public MinNonAlphaNumValidation(int minNonAlphaNum) {
-		this.setMinNonAlphaNum(minNonAlphaNum);
+	public MinNonAlphaNumValidation(String minNonAlphaNum) {
+		try {
+			int intMinNonAlphaNum = Integer.parseInt(minNonAlphaNum);
+			this.setMinNonAlphaNum(intMinNonAlphaNum);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			this.setMinNonAlphaNum(0);
+		}
 	}
 	
 	public int getMinNonAlphaNum() {
@@ -51,5 +58,4 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 	    else
 	    	return true;
 	}
-
 }
