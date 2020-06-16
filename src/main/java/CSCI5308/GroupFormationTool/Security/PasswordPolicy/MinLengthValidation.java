@@ -14,11 +14,18 @@ public class MinLengthValidation implements IPasswordValidation {
 	
 	
 	/*
-	 * For negative minimum length sets minLength =0
+	 * For negative minimum length sets minLength = 0
 	 * It means minimum length validation is passed.
 	 */
-	public MinLengthValidation(int minLength) {
-		this.setMinLength(minLength);
+	public MinLengthValidation(String minLength) {
+		try {
+			int intMinLength = Integer.parseInt(minLength);
+			this.setMinLength(intMinLength);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			this.setMinLength(0);
+		}
 	}
 	
 	public int getMinLength() {

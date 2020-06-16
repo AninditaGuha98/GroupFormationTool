@@ -16,23 +16,26 @@ class MinLengthValidationTest {
 	
 	@Test 
 	void minLengthValidationConstructor() {
-		MinLengthValidation validator = new MinLengthValidation(10);
+		MinLengthValidation validator = new MinLengthValidation("10");
 		assertTrue(validator.getMinLength() == 10);
 		
-		validator = new MinLengthValidation(-1);
+		validator = new MinLengthValidation("-1");
 		assertTrue(validator.getMinLength() == 0);
 		
-		validator = new MinLengthValidation(0);
+		validator = new MinLengthValidation("0");
 		assertTrue(validator.getMinLength() == 0);
 		
-		validator = new MinLengthValidation(4);
+		validator = new MinLengthValidation(null);
+		assertTrue(validator.getMinLength() == 0);
+		
+		validator = new MinLengthValidation("4");
 		assertTrue(validator.getMinLength() == 4);
 	}
 	
 	
 	@Test 
 	void getMinLengthTest() {
-		MinLengthValidation validator = new MinLengthValidation(5);
+		MinLengthValidation validator = new MinLengthValidation("5");
 		assertTrue(validator.getMinLength() == 5);
 	}
 	
@@ -65,7 +68,7 @@ class MinLengthValidationTest {
 		assertFalse(validator.isValidPassword(null));
 		
 		// Negative minLength
-		validator = new MinLengthValidation(-1);
+		validator = new MinLengthValidation("-1");
 		assertTrue(validator.isValidPassword("1234567890"));
 		assertTrue(validator.isValidPassword("12345678"));
 		assertTrue(validator.isValidPassword("1234567"));
@@ -73,7 +76,7 @@ class MinLengthValidationTest {
 		assertFalse(validator.isValidPassword(null));
 		
 		// > 0 minLength
-		validator = new MinLengthValidation(8);
+		validator = new MinLengthValidation("8");
 		assertTrue(validator.isValidPassword("1234567890"));
 		assertTrue(validator.isValidPassword("12345678"));
 		assertFalse(validator.isValidPassword("1234567"));
