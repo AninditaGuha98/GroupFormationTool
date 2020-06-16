@@ -13,8 +13,9 @@ class DefaultPasswordValidationManagerTest {
 	void isPasswordValidTest() {
 		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
 		assertTrue(passwordPolicyManager.isValidPassword("12345678"));
-		assertTrue(passwordPolicyManager.isValidPassword("123456789"));
 		assertFalse(passwordPolicyManager.isValidPassword("1234567"));
+		assertTrue(passwordPolicyManager.isValidPassword("abcdefghijkl"));
+		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijklm"));
 		assertFalse(passwordPolicyManager.isValidPassword(""));
 		assertFalse(passwordPolicyManager.isValidPassword(null));
 	}

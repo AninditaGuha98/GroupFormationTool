@@ -16,8 +16,15 @@ public class MaxLengthValidation implements IPasswordValidation {
 	 * For negative maximum length sets maxLength = 0
 	 * It means maximum length validation is passed.
 	 */
-	public MaxLengthValidation(int maxLength) {
-		this.setMaxLength(maxLength);
+	public MaxLengthValidation(String maxLength) {
+		try {
+			int intMaxLength = Integer.parseInt(maxLength);
+			this.setMaxLength(intMaxLength);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			this.setMaxLength(0);
+		}
 	}
 	
 	public int getMaxLength() {

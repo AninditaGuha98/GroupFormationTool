@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MaxLengthValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLengthValidation;
 
 class MaxLengthValidationTest {
 
@@ -17,20 +16,23 @@ class MaxLengthValidationTest {
 	
 	@Test 
 	void maxLengthValidationConstructor() {
-		MaxLengthValidation validator = new MaxLengthValidation(20);
+		MaxLengthValidation validator = new MaxLengthValidation("20");
 		assertTrue(validator.getMaxLength() == 20);
 		
-		validator = new MaxLengthValidation(-1);
+		validator = new MaxLengthValidation("-1");
 		assertTrue(validator.getMaxLength() == 0);
 		
-		validator = new MaxLengthValidation(0);
+		validator = new MaxLengthValidation("0");
+		assertTrue(validator.getMaxLength() == 0);
+		
+		validator = new MaxLengthValidation(null);
 		assertTrue(validator.getMaxLength() == 0);
 	}
 	
 	
 	@Test 
 	void getMaxLengthTest() {
-		MaxLengthValidation validator = new MaxLengthValidation(8);
+		MaxLengthValidation validator = new MaxLengthValidation("8");
 		assertTrue(validator.getMaxLength() == 8);
 	}
 	
@@ -51,7 +53,7 @@ class MaxLengthValidationTest {
 	@Test
 	void isValidPasswordTest() {
 
-		MaxLengthValidation validator = new MaxLengthValidation(12);
+		MaxLengthValidation validator = new MaxLengthValidation("12");
 		assertTrue(validator.isValidPassword("abcdefghijkl"));
 		assertTrue(validator.isValidPassword("abcdefghij"));
 		assertFalse(validator.isValidPassword("abcdefghijklmn"));
@@ -67,7 +69,7 @@ class MaxLengthValidationTest {
 		assertTrue(validator.isValidPassword(""));
 		assertFalse(validator.isValidPassword(null));
 		
-		validator = new MaxLengthValidation(-1);
+		validator = new MaxLengthValidation("-1");
 		assertTrue(validator.isValidPassword("abcdefghijkl"));
 		assertTrue(validator.isValidPassword("abcdefghij"));
 		assertTrue(validator.isValidPassword("abcdefghijklmn"));
