@@ -12,10 +12,16 @@ class DefaultPasswordValidationManagerTest {
 	@Test
 	void isPasswordValidTest() {
 		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
-		assertTrue(passwordPolicyManager.isValidPassword("12345678"));
-		assertFalse(passwordPolicyManager.isValidPassword("1234567"));
+		// No lowercase
+		assertFalse(passwordPolicyManager.isValidPassword("12345678")); 
+		// Less than 8 chars & No lowercase
+		assertFalse(passwordPolicyManager.isValidPassword("1234567")); 
 		assertTrue(passwordPolicyManager.isValidPassword("abcdefghijkl"));
-		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijklm"));
+		// More than 12 chars
+		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijklm")); 
+		assertTrue(passwordPolicyManager.isValidPassword("abCDEFGHIJKL"));
+		// Less than 2 lowercase
+		assertFalse(passwordPolicyManager.isValidPassword("aBCDEFGHIJKL"));
 		assertFalse(passwordPolicyManager.isValidPassword(""));
 		assertFalse(passwordPolicyManager.isValidPassword(null));
 	}

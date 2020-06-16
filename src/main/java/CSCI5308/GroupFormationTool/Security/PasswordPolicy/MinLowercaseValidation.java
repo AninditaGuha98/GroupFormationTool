@@ -16,8 +16,15 @@ public class MinLowercaseValidation implements IPasswordValidation {
 	 * For negative minLowercase sets minLowercase = 0
 	 * It means Lowercase Validation is passed.
 	 */
-	public MinLowercaseValidation(int minLowercase) {
-		this.setMinLowercase(minLowercase);
+	public MinLowercaseValidation(String minLowercase) {
+		try {
+			int intMinLowercase = Integer.parseInt(minLowercase);
+			this.setMinLowercase(intMinLowercase);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			this.setMinLowercase(0);
+		}
 	}
 	
 	public int getMinLowercase() {

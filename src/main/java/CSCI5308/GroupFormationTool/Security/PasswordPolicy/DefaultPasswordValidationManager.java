@@ -13,7 +13,7 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 
 	private static final String MIN_LENGTH = "min_length";
 	private static final String MAX_LENGTH = "max_length";
-//	private static final String MIN_LOWERCASE = "min_lowercase";
+	private static final String MIN_LOWERCASE = "min_lowercase";
 //	private static final String MIN_UPPERCASE = "min_uppercase";
 //	private static final String MIN_NON_ALPHANUM = "min_non_alphanum";
 //	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
@@ -50,7 +50,7 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	private void initializePasswordValidationMapper() {
 		passwordValidationMapper.put(MIN_LENGTH, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLengthValidation");
 		passwordValidationMapper.put(MAX_LENGTH, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MaxLengthValidation");
-//		passwordValidationMapper.put(MIN_LOWERCASE, "MinLowercaseValidation");
+		passwordValidationMapper.put(MIN_LOWERCASE, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLowercaseValidation");
 //		passwordValidationMapper.put(MIN_UPPERCASE, "MaxUppercaseValidation");
 //		passwordValidationMapper.put(MIN_NON_ALPHANUM, "MinNonAlphaNumValidation");
 //		passwordValidationMapper.put(FORBIDDEN_CHARSET, "ForbiddenCharSetValidation");

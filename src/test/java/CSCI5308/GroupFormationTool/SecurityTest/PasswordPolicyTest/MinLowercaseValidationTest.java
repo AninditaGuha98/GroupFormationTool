@@ -17,23 +17,26 @@ class MinLowercaseValidationTest {
 	
 	@Test 
 	void minLowercaseValidationConstructor() {
-		MinLowercaseValidation validator = new MinLowercaseValidation(5);
+		MinLowercaseValidation validator = new MinLowercaseValidation("5");
 		assertTrue(validator.getMinLowercase() == 5);
 		
-		validator = new MinLowercaseValidation(-1);
+		validator = new MinLowercaseValidation("-1");
 		assertTrue(validator.getMinLowercase() == 0);
 		
-		validator = new MinLowercaseValidation(0);
+		validator = new MinLowercaseValidation("0");
 		assertTrue(validator.getMinLowercase() == 0);
 		
-		validator = new MinLowercaseValidation(10);
+		validator = new MinLowercaseValidation(null);
+		assertTrue(validator.getMinLowercase() == 0);
+		
+		validator = new MinLowercaseValidation("10");
 		assertTrue(validator.getMinLowercase() == 10);
 	}
 	
 	
 	@Test 
 	void getMinLowercaseTest() {
-		MinLowercaseValidation validator = new MinLowercaseValidation(1);
+		MinLowercaseValidation validator = new MinLowercaseValidation("1");
 		assertTrue(validator.getMinLowercase() == 1);
 	}
 	
@@ -66,7 +69,7 @@ class MinLowercaseValidationTest {
 		assertFalse(validator.isValidPassword(null));
 		
 		// a validator with default 4 minimum lowercase letters
-		validator = new MinLowercaseValidation(4);
+		validator = new MinLowercaseValidation("4");
 		// 5 lowercase letters 5>4
 		assertTrue(validator.isValidPassword("raouf"));
 		assertTrue(validator.isValidPassword("raouf1@"));
@@ -90,7 +93,7 @@ class MinLowercaseValidationTest {
 		assertFalse(validator.isValidPassword(null));
 		
 		// Negative minimum lowercase leads to no validation checking.
-		validator = new MinLowercaseValidation(-1);
+		validator = new MinLowercaseValidation("-1");
 		assertTrue(validator.isValidPassword("ra"));
 		assertTrue(validator.isValidPassword("ra1234"));
 		assertTrue(validator.isValidPassword("ra12#$"));
