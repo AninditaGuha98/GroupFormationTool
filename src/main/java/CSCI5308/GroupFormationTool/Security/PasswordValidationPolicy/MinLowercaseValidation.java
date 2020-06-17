@@ -2,48 +2,49 @@ package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 public class MinLowercaseValidation implements IPasswordValidation {
 
+	private static final String MIN_LOWERCASE = "min_lowercase";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum %d lowercase letters.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d lowercase letters.";
 	
 	private int minLowercase;
 	
-	/*
-	 * Default constructor sets minLowercase = 0.
-	 * It means Lowercase Validation is passed.
-	 */
 	public MinLowercaseValidation() {
-		this.minLowercase = 0;
-	}
-	
-	/*
-	 * For negative minLowercase sets minLowercase = 0
-	 * It means Lowercase Validation is passed.
-	 */
-	public MinLowercaseValidation(String minLowercase) {
-		try {
-			int intMinLowercase = Integer.parseInt(minLowercase);
-			this.setMinLowercase(intMinLowercase);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			this.setMinLowercase(0);
-		}
 	}
 	
 	public int getMinLowercase() {
 		return this.minLowercase;
 	}
 	
-	public void setMinLowercase(int minLowercase) {
-		if (minLowercase <= 0)
+	private void setMinLowercase(String minLowercase) {
+		int intMinLowercase;
+		try {
+			intMinLowercase = Integer.parseInt(minLowercase);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			intMinLowercase = 0;
+		}
+		
+		if (intMinLowercase <= 0)
 			this.minLowercase = 0;
 		else
-			this.minLowercase = minLowercase;
+			this.minLowercase = intMinLowercase;
 	}
 	
 	@Override
-	public boolean isValidPassword(String password) {
+	public boolean isValidPassword(String password, IPasswordValidationConfiguration config) {
 		int lowerCase = 0;
+		String configValue;
+		
+		try {
+			configValue = config.getConfig(MIN_LOWERCASE);
+		}
+		catch (Exception e) {
+			// log the Exception
+			configValue = null;
+		}
+		
+		setMinLowercase(configValue);
 		
 		if (null == password)
 			return false;
@@ -63,8 +64,8 @@ public class MinLowercaseValidation implements IPasswordValidation {
 	}
 	
 	@Override
-	public String getPasswordValidationMessage(String password) {
-		if (isValidPassword(password)) {
+	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.minLowercase);
 		} else {
 			return String.format(INVALID_PASSWORD_MESSAGE, this.minLowercase);

@@ -10,8 +10,8 @@ public class DefaultPasswordValidationConfiguration implements IPasswordValidati
 	private static final String configFile = "passwordValidation.properties";
 	
 	@Override
-	public String getConfig(String configKey) throws Exception, IOException {
-		String configValue = null;
+	public String getConfig(String configKey) throws Exception {
+		String configValue;
 		
 		if (null == configKey) {
 			throw new Exception("Null Key");
@@ -24,6 +24,7 @@ public class DefaultPasswordValidationConfiguration implements IPasswordValidati
 		}
 		catch (IOException e) {
 			// Log the IOException
+			configValue = null;
 		}
 		return configValue;
 	}

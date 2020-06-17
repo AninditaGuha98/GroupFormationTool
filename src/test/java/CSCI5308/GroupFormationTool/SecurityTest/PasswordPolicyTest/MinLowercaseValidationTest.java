@@ -2,121 +2,49 @@ package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.MinValidatorForBigDecimal;
 import org.junit.jupiter.api.Test;
 
-import com.jayway.jsonpath.internal.function.numeric.Min;
-
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLengthValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLowercaseValidation;
 
 class MinLowercaseValidationTest {
 
-	@Test 
-	void minLowercaseValidationDefaultConstructor() {
-		MinLowercaseValidation validator = new MinLowercaseValidation();
-		assertTrue(validator.getMinLowercase() == 0);
-	}
-	
-	@Test 
-	void minLowercaseValidationConstructor() {
-		MinLowercaseValidation validator = new MinLowercaseValidation("5");
-		assertTrue(validator.getMinLowercase() == 5);
-		
-		validator = new MinLowercaseValidation("-1");
-		assertTrue(validator.getMinLowercase() == 0);
-		
-		validator = new MinLowercaseValidation("0");
-		assertTrue(validator.getMinLowercase() == 0);
-		
-		validator = new MinLowercaseValidation(null);
-		assertTrue(validator.getMinLowercase() == 0);
-		
-		validator = new MinLowercaseValidation("10");
-		assertTrue(validator.getMinLowercase() == 10);
-	}
-	
-	
-	@Test 
-	void getMinLowercaseTest() {
-		MinLowercaseValidation validator = new MinLowercaseValidation("1");
-		assertTrue(validator.getMinLowercase() == 1);
-	}
-	
-	@Test
-	void setMinLowercaseTest() {
-		MinLowercaseValidation validator = new MinLowercaseValidation();
-		
-		validator.setMinLowercase(10);
-		assertTrue(validator.getMinLowercase() == 10);
-		
-		validator.setMinLowercase(-1);
-		assertTrue(validator.getMinLowercase() == 0);
-		
-		validator.setMinLowercase(0);
-		assertTrue(validator.getMinLowercase() == 0);
-	}
-	
 	@Test
 	void isValidPasswordTest() {
-		
-		// Default constructor leads to no validation checking.
+		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
 		MinLowercaseValidation validator = new MinLowercaseValidation();
-		assertTrue(validator.isValidPassword("raouf"));
-		assertTrue(validator.isValidPassword("raouf1234"));
-		assertTrue(validator.isValidPassword("raouf12#$"));
-		assertTrue(validator.isValidPassword("RAOUF"));
-		assertTrue(validator.isValidPassword("1234"));
-		assertTrue(validator.isValidPassword("!@#$%"));
-		// Null password
-		assertFalse(validator.isValidPassword(null));
 		
-		// a validator with default 4 minimum lowercase letters
-		validator = new MinLowercaseValidation("4");
-		// 5 lowercase letters 5>4
-		assertTrue(validator.isValidPassword("raouf"));
-		assertTrue(validator.isValidPassword("raouf1@"));
-		// 4 lowercase letters 4=4
-		assertTrue(validator.isValidPassword("Raouf"));
-		assertTrue(validator.isValidPassword("raOuf"));
-		assertTrue(validator.isValidPassword("raouF"));
-		assertTrue(validator.isValidPassword("raouF1@"));
-		// 3 lowercase letters 3<4
-		assertFalse(validator.isValidPassword("RaouF"));
-		assertFalse(validator.isValidPassword("RAouf"));
-		assertFalse(validator.isValidPassword("rAOuf"));
-		assertFalse(validator.isValidPassword("rAouF"));
-		assertFalse(validator.isValidPassword("rAouF1@"));
-		// 0 lowercase letters 0<4
-		assertFalse(validator.isValidPassword("RAOUF"));
-		assertFalse(validator.isValidPassword("RAOUF1@"));
-		assertFalse(validator.isValidPassword("1234"));
-		assertFalse(validator.isValidPassword("!@#$%"));
+		// 3 lowercase letters 3 > 2
+		assertTrue(validator.isValidPassword("RaouF", config));
+		assertTrue(validator.isValidPassword("RAouf", config));
+		assertTrue(validator.isValidPassword("rAOuf", config));
+		assertTrue(validator.isValidPassword("rAouF", config));
+		assertTrue(validator.isValidPassword("rAouF1@", config));
+		// 2 lowercase letters 2 == 2
+		assertTrue(validator.isValidPassword("RaOuF", config));
+		assertTrue(validator.isValidPassword("RAOuf", config));
+		assertTrue(validator.isValidPassword("rAOUf", config));
+		assertTrue(validator.isValidPassword("rAOuF", config));
+		assertTrue(validator.isValidPassword("rAoUF1@", config));
+		// 0 lowercase letters 0 < 2
+		assertFalse(validator.isValidPassword("RAOUF", config));
+		assertFalse(validator.isValidPassword("RAOUF1@", config));
+		assertFalse(validator.isValidPassword("1234", config));
+		assertFalse(validator.isValidPassword("!@#$%", config));
 		// Null password
-		assertFalse(validator.isValidPassword(null));
-		
-		// Negative minimum lowercase leads to no validation checking.
-		validator = new MinLowercaseValidation("-1");
-		assertTrue(validator.isValidPassword("ra"));
-		assertTrue(validator.isValidPassword("ra1234"));
-		assertTrue(validator.isValidPassword("ra12#$"));
-		assertTrue(validator.isValidPassword("RA"));
-		assertTrue(validator.isValidPassword("1234"));
-		assertTrue(validator.isValidPassword("!@#$%"));
-		// Null password
-		assertFalse(validator.isValidPassword(null));
+		assertFalse(validator.isValidPassword(null, config));
 	}
 	
 	@Test
 	void getValidationMessageTest() {
+		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
+		MinLowercaseValidation validator = new MinLowercaseValidation();
 		
-		// a validator with default 4 minimum lowercase letters
-		MinLowercaseValidation validator = new MinLowercaseValidation("4");
-		// 4 lowercase letters 4=4
-		assertEquals(validator.getPasswordValidationMessage("Raouf"),
+		// 2 lowercase letters 2=2
+		assertEquals(validator.getPasswordValidationMessage("RAouf", config),
 				String.format(MinLowercaseValidation.VALID_PASSWORD_MESSAGE, validator.getMinLowercase()));
-		// 3 lowercase letters 3<4
-		assertEquals(validator.getPasswordValidationMessage("RaouF"),
+		// 1 lowercase letters 1<2
+		assertEquals(validator.getPasswordValidationMessage("RaOUF", config),
 				String.format(MinLowercaseValidation.INVALID_PASSWORD_MESSAGE, validator.getMinLowercase()));
 	}
 }

@@ -4,88 +4,44 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation;
 
 class MinNonAlphaNumValidationTest {
 
 	@Test
-	void minNonAlphaNumValidationDefaultConstructorTest() {
-		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
-		assertTrue(validator.getMinNonAlphaNum() == 0);
-	}
-	
-	@Test
-	void minNonAlaphNumValidationConstructorTest() {
-		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation("2");
-		assertTrue(validator.getMinNonAlphaNum() == 2);
-		
-		validator = new MinNonAlphaNumValidation("-1");
-		assertTrue(validator.getMinNonAlphaNum() == 0);
-		
-		validator = new MinNonAlphaNumValidation("0");
-		assertTrue(validator.getMinNonAlphaNum() == 0);
-	}
-	
-	@Test
-	void getMinNonAlaphNumTest() {
-		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation("4");
-		assertTrue(validator.getMinNonAlphaNum() == 4);
-	}
-	
-	@Test
-	void setMinNonAlphaNumTest() {
-		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
-		
-		validator.setMinNonAlphaNum(5);
-		assertTrue(validator.getMinNonAlphaNum() == 5);
-		
-		validator.setMinNonAlphaNum(-1);
-		assertTrue(validator.getMinNonAlphaNum() == 0);
-		
-		validator.setMinNonAlphaNum(0);
-		assertTrue(validator.getMinNonAlphaNum() == 0);
-	}
-	
-	@Test
 	void isValidPasswordTest() {
-
+		IPasswordValidationConfiguration config = new PasswordValidationConfigurationMock();
 		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
-		// minNonAlphaNum = 0
-		assertTrue(validator.isValidPassword("messi"));
-		assertTrue(validator.isValidPassword("messi!"));
-		assertTrue(validator.isValidPassword("#messi!"));
-		assertTrue(validator.isValidPassword("#me@ssi!"));
-		assertTrue(validator.isValidPassword(""));
-		assertFalse(validator.isValidPassword(null));
 		
-		validator = new MinNonAlphaNumValidation("1");
-		// 2 NonAlphaNum chars - 2>1
-		assertTrue(validator.isValidPassword("#Messi!"));
-		assertTrue(validator.isValidPassword("%me@SSi"));
-		assertTrue(validator.isValidPassword("me.ssi)"));
-		assertTrue(validator.isValidPassword("'?messI"));
-		assertTrue(validator.isValidPassword("me+}ssi"));
-		assertTrue(validator.isValidPassword("messi&$"));
-		// 1 NonAlphaNum chars - 1==1
-		assertTrue(validator.isValidPassword("^messi"));
-		assertTrue(validator.isValidPassword("me`ssi"));
-		assertTrue(validator.isValidPassword("messi~"));
-		assertTrue(validator.isValidPassword("Me.ssi123"));
+		// 2 NonAlphaNum chars - 2 == 2
+		assertTrue(validator.isValidPassword("#Messi!", config));
+		assertTrue(validator.isValidPassword("%me@SSi", config));
+		assertTrue(validator.isValidPassword("me.ssi)", config));
+		assertTrue(validator.isValidPassword("'?messI", config));
+		assertTrue(validator.isValidPassword("me+}ssi", config));
+		assertTrue(validator.isValidPassword("messi&$", config));
+		// 1 NonAlphaNum char - 1 < 2
+		assertFalse(validator.isValidPassword("^messi", config));
+		assertFalse(validator.isValidPassword("me`ssi", config));
+		assertFalse(validator.isValidPassword("messi~", config));
+		assertFalse(validator.isValidPassword("Me.ssi123", config));
 		// 0 NonAlphaNum chars - 0 < 1
-		assertFalse(validator.isValidPassword("MESsI"));
-		assertFalse(validator.isValidPassword("12345"));
-		assertFalse(validator.isValidPassword(""));
-		assertFalse(validator.isValidPassword(null));
+		assertFalse(validator.isValidPassword("MESsI", config));
+		assertFalse(validator.isValidPassword("12345", config));
+		assertFalse(validator.isValidPassword("", config));
+		
+		assertFalse(validator.isValidPassword(null, config));
 	}
 	
 	@Test
 	void getValidationMessageTest() {
+		IPasswordValidationConfiguration config = new PasswordValidationConfigurationMock();
+		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
 		
-		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation("2");
-		assertEquals(validator.getPasswordValidationMessage("#RAOUf@"),
+		assertEquals(validator.getPasswordValidationMessage("#RAOUf@", config),
 				String.format(MinNonAlphaNumValidation.VALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
-		assertEquals(validator.getPasswordValidationMessage("RaOu`f"),
+		assertEquals(validator.getPasswordValidationMessage("RaOu`f", config),
 				String.format(MinNonAlphaNumValidation.INVALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
 	}
 }

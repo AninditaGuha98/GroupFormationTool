@@ -2,41 +2,48 @@ package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 public class ForbiddenCharSetValidation implements IPasswordValidation {
 
+	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
 	public static final String VALID_PASSWORD_MESSAGE = "Password does not have forbidden characters \"%s\".";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password has forbidden characters \"%s\".";
 	
 	private String forbiddenCharSet;
 	
-	/*
-	 * Default constructor sets forbiddenCharSet as empty string.
-	 * It means validation is passed.
-	 */
 	public ForbiddenCharSetValidation() {
-		this.forbiddenCharSet = "";
 	}
 	
-	public ForbiddenCharSetValidation(String forbideddenCharSet) {
-		this.setForbiddernCharSet(forbideddenCharSet);
-	}
-
 	public String getForbiddenCharSet() {
 		return this.forbiddenCharSet;
 	}
 	
-	public void setForbiddernCharSet(String forbiddernCharSet) {
-		if (null == forbiddernCharSet)
+	private void setForbiddernCharSet(String forbiddernCharSet) {
+		if (null == forbiddernCharSet) {
 			this.forbiddenCharSet = "";
-		else
+		}
+		else {
 			this.forbiddenCharSet = forbiddernCharSet;
+		}
 	}
 	
 	@Override
-	public boolean isValidPassword(String password) {
-		if (null == password)
-			return false;
+	public boolean isValidPassword(String password, IPasswordValidationConfiguration config) {
+		String configValue;
 		
-		if (this.forbiddenCharSet.isEmpty())
+		try {
+			configValue = config.getConfig(FORBIDDEN_CHARSET);
+		}
+		catch (Exception e) {
+			// log the Exception
+			configValue = null;
+		}
+		
+		setForbiddernCharSet(configValue);
+
+		if (null == password) {
+			return false;
+		}
+		if (this.forbiddenCharSet.isEmpty()) {
 			return true;
+		}
 		
 		for (int i=0; i < this.forbiddenCharSet.length(); i++) {
 			if (password.contains(String.valueOf(this.forbiddenCharSet.charAt(i))))
@@ -46,12 +53,11 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 	}
 	
 	@Override
-	public String getPasswordValidationMessage(String password) {
-		if (isValidPassword(password)) {
+	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
 		} else {
 			return String.format(INVALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
 		}
 	}
-
 }

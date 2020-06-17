@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import org.hamcrest.collection.ArrayAsIterableMatcher;
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationManager;
@@ -12,6 +11,14 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordVa
 
 class DefaultPasswordValidationManagerTest {
 
+	private final String INVALID_OUTPUT_DEFCONFIG = 
+			"Password must have minimum length of 8." +
+			"Password must have minimum 2 lowercase letters." + 
+			"Password must have minimum 2 uppercase letters." +
+			"Password has forbidden characters \"\\&\"'\".";
+	
+	private final String VALID_OUTPUT_DEFCONFIG = ""; 
+	
 	@Test
 	void isPasswordValidTest() {
 		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
@@ -45,10 +52,20 @@ class DefaultPasswordValidationManagerTest {
 	@Test
 	void getPasswordValidationFailures() {
 		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
-
-		List<String> messages = passwordPolicyManager.getPasswordValidationFailures("aC%123\'");
-		for (String str : messages)
-			System.out.println(str);
+		List<String> outputList;
+		String output = "";
+		outputList = passwordPolicyManager.getPasswordValidationFailures("MEssi!@#4");
+		for( String str: outputList) {
+			output+=str;
+		}
+		assertEquals(VALID_OUTPUT_DEFCONFIG, output);
+		
+		output = "";
+		outputList = passwordPolicyManager.getPasswordValidationFailures("aC%123\\");
+		for( String str: outputList) {
+			output+=str;
+		}
+		assertEquals(INVALID_OUTPUT_DEFCONFIG, output);
 	}
 
 }
