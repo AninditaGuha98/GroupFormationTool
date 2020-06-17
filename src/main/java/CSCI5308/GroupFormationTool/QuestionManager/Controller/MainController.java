@@ -17,5 +17,8 @@ public class MainController {
     }
 
 //    Start point controller for list questions tab
-
+    @RequestMapping("/listquestions")
+    public String ListQuestions() {
+    return "QuestionManager/listquestions";
+}
 }

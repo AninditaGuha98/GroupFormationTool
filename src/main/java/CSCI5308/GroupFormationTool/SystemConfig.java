@@ -4,9 +4,14 @@ import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
 import CSCI5308.GroupFormationTool.AdminPanel.Repository.CourseDB;
 import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.CourseHomePage.Repository.CourseUserRelationshipDB;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionSorters;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
+import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
 import CSCI5308.GroupFormationTool.Security.*;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.*;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 
 /*
  * This is a singleton, we will learn about these when we learn design patterns.
@@ -26,6 +31,8 @@ public class SystemConfig
 	private IDatabaseConfiguration databaseConfiguration;
 	private ICoursePersistence courseDB;
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
+	private IQuestionsPersistence questionDB;
+	private IQuestionSorters sortersDB;
 	
 	// This private constructor ensures that no class other than System can allocate
 	// the System object. The compiler would prevent it.
@@ -39,6 +46,9 @@ public class SystemConfig
 		databaseConfiguration = new DefaultDatabaseConfiguration();
 		courseDB = new CourseDB();
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
+		questionDB = new QuestionDB();
+		sortersDB = new SortingDB();
+
 	}
 	
 	// This is the way the rest of the application gets access to the System object.
@@ -101,6 +111,22 @@ public class SystemConfig
 	public ICourseUserRelationshipPersistence getCourseUserRelationshipDB()
 	{
 		return courseUserRelationshipDB;
+	}
+
+	public IQuestionsPersistence getQuestionDB(){
+		return questionDB;
+	}
+
+	public void setQuestionDB(IQuestionsPersistence questionDB){
+		this.questionDB = questionDB;
+	}
+
+	public IQuestionSorters getSortersDB(){
+		return sortersDB;
+	}
+
+	public void setSortersDB(IQuestionSorters sortersDB){
+		this.sortersDB = sortersDB;
 	}
 }
 
