@@ -1,6 +1,10 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
+
 import java.sql.Timestamp;
+
+import java.sql.Date;
+
 
 public class Question {
     private int questionId;
@@ -8,8 +12,8 @@ public class Question {
     private String questionTitle;
     private String questionHeading;
     private String questionType;
-    private Timestamp dateCreated;
 
+    private Timestamp dateCreated;
 
     public int getQuestionId() {
         return questionId;

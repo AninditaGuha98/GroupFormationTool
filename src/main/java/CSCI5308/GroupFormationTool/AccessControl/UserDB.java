@@ -116,4 +116,33 @@ public class UserDB implements IUserPersistence
 		// Coming in M2!
 		return false;
 	}
+	
+	public Long loadInstructorByBannerID(String bannerID)
+	{
+		CallStoredProcedure proc = null;
+		Long userId=null;
+		try
+		{
+			proc = new CallStoredProcedure("spFindInstructorByBannerID(?,?)");
+			proc.setParameter(1,bannerID );
+			proc.registerOutputParameterLong(2);
+			proc.execute();
+			userId=proc.getStatement().getLong(2);
+		}
+		catch (SQLException e)
+		{
+			// Logging needed.
+		}
+		finally
+		{
+			if (null != proc)
+			{
+				proc.cleanup();
+			}
+		}
+		
+		return userId;
+	}
+	
+	
 }

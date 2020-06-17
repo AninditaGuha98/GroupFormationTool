@@ -8,6 +8,8 @@ import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionSorters;
 import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
 import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
 import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
 import CSCI5308.GroupFormationTool.Security.*;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.*;
@@ -24,8 +26,7 @@ import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
  */
 public class SystemConfig
 {
-	private static SystemConfig uniqueInstance = null;
-	
+	private static SystemConfig uniqueInstance = null;	
 	private IPasswordEncryption passwordEncryption;
 	private IUserPersistence userDB;
 	private IDatabaseConfiguration databaseConfiguration;
@@ -48,7 +49,6 @@ public class SystemConfig
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		questionDB = new QuestionDB();
 		sortersDB = new SortingDB();
-
 	}
 	
 	// This is the way the rest of the application gets access to the System object.
@@ -128,5 +128,7 @@ public class SystemConfig
 	public void setSortersDB(IQuestionSorters sortersDB){
 		this.sortersDB = sortersDB;
 	}
+
+
 }
 

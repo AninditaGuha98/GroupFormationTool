@@ -180,4 +180,10 @@ public class User
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
 	}
+	
+	public boolean identifyRoleByBannerID(IUserPersistence userDB)
+	{
+		return userDB.updateUser(this);
+	}
+
 }
