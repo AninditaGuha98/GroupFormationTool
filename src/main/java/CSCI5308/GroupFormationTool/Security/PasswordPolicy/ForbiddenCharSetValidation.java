@@ -2,6 +2,9 @@ package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
 
 public class ForbiddenCharSetValidation implements IPasswordValidation {
 
+	public static final String VALID_PASSWORD_MESSAGE = "Password does not have forbidden characters \"%s\".";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password has forbidden characters \"%s\".";
+	
 	private String forbiddenCharSet;
 	
 	/*
@@ -40,6 +43,15 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 				return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public String getPasswordValidationMessage(String password) {
+		if (isValidPassword(password)) {
+			return String.format(VALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
+		} else {
+			return String.format(INVALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
+		}
 	}
 
 }

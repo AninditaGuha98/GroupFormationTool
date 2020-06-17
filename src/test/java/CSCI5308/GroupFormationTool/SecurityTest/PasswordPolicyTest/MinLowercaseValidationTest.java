@@ -2,7 +2,10 @@ package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.MinValidatorForBigDecimal;
 import org.junit.jupiter.api.Test;
+
+import com.jayway.jsonpath.internal.function.numeric.Min;
 
 import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLengthValidation;
 import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLowercaseValidation;
@@ -102,5 +105,18 @@ class MinLowercaseValidationTest {
 		assertTrue(validator.isValidPassword("!@#$%"));
 		// Null password
 		assertFalse(validator.isValidPassword(null));
+	}
+	
+	@Test
+	void getValidationMessageTest() {
+		
+		// a validator with default 4 minimum lowercase letters
+		MinLowercaseValidation validator = new MinLowercaseValidation("4");
+		// 4 lowercase letters 4=4
+		assertEquals(validator.getPasswordValidationMessage("Raouf"),
+				String.format(MinLowercaseValidation.VALID_PASSWORD_MESSAGE, validator.getMinLowercase()));
+		// 3 lowercase letters 3<4
+		assertEquals(validator.getPasswordValidationMessage("RaouF"),
+				String.format(MinLowercaseValidation.INVALID_PASSWORD_MESSAGE, validator.getMinLowercase()));
 	}
 }

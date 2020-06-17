@@ -2,6 +2,9 @@ package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
 
 public class MinLowercaseValidation implements IPasswordValidation {
 
+	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum lowercase letters of %d.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum lowercase letters of %d.";
+	
 	private int minLowercase;
 	
 	/*
@@ -57,6 +60,15 @@ public class MinLowercaseValidation implements IPasswordValidation {
 			return false;
 		else
 			return true;
+	}
+	
+	@Override
+	public String getPasswordValidationMessage(String password) {
+		if (isValidPassword(password)) {
+			return String.format(VALID_PASSWORD_MESSAGE, this.minLowercase);
+		} else {
+			return String.format(INVALID_PASSWORD_MESSAGE, this.minLowercase);
+		}
 	}
 
 }

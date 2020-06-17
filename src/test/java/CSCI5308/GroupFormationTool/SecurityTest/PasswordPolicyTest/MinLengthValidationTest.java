@@ -83,5 +83,14 @@ class MinLengthValidationTest {
 		assertFalse(validator.isValidPassword(""));
 		assertFalse(validator.isValidPassword(null));
 	}
+	
+	@Test void getPasswordValidationMessageTest() {
+		// Default Constructor
+		MinLengthValidation validator = new MinLengthValidation("8");
+		assertEquals(validator.getPasswordValidationMessage("1234567"), 
+				String.format(MinLengthValidation.INVALID_PASSWORD_MESSAGE, validator.getMinLength()));
+		assertEquals(validator.getPasswordValidationMessage("12345678"), 
+				String.format(MinLengthValidation.VALID_PASSWORD_MESSAGE, validator.getMinLength()));
+	}
 
 }

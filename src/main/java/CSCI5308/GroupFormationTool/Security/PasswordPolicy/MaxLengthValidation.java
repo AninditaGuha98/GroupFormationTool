@@ -2,6 +2,9 @@ package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
 
 public class MaxLengthValidation implements IPasswordValidation {
 
+	public static final String VALID_PASSWORD_MESSAGE = "Password follows maximum length of %d.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must have muximum length of %d.";
+	
 	private int maxLength;
 	
 	/*
@@ -50,5 +53,14 @@ public class MaxLengthValidation implements IPasswordValidation {
 			return false;
 		else
 			return true;
+	}
+	
+	@Override
+	public String getPasswordValidationMessage(String password) {
+		if (isValidPassword(password)) {
+			return String.format(VALID_PASSWORD_MESSAGE, this.maxLength);
+		} else {
+			return String.format(INVALID_PASSWORD_MESSAGE, this.maxLength);
+		}
 	}
 }

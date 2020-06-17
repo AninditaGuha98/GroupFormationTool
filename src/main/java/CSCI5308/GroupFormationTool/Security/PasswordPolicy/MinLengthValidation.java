@@ -2,6 +2,9 @@ package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
 
 public class MinLengthValidation implements IPasswordValidation {
 
+	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum length of %d.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum length of %d.";
+			
 	private int minLength;
 	
 	/*
@@ -41,15 +44,28 @@ public class MinLengthValidation implements IPasswordValidation {
 	
 	@Override
 	public boolean isValidPassword(String password) {
-		if (null == password)
+		if (null == password) {
 			return false;
-
-		if (this.minLength == 0)
-			return true;
+		}
 		
-		if (password.length() >= this.minLength)
+		if (this.minLength == 0) {
 			return true;
-		else 
+		}
+		
+		if (password.length() >= this.minLength) {
+			return true;
+		}
+		else { 
 			return false;
+		}
+	}
+	
+	@Override
+	public String getPasswordValidationMessage(String password) {
+		if (isValidPassword(password)) {
+			return String.format(VALID_PASSWORD_MESSAGE, this.minLength);
+		} else {
+			return String.format(INVALID_PASSWORD_MESSAGE, this.minLength);
+		}
 	}
 }

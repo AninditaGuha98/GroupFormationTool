@@ -4,6 +4,9 @@ import java.util.regex.Pattern;
 
 public class MinNonAlphaNumValidation implements IPasswordValidation {
 
+	public static final String VALID_PASSWORD_MESSAGE = "Password has minimum %d special characters.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d special characters.";
+	
 	private final static String NON_ALPHA_NUM_PATTERN="[^a-zA-Z0-9]";
 	private int minNonAlphaNum;
 	
@@ -58,4 +61,15 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 	    else
 	    	return true;
 	}
+	
+	@Override
+	public String getPasswordValidationMessage(String password) {
+		if (isValidPassword(password)) {
+			return String.format(VALID_PASSWORD_MESSAGE, this.minNonAlphaNum);
+		} else {
+			return String.format(INVALID_PASSWORD_MESSAGE, this.minNonAlphaNum);
+		}
+	}
+	
+	
 }

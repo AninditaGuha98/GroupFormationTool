@@ -76,5 +76,14 @@ class MaxLengthValidationTest {
 		assertTrue(validator.isValidPassword(""));
 		assertFalse(validator.isValidPassword(null));
 	}
+	
+	@Test
+	void getPasswordValidationMessage() {
+		MaxLengthValidation validator = new MaxLengthValidation("12");
+		assertEquals(validator.getPasswordValidationMessage("abcdefghijkl"),
+				String.format(MaxLengthValidation.VALID_PASSWORD_MESSAGE, validator.getMaxLength()));
+		assertEquals(validator.getPasswordValidationMessage("abcdefghijklmn"),
+				String.format(MaxLengthValidation.INVALID_PASSWORD_MESSAGE, validator.getMaxLength()));
+	}
 
 }

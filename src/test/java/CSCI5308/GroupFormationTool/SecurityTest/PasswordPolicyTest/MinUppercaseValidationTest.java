@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLowercaseValidation;
 import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinUppercaseValidation;
 
 class MinUppercaseValidationTest {
@@ -101,5 +102,18 @@ class MinUppercaseValidationTest {
 		assertTrue(validator.isValidPassword(""));
 		// Null password
 		assertFalse(validator.isValidPassword(null));
+	}
+	
+	@Test
+	void getValidationMessageTest() {
+		
+		// a validator with default 4 minimum uppercase letters
+		MinUppercaseValidation validator = new MinUppercaseValidation("4");
+		// 4 uppercase letters 4=4
+		assertEquals(validator.getPasswordValidationMessage("rAOUF"),
+				String.format(MinUppercaseValidation.VALID_PASSWORD_MESSAGE, validator.getMinUppercase()));
+		// 3 uppercase letters 3<4
+		assertEquals(validator.getPasswordValidationMessage("RaOuf"),
+				String.format(MinUppercaseValidation.INVALID_PASSWORD_MESSAGE, validator.getMinUppercase()));
 	}
 }

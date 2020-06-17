@@ -90,6 +90,30 @@ class ForbiddenCharSetValidationTest {
 		}
 	}
 	
+	@Test
+	void getValidationMessageTest() {
+		ForbiddenCharSetValidation validator = new ForbiddenCharSetValidation();
+		Random random = new Random();
+		
+		for (int i = 0; i < NUM_OF_TESTS; i++) {
+			int randomAllowedLength = random.nextInt(LENGTH_OF_ALLOWED_STRING + 1);
+			int randomForbiddernLenght = random.nextInt(LENGTH_OF_FORBIDDEN_STRING + 1);
+			
+			String allowedString = this.generateAllowedString(randomAllowedLength);
+			String forbiddenString = this.generateForbiddenString(randomForbiddernLenght);
+			
+			validator.setForbiddernCharSet(forbiddenString);
+			if (!forbiddenString.isEmpty()) {
+				assertEquals(validator.getPasswordValidationMessage(allowedString),
+						String.format(ForbiddenCharSetValidation.VALID_PASSWORD_MESSAGE, 
+								validator.getForbiddenCharSet()));
+				assertEquals(validator.getPasswordValidationMessage(forbiddenString+allowedString),
+						String.format(ForbiddenCharSetValidation.VALID_PASSWORD_MESSAGE, 
+								validator.getForbiddenCharSet()));
+			}
+		}
+	}
+	
 	private String generateAllowedString(int length) {
 		StringBuilder builder = new StringBuilder();
 		Random upperLowerSelector = new Random();

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinNonAlphaNumValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinUppercaseValidation;
 
 class MinNonAlphaNumValidationTest {
 
@@ -76,5 +77,15 @@ class MinNonAlphaNumValidationTest {
 		assertFalse(validator.isValidPassword("12345"));
 		assertFalse(validator.isValidPassword(""));
 		assertFalse(validator.isValidPassword(null));
+	}
+	
+	@Test
+	void getValidationMessageTest() {
+		
+		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation("2");
+		assertEquals(validator.getPasswordValidationMessage("#RAOUf@"),
+				String.format(MinNonAlphaNumValidation.VALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
+		assertEquals(validator.getPasswordValidationMessage("RaOu`f"),
+				String.format(MinNonAlphaNumValidation.INVALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
 	}
 }
