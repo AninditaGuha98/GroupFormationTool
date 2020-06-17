@@ -23,12 +23,11 @@ import static org.mockito.Mockito.validateMockitoUsage;
 import static org.mockito.Mockito.when;
 
 class SortingDBTest {
-
     @Mock
     CallStoredProcedure procedure;
 
     @Mock
-    private ResultSet rs;
+    ResultSet rs;
 
     @Mock
     private SortingDB sortingDB;

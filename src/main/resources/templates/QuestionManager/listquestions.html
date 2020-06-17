@@ -8,35 +8,34 @@
 <h1>List of Questions by title</h1>
 <div style="display: flex">
     <div>
-               <table border="1">
-                    <tr>
-                       <th>No.</th>
-                       <th>Question Title</th>
-                    </tr>
-                    <tr th:each =" questions,iStat : ${questions}">
-                       <td th:utext="${iStat.index+1}">...</td>
-                       <td th:utext="${questions.questionTitle}">...</td>
-                    </tr>
-              </table>
+         <table border="1">
+             <tr>
+                <th>No.</th>
+                <th>Question Title</th>
+             </tr>
+            <tr th:each=" questions,iStat : ${questions}">
+                <td th:utext="${iStat.index+1}">...</td>
+                <td th:utext="${questions.questionTitle}">...</td>
+            </tr>
+        </table>
         <div th:inline="text">[[${message}]]</div>
     </div>
     <div>
         <form th:action="@{/listquestions}" method="post" th:object="${sorters}">
             <label>Sort by:</label>
             <select th:field="*{sortField}">
-                <option th:each="p : ${sortingFields}" th:value="${p.key}" th:text="${p.value}" />
+                <option th:each="p : ${sortingFields}" th:value="${p.key}" th:text="${p.value}"/>
             </select>
             <br/>
             <label>Sort Order:</label>
             <select th:field="*{sortOrder}">
-                <option th:each="p : ${sortingOrders}" th:value="${p.key}" th:text="${p.value}" />
+                <option th:each="p : ${sortingOrders}" th:value="${p.key}" th:text="${p.value}"/>
             </select>
             <br/>
             <button type="submit" name="action" value="sort">Sort</button>
             <button type="submit" name="action" value="clearSort">Clear sort</button>
         </form>
     </div>
-
 
 
 </div>

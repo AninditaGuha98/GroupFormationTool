@@ -37,5 +37,4 @@ dependencies {
 
 test {
 	useJUnitPlatform()
-	jvmArgs '--enable-preview'
 }
