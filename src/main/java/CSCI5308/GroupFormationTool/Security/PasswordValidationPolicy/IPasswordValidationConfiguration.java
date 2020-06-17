@@ -4,5 +4,5 @@ import java.util.Map;
 import java.util.Set;
 
 public interface IPasswordValidationConfiguration {
-	public Map<String, String> getConfigMap(Set<String> configKeys) throws Exception;
+	public String getConfig(String configKey) throws Exception;
 }

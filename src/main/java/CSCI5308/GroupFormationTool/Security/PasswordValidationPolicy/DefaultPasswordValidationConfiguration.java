@@ -2,10 +2,7 @@ package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 
 public class DefaultPasswordValidationConfiguration implements IPasswordValidationConfiguration {
@@ -13,27 +10,21 @@ public class DefaultPasswordValidationConfiguration implements IPasswordValidati
 	private static final String configFile = "passwordValidation.properties";
 	
 	@Override
-	public Map<String, String> getConfigMap(Set<String> configKeys) throws Exception {
-		Map<String, String> configMap = new HashMap<>();
+	public String getConfig(String configKey) throws Exception, IOException {
+		String configValue = null;
 		
-		if (null == configKeys) {
-			throw new Exception("Null Configuration Keys");
+		if (null == configKey) {
+			throw new Exception("Null Key");
 		}
 		
 		try (InputStream input = getClass().getClassLoader().getResourceAsStream(configFile)) {
 			Properties p = new Properties();  
 			p.load(input);
-			for (String key : configKeys) {
-				String value = p.getProperty(key);
-				configMap.put(key, value);
-			}
+			configValue = p.getProperty(configKey);
 		}
 		catch (IOException e) {
 			// Log the IOException
-			for (String key : configKeys) {
-				configMap.put(key, null);
-			}
 		}
-		return configMap;
+		return configValue;
 	}
 }

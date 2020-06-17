@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
 
@@ -23,57 +24,77 @@ class DefaultPasswordValidationConfigurationTest {
 	private static final String MIN_NON_ALPHANUM = "min_non_alphanum";
 	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
 	private static final String HISTORY_CONSTRAINT = "history_constraint";
-	private static final Set<String> passwordValidationList = new HashSet<>();
+	
+	private Map<String, String> passwordValidationAssertionMap;
 
 	public DefaultPasswordValidationConfigurationTest() {
+		passwordValidationAssertionMap = new HashMap<>();
 		initializePasswordValidationList();
 	}
 	
 	private void initializePasswordValidationList() {
-		passwordValidationList.add(MIN_LENGTH);
-		passwordValidationList.add(MAX_LENGTH);
-		passwordValidationList.add(MIN_LOWERCASE);
-		passwordValidationList.add(MIN_UPPERCASE);
-		passwordValidationList.add(MIN_NON_ALPHANUM);
-		passwordValidationList.add(FORBIDDEN_CHARSET);
-		passwordValidationList.add(HISTORY_CONSTRAINT);
+		passwordValidationAssertionMap.put(MIN_LENGTH, "8");
+		passwordValidationAssertionMap.put(MAX_LENGTH, "12");
+		passwordValidationAssertionMap.put(MIN_LOWERCASE, "2");
+		passwordValidationAssertionMap.put(MIN_UPPERCASE, "2");
+		passwordValidationAssertionMap.put(MIN_NON_ALPHANUM, "2");
+		passwordValidationAssertionMap.put(FORBIDDEN_CHARSET, "\\&\"'");
+		passwordValidationAssertionMap.put(HISTORY_CONSTRAINT, "4");
 	}
 	
 	
 	@Test
-	void getConfigMapTest1() {
-		Map<String, String> configMap = new HashMap<>();
-		IPasswordValidationConfiguration defaultConfig = new DefaultPasswordValidationConfiguration();
+	void getConfigTest() {
+		IPasswordValidationConfiguration defConfig = 
+				SystemConfig.instance().getPasswordValidationConfiguration();
+		String configValue;
 		
 		try {
-			configMap = defaultConfig.getConfigMap(DefaultPasswordValidationConfigurationTest.passwordValidationList);
-			assertEquals("8", configMap.get(MIN_LENGTH));
-			assertEquals("12", configMap.get(MAX_LENGTH));
-			assertEquals("2", configMap.get(MIN_LOWERCASE));
-			assertEquals("2", configMap.get(MIN_UPPERCASE));
-			assertEquals("2", configMap.get(MIN_NON_ALPHANUM));
-			assertEquals("\\&\"'", configMap.get(FORBIDDEN_CHARSET));
-			assertEquals("4", configMap.get(HISTORY_CONSTRAINT));
-			assertNotEquals("", configMap.get(HISTORY_CONSTRAINT));
-			assertEquals(null, configMap.get("non_existing_key"));
+			for (String configKey : passwordValidationAssertionMap.keySet()) {
+				configValue = passwordValidationAssertionMap.get(configKey);
+				assertEquals(configValue, defConfig.getConfig(configKey));
+			}
 		}
 		catch (Exception e) {
+			// Log the Exception
+			e.printStackTrace();
 		}
 		
 	}
 	
 	@Test
-	void getConfigMapTest2() {
-		Map<String, String> configMap = new HashMap<>();
-		IPasswordValidationConfiguration defaultConfig = new DefaultPasswordValidationConfiguration();
+	void getConfigNonExistingKeyTest() {
+		IPasswordValidationConfiguration defConfig = 
+				SystemConfig.instance().getPasswordValidationConfiguration();
+		String configValue;
+		
+		try {
+			configValue = defConfig.getConfig("non_existing_key");
+			assertEquals(null, configValue);
+		}
+		catch (Exception e) {
+			// Log the exception
+			e.printStackTrace();
+		}
+		
+	}
+	
 
+	@Test
+	void getConfigNullKeyTest() {
+		IPasswordValidationConfiguration defConfig = 
+				SystemConfig.instance().getPasswordValidationConfiguration();
+		String configValue;
+		
 		try {
-			configMap = defaultConfig.getConfigMap(null);
+			configValue = defConfig.getConfig(null);
+			assertTrue(false);
 		}
 		catch (Exception e) {
-			assertEquals(e.getMessage(), "Null Configuration Keys");
+			// Log the exception
+			e.printStackTrace();
+			assertEquals(e.getMessage(), "Null Key");
 		}
-		
 	}
 
 }
