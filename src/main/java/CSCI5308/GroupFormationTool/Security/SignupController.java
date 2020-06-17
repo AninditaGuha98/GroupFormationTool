@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Security;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,8 @@ public class SignupController
 	{
 		boolean success = false;
 		IPasswordValidationManager passwordValidationManager = new DefaultPasswordValidationManager();
-		List<String> passwordValidationFailures;
+		List<String> failureMessages = new ArrayList<>();
+		
 		if (User.isBannerIDValid(bannerID) &&
 			 User.isEmailValid(email) &&
 			 User.isFirstNameValid(firstName) &&
@@ -58,7 +60,7 @@ public class SignupController
 				IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
 				success = u.createUser(userDB, passwordEncryption, null);
 			} else {
-				passwordValidationFailures = passwordValidationManager.getPasswordValidationFailures(password);
+				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password));
 			}
 		}
 		ModelAndView m;
@@ -71,7 +73,8 @@ public class SignupController
 		{
 			// Something wrong with the input data.
 			m = new ModelAndView("signup");
-			m.addObject("errorMessage", "Invalid data, please check your values.");
+			failureMessages.add("Invalid data, please check your values.");
+			m.addObject("errorMessages", failureMessages);
 		}
 		return m;
 	}
