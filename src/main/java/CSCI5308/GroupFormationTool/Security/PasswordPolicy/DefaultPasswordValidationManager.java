@@ -16,7 +16,7 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	private static final String MIN_LOWERCASE = "min_lowercase";
 	private static final String MIN_UPPERCASE = "min_uppercase";
 	private static final String MIN_NON_ALPHANUM = "min_non_alphanum";
-//	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
+	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
 //	private static final String HISTORY_CONSTRAINT = "history_constraint";
 	private static final Map<String, String> passwordValidationMapper = new HashMap<>();
 	
@@ -53,7 +53,7 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 		passwordValidationMapper.put(MIN_LOWERCASE, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLowercaseValidation");
 		passwordValidationMapper.put(MIN_UPPERCASE, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinUppercaseValidation");
 		passwordValidationMapper.put(MIN_NON_ALPHANUM, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinNonAlphaNumValidation");
-//		passwordValidationMapper.put(FORBIDDEN_CHARSET, "ForbiddenCharSetValidation");
+		passwordValidationMapper.put(FORBIDDEN_CHARSET, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.ForbiddenCharSetValidation");
 //		passwordValidationMapper.put(HISTORY_CONSTRAINT, "HistoryConstraintValidation");
 	}
 

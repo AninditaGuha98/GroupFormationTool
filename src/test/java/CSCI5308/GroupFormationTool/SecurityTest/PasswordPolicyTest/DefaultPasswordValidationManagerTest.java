@@ -26,10 +26,14 @@ class DefaultPasswordValidationManagerTest {
 		assertFalse(passwordPolicyManager.isValidPassword("Abcdefghijkl"));
 		// Less than 2 special chars
 		assertFalse(passwordPolicyManager.isValidPassword("abCDE12345!"));
+		// has & as forbidden chars
+		assertFalse(passwordPolicyManager.isValidPassword("&abCDE12345!"));
+		// has \ and " as forbidden chars
+		assertFalse(passwordPolicyManager.isValidPassword("\"abCD1}234\\"));
+		// has ' as forbidden chars
+		assertFalse(passwordPolicyManager.isValidPassword("abCD%EFG\'HI"));
 		// Accepted
-		assertTrue(passwordPolicyManager.isValidPassword("&abCDE12345!"));
-		assertTrue(passwordPolicyManager.isValidPassword("\"abCD1}234\\"));
-		assertTrue(passwordPolicyManager.isValidPassword("&abCD%EFGHI`"));
+		assertTrue(passwordPolicyManager.isValidPassword("abCD%EFGHI`"));
 		
 		assertFalse(passwordPolicyManager.isValidPassword(""));
 		assertFalse(passwordPolicyManager.isValidPassword(null));
