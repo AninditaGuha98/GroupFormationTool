@@ -22,7 +22,7 @@
 		</div>
 		<div th:if="${instructor}">
 			<br/>
-			<a th:href="@{/questionmanager}">Go to Question Manager Page</a>
+			<a th:href="@{/questionmanager(userID=${userID})}">Go to Question Manager Page</a>
 		</div>
 	</body>
 </html>

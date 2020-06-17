@@ -18,12 +18,13 @@ public class CourseController
 	private static final String ID = "id";
 	
 	@GetMapping("/course/course")
-	public String course(Model model, @RequestParam(name = ID) long courseID)
+	public String course(Model model, @RequestParam(name = ID) long courseID,@RequestParam(name = "userID") long userID)
 	{
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
 		Course course = new Course();
 		courseDB.loadCourseByID(courseID, course);
 		model.addAttribute("course", course);
+		model.addAttribute("userID", userID);
 		// This is likely something I would repeat elsewhere, I should come up with a generic solution
 		// for this in milestone 2.
 		List<Role> userRoles = course.getAllRolesForCurrentUserInCourse();
