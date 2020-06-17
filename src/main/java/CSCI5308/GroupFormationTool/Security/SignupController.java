@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Security;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationManager;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationManager;
 
 @Controller
 public class SignupController
@@ -35,21 +39,27 @@ public class SignupController
    	@RequestParam(name = EMAIL) String email)
 	{
 		boolean success = false;
+		IPasswordValidationManager passwordValidationManager = new DefaultPasswordValidationManager();
+		List<String> passwordValidationFailures;
 		if (User.isBannerIDValid(bannerID) &&
 			 User.isEmailValid(email) &&
 			 User.isFirstNameValid(firstName) &&
 			 User.isLastNameValid(lastName) &&
 			 password.equals(passwordConfirm))
 		{
-			User u = new User();
-			u.setBannerID(bannerID);
-			u.setPassword(password);
-			u.setFirstName(firstName);
-			u.setLastName(lastName);
-			u.setEmail(email);
-			IUserPersistence userDB = SystemConfig.instance().getUserDB();
-			IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
-			success = u.createUser(userDB, passwordEncryption, null);
+			if (passwordValidationManager.isValidPassword(password)) {
+				User u = new User();
+				u.setBannerID(bannerID);
+				u.setPassword(password);
+				u.setFirstName(firstName);
+				u.setLastName(lastName);
+				u.setEmail(email);
+				IUserPersistence userDB = SystemConfig.instance().getUserDB();
+				IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
+				success = u.createUser(userDB, passwordEncryption, null);
+			} else {
+				passwordValidationFailures = passwordValidationManager.getPasswordValidationFailures(password);
+			}
 		}
 		ModelAndView m;
 		if (success)
