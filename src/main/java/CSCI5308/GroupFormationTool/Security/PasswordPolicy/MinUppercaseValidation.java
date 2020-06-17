@@ -2,8 +2,8 @@ package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
 
 public class MinUppercaseValidation implements IPasswordValidation {
 
-	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum uppercase letters of %d.";
-	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum uppercase letters of %d.";
+	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum %d uppercase letters.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d uppercase letters.";
 	
 	private int minUppercase;
 	

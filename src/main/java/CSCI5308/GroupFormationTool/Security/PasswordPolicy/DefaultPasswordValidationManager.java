@@ -68,7 +68,12 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	
 	@Override
 	public List<String> getPasswordValidationFailures(String password) {
-		return null;
+		List<String> failureMessages = new ArrayList<String>();
+		for (IPasswordValidation validation: passwordValidationList) {
+			if (!validation.isValidPassword(password))
+				failureMessages.add(validation.getPasswordValidationMessage(password));
+		}
+		return failureMessages;
 	}
 	
 	

@@ -2,6 +2,9 @@ package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
+import org.hamcrest.collection.ArrayAsIterableMatcher;
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordPolicy.DefaultPasswordValidationManager;
@@ -37,6 +40,15 @@ class DefaultPasswordValidationManagerTest {
 		
 		assertFalse(passwordPolicyManager.isValidPassword(""));
 		assertFalse(passwordPolicyManager.isValidPassword(null));
+	}
+	
+	@Test
+	void getPasswordValidationFailures() {
+		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
+
+		List<String> messages = passwordPolicyManager.getPasswordValidationFailures("aC%123\'");
+		for (String str : messages)
+			System.out.println(str);
 	}
 
 }

@@ -2,8 +2,8 @@ package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
 
 public class MinLowercaseValidation implements IPasswordValidation {
 
-	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum lowercase letters of %d.";
-	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum lowercase letters of %d.";
+	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum %d lowercase letters.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d lowercase letters.";
 	
 	private int minLowercase;
 	
