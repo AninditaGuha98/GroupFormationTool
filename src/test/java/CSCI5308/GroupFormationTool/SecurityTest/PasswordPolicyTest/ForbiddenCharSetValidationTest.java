@@ -6,7 +6,7 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.ForbiddenCharSetValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.ForbiddenCharSetValidation;
 
 class ForbiddenCharSetValidationTest {
 
@@ -108,7 +108,7 @@ class ForbiddenCharSetValidationTest {
 						String.format(ForbiddenCharSetValidation.VALID_PASSWORD_MESSAGE, 
 								validator.getForbiddenCharSet()));
 				assertEquals(validator.getPasswordValidationMessage(forbiddenString+allowedString),
-						String.format(ForbiddenCharSetValidation.VALID_PASSWORD_MESSAGE, 
+						String.format(ForbiddenCharSetValidation.INVALID_PASSWORD_MESSAGE, 
 								validator.getForbiddenCharSet()));
 			}
 		}

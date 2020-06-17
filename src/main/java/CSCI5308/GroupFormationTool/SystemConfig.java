@@ -5,8 +5,8 @@ import CSCI5308.GroupFormationTool.AdminPanel.Repository.CourseDB;
 import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.CourseHomePage.Repository.CourseUserRelationshipDB;
 import CSCI5308.GroupFormationTool.Security.*;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.*;
 

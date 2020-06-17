@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MaxLengthValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MaxLengthValidation;
 
 class MaxLengthValidationTest {
 

@@ -11,8 +11,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
 
 class DefaultPasswordValidationConfigurationTest {
 

@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 import java.io.IOException;
 import java.io.InputStream;

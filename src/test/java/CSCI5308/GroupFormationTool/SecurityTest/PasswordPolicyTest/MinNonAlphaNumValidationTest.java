@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinNonAlphaNumValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinUppercaseValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation;
 
 class MinNonAlphaNumValidationTest {
 

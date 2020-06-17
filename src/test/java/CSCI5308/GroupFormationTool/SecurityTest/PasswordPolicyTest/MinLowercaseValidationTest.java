@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.jayway.jsonpath.internal.function.numeric.Min;
 
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLengthValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLowercaseValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLengthValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLowercaseValidation;
 
 class MinLowercaseValidationTest {
 

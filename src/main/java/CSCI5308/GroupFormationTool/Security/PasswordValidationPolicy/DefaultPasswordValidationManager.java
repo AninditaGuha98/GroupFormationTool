@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -48,12 +48,12 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	}
 	
 	private void initializePasswordValidationMapper() {
-		passwordValidationMapper.put(MIN_LENGTH, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLengthValidation");
-		passwordValidationMapper.put(MAX_LENGTH, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MaxLengthValidation");
-		passwordValidationMapper.put(MIN_LOWERCASE, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinLowercaseValidation");
-		passwordValidationMapper.put(MIN_UPPERCASE, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinUppercaseValidation");
-		passwordValidationMapper.put(MIN_NON_ALPHANUM, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.MinNonAlphaNumValidation");
-		passwordValidationMapper.put(FORBIDDEN_CHARSET, "CSCI5308.GroupFormationTool.Security.PasswordPolicy.ForbiddenCharSetValidation");
+		passwordValidationMapper.put(MIN_LENGTH, "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLengthValidation");
+		passwordValidationMapper.put(MAX_LENGTH, "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MaxLengthValidation");
+		passwordValidationMapper.put(MIN_LOWERCASE, "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLowercaseValidation");
+		passwordValidationMapper.put(MIN_UPPERCASE, "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation");
+		passwordValidationMapper.put(MIN_NON_ALPHANUM, "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation");
+		passwordValidationMapper.put(FORBIDDEN_CHARSET, "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.ForbiddenCharSetValidation");
 //		passwordValidationMapper.put(HISTORY_CONSTRAINT, "HistoryConstraintValidation");
 	}
 

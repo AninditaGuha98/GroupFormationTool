@@ -7,8 +7,8 @@ import java.util.List;
 import org.hamcrest.collection.ArrayAsIterableMatcher;
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.DefaultPasswordValidationManager;
-import CSCI5308.GroupFormationTool.Security.PasswordPolicy.IPasswordValidationManager;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationManager;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationManager;
 
 class DefaultPasswordValidationManagerTest {
 

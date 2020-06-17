@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Security.PasswordPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 public class MinUppercaseValidation implements IPasswordValidation {
 
