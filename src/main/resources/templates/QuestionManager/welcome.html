@@ -12,7 +12,6 @@
             <li><a href="" style="background: #888888; color: black">Welcome</a></li>
             <li><a href="">Question Editor</a></li>
             <li><a href="">Answer Editor</a></li>
-            <li><a href="">Preview</a></li>
             <li><a href="">Finish</a></li>
         </ul>
     </div>
@@ -23,7 +22,7 @@
 
             <div class="Button">
                 <br/>
-                <a th:href="@{/questioneditor}"><button type="submit" >Next >></button></a>
+                <a th:href="@{/questioneditor(userID=${userID})}"><button type="submit" >Next >></button></a>
             </div>
         </div>
 </div>

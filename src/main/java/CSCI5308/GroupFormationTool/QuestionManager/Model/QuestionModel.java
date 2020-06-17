@@ -2,13 +2,24 @@ package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
 import java.util.HashMap;
 
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
+
 public class QuestionModel {
     private String typeSelect;
     private String questionTitle;
     private String questionText;
     private String responseText;
     private int responseScore;
-    private HashMap<String, String> questionTypeList = new HashMap<>();
+    private Long userID;
+    public Long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(Long userID) {
+		this.userID = userID;
+	}
+
+	private HashMap<String, String> questionTypeList = new HashMap<>();
     public QuestionModel(){
         this.questionTypeList.put("numeric","Numeric");
         this.questionTypeList.put("mcq1","Multiple Choice Question, Choose One");
@@ -63,4 +74,10 @@ public class QuestionModel {
     public void setResponseScore(int responseScore) {
         this.responseScore = responseScore;
     }
+    
+    public boolean createQuestion(IQuestionsPersistence questionDB) {
+    	return questionDB.createQuestion(this);
+    }
+    
+    
 }

@@ -8,6 +8,14 @@ public class CallStoredProcedure
 	private Connection connection;
 	private CallableStatement statement;
 	
+	public CallableStatement getStatement() {
+		return statement;
+	}
+
+	public void setStatement(CallableStatement statement) {
+		this.statement = statement;
+	}
+
 	public CallStoredProcedure(String storedProcedureName) throws SQLException
 	{
 		this.storedProcedureName = storedProcedureName;
