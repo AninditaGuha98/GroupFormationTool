@@ -29,9 +29,9 @@ public class ListQuestionsController {
 
 	@RequestMapping(value = "/listquestions", method = RequestMethod.GET)
 	public String showQuestions(ModelMap model, Principal principal,@RequestParam(name = "userID") long userID) {
+		this.userID = userID;
 		setModelForSorting(model);
 		bannerID = principal.getName();
-		this.userID = userID;
 		model.addAttribute("questions", questionDb.loadAllQuestionsByID(bannerID));
 		return "QuestionManager/listquestions";
 	}
