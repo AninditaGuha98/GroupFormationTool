@@ -6,7 +6,7 @@ import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
 import java.util.List;
 
 public interface IQuestionSorters {
-    public List<Question> sort(String bannerID, Sorters sorters);
-    public List<Question> clearSort(String bannerID);
-}
+	public List<Question> sort(String bannerID, Sorters sorters);
 
+	public List<Question> clearSort(String bannerID);
+}

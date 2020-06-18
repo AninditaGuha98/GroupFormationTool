@@ -21,41 +21,33 @@ import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 @Controller
-public class InstructorAdminController
-{
+public class InstructorAdminController {
 	private static final String ID = "id";
 	private static final String FILE = "file";
 	private static final String SUCCESSFUL = "successful";
 	private static final String FAILURES = "failures";
 	private static final String DISPLAY_RESULTS = "displayresults";
-	
+
 	@GetMapping("/course/instructoradmin")
-	public String instructorAdmin(Model model, @RequestParam(name = ID) long courseID)
-	{
+	public String instructorAdmin(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
 		Course course = new Course();
 		courseDB.loadCourseByID(courseID, course);
 		model.addAttribute("course", course);
 		model.addAttribute("displayresults", false);
-		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR) ||
-			 course.isCurrentUserEnrolledAsRoleInCourse(Role.TA))
-		{
+		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
+				|| course.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
 			return "course/instructoradmin";
-		}
-		else
-		{
+		} else {
 			return "logout";
 		}
 	}
 
 	@GetMapping("/course/instructoradminresults")
-	public String instructorAdmin(
-			Model model,
-			@RequestParam(name = ID) long courseID,
+	public String instructorAdmin(Model model, @RequestParam(name = ID) long courseID,
 			@RequestParam(name = SUCCESSFUL, required = false) List<String> successful,
 			@RequestParam(name = FAILURES, required = false) List<String> failures,
-			@RequestParam(name = DISPLAY_RESULTS) boolean displayResults)
-	{
+			@RequestParam(name = DISPLAY_RESULTS) boolean displayResults) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
 		Course course = new Course();
 		courseDB.loadCourseByID(courseID, course);
@@ -64,42 +56,35 @@ public class InstructorAdminController
 		model.addAttribute(SUCCESSFUL, successful);
 		model.addAttribute(FAILURES, failures);
 		model.addAttribute(DISPLAY_RESULTS, displayResults);
-		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR) ||
-			 course.isCurrentUserEnrolledAsRoleInCourse(Role.TA))
-		{
+		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
+				|| course.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
 			return "course/instructoradmin";
-		}
-		else
-		{
+		} else {
 			return "logout";
 		}
 	}
 
-	
 	@GetMapping("/course/enrollta")
-	public String enrollTA(Model model, @RequestParam(name = ID) long courseID)
-	{
+	public String enrollTA(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
 		Course course = new Course();
 		courseDB.loadCourseByID(courseID, course);
 		model.addAttribute("course", course);
-		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR) ||
-			 course.isCurrentUserEnrolledAsRoleInCourse(Role.TA))
-		{
-			ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance().getCourseUserRelationshipDB();
-			List<User> allUsersNotCurrentlyTA = courseUserRelationshipDB.findAllUsersWithoutCourseRole(Role.TA, courseID);
+		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
+				|| course.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
+			ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
+					.getCourseUserRelationshipDB();
+			List<User> allUsersNotCurrentlyTA = courseUserRelationshipDB.findAllUsersWithoutCourseRole(Role.TA,
+					courseID);
 			model.addAttribute("users", allUsersNotCurrentlyTA);
 			return "course/enrollta";
-		}
-		else
-		{
+		} else {
 			return "logout";
 		}
 	}
 
-	@RequestMapping(value = "/course/uploadcsv", consumes = {"multipart/form-data"})
-	public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID)
-   {
+	@RequestMapping(value = "/course/uploadcsv", consumes = { "multipart/form-data" })
+	public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
 		Course course = new Course();
 		courseDB.loadCourseByID(courseID, course);
@@ -108,27 +93,26 @@ public class InstructorAdminController
 		ModelAndView mav = new ModelAndView("redirect:/course/instructoradminresults?id=" + Long.toString(courseID));
 		mav.addObject("successful", importer.getSuccessResults());
 		mav.addObject("failures", importer.getFailureResults());
-		mav.addObject("displayresults", true);		
+		mav.addObject("displayresults", true);
 		return mav;
-   }
-	
+	}
+
 	@RequestMapping(value = "/course/assignTAtocourse")
 	public ModelAndView assignInstructorToCourse(@RequestParam(name = "ta") List<Integer> instructor,
-	   		@RequestParam(name = ID) long courseID)
-	   {
-			Course c = new Course();
-			c.setId(courseID);
-			Iterator<Integer> iter = instructor.iterator();
-			ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance().getCourseUserRelationshipDB();
-			while (iter.hasNext())
-			{
-				User u = new User();
-				u.setId(iter.next().longValue());
-				courseUserRelationshipDB.enrollUser(c, u, Role.TA);
-			}
-			ModelAndView mav = new ModelAndView("redirect:instructoradmin");
-			mav.addObject("id",courseID);
-			return mav;
-	   }
+			@RequestParam(name = ID) long courseID) {
+		Course c = new Course();
+		c.setId(courseID);
+		Iterator<Integer> iter = instructor.iterator();
+		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
+				.getCourseUserRelationshipDB();
+		while (iter.hasNext()) {
+			User u = new User();
+			u.setId(iter.next().longValue());
+			courseUserRelationshipDB.enrollUser(c, u, Role.TA);
+		}
+		ModelAndView mav = new ModelAndView("redirect:instructoradmin");
+		mav.addObject("id", courseID);
+		return mav;
+	}
 
 }

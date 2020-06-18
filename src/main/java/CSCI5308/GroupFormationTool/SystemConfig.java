@@ -11,7 +11,6 @@ import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
 import CSCI5308.GroupFormationTool.Security.*;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.*;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 
 /*
  * This is a singleton, we will learn about these when we learn design patterns.
@@ -22,9 +21,8 @@ import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
  * dependency injection (for example classes that override or extend existing
  * library classes in the framework).
  */
-public class SystemConfig
-{
-	private static SystemConfig uniqueInstance = null;	
+public class SystemConfig {
+	private static SystemConfig uniqueInstance = null;
 	private IPasswordEncryption passwordEncryption;
 	private IUserPersistence userDB;
 	private IDatabaseConfiguration databaseConfiguration;
@@ -35,11 +33,9 @@ public class SystemConfig
 	private InterfaceListQuestionsRepo interfaceListQuestionsRepo;
 	private InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo;
 
-	
 	// This private constructor ensures that no class other than System can allocate
 	// the System object. The compiler would prevent it.
-	private SystemConfig()
-	{
+	private SystemConfig() {
 		// The default instantiations are the choices that would be used in the
 		// production application. These choices can all be overridden by test
 		// setup logic when necessary.
@@ -50,17 +46,15 @@ public class SystemConfig
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		questionDB = new QuestionDB();
 		sortersDB = new SortingDB();
-		interfaceListQuestionsRepo=new ListQuestionsRepo();
-		interfaceDeleteQuestionsRepo= new DeleteQuestionsRepo();
+		interfaceListQuestionsRepo = new ListQuestionsRepo();
+		interfaceDeleteQuestionsRepo = new DeleteQuestionsRepo();
 	}
-	
+
 	// This is the way the rest of the application gets access to the System object.
-	public static SystemConfig instance()
-	{
+	public static SystemConfig instance() {
 		// Using lazy initialization, this is the one and only place that the System
 		// object will be instantiated.
-		if (null == uniqueInstance)
-		{
+		if (null == uniqueInstance) {
 			uniqueInstance = new SystemConfig();
 		}
 		return uniqueInstance;
@@ -81,73 +75,61 @@ public class SystemConfig
 	public void setInterfaceDeleteQuestionsRepo(InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo) {
 		this.interfaceDeleteQuestionsRepo = interfaceDeleteQuestionsRepo;
 	}
-	
-	public IPasswordEncryption getPasswordEncryption()
-	{
+
+	public IPasswordEncryption getPasswordEncryption() {
 		return passwordEncryption;
 	}
-	
-	public void setPasswordEncryption(IPasswordEncryption passwordEncryption)
-	{
+
+	public void setPasswordEncryption(IPasswordEncryption passwordEncryption) {
 		this.passwordEncryption = passwordEncryption;
 	}
-	
-	public IUserPersistence getUserDB()
-	{
+
+	public IUserPersistence getUserDB() {
 		return userDB;
 	}
-	
-	public void setUserDB(IUserPersistence userDB)
-	{
+
+	public void setUserDB(IUserPersistence userDB) {
 		this.userDB = userDB;
 	}
-	
-	public IDatabaseConfiguration getDatabaseConfiguration()
-	{
+
+	public IDatabaseConfiguration getDatabaseConfiguration() {
 		return databaseConfiguration;
 	}
-	
-	public void setDatabaseConfiguration(IDatabaseConfiguration databaseConfiguration)
-	{
+
+	public void setDatabaseConfiguration(IDatabaseConfiguration databaseConfiguration) {
 		this.databaseConfiguration = databaseConfiguration;
 	}
-	
-	public void setCourseDB(ICoursePersistence courseDB)
-	{
+
+	public void setCourseDB(ICoursePersistence courseDB) {
 		this.courseDB = courseDB;
 	}
-	
-	public ICoursePersistence getCourseDB()
-	{
+
+	public ICoursePersistence getCourseDB() {
 		return courseDB;
 	}
-	
-	public void setCourseUserRelationshipDB(ICourseUserRelationshipPersistence courseUserRelationshipDB)
-	{
+
+	public void setCourseUserRelationshipDB(ICourseUserRelationshipPersistence courseUserRelationshipDB) {
 		this.courseUserRelationshipDB = courseUserRelationshipDB;
 	}
-	
-	public ICourseUserRelationshipPersistence getCourseUserRelationshipDB()
-	{
+
+	public ICourseUserRelationshipPersistence getCourseUserRelationshipDB() {
 		return courseUserRelationshipDB;
 	}
 
-	public IQuestionsPersistence getQuestionDB(){
+	public IQuestionsPersistence getQuestionDB() {
 		return questionDB;
 	}
 
-	public void setQuestionDB(IQuestionsPersistence questionDB){
+	public void setQuestionDB(IQuestionsPersistence questionDB) {
 		this.questionDB = questionDB;
 	}
 
-	public IQuestionSorters getSortersDB(){
+	public IQuestionSorters getSortersDB() {
 		return sortersDB;
 	}
 
-	public void setSortersDB(IQuestionSorters sortersDB){
+	public void setSortersDB(IQuestionSorters sortersDB) {
 		this.sortersDB = sortersDB;
 	}
 
-
 }
-

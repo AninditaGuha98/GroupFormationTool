@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IQuestionsPersistence {
 
-    public List<Question> loadAllQuestionsByID(String bannerID);
+	public List<Question> loadAllQuestionsByID(String bannerID);
 
 	public boolean createQuestion(QuestionModel question);
 

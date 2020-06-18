@@ -26,7 +26,7 @@ public class QuestionModel {
 		this.questionTypeList.put("numeric", "Numeric");
 		this.questionTypeList.put("mcq1", "Multiple Choice Question, Choose One");
 		this.questionTypeList.put("mcq2", "Multiple Choice Question, Choose Multiple");
-		this.questionTypeList.put("free", "Free");
+		this.questionTypeList.put("free", "Free Text");
 	}
 
 	public String getTypeSelect() {

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/styles/cssandjs/main.css">
-	<title>Question Manager Page</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/styles/cssandjs/main.css">
+<title>Question Manager Page</title>
 
 
 <style>
@@ -39,23 +39,23 @@ h1 {
 </style>
 </head>
 <body>
-<!--<div class="heading">-->
-    <header class="bodyGridRow headerGridContainer">
-        <h1>Question Manager Page</h1>
-    </header>
-<!--    </div>-->
+	<!--<div class="heading">-->
+	<header class="bodyGridRow headerGridContainer">
+		<h1>Question Manager Page</h1>
+	</header>
+	<!--    </div>-->
 
-<div class="Button">
-    <br/>
-    <a th:href="@{/listquestions}"><button type="submit" >List Questions</button></a>
-</div>
-<div class="Button">
-    <br/>
-    <a th:href="@{/deletequestionspage(userID=${userID})}"><button type="submit" >Delete Questions</button></a>
-</div>
-<div class="Button">
-	<br /> <a th:href="@{/welcomequestions(userID=${userID})}"><button
-		type="submit">Create Questions</button></a>
-</div>
+	<div class="Button">
+		<br /> <a th:href="@{/listquestions}"><button type="submit">List
+				Questions</button></a>
+	</div>
+	<div class="Button">
+		<br /> <a th:href="@{/deletequestionspage(userID=${userID})}"><button
+				type="submit">Delete Questions</button></a>
+	</div>
+	<div class="Button">
+		<br /> <a th:href="@{/welcomequestions(userID=${userID})}"><button
+				type="submit">Create Questions</button></a>
+	</div>
 </body>
 </html>
