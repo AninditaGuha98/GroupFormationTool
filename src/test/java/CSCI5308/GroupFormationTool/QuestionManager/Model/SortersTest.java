@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.QuestionManager;
+package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
 import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
 import org.junit.jupiter.api.Test;
