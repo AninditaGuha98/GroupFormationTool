@@ -26,24 +26,18 @@ Button {
 h1 {
 	font-size: 30px;
 	font-family: cursive;
-	color: black;
+	color: #FAFAFA;
 	margin: auto;
 }
 
-.heading {
-	text-align: center;
-	background: #aebeb6;
-	height: 80px;
-	vertical-align: auto;
-}
 </style>
 </head>
 <body>
-	<!--<div class="heading">-->
+
 	<header class="bodyGridRow headerGridContainer">
 		<h1>Question Manager Page</h1>
 	</header>
-	<!--    </div>-->
+
 
 	<div class="Button">
 		<br /> <a th:href="@{/listquestions}"><button type="submit">List
@@ -57,5 +51,6 @@ h1 {
 		<br /> <a th:href="@{/welcomequestions(userID=${userID})}"><button
 				type="submit">Create Questions</button></a>
 	</div>
+
 </body>
 </html>
