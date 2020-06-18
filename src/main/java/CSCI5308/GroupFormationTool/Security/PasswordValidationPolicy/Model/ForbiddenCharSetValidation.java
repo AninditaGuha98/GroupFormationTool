@@ -1,8 +1,11 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model;
+
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 public class ForbiddenCharSetValidation implements IPasswordValidation {
 
-	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
+	private static final String FORBIDDEN_CHARSET_CONFIG = "forbidden_charset";
 	public static final String VALID_PASSWORD_MESSAGE = "Password does not have forbidden characters (%s).";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password has forbidden characters \"%s\".";
 
@@ -28,12 +31,11 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 		String configValue;
 
 		try {
-			configValue = config.getConfig(FORBIDDEN_CHARSET);
+			configValue = config.getConfig(FORBIDDEN_CHARSET_CONFIG);
 		} catch (Exception e) {
 			e.printStackTrace();
 			configValue = null;
 		}
-
 		setForbiddernCharSet(configValue);
 
 		if (null == password) {
@@ -51,7 +53,7 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 	}
 
 	@Override
-	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
 		} else {

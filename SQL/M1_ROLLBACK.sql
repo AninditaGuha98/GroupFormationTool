@@ -14,6 +14,7 @@ DROP PROCEDURE IF EXISTS spEnrollUser;
 DROP PROCEDURE IF EXISTS spFindCourseByID;
 DROP PROCEDURE IF EXISTS spFindUsersWithoutCourseRole;
 DROP PROCEDURE IF EXISTS spLoadUserRolesForCourse;
+DROP PROCEDURE IF EXISTS spFindPasswordHistory;
 
 DROP TABLE SystemRole;
 
@@ -26,3 +27,5 @@ DROP TABLE Role;
 DROP TABLE UserContactInfo;
 
 DROP TABLE User;
+
+DROP TABLE PasswordHistory;

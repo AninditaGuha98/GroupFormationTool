@@ -19,8 +19,19 @@ import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
 import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.AccessControl.*;
+import CSCI5308.GroupFormationTool.Database.*;
 
+/*
+ * This is a singleton, we will learn about these when we learn design patterns.
+ * 
+ * The single responsibility of this singleton is to store concrete classes
+ * selected by the system for use in the rest of the system. This will allow
+ * a form of dependency injection in places where we cannot use normal
+ * dependency injection (for example classes that override or extend existing
+ * library classes in the framework).
+ */
 public class SystemConfig {
 	private static SystemConfig uniqueInstance = null;
 	private IPasswordEncryption passwordEncryption;

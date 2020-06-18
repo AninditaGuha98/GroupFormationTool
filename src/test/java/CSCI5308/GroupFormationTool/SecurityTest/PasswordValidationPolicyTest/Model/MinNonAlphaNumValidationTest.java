@@ -1,11 +1,12 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinNonAlphaNumValidation;
+import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
 
 class MinNonAlphaNumValidationTest {
 
@@ -34,14 +35,22 @@ class MinNonAlphaNumValidationTest {
 		assertFalse(validator.isValidPassword(null, config));
 	}
 	
+	@Test 
+	void getMinNonAlphaNumTest() {
+		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
+		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
+		assertTrue(validator.isValidPassword("#Messi!", config));
+		assertEquals(2, validator.getMinNonAlphaNum());
+	}
+	
 	@Test
 	void getValidationMessageTest() {
 		IPasswordValidationConfiguration config = new PasswordValidationConfigurationMock();
 		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
 		
-		assertEquals(validator.getPasswordValidationMessage("#RAOUf@", config),
+		assertEquals(validator.getValidationFailureMessage("#RAOUf@", config),
 				String.format(MinNonAlphaNumValidation.VALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
-		assertEquals(validator.getPasswordValidationMessage("RaOu`f", config),
+		assertEquals(validator.getValidationFailureMessage("RaOu`f", config),
 				String.format(MinNonAlphaNumValidation.INVALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
 	}
 }

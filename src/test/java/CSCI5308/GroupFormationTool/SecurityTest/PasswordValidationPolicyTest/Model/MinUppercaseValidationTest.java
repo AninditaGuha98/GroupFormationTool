@@ -1,11 +1,12 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinUppercaseValidation;
+import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
 
 class MinUppercaseValidationTest {
 
@@ -29,16 +30,24 @@ class MinUppercaseValidationTest {
 		assertFalse(validator.isValidPassword(null, config));
 	}
 	
+	@Test 
+	void getMinUppercaseTest() {
+		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
+		MinUppercaseValidation validator = new MinUppercaseValidation();
+		assertTrue(validator.isValidPassword("RaouF", config));
+		assertEquals(2, validator.getMinUppercase());
+	}
+	
 	@Test
 	void getValidationMessageTest() {
 		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
 		MinUppercaseValidation validator = new MinUppercaseValidation();
 		
 		// 4 uppercase letters 4 > 2
-		assertEquals(validator.getPasswordValidationMessage("rAOUF", config),
+		assertEquals(validator.getValidationFailureMessage("rAOUF", config),
 				String.format(MinUppercaseValidation.VALID_PASSWORD_MESSAGE, validator.getMinUppercase()));
 		// 1 uppercase letter 1 < 2
-		assertEquals(validator.getPasswordValidationMessage("raOuf", config),
+		assertEquals(validator.getValidationFailureMessage("raOuf", config),
 				String.format(MinUppercaseValidation.INVALID_PASSWORD_MESSAGE, validator.getMinUppercase()));
 	}
 }
