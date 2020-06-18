@@ -5,7 +5,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.I
 
 public class MaxLengthValidation implements IPasswordValidation {
 
-	private static final String MAX_LENGTH = "max_length";
+	private static final String MAX_LENGTH_CONFIG = "max_length";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows maximum length of %d.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have muximum length of %d.";
 
@@ -39,7 +39,7 @@ public class MaxLengthValidation implements IPasswordValidation {
 		String configValue;
 
 		try {
-			configValue = config.getConfig(MAX_LENGTH);
+			configValue = config.getConfig(MAX_LENGTH_CONFIG);
 		} catch (Exception e) {
 			e.printStackTrace();
 			configValue = null;
@@ -63,7 +63,7 @@ public class MaxLengthValidation implements IPasswordValidation {
 	}
 
 	@Override
-	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.maxLength);
 		} else {

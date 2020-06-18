@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MaxLengthValidation;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLowercaseValidation;
 import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
 
@@ -51,10 +50,10 @@ class MinLowercaseValidationTest {
 		MinLowercaseValidation validator = new MinLowercaseValidation();
 		
 		// 2 lowercase letters 2=2
-		assertEquals(validator.getPasswordValidationMessage("RAouf", config),
+		assertEquals(validator.getValidationFailureMessage("RAouf", config),
 				String.format(MinLowercaseValidation.VALID_PASSWORD_MESSAGE, validator.getMinLowercase()));
 		// 1 lowercase letters 1<2
-		assertEquals(validator.getPasswordValidationMessage("RaOUF", config),
+		assertEquals(validator.getValidationFailureMessage("RaOUF", config),
 				String.format(MinLowercaseValidation.INVALID_PASSWORD_MESSAGE, validator.getMinLowercase()));
 	}
 }

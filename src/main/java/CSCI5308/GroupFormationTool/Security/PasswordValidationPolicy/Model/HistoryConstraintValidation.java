@@ -11,7 +11,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.I
 
 public class HistoryConstraintValidation implements IPasswordValidation {
 
-	private static final String HISTORY_CONSTRAINT = "history_constraint";
+	private static final String HISTORY_CONSTRAINT_CONFIG = "history_constraint";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows history constraints of %d.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must no be among your %d previous passwords.";
 
@@ -31,6 +31,7 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		try {
 			intHistoryConstraint = Integer.parseInt(historyConstraint);
 		} catch (Exception e) {
+			// Log it
 			e.printStackTrace();
 			intHistoryConstraint = 0;
 		}
@@ -52,14 +53,8 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 			return false;
 		}
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (!authentication.isAuthenticated())	{
-			return true;
-		}
-		bannerID = authentication.getPrincipal().toString();
-
 		try {
-			configValue = config.getConfig(HISTORY_CONSTRAINT);
+			configValue = config.getConfig(HISTORY_CONSTRAINT_CONFIG);
 		} catch (Exception e) {
 			e.printStackTrace();
 			configValue = null;
@@ -69,9 +64,15 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		if (this.historyConstraint == 0) {
 			return true;
 		}
-		
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!authentication.isAuthenticated())	{
+			return true;
+		}
+		bannerID = authentication.getPrincipal().toString();
 		encryptedPassword = passwordEncryption.encryptPassword(password);
-		if (passwordHistoryPersistence.isValidHistoryConstraint
+		
+		if (passwordHistoryPersistence.followedHistoryConstraint
 				(bannerID, encryptedPassword, historyConstraint)) {
 			return true;
 		}
@@ -79,7 +80,7 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 	}
 
 	@Override
-	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.historyConstraint);
 		} else {

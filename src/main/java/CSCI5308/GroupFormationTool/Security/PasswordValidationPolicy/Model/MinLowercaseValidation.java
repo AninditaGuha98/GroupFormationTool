@@ -5,7 +5,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.I
 
 public class MinLowercaseValidation implements IPasswordValidation {
 
-	private static final String MIN_LOWERCASE = "min_lowercase";
+	private static final String MIN_LOWERCASE_CONFIG = "min_lowercase";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum %d lowercase letters.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d lowercase letters.";
 
@@ -27,10 +27,12 @@ public class MinLowercaseValidation implements IPasswordValidation {
 			intMinLowercase = 0;
 		}
 
-		if (intMinLowercase <= 0)
+		if (intMinLowercase <= 0) {
 			this.minLowercase = 0;
-		else
+		}
+		else {
 			this.minLowercase = intMinLowercase;
+		}
 	}
 
 	@Override
@@ -39,7 +41,7 @@ public class MinLowercaseValidation implements IPasswordValidation {
 		String configValue;
 
 		try {
-			configValue = config.getConfig(MIN_LOWERCASE);
+			configValue = config.getConfig(MIN_LOWERCASE_CONFIG);
 		} catch (Exception e) {
 			e.printStackTrace();
 			configValue = null;
@@ -47,25 +49,29 @@ public class MinLowercaseValidation implements IPasswordValidation {
 
 		setMinLowercase(configValue);
 
-		if (null == password)
+		if (null == password) {
 			return false;
+		}
 
-		if (this.minLowercase == 0)
+		if (this.minLowercase == 0) {
 			return true;
+		}
 
 		for (int i = 0; i < password.length(); i++) {
-			// Check for lowercase letters.
-			if (Character.isLowerCase(password.charAt(i)))
+			if (Character.isLowerCase(password.charAt(i))) {
 				lowerCase++;
+			}
 		}
-		if (lowerCase < this.minLowercase)
+		if (lowerCase < this.minLowercase) {
 			return false;
-		else
+		}
+		else {
 			return true;
+		}
 	}
 
 	@Override
-	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.minLowercase);
 		} else {

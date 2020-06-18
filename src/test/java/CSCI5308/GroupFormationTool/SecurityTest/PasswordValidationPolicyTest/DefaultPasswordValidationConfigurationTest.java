@@ -20,6 +20,8 @@ class DefaultPasswordValidationConfigurationTest {
 /*
  * This is a test for the passwordValidation.properties
  * It must must be replaced with Mockito or other frameworks.
+ * We tested it with "passwordValidation.properties", but
+ * we commented it because it can change.
  */
 //	
 //	private static final String MIN_LENGTH = "min_length";

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.ForbiddenCharSetValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinNonAlphaNumValidation;
 import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
 
 class ForbiddenCharSetValidationTest {
@@ -70,14 +69,14 @@ class ForbiddenCharSetValidationTest {
 			String forbiddenString = this.generateForbiddenString(randomForbiddernLenght);
 			
 			if (forbiddenString.isEmpty()) {
-				assertEquals(validator.getPasswordValidationMessage(allowedString+forbiddenString , config),
+				assertEquals(validator.getValidationFailureMessage(allowedString+forbiddenString , config),
 						String.format(ForbiddenCharSetValidation.VALID_PASSWORD_MESSAGE, 
 								validator.getForbiddenCharSet()));
 			} else 	{
-				assertEquals(validator.getPasswordValidationMessage(allowedString, config),
+				assertEquals(validator.getValidationFailureMessage(allowedString, config),
 						String.format(ForbiddenCharSetValidation.VALID_PASSWORD_MESSAGE, 
 								validator.getForbiddenCharSet()));
-				assertEquals(validator.getPasswordValidationMessage(forbiddenString+allowedString, config),
+				assertEquals(validator.getValidationFailureMessage(forbiddenString+allowedString, config),
 						String.format(ForbiddenCharSetValidation.INVALID_PASSWORD_MESSAGE, 
 								validator.getForbiddenCharSet()));
 			}
@@ -89,10 +88,12 @@ class ForbiddenCharSetValidationTest {
 		Random upperLowerSelector = new Random();
 		while (length-- != 0) {
 			int character = (int)(Math.random()*ALLOWED_CHARSET.length());
-			if (upperLowerSelector.nextInt(2) == 0)
+			if (upperLowerSelector.nextInt(2) == 0) {
 				builder.append(ALLOWED_CHARSET.toUpperCase().charAt(character));
-			else
+			}
+			else {
 				builder.append(ALLOWED_CHARSET.toLowerCase().charAt(character));
+			}
 		}
 		return builder.toString();
 	}

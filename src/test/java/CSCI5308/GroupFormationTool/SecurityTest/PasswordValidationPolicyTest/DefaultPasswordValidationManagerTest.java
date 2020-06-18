@@ -61,7 +61,7 @@ class DefaultPasswordValidationManagerTest {
 		
 		outputList = passwordPolicyManager.getPasswordValidationFailures("MEssi!@#4", config);
 		for( String str: outputList) {
-			output+=str;
+			output += str;
 		}
 		assertEquals(VALID_OUTPUT_DEFCONFIG, output);
 		

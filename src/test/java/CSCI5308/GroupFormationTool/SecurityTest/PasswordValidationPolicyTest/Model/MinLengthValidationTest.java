@@ -36,9 +36,9 @@ class MinLengthValidationTest {
 		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
 		MinLengthValidation validator = new MinLengthValidation();
 		
-		assertEquals(validator.getPasswordValidationMessage("1234567", config), 
+		assertEquals(validator.getValidationFailureMessage("1234567", config), 
 				String.format(MinLengthValidation.INVALID_PASSWORD_MESSAGE, validator.getMinLength()));
-		assertEquals(validator.getPasswordValidationMessage("12345678", config), 
+		assertEquals(validator.getValidationFailureMessage("12345678", config), 
 				String.format(MinLengthValidation.VALID_PASSWORD_MESSAGE, validator.getMinLength()));
 	}
 

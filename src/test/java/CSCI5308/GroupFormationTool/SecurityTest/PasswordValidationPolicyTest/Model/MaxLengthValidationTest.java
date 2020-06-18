@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MaxLengthValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLengthValidation;
 import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
 
 class MaxLengthValidationTest {
@@ -36,9 +35,9 @@ class MaxLengthValidationTest {
 		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
 		MaxLengthValidation validator = new MaxLengthValidation();
 		
-		assertEquals(validator.getPasswordValidationMessage("abcdefghijkl", config),
+		assertEquals(validator.getValidationFailureMessage("abcdefghijkl", config),
 				String.format(MaxLengthValidation.VALID_PASSWORD_MESSAGE, validator.getMaxLength()));
-		assertEquals(validator.getPasswordValidationMessage("abcdefghijklmn", config),
+		assertEquals(validator.getValidationFailureMessage("abcdefghijklmn", config),
 				String.format(MaxLengthValidation.INVALID_PASSWORD_MESSAGE, validator.getMaxLength()));
 	}
 

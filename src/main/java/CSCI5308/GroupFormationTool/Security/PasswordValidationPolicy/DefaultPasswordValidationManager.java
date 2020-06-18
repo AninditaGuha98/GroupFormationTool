@@ -14,31 +14,37 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Repository.
 // Temporary solution until we refactor with an abstract factory
 public class DefaultPasswordValidationManager implements IPasswordValidationManager {
 
-	private static final String MIN_LENGTH ="CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLengthValidation";
-	private static final String MAX_LENGTH = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MaxLengthValidation";
-	private static final String MIN_LOWERCASE = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLowercaseValidation";
-	private static final String MIN_UPPERCASE = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinUppercaseValidation";
-	private static final String MIN_NON_ALPHANUM = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinNonAlphaNumValidation";
-	private static final String FORBIDDEN_CHARSET = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.ForbiddenCharSetValidation";
-	private static final String HISTORY_CONSTRAINT = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.HistoryConstraintValidation";
+	private static final String MIN_LENGTH =
+			"CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLengthValidation";
+	private static final String MAX_LENGTH = 
+			"CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MaxLengthValidation";
+	private static final String MIN_LOWERCASE = 
+			"CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLowercaseValidation";
+	private static final String MIN_UPPERCASE = 
+			"CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinUppercaseValidation";
+	private static final String MIN_NON_ALPHANUM = 
+			"CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinNonAlphaNumValidation";
+	private static final String FORBIDDEN_CHARSET = 
+			"CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.ForbiddenCharSetValidation";
+	private static final String HISTORY_CONSTRAINT = 
+			"CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.HistoryConstraintValidation";
 
-	private static List<String> passwordValidationsNameList = Arrays.asList(
+	private static List<String> moduleNameList = Arrays.asList(
 			MIN_LENGTH, MAX_LENGTH, MIN_LOWERCASE, MIN_UPPERCASE, MIN_NON_ALPHANUM, FORBIDDEN_CHARSET);
 	 
-	private List<IPasswordValidation> passwordValidationList;
+	private List<IPasswordValidation> moduleList;
 	private IPasswordHistoryPersistence passwordHistory;
 
 	public DefaultPasswordValidationManager() {
-		passwordValidationList = new ArrayList<IPasswordValidation>();
+		moduleList = new ArrayList<IPasswordValidation>();
 		passwordHistory = new PasswordHistoryDB();
 
 		try {
-			for (String validationName : passwordValidationsNameList) {
-
+			for (String validationName : moduleNameList) {
 				Class<?> c = Class.forName(validationName);
 				Constructor<?> constructor = c.getConstructor();
 				IPasswordValidation passwordValidation = (IPasswordValidation) constructor.newInstance();
-				passwordValidationList.add(passwordValidation);
+				moduleList.add(passwordValidation);
 			}
 		} catch (Exception e) {
 			// Log the exception
@@ -48,8 +54,9 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 		try {
 			Class<?> c = Class.forName(HISTORY_CONSTRAINT);
 			Constructor<?> constructor = c.getConstructor(IPasswordHistoryPersistence.class);
-			IPasswordValidation passwordValidation = (IPasswordValidation) constructor.newInstance(passwordHistory);
-			passwordValidationList.add(passwordValidation);
+			IPasswordValidation passwordValidation = 
+					(IPasswordValidation) constructor.newInstance(passwordHistory);
+			moduleList.add(passwordValidation);
 		} catch (Exception e) {
 			// Log the exception
 			e.printStackTrace();
@@ -58,8 +65,8 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 
 	@Override
 	public boolean isValidPassword(String password, IPasswordValidationConfiguration configuration) {
-		for (IPasswordValidation passwordValidation: passwordValidationList) {
-			if (!passwordValidation.isValidPassword(password, configuration))
+		for (IPasswordValidation validationModule: moduleList) {
+			if (!validationModule.isValidPassword(password, configuration))
 				return false;
 		}
 		return true;
@@ -70,9 +77,9 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 			String password, IPasswordValidationConfiguration configuration) {
 		List<String> failureMessages = new ArrayList<String>();
 
-		for (IPasswordValidation passwordValidation : passwordValidationList) {
-			if (!passwordValidation.isValidPassword(password, configuration))
-				failureMessages.add(passwordValidation.getPasswordValidationMessage(password, configuration));
+		for (IPasswordValidation validationModule : moduleList) {
+			if (!validationModule.isValidPassword(password, configuration))
+				failureMessages.add(validationModule.getValidationFailureMessage(password, configuration));
 		}
 
 		return failureMessages;

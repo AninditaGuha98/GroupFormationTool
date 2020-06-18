@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinNonAlphaNumValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinUppercaseValidation;
 import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
 
 class MinNonAlphaNumValidationTest {
@@ -49,9 +48,9 @@ class MinNonAlphaNumValidationTest {
 		IPasswordValidationConfiguration config = new PasswordValidationConfigurationMock();
 		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
 		
-		assertEquals(validator.getPasswordValidationMessage("#RAOUf@", config),
+		assertEquals(validator.getValidationFailureMessage("#RAOUf@", config),
 				String.format(MinNonAlphaNumValidation.VALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
-		assertEquals(validator.getPasswordValidationMessage("RaOu`f", config),
+		assertEquals(validator.getValidationFailureMessage("RaOu`f", config),
 				String.format(MinNonAlphaNumValidation.INVALID_PASSWORD_MESSAGE, validator.getMinNonAlphaNum()));
 	}
 }

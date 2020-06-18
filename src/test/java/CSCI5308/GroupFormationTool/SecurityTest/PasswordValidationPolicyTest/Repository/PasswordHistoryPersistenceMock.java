@@ -11,7 +11,7 @@ public class PasswordHistoryPersistenceMock implements IPasswordHistoryPersisten
 	}
 	
 	@Override
-	public boolean isValidHistoryConstraint(String bannerID, String password, int history) {
+	public boolean followedHistoryConstraint(String bannerID, String password, int history) {
 		return this.result;
 	}
 

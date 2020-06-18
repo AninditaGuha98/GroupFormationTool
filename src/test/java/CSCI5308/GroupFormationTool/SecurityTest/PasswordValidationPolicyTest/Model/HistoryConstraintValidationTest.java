@@ -12,6 +12,9 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.Histo
 
 class HistoryConstraintValidationTest {
 
+// Because Spring Security returns Null in Unit Testing,
+// we have commented it - It must be solved.
+//
 //	@Test
 //	void isValidPasswordTest() {
 //		IPasswordValidationConfiguration config = new PasswordValidationConfigurationMock();

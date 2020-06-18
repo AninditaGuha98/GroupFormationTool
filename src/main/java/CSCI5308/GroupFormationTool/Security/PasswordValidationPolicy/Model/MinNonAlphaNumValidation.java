@@ -7,7 +7,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.I
 
 public class MinNonAlphaNumValidation implements IPasswordValidation {
 
-	private static final String MIN_NON_ALPHANUM = "min_non_alphanum";
+	private static final String MIN_NON_ALPHANUM_CONFIG = "min_non_alphanum";
 	public static final String VALID_PASSWORD_MESSAGE = "Password has minimum %d special characters.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d special characters.";
 
@@ -30,10 +30,12 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 			intMinNonAlphaNum = 0;
 		}
 
-		if (intMinNonAlphaNum <= 0)
+		if (intMinNonAlphaNum <= 0) {
 			this.minNonAlphaNum = 0;
-		else
+		}
+		else {
 			this.minNonAlphaNum = intMinNonAlphaNum;
+		}
 	}
 
 	@Override
@@ -42,7 +44,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		String configValue;
 
 		try {
-			configValue = config.getConfig(MIN_NON_ALPHANUM);
+			configValue = config.getConfig(MIN_NON_ALPHANUM_CONFIG);
 		} catch (Exception e) {
 			e.printStackTrace();
 			configValue = null;
@@ -73,7 +75,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 	}
 
 	@Override
-	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.minNonAlphaNum);
 		} else {

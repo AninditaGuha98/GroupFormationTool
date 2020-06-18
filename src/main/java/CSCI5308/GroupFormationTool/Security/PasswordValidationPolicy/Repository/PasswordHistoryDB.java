@@ -9,7 +9,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.I
 public class PasswordHistoryDB implements IPasswordHistoryPersistence {
 
 	@Override
-	public boolean isValidHistoryConstraint(String bannerID, String password, int history) {
+	public boolean followedHistoryConstraint(String bannerID, String password, int history) {
 		CallStoredProcedure proc = null;
 		boolean isValid = false;
 		
@@ -23,15 +23,12 @@ public class PasswordHistoryDB implements IPasswordHistoryPersistence {
 				isValid = true;
 			}
 		}
-		catch (SQLException e)
-		{
-			// Logging needed.
+		catch (SQLException e)	{
+			// Log Problem
 			e.printStackTrace();
 		}
-		finally
-		{
-			if (null != proc)
-			{
+		finally	{
+			if (null != proc) {
 				proc.cleanup();
 			}
 		}

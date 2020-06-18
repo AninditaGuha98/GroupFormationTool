@@ -5,7 +5,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.I
 
 public class MinUppercaseValidation implements IPasswordValidation {
 
-	private static final String MIN_UPPERCASE = "min_uppercase";
+	private static final String MIN_UPPERCASE_CONFIG = "min_uppercase";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum %d uppercase letters.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d uppercase letters.";
 
@@ -40,7 +40,7 @@ public class MinUppercaseValidation implements IPasswordValidation {
 		String configValue;
 
 		try {
-			configValue = config.getConfig(MIN_UPPERCASE);
+			configValue = config.getConfig(MIN_UPPERCASE_CONFIG);
 		} catch (Exception e) {
 			e.printStackTrace();
 			configValue = null;
@@ -57,9 +57,9 @@ public class MinUppercaseValidation implements IPasswordValidation {
 		}
 
 		for (int i = 0; i < password.length(); i++) {
-			// Check for uppercase letters.
-			if (Character.isUpperCase(password.charAt(i)))
+			if (Character.isUpperCase(password.charAt(i))) {
 				upperCase++;
+			}
 		}
 		if (upperCase < this.minUppercase) {
 			return false;
@@ -69,7 +69,7 @@ public class MinUppercaseValidation implements IPasswordValidation {
 	}
 
 	@Override
-	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
+	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {
 			return String.format(VALID_PASSWORD_MESSAGE, this.minUppercase);
 		} else {

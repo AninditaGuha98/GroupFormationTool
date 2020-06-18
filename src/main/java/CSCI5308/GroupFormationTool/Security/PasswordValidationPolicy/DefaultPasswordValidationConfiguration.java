@@ -9,7 +9,7 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.I
 
 public class DefaultPasswordValidationConfiguration implements IPasswordValidationConfiguration {
 
-	private static final String configFile = "passwordValidation.properties";
+	private static final String CONFIG_FILE = "passwordValidation.properties";
 
 	@Override
 	public String getConfig(String configKey) throws Exception {
@@ -19,7 +19,7 @@ public class DefaultPasswordValidationConfiguration implements IPasswordValidati
 			throw new Exception("Null Key");
 		}
 
-		try (InputStream input = getClass().getClassLoader().getResourceAsStream(configFile)) {
+		try (InputStream input = getClass().getClassLoader().getResourceAsStream(CONFIG_FILE)) {
 			Properties p = new Properties();
 			p.load(input);
 			configValue = p.getProperty(configKey);
