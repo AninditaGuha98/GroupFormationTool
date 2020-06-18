@@ -53,17 +53,12 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 			return false;
 		}
 		
-		if (this.historyConstraint == 0) {
-			return true;
-		}
-		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!authentication.isAuthenticated())	{
 			return true;
 		}
 		bannerID = authentication.getPrincipal().toString();
-		System.out.println(bannerID);
-		encryptedPassword = passwordEncryption.encryptPassword(password);
+
 		try {
 			configValue = config.getConfig(HISTORY_CONSTRAINT);
 		}
@@ -72,8 +67,12 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 			configValue = null;
 		}
 		setHistoryConstraint(configValue);
+
+		if (this.historyConstraint == 0) {
+			return true;
+		}
 		
-		
+		encryptedPassword = passwordEncryption.encryptPassword(password);
 		if (passwordHistoryPersistence.isValidHistoryConstraint
 				(bannerID, encryptedPassword, historyConstraint)) {
 			return true;
