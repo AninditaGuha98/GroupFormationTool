@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.lang.Class;
 
@@ -17,8 +18,8 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	private static final String FORBIDDEN_CHARSET = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.ForbiddenCharSetValidation";
 	private static final String HISTORY_CONSTRAINT = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.HistoryConstraintValidation";
 
-	private static List<String> passwordValidationsNameList = new ArrayList<>(
-			List.of(MIN_LENGTH, MAX_LENGTH, MIN_LOWERCASE, MIN_UPPERCASE, MIN_NON_ALPHANUM, FORBIDDEN_CHARSET));
+	private static List<String> passwordValidationsNameList = Arrays.asList(
+			MIN_LENGTH, MAX_LENGTH, MIN_LOWERCASE, MIN_UPPERCASE, MIN_NON_ALPHANUM, FORBIDDEN_CHARSET);
 	 
 	private IPasswordValidationConfiguration configuration;
 	private List<IPasswordValidation> passwordValidationList;
