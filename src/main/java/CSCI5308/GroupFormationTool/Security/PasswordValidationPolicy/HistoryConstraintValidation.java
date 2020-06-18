@@ -3,11 +3,14 @@ package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
+import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
+
 public class HistoryConstraintValidation implements IPasswordValidation {
 
 	private static final String HISTORY_CONSTRAINT = "history_constraint";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows history constraints of %d.";
-	public static final String INVALID_PASSWORD_MESSAGE = "Password must no be your %d previous password.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must no be among your %d previous passwords.";
 
 	private IPasswordHistoryPersistence passwordHistoryPersistence;
 	private int historyConstraint;
@@ -40,13 +43,15 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 	public boolean isValidPassword(String password, IPasswordValidationConfiguration config) {
 		String configValue;
 		String bannerID = "";
+		String encryptedPassword;
+		IPasswordEncryption passwordEncryption = new BCryptPasswordEncryption();
 		
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		if (!authentication.isAuthenticated())	{
-//			return true;
-//		}
-//		bannerID = authentication.getPrincipal().toString();
-		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!authentication.isAuthenticated())	{
+			return true;
+		}
+		bannerID = authentication.getPrincipal().toString();
+		encryptedPassword = passwordEncryption.encryptPassword(password);
 		try {
 			configValue = config.getConfig(HISTORY_CONSTRAINT);
 		}
@@ -56,7 +61,16 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		}
 		setHistoryConstraint(configValue);
 		
-		if (passwordHistoryPersistence.isValidHistoryConstraint(bannerID, password, historyConstraint)) {
+		if (null == password) {
+			return false;
+		}
+		
+		if (this.historyConstraint == 0) {
+			return true;
+		}
+		
+		if (passwordHistoryPersistence.isValidHistoryConstraint
+				(bannerID, encryptedPassword, historyConstraint)) {
 			return true;
 		}
 		return false;

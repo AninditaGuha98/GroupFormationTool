@@ -8,6 +8,7 @@ import java.lang.Class;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 
+// Temporary solution until we refactor with an abstract factory
 public class DefaultPasswordValidationManager implements IPasswordValidationManager {
 
 	private static final String MIN_LENGTH ="CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLengthValidation";

@@ -39,6 +39,14 @@ CREATE TABLE SystemRole (
     FOREIGN KEY (userID) REFERENCES User(id)
 );
 
+CREATE TABLE PasswordHistory (
+	id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    userID BIGINT NOT NULL,
+    password VARCHAR(76) NOT NULL,
+    addedDateTime DATETIME NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User(id)
+);
+
 INSERT INTO Role(role)
 VALUES
     ('Admin'),
@@ -59,6 +67,9 @@ INTO @adminID;
 
 INSERT INTO UserContactInfo(userID, firstName, lastName, email)
 VALUES (@adminID, 'Rob', 'Hawkey', 'rhawkey@dal.ca');
+
+INSERT INTO PasswordHistory(userID, password, addedDateTime)
+VALUES (@adminID, '1234', Now());
 
 SELECT id
 INTO @adminRoleID
