@@ -6,8 +6,7 @@ import java.util.regex.Pattern;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 
 public class User {
-	// This regex comes from here:
-	// https://howtodoinjava.com/regex/java-regex-validate-email-address/
+
 	private static final String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 
 	private long id;
@@ -48,7 +47,6 @@ public class User {
 		return id;
 	}
 
-	// These are here for the Thymeleaf / Spring binding nonsense.
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -73,7 +71,6 @@ public class User {
 		return bannerID;
 	}
 
-	// Also here for Thymeleaf nonsense.
 	public String getBanner() {
 		return bannerID;
 	}

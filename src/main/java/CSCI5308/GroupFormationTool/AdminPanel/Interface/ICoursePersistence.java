@@ -1,8 +1,8 @@
 package CSCI5308.GroupFormationTool.AdminPanel.Interface;
 
-import CSCI5308.GroupFormationTool.Courses.Course;
-
 import java.util.List;
+
+import CSCI5308.GroupFormationTool.Courses.Course;
 
 public interface ICoursePersistence {
 	public List<Course> loadAllCourses();

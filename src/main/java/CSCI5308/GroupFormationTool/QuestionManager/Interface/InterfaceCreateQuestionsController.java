@@ -1,7 +1,8 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Interface;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
 import org.springframework.web.servlet.ModelAndView;
+
+import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
 
 public interface InterfaceCreateQuestionsController {
 	public ModelAndView questionEditor();

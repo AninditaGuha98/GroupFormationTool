@@ -1,14 +1,15 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Repository;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Question;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.Model.Question;
 import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
 import CSCI5308.GroupFormationTool.QuestionManager.Model.Responses;
-import java.util.List;
 
 public class QuestionDB implements IQuestionsPersistence {
 	private Long lastInsertedQuestion;

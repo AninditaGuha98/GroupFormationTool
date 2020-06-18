@@ -1,10 +1,10 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Repository;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsRepo;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsRepo;
 
 public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 

@@ -5,37 +5,35 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
 	public static final String VALID_PASSWORD_MESSAGE = "Password does not have forbidden characters (%s).";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password has forbidden characters \"%s\".";
-	
+
 	private String forbiddenCharSet;
-	
+
 	public ForbiddenCharSetValidation() {
 	}
-	
+
 	public String getForbiddenCharSet() {
 		return this.forbiddenCharSet;
 	}
-	
+
 	private void setForbiddernCharSet(String forbiddernCharSet) {
 		if (null == forbiddernCharSet) {
 			this.forbiddenCharSet = "";
-		}
-		else {
+		} else {
 			this.forbiddenCharSet = forbiddernCharSet;
 		}
 	}
-	
+
 	@Override
 	public boolean isValidPassword(String password, IPasswordValidationConfiguration config) {
 		String configValue;
-		
+
 		try {
 			configValue = config.getConfig(FORBIDDEN_CHARSET);
-		}
-		catch (Exception e) {
-			// log the Exception
+		} catch (Exception e) {
+			e.printStackTrace();
 			configValue = null;
 		}
-		
+
 		setForbiddernCharSet(configValue);
 
 		if (null == password) {
@@ -44,14 +42,14 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 		if (this.forbiddenCharSet.isEmpty()) {
 			return true;
 		}
-		
-		for (int i=0; i < this.forbiddenCharSet.length(); i++) {
+
+		for (int i = 0; i < this.forbiddenCharSet.length(); i++) {
 			if (password.contains(String.valueOf(this.forbiddenCharSet.charAt(i))))
 				return false;
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String getPasswordValidationMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {

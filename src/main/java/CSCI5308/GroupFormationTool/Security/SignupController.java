@@ -5,11 +5,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import CSCI5308.GroupFormationTool.SystemConfig;
-import CSCI5308.GroupFormationTool.AccessControl.*;
-import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
+import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationManager;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationManager;
 
@@ -36,13 +40,9 @@ public class SignupController {
 		boolean success = false;
 		IPasswordValidationManager passwordValidationManager = new DefaultPasswordValidationManager();
 		List<String> failureMessages = new ArrayList<>();
-		
-		if (User.isBannerIDValid(bannerID) &&
-			 User.isEmailValid(email) &&
-			 User.isFirstNameValid(firstName) &&
-			 User.isLastNameValid(lastName) &&
-			 password.equals(passwordConfirm))
-		{
+
+		if (User.isBannerIDValid(bannerID) && User.isEmailValid(email) && User.isFirstNameValid(firstName)
+				&& User.isLastNameValid(lastName) && password.equals(passwordConfirm)) {
 			if (passwordValidationManager.isValidPassword(password)) {
 				User u = new User();
 				u.setBannerID(bannerID);
@@ -59,10 +59,8 @@ public class SignupController {
 		}
 		ModelAndView m;
 		if (success) {
-			// This is lame, I will improve this with auto-signin for M2.
 			m = new ModelAndView("login");
 		} else {
-			// Something wrong with the input data.
 			m = new ModelAndView("signup");
 			failureMessages.add("Invalid data, please check your values.");
 			m.addObject("errorMessages", failureMessages);
