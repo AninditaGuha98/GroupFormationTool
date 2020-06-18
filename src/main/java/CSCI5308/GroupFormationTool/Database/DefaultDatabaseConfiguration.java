@@ -12,18 +12,15 @@ public class DefaultDatabaseConfiguration implements IDatabaseConfiguration
 //	private static final String PASSWORD = "CSCI5308_7_DEVINT_7061";
 	private static final String PASSWORD = "!@#$%^&*";
 
-	public String getDatabaseUserName()
-	{
+	public String getDatabaseUserName() {
 		return USER;
 	}
 
-	public String getDatabasePassword()
-	{
+	public String getDatabasePassword() {
 		return PASSWORD;
 	}
 
-	public String getDatabaseURL()
-	{
+	public String getDatabaseURL() {
 		return URL;
 	}
 }

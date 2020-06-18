@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
@@ -15,30 +14,25 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPass
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationManager;
 
 @Controller
-public class SignupController
-{
+public class SignupController {
 	private final String USERNAME = "username";
 	private final String PASSWORD = "password";
 	private final String PASSWORD_CONFIRMATION = "passwordConfirmation";
 	private final String FIRST_NAME = "firstName";
 	private final String LAST_NAME = "lastName";
 	private final String EMAIL = "email";
-	
+
 	@GetMapping("/signup")
-	public String displaySignup(Model model)
-	{
+	public String displaySignup(Model model) {
 		return "signup";
 	}
-	
-	@RequestMapping(value = "/signup", method = RequestMethod.POST) 
-   public ModelAndView processSignup(
-   	@RequestParam(name = USERNAME) String bannerID,
-   	@RequestParam(name = PASSWORD) String password,
-   	@RequestParam(name = PASSWORD_CONFIRMATION) String passwordConfirm,
-   	@RequestParam(name = FIRST_NAME) String firstName,
-   	@RequestParam(name = LAST_NAME) String lastName,
-   	@RequestParam(name = EMAIL) String email)
-	{
+
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public ModelAndView processSignup(@RequestParam(name = USERNAME) String bannerID,
+			@RequestParam(name = PASSWORD) String password,
+			@RequestParam(name = PASSWORD_CONFIRMATION) String passwordConfirm,
+			@RequestParam(name = FIRST_NAME) String firstName, @RequestParam(name = LAST_NAME) String lastName,
+			@RequestParam(name = EMAIL) String email) {
 		boolean success = false;
 		IPasswordValidationManager passwordValidationManager = new DefaultPasswordValidationManager();
 		List<String> failureMessages = new ArrayList<>();
@@ -64,13 +58,10 @@ public class SignupController
 			}
 		}
 		ModelAndView m;
-		if (success)
-		{
+		if (success) {
 			// This is lame, I will improve this with auto-signin for M2.
 			m = new ModelAndView("login");
-		}
-		else
-		{
+		} else {
 			// Something wrong with the input data.
 			m = new ModelAndView("signup");
 			failureMessages.add("Invalid data, please check your values.");
