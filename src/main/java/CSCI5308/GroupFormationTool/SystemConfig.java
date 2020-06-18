@@ -4,10 +4,8 @@ import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
 import CSCI5308.GroupFormationTool.AdminPanel.Repository.CourseDB;
 import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.CourseHomePage.Repository.CourseUserRelationshipDB;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.*;
+import CSCI5308.GroupFormationTool.QuestionManager.Repository.*;
 import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
 import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
 import CSCI5308.GroupFormationTool.Security.*;
@@ -34,6 +32,9 @@ public class SystemConfig
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
 	private IQuestionsPersistence questionDB;
 	private IQuestionSorters sortersDB;
+	private InterfaceListQuestionsRepo interfaceListQuestionsRepo;
+	private InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo;
+
 	
 	// This private constructor ensures that no class other than System can allocate
 	// the System object. The compiler would prevent it.
@@ -49,6 +50,8 @@ public class SystemConfig
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		questionDB = new QuestionDB();
 		sortersDB = new SortingDB();
+		interfaceListQuestionsRepo=new ListQuestionsRepo();
+		interfaceDeleteQuestionsRepo= new DeleteQuestionsRepo();
 	}
 	
 	// This is the way the rest of the application gets access to the System object.
@@ -61,6 +64,22 @@ public class SystemConfig
 			uniqueInstance = new SystemConfig();
 		}
 		return uniqueInstance;
+	}
+
+	public InterfaceListQuestionsRepo getInterfaceListQuestionsRepo() {
+		return interfaceListQuestionsRepo;
+	}
+
+	public void setInterfaceListQuestionsRepo(InterfaceListQuestionsRepo interfaceListQuestionsRepo) {
+		this.interfaceListQuestionsRepo = interfaceListQuestionsRepo;
+	}
+
+	public InterfaceDeleteQuestionsRepo getInterfaceDeleteQuestionsRepo() {
+		return interfaceDeleteQuestionsRepo;
+	}
+
+	public void setInterfaceDeleteQuestionsRepo(InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo) {
+		this.interfaceDeleteQuestionsRepo = interfaceDeleteQuestionsRepo;
 	}
 	
 	public IPasswordEncryption getPasswordEncryption()
