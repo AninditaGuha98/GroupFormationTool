@@ -56,57 +56,46 @@
 
 <div class="main">
     <div class="upperTag"><h1>Delete Questions Page</h1></div>
-    <div class="listQue">
-        <div th:if="${flag}">
-            <form th:action="@{/checkResponse(userID=${userID})}"  th:object="${deleteQuestions}" method="post">
-                <ul>
-                    <li th:each="item : *{listQuestions}">
-                        <input type="checkbox" th:field="*{selectedQuestions}" th:value="${item}" />
-                        <label th:for="*{selectedQuestions}" th:text="${item}"></label>
-                    </li>
-                </ul>
-                <div class="Button">
-                    <button type="submit" >Delete</button>
-                </div>
-<!--                <input type="hidden" th:value="${userId}" name="userId">-->
-<!--                <input type="hidden" th:value="*{listQuestions}" name="listQuestions">-->
-            </form>
-        </div>
-
-        <div th:if="${message== 'Successfully deleted'}">
-            <p th:text="${message}"></p>
-<!--            <form th:action="@{/questionmanager(userID=${userID})}">-->
-<!--&lt;!&ndash;                <input type="hidden" th:value="${userId}" name="userId">&ndash;&gt;-->
-<!--                <button type="submit">Go To Questions Manager Page</button>-->
-<!--            </form>-->
-
-            <div class="Button">
-                <br /> <a th:href="@{/questionmanager(userID=${userID})}"><button
-                    type="submit">Go To Questions Manager Page</button></a>
+        <div class="listQue">
+            <div th:if="${flag}">
+                <form th:action="@{/checkResponse(userID=${userID})}"  th:object="${deleteQuestions}" method="post">
+                    <ul>
+                        <li th:each="item : *{listQuestions}">
+                            <input type="checkbox" th:field="*{selectedQuestions}" th:value="${item}" />
+                            <label th:for="*{selectedQuestions}" th:text="${item}"></label>
+                        </li>
+                    </ul>
+                    <div class="Button">
+                        <button type="submit" >Delete</button>
+                    </div>
+                </form>
             </div>
 
-
-        </div>
-        <div th:if="${message== 'Could not delete!'}">
-            <p th:text="${message}"></p>
-        </div>
-        <div th:if="${message== 'prompt'}">
-
-            <form th:action="@{/deletequestions}" class="formbelow">
-                    <p>Some of the questions have recorded responses,do you still want to delete them?</p>
+            <div th:if="${message== 'Successfully deleted'}">
+                <p th:text="${message}"></p>
                 <div class="Button">
-                    <input type="hidden" th:value="${userID}" name="userID">
-                    <br /><button type="submit">Yes</button>
+                    <br /> <a th:href="@{/questionmanager(userID=${userID})}"><button
+                        type="submit">Go To Questions Manager Page</button></a>
                 </div>
-                    <input type="hidden" th:value="${selectedQue}" name="selectedQue">
-            </form>
-
-            <div  class="formbelow">
-                <br /> <a th:href="@{/questionmanager(userID=${userID})}"><button
-                    type="submit">No</button></a>
             </div>
 
-        </div>
+            <div th:if="${message== 'Could not delete!'}">
+                <p th:text="${message}"></p>
+            </div>
+            <div th:if="${message== 'prompt'}">
+                <form th:action="@{/deletequestions}" class="formbelow">
+                        <p>Some of the questions have recorded responses,do you still want to delete them?</p>
+                    <div class="formbelow">
+                        <input type="hidden" th:value="${userID}" name="userID">
+                        <br /><button type="submit">Yes</button>
+                    </div>
+                        <input type="hidden" th:value="${selectedQue}" name="selectedQue">
+                </form>
+                <div  class="formbelow">
+                    <br /> <a th:href="@{/questionmanager(userID=${userID})}"><button
+                        type="submit">No</button></a>
+                </div>
+            </div>
     </div>
 </div>
 

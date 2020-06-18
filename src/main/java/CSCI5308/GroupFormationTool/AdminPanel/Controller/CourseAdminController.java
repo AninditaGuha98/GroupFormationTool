@@ -34,7 +34,7 @@ public class CourseAdminController
 		return "admin/course";
 	}
 	
-	//@GetMapping("/admin/assigninstructor")
+
 	@RequestMapping(value = "/admin/assigninstructor") 
 	public String assignInstructor(Model model, @RequestParam(name = ID) long courseID)
 	{
@@ -45,7 +45,7 @@ public class CourseAdminController
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance().getCourseUserRelationshipDB();
 		List<User> allUsersNotCurrentlyInstructors = courseUserRelationshipDB.findAllUsersWithoutCourseRole(Role.INSTRUCTOR, courseID);
 		model.addAttribute("users", allUsersNotCurrentlyInstructors);
-		return "/admin/assigninstructor";
+		return "admin/assigninstructor";
 	}
 	
 	@GetMapping("/admin/deletecourse")

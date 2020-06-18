@@ -35,6 +35,7 @@ public class IndexController
 			else
 			{
 				model.addAttribute("questionbutton", "hidden");
+				model.addAttribute("userID",0);
 			}
 		}
 		return "index";

@@ -13,12 +13,10 @@ public class DeleteQuestionsController {
 
     @RequestMapping("/deletequestionspage")
     public ModelAndView deleteQuestions(Model model,@RequestParam(name = "userID") long userID) {
-
         ModelAndView mv = new ModelAndView("QuestionManager/deletequestions");
         DeleteQuestionsModel deleteQuestionsModel = SystemConfig.instance().getInterfaceListQuestionsRepo().listQuestionsFromDB(userID);
         mv.addObject("deleteQuestions",deleteQuestionsModel);
         mv.addObject("message","");
-//        mv.addObject("userId",userID);
         mv.addObject("flag",true);
         model.addAttribute("userID", userID);
         return mv;
@@ -48,24 +46,19 @@ public class DeleteQuestionsController {
 
     @RequestMapping("/deletequestions")
     public ModelAndView deleteQuestions(Model model,@RequestParam(name="selectedQue") String selectedQue, @RequestParam(name = "userID") long userID){
+        String[] chosenQuestions= selectedQue.split(",,");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("QuestionManager/deletequestions");
-        String[] chosenQuestions= selectedQue.split(",,");
+
         if(SystemConfig.instance().getInterfaceDeleteQuestionsRepo().deleteQuestionsFromDB(userID,chosenQuestions)){
             mv.addObject("message", "Successfully deleted");
             mv.addObject("flag",false);
         }
         else{
             mv.addObject("message","Could not delete");
-
         }
         model.addAttribute("userID", userID);
         return mv;
     }
-
-
-
-
-
 
 }
