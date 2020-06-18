@@ -1,10 +1,11 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MaxLengthValidation;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation;
 
 class MinUppercaseValidationTest {
@@ -27,6 +28,14 @@ class MinUppercaseValidationTest {
 		assertFalse(validator.isValidPassword("I!@#$%", config));
 		// Null password
 		assertFalse(validator.isValidPassword(null, config));
+	}
+	
+	@Test 
+	void getMinUppercaseTest() {
+		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
+		MinUppercaseValidation validator = new MinUppercaseValidation();
+		assertTrue(validator.isValidPassword("RaouF", config));
+		assertEquals(2, validator.getMinUppercase());
 	}
 	
 	@Test

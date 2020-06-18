@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation;
 
 class MinNonAlphaNumValidationTest {
 
@@ -32,6 +33,14 @@ class MinNonAlphaNumValidationTest {
 		assertFalse(validator.isValidPassword("", config));
 		
 		assertFalse(validator.isValidPassword(null, config));
+	}
+	
+	@Test 
+	void getMinNonAlphaNumTest() {
+		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
+		MinNonAlphaNumValidation validator = new MinNonAlphaNumValidation();
+		assertTrue(validator.isValidPassword("#Messi!", config));
+		assertEquals(2, validator.getMinNonAlphaNum());
 	}
 	
 	@Test

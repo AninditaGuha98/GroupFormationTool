@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.ForbiddenCharSetValidation;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation;
 
 class ForbiddenCharSetValidationTest {
 
@@ -44,6 +45,14 @@ class ForbiddenCharSetValidationTest {
 			assertFalse(validator.isValidPassword(null, config));
 			assertTrue(validator.isValidPassword("", config));
 		}
+	}
+	
+	@Test 
+	void getForbiddenCharSetTest() {
+		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
+		ForbiddenCharSetValidation validator = new ForbiddenCharSetValidation();
+		assertTrue(validator.isValidPassword("#Messi!", config));
+		assertEquals(FORBIDDEN_CHARSET, validator.getForbiddenCharSet());
 	}
 	
 	@Test

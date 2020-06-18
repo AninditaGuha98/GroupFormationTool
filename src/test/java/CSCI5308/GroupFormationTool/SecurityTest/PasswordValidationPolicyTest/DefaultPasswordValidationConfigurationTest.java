@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +17,11 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordVa
 
 class DefaultPasswordValidationConfigurationTest {
 
+/*
+ * This is a test for the passwordValidation.properties
+ * It must must be replaced with Mockito or other frameworks.
+ */
+//	
 //	private static final String MIN_LENGTH = "min_length";
 //	private static final String MAX_LENGTH = "max_length";
 //	private static final String MIN_LOWERCASE = "min_lowercase";

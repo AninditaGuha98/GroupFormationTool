@@ -11,6 +11,7 @@ import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationManager;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationManager;
 
 @Controller
@@ -34,6 +35,7 @@ public class SignupController {
 			@RequestParam(name = FIRST_NAME) String firstName, @RequestParam(name = LAST_NAME) String lastName,
 			@RequestParam(name = EMAIL) String email) {
 		boolean success = false;
+		IPasswordValidationConfiguration config = SystemConfig.instance().getPasswordValidationConfiguration();
 		IPasswordValidationManager passwordValidationManager = new DefaultPasswordValidationManager();
 		List<String> failureMessages = new ArrayList<>();
 		
@@ -43,7 +45,7 @@ public class SignupController {
 			 User.isLastNameValid(lastName) &&
 			 password.equals(passwordConfirm))
 		{
-			if (passwordValidationManager.isValidPassword(password)) {
+			if (passwordValidationManager.isValidPassword(password, config)) {
 				User u = new User();
 				u.setBannerID(bannerID);
 				u.setPassword(password);
@@ -54,7 +56,7 @@ public class SignupController {
 				IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
 				success = u.createUser(userDB, passwordEncryption, null);
 			} else {
-				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password));
+				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password, config));
 			}
 		}
 		ModelAndView m;

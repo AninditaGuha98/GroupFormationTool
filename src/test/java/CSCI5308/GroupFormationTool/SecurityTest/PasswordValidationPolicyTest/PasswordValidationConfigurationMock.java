@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ public class PasswordValidationConfigurationMock implements IPasswordValidationC
 		configMap.put(MIN_UPPERCASE, "2");
 		configMap.put(MIN_NON_ALPHANUM, "2");
 		configMap.put(FORBIDDEN_CHARSET, "\\&\"'");
-		configMap.put(HISTORY_CONSTRAINT, "4");
+		configMap.put(HISTORY_CONSTRAINT, "0");
 		
 		if (null == configKey)
 			throw new Exception("Null Key");

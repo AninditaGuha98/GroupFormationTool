@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
 
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordHistoryPersistence;
 

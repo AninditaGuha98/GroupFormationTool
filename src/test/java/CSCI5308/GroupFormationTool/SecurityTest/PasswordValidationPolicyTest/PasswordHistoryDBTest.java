@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +8,11 @@ import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordHi
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.PasswordHistoryDB;
 
 class PasswordHistoryDBTest {
-
+	/*
+	 * This is a test case for the PasswordHistoryDB
+	 * It must be replaced with Mockito or other frameworks.
+	 */
+	
 //	@Test
 //	void test() {
 //		IPasswordHistoryPersistence db = new PasswordHistoryDB();

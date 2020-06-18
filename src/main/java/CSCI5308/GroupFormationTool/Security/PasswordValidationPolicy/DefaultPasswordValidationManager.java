@@ -22,13 +22,11 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	private static List<String> passwordValidationsNameList = Arrays.asList(
 			MIN_LENGTH, MAX_LENGTH, MIN_LOWERCASE, MIN_UPPERCASE, MIN_NON_ALPHANUM, FORBIDDEN_CHARSET);
 	 
-	private IPasswordValidationConfiguration configuration;
 	private List<IPasswordValidation> passwordValidationList;
 	private IPasswordHistoryPersistence passwordHistory;
 
 	
 	public DefaultPasswordValidationManager() {
-		configuration = SystemConfig.instance().getPasswordValidationConfiguration();
 		passwordValidationList = new ArrayList<IPasswordValidation>();
 		passwordHistory = new PasswordHistoryDB();
 		
@@ -59,7 +57,7 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	}
 	
 	@Override
-	public boolean isValidPassword(String password) {
+	public boolean isValidPassword(String password, IPasswordValidationConfiguration configuration) {
 		for (IPasswordValidation passwordValidation: passwordValidationList) {
 			if (!passwordValidation.isValidPassword(password, configuration))
 				return false;
@@ -68,7 +66,8 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	}
 	
 	@Override
-	public List<String> getPasswordValidationFailures(String password) {
+	public List<String> getPasswordValidationFailures(
+			String password, IPasswordValidationConfiguration configuration) {
 		List<String> failureMessages = new ArrayList<String>();
 		
 		for (IPasswordValidation passwordValidation: passwordValidationList) {
