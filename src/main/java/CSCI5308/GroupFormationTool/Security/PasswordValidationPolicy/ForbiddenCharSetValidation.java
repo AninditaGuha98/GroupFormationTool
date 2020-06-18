@@ -3,7 +3,7 @@ package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 public class ForbiddenCharSetValidation implements IPasswordValidation {
 
 	private static final String FORBIDDEN_CHARSET = "forbidden_charset";
-	public static final String VALID_PASSWORD_MESSAGE = "Password does not have forbidden characters \"%s\".";
+	public static final String VALID_PASSWORD_MESSAGE = "Password does not have forbidden characters (%s).";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password has forbidden characters \"%s\".";
 	
 	private String forbiddenCharSet;

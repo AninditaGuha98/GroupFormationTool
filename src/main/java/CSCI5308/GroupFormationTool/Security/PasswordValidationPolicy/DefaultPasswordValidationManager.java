@@ -2,9 +2,7 @@ package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.lang.Class;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
