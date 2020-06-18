@@ -1,17 +1,19 @@
 package CSCI5308.GroupFormationTool.WelcomePage;
 
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
-import CSCI5308.GroupFormationTool.Courses.*;
+import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
+import CSCI5308.GroupFormationTool.Courses.Course;
 
 @Controller
 public class IndexController {

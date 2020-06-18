@@ -1,14 +1,23 @@
 package CSCI5308.GroupFormationTool;
 
+import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.UserDB;
 import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
 import CSCI5308.GroupFormationTool.AdminPanel.Repository.CourseDB;
 import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.CourseHomePage.Repository.CourseUserRelationshipDB;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.*;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.*;
+import CSCI5308.GroupFormationTool.Database.DefaultDatabaseConfiguration;
+import CSCI5308.GroupFormationTool.Database.IDatabaseConfiguration;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionSorters;
 import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceListQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.Repository.DeleteQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.Repository.ListQuestionsRepo;
 import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
-import CSCI5308.GroupFormationTool.Security.*;
+import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
+import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
+import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.AccessControl.*;
@@ -33,15 +42,10 @@ public class SystemConfig {
 	private IPasswordValidationConfiguration passwordValidationConfiguration;
 	private IQuestionsPersistence questionDB;
 	private IQuestionSorters sortersDB;
-	private InterfaceListQuestionsRepo interfaceListQuestionsRepo;
-	private InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo;
+	private InterfaceListQuestionsRepo listQuestionsRepo;
+	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
 
-	// This private constructor ensures that no class other than System can allocate
-	// the System object. The compiler would prevent it.
 	private SystemConfig() {
-		// The default instantiations are the choices that would be used in the
-		// production application. These choices can all be overridden by test
-		// setup logic when necessary.
 		passwordEncryption = new BCryptPasswordEncryption();
 		userDB = new UserDB();
 		databaseConfiguration = new DefaultDatabaseConfiguration();
@@ -50,34 +54,31 @@ public class SystemConfig {
 		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
 		questionDB = new QuestionDB();
 		sortersDB = new SortingDB();
-		interfaceListQuestionsRepo = new ListQuestionsRepo();
-		interfaceDeleteQuestionsRepo = new DeleteQuestionsRepo();
+		listQuestionsRepo = new ListQuestionsRepo();
+		deleteQuestionsRepo = new DeleteQuestionsRepo();
 	}
 
-	// This is the way the rest of the application gets access to the System object.
 	public static SystemConfig instance() {
-		// Using lazy initialization, this is the one and only place that the System
-		// object will be instantiated.
 		if (null == uniqueInstance) {
 			uniqueInstance = new SystemConfig();
 		}
 		return uniqueInstance;
 	}
 
-	public InterfaceListQuestionsRepo getInterfaceListQuestionsRepo() {
-		return interfaceListQuestionsRepo;
+	public InterfaceListQuestionsRepo getListQuestionsRepo() {
+		return listQuestionsRepo;
 	}
 
-	public void setInterfaceListQuestionsRepo(InterfaceListQuestionsRepo interfaceListQuestionsRepo) {
-		this.interfaceListQuestionsRepo = interfaceListQuestionsRepo;
+	public void setListQuestionsRepo(InterfaceListQuestionsRepo listQuestionsRepo) {
+		this.listQuestionsRepo = listQuestionsRepo;
 	}
 
-	public InterfaceDeleteQuestionsRepo getInterfaceDeleteQuestionsRepo() {
-		return interfaceDeleteQuestionsRepo;
+	public InterfaceDeleteQuestionsRepo getDeleteQuestionsRepo() {
+		return deleteQuestionsRepo;
 	}
 
-	public void setInterfaceDeleteQuestionsRepo(InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo) {
-		this.interfaceDeleteQuestionsRepo = interfaceDeleteQuestionsRepo;
+	public void setDeleteQuestionsRepo(InterfaceDeleteQuestionsRepo deleteQuestionsRepo) {
+		this.deleteQuestionsRepo = deleteQuestionsRepo;
 	}
 
 	public IPasswordEncryption getPasswordEncryption() {

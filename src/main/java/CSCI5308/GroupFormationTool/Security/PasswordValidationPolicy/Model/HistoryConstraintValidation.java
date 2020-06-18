@@ -17,31 +17,30 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 
 	private IPasswordHistoryPersistence passwordHistoryPersistence;
 	private int historyConstraint;
-	
+
 	public HistoryConstraintValidation(IPasswordHistoryPersistence persistence) {
 		this.passwordHistoryPersistence = persistence;
 	}
-	
+
 	public int getHistoryConstraint() {
 		return this.historyConstraint;
 	}
-	
+
 	private void setHistoryConstraint(String historyConstraint) {
 		int intHistoryConstraint;
 		try {
 			intHistoryConstraint = Integer.parseInt(historyConstraint);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			intHistoryConstraint = 0;
 		}
-		
+
 		if (intHistoryConstraint <= 0)
 			this.historyConstraint = 0;
 		else
 			this.historyConstraint = intHistoryConstraint;
 	}
-	
+
 	@Override
 	public boolean isValidPassword(String password, IPasswordValidationConfiguration config) {
 		String configValue;
@@ -61,9 +60,8 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 
 		try {
 			configValue = config.getConfig(HISTORY_CONSTRAINT);
-		}
-		catch (Exception e) {
-			// log the Exception
+		} catch (Exception e) {
+			e.printStackTrace();
 			configValue = null;
 		}
 		setHistoryConstraint(configValue);

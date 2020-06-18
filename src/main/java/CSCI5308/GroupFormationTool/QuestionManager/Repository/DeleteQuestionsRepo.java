@@ -1,10 +1,10 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Repository;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsRepo;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsRepo;
 
 public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 
@@ -43,34 +43,34 @@ public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 		return true;
 	}
 
-	@Override
-	public boolean deleteQuestionsFromDB(long userId, String[] selectedQuestions) {
-		CallStoredProcedure procedure = null;
-		CallStoredProcedure procedure1 = null;
-		try {
-
-			for (int i = 0; i < selectedQuestions.length; i++) {
-				procedure1 = new CallStoredProcedure("spDeleteFromResponse(?,?)");
-				procedure1.setParameter(1, userId);
-				procedure1.setParameter(2, selectedQuestions[i]);
-				procedure1.execute();
-
-				procedure = new CallStoredProcedure("spDeleteQuestions(?,?)");
-				procedure.setParameter(1, userId);
-				procedure.setParameter(2, selectedQuestions[i]);
-				procedure.execute();
-			}
-
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
-			return false;
-		} finally {
-			if (null != procedure) {
-				procedure.cleanup();
-				procedure1.cleanup();
-			}
-			return true;
-		}
-	}
+//	@Override
+//	public boolean deleteQuestionsFromDB(long userId, String[] selectedQuestions) {
+//		CallStoredProcedure procedure = null;
+//		CallStoredProcedure procedure1 = null;
+//		try {
+//
+//			for (int i = 0; i < selectedQuestions.length; i++) {
+//				procedure1 = new CallStoredProcedure("spDeleteFromResponse(?,?)");
+//				procedure1.setParameter(1, userId);
+//				procedure1.setParameter(2, selectedQuestions[i]);
+//				procedure1.execute();
+//
+//				procedure = new CallStoredProcedure("spDeleteQuestions(?,?)");
+//				procedure.setParameter(1, userId);
+//				procedure.setParameter(2, selectedQuestions[i]);
+//				procedure.execute();
+//			}
+//
+//		} catch (SQLException throwables) {
+//			throwables.printStackTrace();
+//			return false;
+//		} finally {
+//			if (null != procedure) {
+//				procedure.cleanup();
+//				procedure1.cleanup();
+//			}
+//			return true;
+//		}
+//	}
 
 }

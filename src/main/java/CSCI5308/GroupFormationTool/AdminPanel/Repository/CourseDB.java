@@ -1,14 +1,13 @@
 package CSCI5308.GroupFormationTool.AdminPanel.Repository;
 
-import java.util.List;
-
-import CSCI5308.GroupFormationTool.Courses.Course;
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
+import CSCI5308.GroupFormationTool.Courses.Course;
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class CourseDB implements ICoursePersistence {
 	public List<Course> loadAllCourses() {
@@ -28,7 +27,7 @@ public class CourseDB implements ICoursePersistence {
 				}
 			}
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -51,7 +50,7 @@ public class CourseDB implements ICoursePersistence {
 				}
 			}
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -67,7 +66,7 @@ public class CourseDB implements ICoursePersistence {
 			proc.registerOutputParameterLong(2);
 			proc.execute();
 		} catch (SQLException e) {
-			// Logging needed
+			e.printStackTrace();
 			return false;
 		} finally {
 			if (null != proc) {
@@ -84,7 +83,7 @@ public class CourseDB implements ICoursePersistence {
 			proc.setParameter(1, id);
 			proc.execute();
 		} catch (SQLException e) {
-			// Logging needed
+			e.printStackTrace();
 			return false;
 		} finally {
 			if (null != proc) {

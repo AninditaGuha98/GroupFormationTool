@@ -4,9 +4,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.lang.Class;
 
-import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
 import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
@@ -30,37 +28,34 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 	private List<IPasswordValidation> passwordValidationList;
 	private IPasswordHistoryPersistence passwordHistory;
 
-	
 	public DefaultPasswordValidationManager() {
 		passwordValidationList = new ArrayList<IPasswordValidation>();
 		passwordHistory = new PasswordHistoryDB();
-		
+
 		try {
-			for (String validationName: passwordValidationsNameList) {
-				
+			for (String validationName : passwordValidationsNameList) {
+
 				Class<?> c = Class.forName(validationName);
 				Constructor<?> constructor = c.getConstructor();
 				IPasswordValidation passwordValidation = (IPasswordValidation) constructor.newInstance();
 				passwordValidationList.add(passwordValidation);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// Log the exception
 			e.printStackTrace();
 		}
-		
+
 		try {
 			Class<?> c = Class.forName(HISTORY_CONSTRAINT);
 			Constructor<?> constructor = c.getConstructor(IPasswordHistoryPersistence.class);
-			IPasswordValidation passwordValidation = 
-					(IPasswordValidation) constructor.newInstance(passwordHistory);
+			IPasswordValidation passwordValidation = (IPasswordValidation) constructor.newInstance(passwordHistory);
 			passwordValidationList.add(passwordValidation);
 		} catch (Exception e) {
 			// Log the exception
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public boolean isValidPassword(String password, IPasswordValidationConfiguration configuration) {
 		for (IPasswordValidation passwordValidation: passwordValidationList) {
@@ -69,17 +64,17 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 		}
 		return true;
 	}
-	
+
 	@Override
 	public List<String> getPasswordValidationFailures(
 			String password, IPasswordValidationConfiguration configuration) {
 		List<String> failureMessages = new ArrayList<String>();
-		
-		for (IPasswordValidation passwordValidation: passwordValidationList) {
+
+		for (IPasswordValidation passwordValidation : passwordValidationList) {
 			if (!passwordValidation.isValidPassword(password, configuration))
 				failureMessages.add(passwordValidation.getPasswordValidationMessage(password, configuration));
 		}
-		
+
 		return failureMessages;
 	}
 }

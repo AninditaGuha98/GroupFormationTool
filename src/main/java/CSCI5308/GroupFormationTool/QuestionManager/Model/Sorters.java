@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
-import org.springframework.stereotype.Component;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.springframework.stereotype.Component;
 
 @Component
 public class Sorters {

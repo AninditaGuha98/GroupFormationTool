@@ -1,9 +1,8 @@
-package CSCI5308.GroupFormationTool.QuestionManager;
+package CSCI5308.GroupFormationTool.QuestionManager.Repository;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Question;
+import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
 import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +33,7 @@ class SortingDBTest {
 
     private Sorters sorters;
     String bannerID;
-    List<Question> questionList = new ArrayList<>();
+    List<QuestionModel> questionList = new ArrayList<>();
 
     @BeforeEach
     void setUp() throws SQLException {
@@ -45,18 +44,18 @@ class SortingDBTest {
         sorters.setSortField("question_title");
         sorters.setSortOrder("ASC");
         bannerID = "B999999";
-        Question q1 = new Question();
-        Question q2 = new Question();
+        QuestionModel q1 = new QuestionModel();
+        QuestionModel q2 = new QuestionModel();
         q1.setQuestionTitle("Skills");
         q2.setQuestionTitle("Credits");
         questionList.add(q1);
         questionList.add(q2);
-        Collections.sort(questionList, Comparator.comparing(Question::getQuestionTitle));
+        Collections.sort(questionList, Comparator.comparing(QuestionModel::getQuestionTitle));
 
         when(procedure.executeWithResults()).thenReturn(rs);
         when(sortingDB.sort(bannerID,sorters)).thenReturn(questionList);
 
-        Question q3 = new Question();
+        QuestionModel q3 = new QuestionModel();
         q3.setQuestionTitle("Project");
         questionList.add(q3);
         when(sortingDB.clearSort(bannerID)).thenReturn(questionList);

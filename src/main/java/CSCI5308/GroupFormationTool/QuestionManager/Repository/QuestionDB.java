@@ -1,20 +1,20 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Repository;
 
+
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Question;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
 import CSCI5308.GroupFormationTool.QuestionManager.Model.Responses;
-import java.util.List;
 
 public class QuestionDB implements IQuestionsPersistence {
 	private Long lastInsertedQuestion;
 
-	public List<Question> loadAllQuestionsByID(String bannerID) {
-		List<Question> questions = new ArrayList<Question>();
+	public List<QuestionModel> loadAllQuestionsByID(String bannerID) {
+		List<QuestionModel> questions = new ArrayList<>();
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spGetAllQuestions(?)");
@@ -23,7 +23,7 @@ public class QuestionDB implements IQuestionsPersistence {
 			if (null != results) {
 				while (results.next()) {
 					String title = results.getString(1);
-					Question q = new Question();
+					QuestionModel q = new QuestionModel();
 					q.setQuestionTitle(title);
 					questions.add(q);
 				}
@@ -83,5 +83,34 @@ public class QuestionDB implements IQuestionsPersistence {
 		}
 		return true;
 
+	}
+
+	public boolean deleteQuestionsFromDB(long userId, String[] selectedQuestions) {
+		CallStoredProcedure procedure = null;
+		CallStoredProcedure procedure1 = null;
+		try {
+
+			for (int i = 0; i < selectedQuestions.length; i++) {
+				procedure1 = new CallStoredProcedure("spDeleteFromResponse(?,?)");
+				procedure1.setParameter(1, userId);
+				procedure1.setParameter(2, selectedQuestions[i]);
+				procedure1.execute();
+
+				procedure = new CallStoredProcedure("spDeleteQuestions(?,?)");
+				procedure.setParameter(1, userId);
+				procedure.setParameter(2, selectedQuestions[i]);
+				procedure.execute();
+			}
+
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+			return false;
+		} finally {
+			if (null != procedure) {
+				procedure.cleanup();
+				procedure1.cleanup();
+			}
+			return true;
+		}
 	}
 }
