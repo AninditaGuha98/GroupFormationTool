@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.Courses.Course;
 import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
+import CSCI5308.GroupFormationTool.Courses.Course;
 import CSCI5308.GroupFormationTool.Courses.Role;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
@@ -35,7 +35,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				}
 			}
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -61,7 +61,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				}
 			}
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -79,7 +79,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 			proc.setParameter(3, role.toString());
 			proc.execute();
 		} catch (SQLException e) {
-			// Logging needed
+			e.printStackTrace();
 			return false;
 		} finally {
 			if (null != proc) {
@@ -105,7 +105,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				}
 			}
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

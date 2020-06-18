@@ -29,7 +29,7 @@ public class UserDB implements IUserPersistence {
 				}
 			}
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -50,7 +50,7 @@ public class UserDB implements IUserPersistence {
 				}
 			}
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -85,7 +85,7 @@ public class UserDB implements IUserPersistence {
 	}
 
 	public boolean updateUser(User user) {
-		// Coming in M2!
+
 		return false;
 	}
 
@@ -99,7 +99,7 @@ public class UserDB implements IUserPersistence {
 			proc.execute();
 			userId = proc.getStatement().getLong(2);
 		} catch (SQLException e) {
-			// Logging needed.
+			e.printStackTrace();
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

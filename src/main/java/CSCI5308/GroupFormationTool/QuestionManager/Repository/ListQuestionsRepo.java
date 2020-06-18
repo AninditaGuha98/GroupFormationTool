@@ -1,12 +1,12 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Repository;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceListQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.DeleteQuestionsModel;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceListQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.Model.DeleteQuestionsModel;
 
 public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
 //        Applying stored procedure to fetch list of questions text from DB.

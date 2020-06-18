@@ -1,9 +1,9 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Interface;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Responses;
 
 import java.util.List;
+import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.Model.Responses;
 
 public interface IQuestionsPersistence {
 
@@ -12,4 +12,6 @@ public interface IQuestionsPersistence {
 	public boolean createQuestion(QuestionModel question);
 
 	public boolean insertResponses(Responses response);
+
+	public boolean deleteQuestionsFromDB(long userId, String[] selectedQuestions);
 }

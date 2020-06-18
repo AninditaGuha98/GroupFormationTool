@@ -16,7 +16,6 @@
 		<h1>CSCI5308 Group Formation Tool</h1>
 	</header>
 
-	<!-- I got the idea for how to do this from https://www.thymeleaf.org/doc/articles/springsecurity.html -->
 	<div class="bodyGridRow userProfileGridContainer"
 		sec:authorize="isAuthenticated()">
 		<h4 class="userProfileGridCol1" th:inline="text">BannerID:
@@ -32,7 +31,6 @@
 		</aside>
 		<div class="mainGridRow" sec:authorize="isAuthenticated()">
 			<!-- Display list of courses. -->
-			<!-- Learned how to do this here: https://www.baeldung.com/thymeleaf-list -->
 			<h4>Available courses:</h4>
 			<table>
 				<tr th:each="course : ${courses}">
