@@ -9,7 +9,7 @@ import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceListQuesti
 import CSCI5308.GroupFormationTool.QuestionManager.Model.DeleteQuestionsModel;
 
 public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
-//        Applying stored procedure to fetch list of questions text from DB.
+//        Applying stored procedure to fetch only the list of questions text from DB.
 
 	@Override
 	public DeleteQuestionsModel listQuestionsFromDB(long userId) {
