@@ -1,12 +1,13 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinNonAlphaNumValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinUppercaseValidation;
+import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
 
 class MinNonAlphaNumValidationTest {
 

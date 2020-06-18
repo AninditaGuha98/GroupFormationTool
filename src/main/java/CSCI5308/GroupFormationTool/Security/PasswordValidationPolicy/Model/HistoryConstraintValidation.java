@@ -1,10 +1,13 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 public class HistoryConstraintValidation implements IPasswordValidation {
 

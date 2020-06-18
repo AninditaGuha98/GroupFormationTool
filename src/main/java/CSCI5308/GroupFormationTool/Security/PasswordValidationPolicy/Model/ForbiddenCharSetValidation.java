@@ -1,4 +1,7 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model;
+
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 public class ForbiddenCharSetValidation implements IPasswordValidation {
 

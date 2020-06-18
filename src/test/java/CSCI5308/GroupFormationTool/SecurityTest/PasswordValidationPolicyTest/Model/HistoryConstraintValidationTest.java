@@ -1,14 +1,14 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
+package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.HistoryConstraintValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordHistoryPersistence;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.HistoryConstraintValidation;
 
 class HistoryConstraintValidationTest {
 

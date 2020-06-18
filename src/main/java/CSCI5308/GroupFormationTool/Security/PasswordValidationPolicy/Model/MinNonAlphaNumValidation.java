@@ -1,6 +1,9 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model;
 
 import java.util.regex.Pattern;
+
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 public class MinNonAlphaNumValidation implements IPasswordValidation {
 

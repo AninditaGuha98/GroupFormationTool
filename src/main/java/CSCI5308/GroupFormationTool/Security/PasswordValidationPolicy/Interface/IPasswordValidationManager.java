@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
+package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface;
 
 import java.util.List;
 

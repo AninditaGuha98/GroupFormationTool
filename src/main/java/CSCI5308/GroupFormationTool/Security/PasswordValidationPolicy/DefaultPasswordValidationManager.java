@@ -7,17 +7,22 @@ import java.util.List;
 import java.lang.Class;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationManager;
+import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Repository.PasswordHistoryDB;
 
 // Temporary solution until we refactor with an abstract factory
 public class DefaultPasswordValidationManager implements IPasswordValidationManager {
 
-	private static final String MIN_LENGTH ="CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLengthValidation";
-	private static final String MAX_LENGTH = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MaxLengthValidation";
-	private static final String MIN_LOWERCASE = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinLowercaseValidation";
-	private static final String MIN_UPPERCASE = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinUppercaseValidation";
-	private static final String MIN_NON_ALPHANUM = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.MinNonAlphaNumValidation";
-	private static final String FORBIDDEN_CHARSET = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.ForbiddenCharSetValidation";
-	private static final String HISTORY_CONSTRAINT = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.HistoryConstraintValidation";
+	private static final String MIN_LENGTH ="CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLengthValidation";
+	private static final String MAX_LENGTH = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MaxLengthValidation";
+	private static final String MIN_LOWERCASE = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLowercaseValidation";
+	private static final String MIN_UPPERCASE = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinUppercaseValidation";
+	private static final String MIN_NON_ALPHANUM = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinNonAlphaNumValidation";
+	private static final String FORBIDDEN_CHARSET = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.ForbiddenCharSetValidation";
+	private static final String HISTORY_CONSTRAINT = "CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.HistoryConstraintValidation";
 
 	private static List<String> passwordValidationsNameList = Arrays.asList(
 			MIN_LENGTH, MAX_LENGTH, MIN_LOWERCASE, MIN_UPPERCASE, MIN_NON_ALPHANUM, FORBIDDEN_CHARSET);
