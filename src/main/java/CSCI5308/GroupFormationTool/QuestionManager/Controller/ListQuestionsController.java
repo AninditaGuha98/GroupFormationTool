@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
@@ -24,11 +25,13 @@ public class ListQuestionsController {
 	Map<String, String> sortingFields = sort.sortingFieldList();
 	Map<String, String> sortingOrders = sort.sortingOrderList();
 	String bannerID;
+	private long userID;
 
 	@RequestMapping(value = "/listquestions", method = RequestMethod.GET)
-	public String showQuestions(ModelMap model, Principal principal) {
+	public String showQuestions(ModelMap model, Principal principal,@RequestParam(name = "userID") long userID) {
 		setModelForSorting(model);
 		bannerID = principal.getName();
+		this.userID = userID;
 		model.addAttribute("questions", questionDb.loadAllQuestionsByID(bannerID));
 		return "QuestionManager/listquestions";
 	}
@@ -51,6 +54,7 @@ public class ListQuestionsController {
 	}
 
 	public void setModelForSorting(ModelMap model) {
+		model.addAttribute("userID",this.userID);
 		model.addAttribute("sorters", sort);
 		model.addAttribute("sortingFields", sortingFields);
 		model.addAttribute("sortingOrders", sortingOrders);

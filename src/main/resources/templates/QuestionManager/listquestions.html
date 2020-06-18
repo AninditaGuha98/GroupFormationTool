@@ -50,7 +50,7 @@
 	<div  class="mainBlock" >
 
 		<div  class="twoBlocks" >
-			<form th:action="@{/listquestions}" method="post"
+			<form th:action="@{/listquestions(userID=${userID})}" method="post"
 				th:object="${sorters}">
 				<div class="insideForm">
 					<label>Sort by:</label> <select th:field="*{sortField}">
@@ -85,6 +85,13 @@
 					</tr>
 				</table>
 				<div th:inline="text">[[${message}]]</div>
+			</div>
+		</div>
+
+		<div>
+			<div class="Button">
+				<br /> <a th:href="@{/questionmanager(userID=${userID})}"><button
+					type="submit">Back</button></a>
 			</div>
 		</div>
 

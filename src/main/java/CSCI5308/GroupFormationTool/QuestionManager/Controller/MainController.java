@@ -22,7 +22,8 @@ public class MainController {
 
 //    Start point controller for list questions tab
 	@RequestMapping("/listquestions")
-	public String ListQuestions() {
+	public String ListQuestions(Model model, @RequestParam(name = "userID") long userID) {
+		model.addAttribute("userID",userID);
 		return "QuestionManager/listquestions";
 	}
 }
