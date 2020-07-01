@@ -1,12 +1,12 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Model;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MaxLengthValidation;
-import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.MaxLengthValidation;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Model.PasswordValidationConfigurationMock;
 
 class MaxLengthValidationTest {
 

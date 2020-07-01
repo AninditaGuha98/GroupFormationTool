@@ -1,10 +1,10 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Repository;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicy.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
 
 public class PasswordHistoryDB implements IPasswordHistoryPersistence {
 
@@ -24,7 +24,6 @@ public class PasswordHistoryDB implements IPasswordHistoryPersistence {
 			}
 		}
 		catch (SQLException e)	{
-			// Log Problem
 			e.printStackTrace();
 		}
 		finally	{

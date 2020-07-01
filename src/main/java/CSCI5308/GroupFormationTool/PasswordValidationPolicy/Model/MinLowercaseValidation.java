@@ -1,7 +1,7 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 public class MinLowercaseValidation implements IPasswordValidation {
 

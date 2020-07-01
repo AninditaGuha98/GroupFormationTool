@@ -18,8 +18,8 @@ import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
 import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
 import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.DefaultPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Database.*;
 

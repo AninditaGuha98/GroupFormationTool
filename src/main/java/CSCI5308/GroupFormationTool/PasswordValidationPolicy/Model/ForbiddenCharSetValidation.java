@@ -1,7 +1,7 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 public class ForbiddenCharSetValidation implements IPasswordValidation {
 
@@ -46,8 +46,9 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 		}
 
 		for (int i = 0; i < this.forbiddenCharSet.length(); i++) {
-			if (password.contains(String.valueOf(this.forbiddenCharSet.charAt(i))))
+			if (password.contains(String.valueOf(this.forbiddenCharSet.charAt(i)))) {
 				return false;
+			}
 		}
 		return true;
 	}

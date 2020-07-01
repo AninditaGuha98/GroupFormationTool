@@ -1,6 +1,6 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Repository;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Repository;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordHistoryPersistence;
 
 public class PasswordHistoryPersistenceMock implements IPasswordHistoryPersistence {
 

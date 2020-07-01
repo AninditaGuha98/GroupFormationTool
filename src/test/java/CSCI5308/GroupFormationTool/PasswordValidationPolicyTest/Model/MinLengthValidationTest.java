@@ -1,13 +1,13 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Model;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidation;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.MinLengthValidation;
-import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidation;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.MinLengthValidation;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Model.PasswordValidationConfigurationMock;
 
 class MinLengthValidationTest {
 
@@ -16,7 +16,6 @@ class MinLengthValidationTest {
 		IPasswordValidationConfiguration config = new  PasswordValidationConfigurationMock();
 		IPasswordValidation validator = new MinLengthValidation();
 
-		// > 0 minLength
 		assertTrue(validator.isValidPassword("1234567890", config));
 		assertTrue(validator.isValidPassword("12345678", config));
 		assertFalse(validator.isValidPassword("1234567", config));
