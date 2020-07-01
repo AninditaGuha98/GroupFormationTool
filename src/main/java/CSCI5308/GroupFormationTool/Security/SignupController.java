@@ -14,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationManager;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationManager;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationManager;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.DefaultPasswordValidationManager;
 
 @Controller
 public class SignupController {

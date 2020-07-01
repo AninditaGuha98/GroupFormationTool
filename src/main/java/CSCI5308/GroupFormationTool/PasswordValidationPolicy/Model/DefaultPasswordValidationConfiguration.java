@@ -1,10 +1,10 @@
-package CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 
 public class DefaultPasswordValidationConfiguration implements IPasswordValidationConfiguration {

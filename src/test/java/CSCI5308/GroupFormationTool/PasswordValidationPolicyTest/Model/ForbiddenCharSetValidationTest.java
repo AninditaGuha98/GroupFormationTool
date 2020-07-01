@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.Model;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,9 +6,8 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Model.ForbiddenCharSetValidation;
-import CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest.PasswordValidationConfigurationMock;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.ForbiddenCharSetValidation;
 
 class ForbiddenCharSetValidationTest {
 
@@ -102,7 +101,7 @@ class ForbiddenCharSetValidationTest {
 		StringBuilder builder = new StringBuilder();
 		while (length-- != 0) {
 			int character = (int)(Math.random()* FORBIDDEN_CHARSET.length());
-				builder.append(FORBIDDEN_CHARSET.charAt(character));
+			builder.append(FORBIDDEN_CHARSET.charAt(character));
 		}
 		return builder.toString();
 	}

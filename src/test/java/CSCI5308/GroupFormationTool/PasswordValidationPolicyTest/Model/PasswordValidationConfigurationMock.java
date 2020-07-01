@@ -1,9 +1,9 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 
 public class PasswordValidationConfigurationMock implements IPasswordValidationConfiguration {
 	

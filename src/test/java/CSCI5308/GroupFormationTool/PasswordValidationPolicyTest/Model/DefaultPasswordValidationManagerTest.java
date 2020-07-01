@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.SecurityTest.PasswordValidationPolicyTest;
+package CSCI5308.GroupFormationTool.PasswordValidationPolicyTest.Model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.DefaultPasswordValidationManager;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Security.PasswordValidationPolicy.Interface.IPasswordValidationManager;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationManager;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.DefaultPasswordValidationManager;
 
 class DefaultPasswordValidationManagerTest {
 
