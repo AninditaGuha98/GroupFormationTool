@@ -20,45 +20,45 @@ import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
 
 @Controller
 public class ListQuestionsController {
-	IQuestionsPersistence questionDb = SystemConfig.instance().getQuestionDB();
-	IQuestionSorters sortersDB = SystemConfig.instance().getSortersDB();
-	InterfaceSorters interfaceSorters = new Sorters();
-	Map<String, String> sortingFields = interfaceSorters.sortingFieldList();
-	Map<String, String> sortingOrders = interfaceSorters.sortingOrderList();
-	String bannerID;
-	private long userID;
+    IQuestionsPersistence interfaceQuestionDB = SystemConfig.instance().getQuestionDB();
+    IQuestionSorters interfaceSortersDB = SystemConfig.instance().getSortersDB();
+    InterfaceSorters interfaceSorters = new Sorters();
+    Map<String, String> sortingFields = interfaceSorters.sortingFieldList();
+    Map<String, String> sortingOrders = interfaceSorters.sortingOrderList();
+    String bannerID;
+    private long userID;
 
-	@RequestMapping(value = "/listquestions", method = RequestMethod.GET)
-	public String showQuestions(ModelMap model, Principal principal,@RequestParam(name = "userID") long userID) {
-		this.userID = userID;
-		setModelForSorting(model);
-		bannerID = principal.getName();
-		model.addAttribute("questions", questionDb.loadAllQuestionsByID(bannerID));
-		return "QuestionManager/listquestions";
-	}
+    @RequestMapping(value = "/listquestions", method = RequestMethod.GET)
+    public String showQuestions(ModelMap model, Principal principal, @RequestParam(name = "userID") long userID) {
+        this.userID = userID;
+        setModelForSorting(model);
+        bannerID = principal.getName();
+        model.addAttribute("questions", interfaceQuestionDB.loadAllQuestionsByID(bannerID));
+        return "QuestionManager/listquestions";
+    }
 
-	@RequestMapping(value = "/listquestions", method = RequestMethod.POST, params = "action=sort")
-	public ModelAndView performSort(@ModelAttribute("sorters") Sorters sorters, BindingResult result, ModelMap model) {
-		this.interfaceSorters=sorters;
-		setModelForSorting(model);
-		model.addAttribute("questions", sortersDB.sort(bannerID, interfaceSorters));
-		model.addAttribute("message", "Table is sorted by " + sortingFields.get(interfaceSorters.getSortField()) + " in "
-				+ sortingOrders.get(interfaceSorters.getSortOrder()) + " Order");
-		return new ModelAndView("QuestionManager/listquestions", model);
-	}
+    @RequestMapping(value = "/listquestions", method = RequestMethod.POST, params = "action=sort")
+    public ModelAndView performSort(@ModelAttribute("sorters") Sorters sorters, BindingResult result, ModelMap model) {
+        this.interfaceSorters = sorters;
+        setModelForSorting(model);
+        model.addAttribute("questions", interfaceSortersDB.sort(bannerID, interfaceSorters));
+        model.addAttribute("message", "Table is sorted by " + sortingFields.get(interfaceSorters.getSortField()) + " in "
+                + sortingOrders.get(interfaceSorters.getSortOrder()) + " Order");
+        return new ModelAndView("QuestionManager/listquestions", model);
+    }
 
-	@RequestMapping(value = "/listquestions", method = RequestMethod.POST, params = "action=clearSort")
-	public ModelAndView performClearSort(@ModelAttribute("sorters") Sorters sorters, BindingResult result,
-										 ModelMap model) {
-		setModelForSorting(model);
-		model.addAttribute("questions", sortersDB.clearSort(bannerID));
-		return new ModelAndView("QuestionManager/listquestions", model);
-	}
+    @RequestMapping(value = "/listquestions", method = RequestMethod.POST, params = "action=clearSort")
+    public ModelAndView performClearSort(@ModelAttribute("sorters") Sorters sorters, BindingResult result,
+                                         ModelMap model) {
+        setModelForSorting(model);
+        model.addAttribute("questions", interfaceSortersDB.clearSort(bannerID));
+        return new ModelAndView("QuestionManager/listquestions", model);
+    }
 
-	public void setModelForSorting(ModelMap model) {
-		model.addAttribute("userID",this.userID);
-		model.addAttribute("sorters", interfaceSorters);
-		model.addAttribute("sortingFields", sortingFields);
-		model.addAttribute("sortingOrders", sortingOrders);
-	}
+    public void setModelForSorting(ModelMap model) {
+        model.addAttribute("userID", this.userID);
+        model.addAttribute("sorters", interfaceSorters);
+        model.addAttribute("sortingFields", sortingFields);
+        model.addAttribute("sortingOrders", sortingOrders);
+    }
 }
