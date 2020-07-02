@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsModel;
 import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceListQuestionsRepo;
 import CSCI5308.GroupFormationTool.QuestionManager.Model.DeleteQuestionsModel;
 
@@ -12,7 +13,7 @@ public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
 //        Applying stored procedure to fetch only the list of questions text from DB.
 
 	@Override
-	public DeleteQuestionsModel listQuestionsFromDB(long userId) {
+	public InterfaceDeleteQuestionsModel listQuestionsFromDB(long userId) {
 		ArrayList<String> questionText = new ArrayList<>();
 
 		CallStoredProcedure procedure = null;
@@ -33,8 +34,8 @@ public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
 			}
 		}
 		String[] array = questionText.toArray(new String[0]);
-		DeleteQuestionsModel deleteQuestionsModel = new DeleteQuestionsModel();
-		deleteQuestionsModel.setListQuestions(array);
-		return deleteQuestionsModel;
+		InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel = new DeleteQuestionsModel();
+		interfaceDeleteQuestionsModel.setListQuestions(array);
+		return interfaceDeleteQuestionsModel;
 	}
 }

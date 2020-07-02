@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.QuestionManager.Controller;
 import java.security.Principal;
 import java.util.Map;
 
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -21,9 +22,9 @@ import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
 public class ListQuestionsController {
 	IQuestionsPersistence questionDb = SystemConfig.instance().getQuestionDB();
 	IQuestionSorters sortersDB = SystemConfig.instance().getSortersDB();
-	Sorters sort = new Sorters();
-	Map<String, String> sortingFields = sort.sortingFieldList();
-	Map<String, String> sortingOrders = sort.sortingOrderList();
+	InterfaceSorters interfaceSorters = new Sorters();
+	Map<String, String> sortingFields = interfaceSorters.sortingFieldList();
+	Map<String, String> sortingOrders = interfaceSorters.sortingOrderList();
 	String bannerID;
 	private long userID;
 
@@ -38,16 +39,17 @@ public class ListQuestionsController {
 
 	@RequestMapping(value = "/listquestions", method = RequestMethod.POST, params = "action=sort")
 	public ModelAndView performSort(@ModelAttribute("sorters") Sorters sorters, BindingResult result, ModelMap model) {
+		this.interfaceSorters=sorters;
 		setModelForSorting(model);
-		model.addAttribute("questions", sortersDB.sort(bannerID, sorters));
-		model.addAttribute("message", "Table is sorted by " + sortingFields.get(sorters.getSortField()) + " in "
-				+ sortingOrders.get(sorters.getSortOrder()) + " Order");
+		model.addAttribute("questions", sortersDB.sort(bannerID, interfaceSorters));
+		model.addAttribute("message", "Table is sorted by " + sortingFields.get(interfaceSorters.getSortField()) + " in "
+				+ sortingOrders.get(interfaceSorters.getSortOrder()) + " Order");
 		return new ModelAndView("QuestionManager/listquestions", model);
 	}
 
 	@RequestMapping(value = "/listquestions", method = RequestMethod.POST, params = "action=clearSort")
 	public ModelAndView performClearSort(@ModelAttribute("sorters") Sorters sorters, BindingResult result,
-			ModelMap model) {
+										 ModelMap model) {
 		setModelForSorting(model);
 		model.addAttribute("questions", sortersDB.clearSort(bannerID));
 		return new ModelAndView("QuestionManager/listquestions", model);
@@ -55,7 +57,7 @@ public class ListQuestionsController {
 
 	public void setModelForSorting(ModelMap model) {
 		model.addAttribute("userID",this.userID);
-		model.addAttribute("sorters", sort);
+		model.addAttribute("sorters", interfaceSorters);
 		model.addAttribute("sortingFields", sortingFields);
 		model.addAttribute("sortingOrders", sortingOrders);
 	}

@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
 
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -10,91 +11,91 @@ import static org.junit.jupiter.api.Assertions.*;
 class QuestionModelTest {
     @Test
     void getTypeSelect() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setTypeSelect("1");
-        assertSame("1",questionModel.getTypeSelect());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setTypeSelect("1");
+        assertSame("1", interfaceQuestionModel.getTypeSelect());
     }
 
     @Test
     void setTypeSelect() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setTypeSelect("1");
-        assertSame("1",questionModel.getTypeSelect());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setTypeSelect("1");
+        assertSame("1", interfaceQuestionModel.getTypeSelect());
     }
 
     @Test
     void getQuestionTypeList() {
         HashMap<String,String> mock= new HashMap<>();
         mock.put("numeric","Numeric");
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionTypeList(mock);
-        assertSame(mock,questionModel.getQuestionTypeList());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setQuestionTypeList(mock);
+        assertSame(mock, interfaceQuestionModel.getQuestionTypeList());
     }
 
     @Test
     void setQuestionTypeList() {
         HashMap<String,String> mock= new HashMap<>();
         mock.put("numeric","Numeric");
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionTypeList(mock);
-        assertSame(mock,questionModel.getQuestionTypeList());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setQuestionTypeList(mock);
+        assertSame(mock, interfaceQuestionModel.getQuestionTypeList());
     }
 
 
 
     @Test
     void getQuestionTitle() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionTitle("Course Credits");
-        assertSame("Course Credits",questionModel.getQuestionTitle());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setQuestionTitle("Course Credits");
+        assertSame("Course Credits", interfaceQuestionModel.getQuestionTitle());
     }
 
     @Test
     void setQuestionTitle() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionTitle("Course Credits");
-        assertSame("Course Credits",questionModel.getQuestionTitle());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setQuestionTitle("Course Credits");
+        assertSame("Course Credits", interfaceQuestionModel.getQuestionTitle());
     }
 
     @Test
     void getQuestionText() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionText("How many credit hours is the course?");
-        assertSame("How many credit hours is the course?",questionModel.getQuestionText());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setQuestionText("How many credit hours is the course?");
+        assertSame("How many credit hours is the course?", interfaceQuestionModel.getQuestionText());
     }
 
     @Test
     void setQuestionText() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setQuestionText("How many credit hours is the course?");
-        assertSame("How many credit hours is the course?",questionModel.getQuestionText());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setQuestionText("How many credit hours is the course?");
+        assertSame("How many credit hours is the course?", interfaceQuestionModel.getQuestionText());
     }
 
     @Test
     void getResponseText() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setResponseText("responsetext");
-        assertSame("responsetext",questionModel.getResponseText());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setResponseText("responsetext");
+        assertSame("responsetext", interfaceQuestionModel.getResponseText());
     }
 
     @Test
     void setResponseText() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setResponseText("responsetext");
-        assertSame("responsetext",questionModel.getResponseText());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setResponseText("responsetext");
+        assertSame("responsetext", interfaceQuestionModel.getResponseText());
     }
 
     @Test
     void getResponseScore() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setResponseScore(3);
-        assertSame(3,questionModel.getResponseScore());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setResponseScore(3);
+        assertSame(3, interfaceQuestionModel.getResponseScore());
     }
 
     @Test
     void setResponseScore() {
-        QuestionModel questionModel=new QuestionModel();
-        questionModel.setResponseScore(3);
-        assertSame(3,questionModel.getResponseScore());
+        InterfaceQuestionModel interfaceQuestionModel =new QuestionModel();
+        interfaceQuestionModel.setResponseScore(3);
+        assertSame(3, interfaceQuestionModel.getResponseScore());
     }
 }

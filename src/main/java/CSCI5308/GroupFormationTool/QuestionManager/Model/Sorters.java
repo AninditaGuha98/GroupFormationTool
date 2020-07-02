@@ -5,27 +5,31 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-@Component
-public class Sorters {
+public class Sorters implements CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters {
 	private String sortField;
 	private String sortOrder;
 
+	@Override
 	public String getSortField() {
 		return sortField;
 	}
 
+	@Override
 	public void setSortField(String sortField) {
 		this.sortField = sortField;
 	}
 
+	@Override
 	public String getSortOrder() {
 		return sortOrder;
 	}
 
+	@Override
 	public void setSortOrder(String sortOrder) {
 		this.sortOrder = sortOrder;
 	}
 
+	@Override
 	public Map<String, String> sortingFieldList() {
 		Map<String, String> sortingFields = new LinkedHashMap<>();
 		sortingFields.put("question_title", "Question title");
@@ -33,6 +37,7 @@ public class Sorters {
 		return sortingFields;
 	}
 
+	@Override
 	public Map<String, String> sortingOrderList() {
 		Map<String, String> sortingOrders = new LinkedHashMap<>();
 		sortingOrders.put("ASC", "Ascending");

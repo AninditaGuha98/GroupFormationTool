@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
@@ -12,30 +12,30 @@ class SortersTest {
 
     @Test
     void getSortField() {
-        Sorters sorters = new Sorters();
-        sorters.setSortField("questionID");
-        assertTrue(sorters.getSortField().equals("questionID"));
+        InterfaceSorters interfaceSorters = new Sorters();
+        interfaceSorters.setSortField("questionID");
+        assertTrue(interfaceSorters.getSortField().equals("questionID"));
     }
 
     @Test
     void setSortField() {
-        Sorters sorters = new Sorters();
-        sorters.setSortField("questionID");
-        assertTrue(sorters.getSortField().equals("questionID"));
+        InterfaceSorters interfaceSorters = new Sorters();
+        interfaceSorters.setSortField("questionID");
+        assertTrue(interfaceSorters.getSortField().equals("questionID"));
     }
 
     @Test
     void getSortOrder() {
-        Sorters sorters = new Sorters();
-        sorters.setSortOrder("ASC");
-        assertTrue(sorters.getSortOrder().equals("ASC"));
+        InterfaceSorters interfaceSorters = new Sorters();
+        interfaceSorters.setSortOrder("ASC");
+        assertTrue(interfaceSorters.getSortOrder().equals("ASC"));
     }
 
     @Test
     void setSortOrder() {
-        Sorters sorters = new Sorters();
-        sorters.setSortOrder("ASC");
-        assertTrue(sorters.getSortOrder().equals("ASC"));
+        InterfaceSorters interfaceSorters = new Sorters();
+        interfaceSorters.setSortOrder("ASC");
+        assertTrue(interfaceSorters.getSortOrder().equals("ASC"));
     }
 
     @Test

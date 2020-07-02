@@ -7,14 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceResponses;
 import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Responses;
 
 public class QuestionDB implements IQuestionsPersistence {
 	private Long lastInsertedQuestion;
 
-	public List<QuestionModel> loadAllQuestionsByID(String bannerID) {
-		List<QuestionModel> questions = new ArrayList<>();
+	public List<InterfaceQuestionModel> loadAllQuestionsByID(String bannerID) {
+		List<InterfaceQuestionModel> questions = new ArrayList<>();
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spGetAllQuestions(?)");
@@ -23,9 +25,9 @@ public class QuestionDB implements IQuestionsPersistence {
 			if (null != results) {
 				while (results.next()) {
 					String title = results.getString(1);
-					QuestionModel q = new QuestionModel();
-					q.setQuestionTitle(title);
-					questions.add(q);
+					InterfaceQuestionModel interfaceQuestionModel = new QuestionModel();
+					interfaceQuestionModel.setQuestionTitle(title);
+					questions.add(interfaceQuestionModel);
 				}
 			}
 		} catch (SQLException throwables) {
@@ -38,14 +40,14 @@ public class QuestionDB implements IQuestionsPersistence {
 		return questions;
 	}
 
-	public boolean createQuestion(QuestionModel questionModel) {
+	public boolean createQuestion(InterfaceQuestionModel interfaceQuestionModel) {
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spInsertQuestion(?, ?,?,?,?)");
-			proc.setParameter(1, questionModel.getUserID());
-			proc.setParameter(2, questionModel.getQuestionTitle());
-			proc.setParameter(3, questionModel.getQuestionText());
-			proc.setParameter(4, questionModel.getTypeSelect());
+			proc.setParameter(1, interfaceQuestionModel.getUserID());
+			proc.setParameter(2, interfaceQuestionModel.getQuestionTitle());
+			proc.setParameter(3, interfaceQuestionModel.getQuestionText());
+			proc.setParameter(4, interfaceQuestionModel.getTypeSelect());
 			proc.registerOutputParameterLong(5);
 			proc.execute();
 			lastInsertedQuestion = proc.getStatement().getLong(5);
@@ -60,7 +62,7 @@ public class QuestionDB implements IQuestionsPersistence {
 		return true;
 	}
 
-	public boolean insertResponses(Responses response) {
+	public boolean insertResponses(InterfaceResponses response) {
 		CallStoredProcedure proc = null;
 		String[] response_text = response.getResponse_txt().split(",");
 		String[] score_text = response.getScore_txt().split(",");
