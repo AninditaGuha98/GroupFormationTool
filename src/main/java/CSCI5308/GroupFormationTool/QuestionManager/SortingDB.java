@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Repository;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,11 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
 
 public class SortingDB implements IQuestionSorters {
     IQuestionsPersistence interfaceQuestionDB = new QuestionDB();

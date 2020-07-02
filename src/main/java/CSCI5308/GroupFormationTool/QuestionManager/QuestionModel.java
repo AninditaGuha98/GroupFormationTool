@@ -1,9 +1,9 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Model;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import java.util.HashMap;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
 
 public class QuestionModel implements InterfaceQuestionModel {
     private String typeSelect;

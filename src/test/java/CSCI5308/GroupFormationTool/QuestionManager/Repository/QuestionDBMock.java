@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceResponses;
+import CSCI5308.GroupFormationTool.QuestionManager.*;
 import org.junit.jupiter.api.Test;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Responses;
 
 public class QuestionDBMock {
 	IQuestionsPersistence questionDBMock = mock(QuestionDB.class);

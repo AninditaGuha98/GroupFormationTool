@@ -1,10 +1,7 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Repository;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
+import CSCI5308.GroupFormationTool.QuestionManager.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

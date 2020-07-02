@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceSorters;
+import CSCI5308.GroupFormationTool.QuestionManager.Sorters;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;

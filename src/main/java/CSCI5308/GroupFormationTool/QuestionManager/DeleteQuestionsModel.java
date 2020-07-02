@@ -1,6 +1,5 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Model;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsModel;
 
 public class DeleteQuestionsModel implements InterfaceDeleteQuestionsModel {
     private String[] listQuestions;

@@ -1,18 +1,11 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Controller;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceResponses;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.DeleteQuestionsModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Responses;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.SystemConfig;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.QuestionModel;
 
 @Controller
 public class CreateQuestionsController {

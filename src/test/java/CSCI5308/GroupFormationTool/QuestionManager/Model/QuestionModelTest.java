@@ -1,7 +1,8 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceQuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -40,7 +41,6 @@ class QuestionModelTest {
         interfaceQuestionModel.setQuestionTypeList(mock);
         assertSame(mock, interfaceQuestionModel.getQuestionTypeList());
     }
-
 
 
     @Test

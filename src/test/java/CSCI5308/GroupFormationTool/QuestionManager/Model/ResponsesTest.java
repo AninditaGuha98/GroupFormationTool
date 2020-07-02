@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceResponses;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
+import CSCI5308.GroupFormationTool.QuestionManager.Responses;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,9 +1,8 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Controller;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import java.security.Principal;
 import java.util.Map;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Model.Sorters;
 
 @Controller
 public class ListQuestionsController {

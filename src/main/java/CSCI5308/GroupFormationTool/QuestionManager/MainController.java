@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Controller;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

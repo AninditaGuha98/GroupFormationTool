@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Interface;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 public interface InterfaceDeleteQuestionsModel {
     String[] getListQuestions();

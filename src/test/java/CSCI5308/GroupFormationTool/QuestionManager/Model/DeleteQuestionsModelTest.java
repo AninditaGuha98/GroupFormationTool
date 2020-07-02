@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.QuestionManager.Model;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsModel;
+import CSCI5308.GroupFormationTool.QuestionManager.DeleteQuestionsModel;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceDeleteQuestionsModel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

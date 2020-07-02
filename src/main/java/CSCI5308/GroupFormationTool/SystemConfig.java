@@ -8,30 +8,20 @@ import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelations
 import CSCI5308.GroupFormationTool.CourseHomePage.Repository.CourseUserRelationshipDB;
 import CSCI5308.GroupFormationTool.Database.DefaultDatabaseConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseConfiguration;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceDeleteQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceListQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.DeleteQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.ListQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.QuestionDB;
-import CSCI5308.GroupFormationTool.QuestionManager.Repository.SortingDB;
+import CSCI5308.GroupFormationTool.QuestionManager.IQuestionSorters;
+import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceDeleteQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceListQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.DeleteQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.ListQuestionsRepo;
+import CSCI5308.GroupFormationTool.QuestionManager.QuestionDB;
+import CSCI5308.GroupFormationTool.QuestionManager.SortingDB;
 import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.AccessControl.*;
-import CSCI5308.GroupFormationTool.Database.*;
 
-/*
- * This is a singleton, we will learn about these when we learn design patterns.
- * 
- * The single responsibility of this singleton is to store concrete classes
- * selected by the system for use in the rest of the system. This will allow
- * a form of dependency injection in places where we cannot use normal
- * dependency injection (for example classes that override or extend existing
- * library classes in the framework).
- */
+
 public class SystemConfig {
 	private static SystemConfig uniqueInstance = null;
 	private IPasswordEncryption passwordEncryption;

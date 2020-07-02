@@ -1,9 +1,9 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Model;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceSorters;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceSorters;
 
 public class Sorters implements InterfaceSorters {
     private String sortField;

@@ -1,7 +1,7 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Model;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.Interface.InterfaceResponses;
+import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
 
 public class Responses implements InterfaceResponses {
     private String response_txt;
