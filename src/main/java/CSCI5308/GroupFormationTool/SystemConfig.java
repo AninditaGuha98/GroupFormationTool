@@ -2,10 +2,10 @@ package CSCI5308.GroupFormationTool;
 
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.UserDB;
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
-import CSCI5308.GroupFormationTool.AdminPanel.Repository.CourseDB;
-import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
-import CSCI5308.GroupFormationTool.CourseHomePage.Repository.CourseUserRelationshipDB;
+import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
+import CSCI5308.GroupFormationTool.Courses.CourseDB;
+import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
+import CSCI5308.GroupFormationTool.Courses.CourseUserRelationshipDB;
 import CSCI5308.GroupFormationTool.Database.DefaultDatabaseConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseConfiguration;
 import CSCI5308.GroupFormationTool.QuestionManager.IQuestionSorters;

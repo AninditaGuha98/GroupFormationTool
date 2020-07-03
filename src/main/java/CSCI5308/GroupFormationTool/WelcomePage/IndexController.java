@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
+import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 import CSCI5308.GroupFormationTool.Courses.Course;
 
 @Controller

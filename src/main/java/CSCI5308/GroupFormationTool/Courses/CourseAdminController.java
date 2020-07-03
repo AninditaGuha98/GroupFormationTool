@@ -1,8 +1,9 @@
-package CSCI5308.GroupFormationTool.AdminPanel.Controller;
+package CSCI5308.GroupFormationTool.Courses;
 
 import java.util.Iterator;
 import java.util.List;
 
+import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
-import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
+import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.Course;
 import CSCI5308.GroupFormationTool.Courses.Role;
 

@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 import CSCI5308.GroupFormationTool.Courses.Course;
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
+import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 
 @SpringBootTest
 @SuppressWarnings("deprecation")

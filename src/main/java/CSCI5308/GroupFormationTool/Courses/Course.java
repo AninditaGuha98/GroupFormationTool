@@ -4,9 +4,6 @@ import java.util.List;
 
 import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
-import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationship;
-import CSCI5308.GroupFormationTool.CourseHomePage.Service.CourseUserRelationship;
 
 public class Course {
 	private long id;

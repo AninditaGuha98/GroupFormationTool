@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.CourseHomePage.Interface;
+package CSCI5308.GroupFormationTool.Courses;
 
 import java.util.List;
 

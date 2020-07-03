@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.AccessControlTest.CurrentUserMock;
 import CSCI5308.GroupFormationTool.Courses.Course;
-import CSCI5308.GroupFormationTool.CourseHomePage.Interface.ICourseUserRelationshipPersistence;
+import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.Role;
 
 @SpringBootTest

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Courses.Course;
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
+import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 
 public class CourseDBMock implements ICoursePersistence 
 {

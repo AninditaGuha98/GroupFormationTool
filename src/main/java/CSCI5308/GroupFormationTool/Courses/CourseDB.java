@@ -1,12 +1,10 @@
-package CSCI5308.GroupFormationTool.AdminPanel.Repository;
+package CSCI5308.GroupFormationTool.Courses;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import CSCI5308.GroupFormationTool.AdminPanel.Interface.ICoursePersistence;
-import CSCI5308.GroupFormationTool.Courses.Course;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class CourseDB implements ICoursePersistence {

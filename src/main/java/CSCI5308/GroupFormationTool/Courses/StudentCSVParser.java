@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.CourseAdmin.Service;
+package CSCI5308.GroupFormationTool.Courses;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +13,6 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.CourseAdmin.Interface.IStudentCSVParser;
 
 public class StudentCSVParser implements IStudentCSVParser {
 
