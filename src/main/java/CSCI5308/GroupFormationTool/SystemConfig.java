@@ -18,8 +18,8 @@ import CSCI5308.GroupFormationTool.QuestionManager.QuestionDB;
 import CSCI5308.GroupFormationTool.QuestionManager.SortingDB;
 import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Interface.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.Model.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
 
 
 public class SystemConfig {

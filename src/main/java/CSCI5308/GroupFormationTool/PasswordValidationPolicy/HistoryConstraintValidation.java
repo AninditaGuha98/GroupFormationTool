@@ -1,0 +1,88 @@
+package CSCI5308.GroupFormationTool.PasswordValidationPolicy;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
+import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
+
+public class HistoryConstraintValidation implements IPasswordValidation {
+
+	private static final String HISTORY_CONSTRAINT_CONFIG = "history_constraint";
+	public static final String VALID_PASSWORD_MESSAGE = "Password follows history constraints of %d.";
+	public static final String INVALID_PASSWORD_MESSAGE = "Password must no be among your %d previous passwords.";
+
+	private IPasswordHistoryPersistence passwordHistoryPersistence;
+	private int historyConstraint;
+
+	public HistoryConstraintValidation(IPasswordHistoryPersistence persistence) {
+		this.passwordHistoryPersistence = persistence;
+	}
+
+	public int getHistoryConstraint() {
+		return this.historyConstraint;
+	}
+
+	private void setHistoryConstraint(String historyConstraint) {
+		int intHistoryConstraint;
+		try {
+			intHistoryConstraint = Integer.parseInt(historyConstraint);
+		} catch (Exception e) {
+			// Log it
+			e.printStackTrace();
+			intHistoryConstraint = 0;
+		}
+
+		if (intHistoryConstraint <= 0)
+			this.historyConstraint = 0;
+		else
+			this.historyConstraint = intHistoryConstraint;
+	}
+
+	@Override
+	public boolean isValidPassword(String password, IPasswordValidationConfiguration config) {
+		String configValue;
+		String bannerID = "";
+		String encryptedPassword;
+		IPasswordEncryption passwordEncryption = new BCryptPasswordEncryption();
+		
+		if (null == password) {
+			return false;
+		}
+		
+		try {
+			configValue = config.getConfig(HISTORY_CONSTRAINT_CONFIG);
+		} catch (Exception e) {
+			e.printStackTrace();
+			configValue = null;
+		}
+		setHistoryConstraint(configValue);
+
+		if (this.historyConstraint == 0) {
+			return true;
+		}
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!authentication.isAuthenticated())	{
+			return true;
+		}
+		bannerID = authentication.getPrincipal().toString();
+		encryptedPassword = passwordEncryption.encryptPassword(password);
+		
+		if (passwordHistoryPersistence.followedHistoryConstraint
+				(bannerID, encryptedPassword, historyConstraint)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
+		if (isValidPassword(password, config)) {
+			return String.format(VALID_PASSWORD_MESSAGE, this.historyConstraint);
+		} else {
+			return String.format(INVALID_PASSWORD_MESSAGE, this.historyConstraint);
+		}
+	}
+
+}
