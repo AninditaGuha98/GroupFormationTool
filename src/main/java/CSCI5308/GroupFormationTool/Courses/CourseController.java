@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
-import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
-import CSCI5308.GroupFormationTool.Courses.Course;
-import CSCI5308.GroupFormationTool.Courses.Role;
 
 @Controller
 public class CourseController {
@@ -20,11 +17,11 @@ public class CourseController {
 	public String course(Model model, @RequestParam(name = ID) long courseID,
 			@RequestParam(name = "userID") long userID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course course = new Course();
-		courseDB.loadCourseByID(courseID, course);
-		model.addAttribute("course", course);
+		InterfaceCourse interfaceCourse = new Course();
+		courseDB.loadCourseByID(courseID, interfaceCourse);
+		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("userID", userID);
-		List<Role> userRoles = course.getAllRolesForCurrentUserInCourse();
+		List<Role> userRoles = interfaceCourse.getAllRolesForCurrentUserInCourse();
 		if (null == userRoles) {
 			// Default user is a guest.
 			model.addAttribute("instructor", false);

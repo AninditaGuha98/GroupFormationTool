@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
-import CSCI5308.GroupFormationTool.Courses.Course;
 
 @Controller
 public class IndexController {
@@ -22,7 +22,7 @@ public class IndexController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.isAuthenticated()) {
 			ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-			List<Course> allCourses = courseDB.loadAllCourses();
+			List<InterfaceCourse> allCourses = courseDB.loadAllCourses();
 			model.addAttribute("courses", allCourses);
 			IUserPersistence userDB = SystemConfig.instance().getUserDB();
 			Long userID = userDB.loadInstructorByBannerID(httpServletRequest.getRemoteUser());

@@ -25,12 +25,12 @@ public class InstructorAdminController {
 	@GetMapping("/course/instructoradmin")
 	public String instructorAdmin(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course course = new Course();
-		courseDB.loadCourseByID(courseID, course);
-		model.addAttribute("course", course);
+		InterfaceCourse interfaceCourse = new Course();
+		courseDB.loadCourseByID(courseID, interfaceCourse);
+		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("displayresults", false);
-		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
-				|| course.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
+		if (interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
+				|| interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
 			return "course/instructoradmin";
 		} else {
 			return "logout";
@@ -43,15 +43,15 @@ public class InstructorAdminController {
 			@RequestParam(name = FAILURES, required = false) List<String> failures,
 			@RequestParam(name = DISPLAY_RESULTS) boolean displayResults) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course course = new Course();
-		courseDB.loadCourseByID(courseID, course);
-		model.addAttribute("course", course);
+		InterfaceCourse interfaceCourse = new Course();
+		courseDB.loadCourseByID(courseID, interfaceCourse);
+		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("displayresults", false);
 		model.addAttribute(SUCCESSFUL, successful);
 		model.addAttribute(FAILURES, failures);
 		model.addAttribute(DISPLAY_RESULTS, displayResults);
-		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
-				|| course.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
+		if (interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
+				|| interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
 			return "course/instructoradmin";
 		} else {
 			return "logout";
@@ -61,11 +61,11 @@ public class InstructorAdminController {
 	@GetMapping("/course/enrollta")
 	public String enrollTA(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course course = new Course();
-		courseDB.loadCourseByID(courseID, course);
-		model.addAttribute("course", course);
-		if (course.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
-				|| course.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
+		InterfaceCourse interfaceCourse = new Course();
+		courseDB.loadCourseByID(courseID, interfaceCourse);
+		model.addAttribute("course", interfaceCourse);
+		if (interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
+				|| interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
 			ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
 					.getCourseUserRelationshipDB();
 			List<User> allUsersNotCurrentlyTA = courseUserRelationshipDB.findAllUsersWithoutCourseRole(Role.TA,
@@ -80,10 +80,10 @@ public class InstructorAdminController {
 	@RequestMapping(value = "/course/uploadcsv", consumes = { "multipart/form-data" })
 	public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course course = new Course();
-		courseDB.loadCourseByID(courseID, course);
+		InterfaceCourse interfaceCourse = new Course();
+		courseDB.loadCourseByID(courseID, interfaceCourse);
 		IStudentCSVParser parser = new StudentCSVParser(file);
-		StudentCSVImport importer = new StudentCSVImport(parser, course);
+		StudentCSVImport importer = new StudentCSVImport(parser, interfaceCourse);
 		ModelAndView mav = new ModelAndView("redirect:/course/instructoradminresults?id=" + Long.toString(courseID));
 		mav.addObject("successful", importer.getSuccessResults());
 		mav.addObject("failures", importer.getFailureResults());
@@ -94,15 +94,15 @@ public class InstructorAdminController {
 	@RequestMapping(value = "/course/assignTAtocourse")
 	public ModelAndView assignInstructorToCourse(@RequestParam(name = "ta") List<Integer> instructor,
 			@RequestParam(name = ID) long courseID) {
-		Course c = new Course();
-		c.setId(courseID);
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setId(courseID);
 		Iterator<Integer> iter = instructor.iterator();
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
 				.getCourseUserRelationshipDB();
 		while (iter.hasNext()) {
 			User u = new User();
 			u.setId(iter.next().longValue());
-			courseUserRelationshipDB.enrollUser(c, u, Role.TA);
+			courseUserRelationshipDB.enrollUser(interfaceCourse, u, Role.TA);
 		}
 		ModelAndView mav = new ModelAndView("redirect:instructoradmin");
 		mav.addObject("id", courseID);

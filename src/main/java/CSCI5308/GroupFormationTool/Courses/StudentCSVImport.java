@@ -11,12 +11,12 @@ import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 public class StudentCSVImport {
 	private List<String> successResults;
 	private List<String> failureResults;
-	private Course course;
+	private InterfaceCourse course;
 	private IUserPersistence userDB;
 	private IPasswordEncryption passwordEncryption;
 	private IStudentCSVParser parser;
 
-	public StudentCSVImport(IStudentCSVParser parser, Course course) {
+	public StudentCSVImport(IStudentCSVParser parser, InterfaceCourse course) {
 		this.course = course;
 		successResults = new ArrayList<String>();
 		failureResults = new ArrayList<String>();

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.Courses.Course;
 import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
+import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 import CSCI5308.GroupFormationTool.Courses.Role;
 
 class CourseUserRelationshipDBMock implements ICourseUserRelationshipPersistence 
@@ -34,16 +34,16 @@ class CourseUserRelationshipDBMock implements ICourseUserRelationshipPersistence
 		return userList;
 	}
 
-	public boolean enrollUser(Course course, User user, Role role) 
+	public boolean enrollUser(InterfaceCourse interfaceCourse, User user, Role role)
 	{
 		user.setId(0);
-		course.setId(0);
-		course.setTitle("Software Engineering");
+		interfaceCourse.setId(0);
+		interfaceCourse.setTitle("Software Engineering");
 		return true;
 
 	}
 
-	public List<Role> loadUserRolesForCourse(Course course, User user) 
+	public List<Role> loadUserRolesForCourse(InterfaceCourse interfaceCourse, User user)
 	{
 		List<Role> userRoles = new ArrayList<>();
 		userRoles.add(Role.STUDENT);

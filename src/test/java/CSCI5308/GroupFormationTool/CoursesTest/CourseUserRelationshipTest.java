@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
@@ -28,7 +29,7 @@ class CourseUserRelationshipTest
 	@Test
 	public void userHasRoleInCourse() 
 	{
-		Course course = new Course();
+		InterfaceCourse course = new Course();
 		course.setId(0);
 		CurrentUserMock currentUser = new CurrentUserMock();
 		User user = currentUser.getCurrentAuthenticatedUser();
@@ -41,7 +42,7 @@ class CourseUserRelationshipTest
 	@Test
 	public void loadAllRoluesForUserInCourse() 
 	{
-		Course course = new Course();
+		InterfaceCourse course = new Course();
 		course.setId(0);
 		CurrentUserMock currentUser = new CurrentUserMock();
 		User user = currentUser.getCurrentAuthenticatedUser();
@@ -52,10 +53,10 @@ class CourseUserRelationshipTest
 	@Test
 	public void enrollUserInCourse() 
 	{
-		Course course = new Course();
+		InterfaceCourse interfaceCourse = new Course();
 		CurrentUserMock currentUser = new CurrentUserMock();
 		User user = currentUser.getCurrentAuthenticatedUser();
-		boolean result = courseUserRelationshipDB.enrollUser(course, user, Role.STUDENT);
+		boolean result = courseUserRelationshipDB.enrollUser(interfaceCourse, user, Role.STUDENT);
 		Assert.isTrue(result);
 	}
 

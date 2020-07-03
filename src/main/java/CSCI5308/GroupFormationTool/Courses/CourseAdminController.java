@@ -3,7 +3,6 @@ package CSCI5308.GroupFormationTool.Courses;
 import java.util.Iterator;
 import java.util.List;
 
-import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
-import CSCI5308.GroupFormationTool.Courses.Course;
-import CSCI5308.GroupFormationTool.Courses.Role;
 
 @Controller
 public class CourseAdminController {
@@ -27,7 +23,7 @@ public class CourseAdminController {
 	@GetMapping("/admin/course")
 	public String course(Model model) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		List<Course> allCourses = courseDB.loadAllCourses();
+		List<InterfaceCourse> allCourses = courseDB.loadAllCourses();
 		model.addAttribute("courses", allCourses);
 		return "admin/course";
 	}
@@ -35,9 +31,9 @@ public class CourseAdminController {
 	@RequestMapping(value = "/admin/assigninstructor")
 	public String assignInstructor(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course c = new Course();
-		courseDB.loadCourseByID(courseID, c);
-		model.addAttribute("course", c);
+		InterfaceCourse interfaceCourse = new Course();
+		courseDB.loadCourseByID(courseID, interfaceCourse);
+		model.addAttribute("course", interfaceCourse);
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
 				.getCourseUserRelationshipDB();
 		List<User> allUsersNotCurrentlyInstructors = courseUserRelationshipDB
@@ -49,9 +45,9 @@ public class CourseAdminController {
 	@GetMapping("/admin/deletecourse")
 	public ModelAndView deleteCourse(@RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course c = new Course();
-		c.setId(courseID);
-		c.delete(courseDB);
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setId(courseID);
+		interfaceCourse.delete(courseDB);
 		ModelAndView mav = new ModelAndView("redirect:/admin/course");
 		return mav;
 	}
@@ -59,9 +55,9 @@ public class CourseAdminController {
 	@RequestMapping(value = "/admin/createcourse", method = RequestMethod.POST)
 	public ModelAndView createCourse(@RequestParam(name = TITLE) String title) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		Course c = new Course();
-		c.setTitle(title);
-		c.createCourse(courseDB);
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setTitle(title);
+		interfaceCourse.createCourse(courseDB);
 		ModelAndView mav = new ModelAndView("redirect:/admin/course");
 		return mav;
 	}
@@ -69,15 +65,15 @@ public class CourseAdminController {
 	@RequestMapping(value = "/admin/assigninstructortocourse")
 	public ModelAndView assignInstructorToCourse(@RequestParam(name = INSTRUCTOR) List<Integer> instructor,
 			@RequestParam(name = ID) long courseID) {
-		Course c = new Course();
-		c.setId(courseID);
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setId(courseID);
 		Iterator<Integer> iter = instructor.iterator();
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
 				.getCourseUserRelationshipDB();
 		while (iter.hasNext()) {
 			User u = new User();
 			u.setId(iter.next().longValue());
-			courseUserRelationshipDB.enrollUser(c, u, Role.INSTRUCTOR);
+			courseUserRelationshipDB.enrollUser(interfaceCourse, u, Role.INSTRUCTOR);
 		}
 		ModelAndView mav = new ModelAndView("redirect:/admin/course");
 		return mav;

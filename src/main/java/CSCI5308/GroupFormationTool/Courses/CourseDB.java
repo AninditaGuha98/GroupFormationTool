@@ -8,8 +8,8 @@ import java.util.List;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class CourseDB implements ICoursePersistence {
-	public List<Course> loadAllCourses() {
-		List<Course> courses = new ArrayList<Course>();
+	public List<InterfaceCourse> loadAllCourses() {
+		List<InterfaceCourse> courses = new ArrayList<InterfaceCourse>();
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spLoadAllCourses()");
@@ -18,10 +18,10 @@ public class CourseDB implements ICoursePersistence {
 				while (results.next()) {
 					long id = results.getLong(1);
 					String title = results.getString(2);
-					Course c = new Course();
-					c.setId(id);
-					c.setTitle(title);
-					courses.add(c);
+					InterfaceCourse interfaceCourse = new Course();
+					interfaceCourse.setId(id);
+					interfaceCourse.setTitle(title);
+					courses.add(interfaceCourse);
 				}
 			}
 		} catch (SQLException e) {
@@ -34,7 +34,7 @@ public class CourseDB implements ICoursePersistence {
 		return courses;
 	}
 
-	public void loadCourseByID(long id, Course course) {
+	public void loadCourseByID(long id, InterfaceCourse course) {
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spFindCourseByID(?)");
@@ -56,7 +56,7 @@ public class CourseDB implements ICoursePersistence {
 		}
 	}
 
-	public boolean createCourse(Course course) {
+	public boolean createCourse(InterfaceCourse course) {
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spCreateCourse(?, ?)");

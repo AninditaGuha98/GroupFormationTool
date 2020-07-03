@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.CoursesTest;
 
+import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
@@ -14,46 +15,46 @@ class CourseTest
 	@Test
 	public void ConstructorTests() 
 	{
-		Course course = new Course();
-		Assert.isTrue(course.getId() == -1);
-		Assert.isTrue(course.getTitle().isEmpty());
+		InterfaceCourse interfaceCourse = new Course();
+		Assert.isTrue(interfaceCourse.getId() == -1);
+		Assert.isTrue(interfaceCourse.getTitle().isEmpty());
 
 		ICoursePersistence courseDB = new CourseDBMock();
-		course = new Course(0, courseDB);
-		Assert.isTrue(course.getId() == 0);
-		Assert.isTrue(course.getTitle().equals("Software Engineering"));
+		interfaceCourse = new Course(0, courseDB);
+		Assert.isTrue(interfaceCourse.getId() == 0);
+		Assert.isTrue(interfaceCourse.getTitle().equals("Software Engineering"));
 	}
 
 	@Test
 	public void setIdTest() 
 	{
-		Course course = new Course();
-		course.setId(7);
-		Assert.isTrue(course.getId() == 7);
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setId(7);
+		Assert.isTrue(interfaceCourse.getId() == 7);
 	}
 
 	@Test
 	public void getIdTest() 
 	{
-		Course course = new Course();
-		course.setId(7);
-		Assert.isTrue(course.getId() == 7);
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setId(7);
+		Assert.isTrue(interfaceCourse.getId() == 7);
 	}
 
 	@Test
 	public void setTitleTest() 
 	{
-		Course course = new Course();
-		course.setTitle("Advanced Topics in Software Development");
-		Assert.isTrue(course.getTitle().equals("Advanced Topics in Software Development"));
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setTitle("Advanced Topics in Software Development");
+		Assert.isTrue(interfaceCourse.getTitle().equals("Advanced Topics in Software Development"));
 	}
 
 	@Test
 	public void getTitleTest() 
 	{
-		Course course = new Course();
-		course.setTitle("Advanced Topics in Software Development");
-		Assert.isTrue(course.getTitle().equals("Advanced Topics in Software Development"));
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setTitle("Advanced Topics in Software Development");
+		Assert.isTrue(interfaceCourse.getTitle().equals("Advanced Topics in Software Development"));
 	}
 
 	@Test
@@ -68,12 +69,12 @@ class CourseTest
 	public void createCourseTest() 
 	{
 		ICoursePersistence courseDB = new CourseDBMock();
-		Course course = new Course();
-		course.setId(0);
-		course.setTitle("Software Engineering");
-		courseDB.createCourse(course);
-		Assert.isTrue(course.getId() == 0);
-		Assert.isTrue(course.getTitle().equals("Software Engineering"));
+		InterfaceCourse interfaceCourse = new Course();
+		interfaceCourse.setId(0);
+		interfaceCourse.setTitle("Software Engineering");
+		courseDB.createCourse(interfaceCourse);
+		Assert.isTrue(interfaceCourse.getId() == 0);
+		Assert.isTrue(interfaceCourse.getTitle().equals("Software Engineering"));
 	}
 
 }
