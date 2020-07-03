@@ -10,7 +10,6 @@ public class Course implements InterfaceCourse {
 	private String title;
 	private ICourseUserRelationship userRoleDecider;
 
-
 	public Course() {
 		setDefaults();
 	}

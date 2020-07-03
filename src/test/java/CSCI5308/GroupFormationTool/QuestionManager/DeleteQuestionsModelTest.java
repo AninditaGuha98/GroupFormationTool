@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Model;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import CSCI5308.GroupFormationTool.QuestionManager.DeleteQuestionsModel;
 import CSCI5308.GroupFormationTool.QuestionManager.InterfaceDeleteQuestionsModel;

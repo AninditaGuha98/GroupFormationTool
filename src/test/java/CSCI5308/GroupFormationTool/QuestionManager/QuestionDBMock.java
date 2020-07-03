@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Repository;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

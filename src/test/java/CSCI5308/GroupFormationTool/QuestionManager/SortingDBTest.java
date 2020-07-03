@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.QuestionManager.Repository;
+package CSCI5308.GroupFormationTool.QuestionManager;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.QuestionManager.*;
