@@ -15,7 +15,7 @@ build:
     - grad
   script: ./gradlew --build-cache assemble
   only:
-  - master
+  - develop
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -51,4 +51,4 @@ deploy:
     - gem install dpl
     - dpl --provider=heroku --app=$HEROKU_APP_PROD --api-key=$HEROKU_API_KEY
     only:
-    - master
+    - develop
