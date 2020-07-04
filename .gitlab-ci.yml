@@ -31,7 +31,7 @@ test:
     - grad
   script: ./gradlew check
   only:
-  - master
+  - develop
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
