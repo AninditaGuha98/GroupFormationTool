@@ -1,7 +1,12 @@
 package CSCI5308.GroupFormationTool.PasswordValidationPolicy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MaxLengthValidation implements IPasswordValidation {
 
+    private static final Logger logger = LoggerFactory.getLogger(MaxLengthValidation.class);
+	
 	private static final String MAX_LENGTH_CONFIG = "max_length";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows maximum length of %d.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have muximum length of %d.";
@@ -62,6 +67,7 @@ public class MaxLengthValidation implements IPasswordValidation {
 	@Override
 	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
 		if (isValidPassword(password, config)) {
+			logger.warn("This is for logging");
 			return String.format(VALID_PASSWORD_MESSAGE, this.maxLength);
 		} else {
 			return String.format(INVALID_PASSWORD_MESSAGE, this.maxLength);
