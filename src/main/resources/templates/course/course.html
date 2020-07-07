@@ -18,10 +18,16 @@
 	<div th:if="${instructor} or ${ta}">
 		<br /> <a th:href="@{/course/instructoradmin(id=${course.id})}">Course
 			Administration</a>
+		<div class="Button">
+			<br /> <a th:href="@{/surveyhome(userID=${userID})}">Create Survey</a>
+		</div>
 	</div>
+
 	<div th:if="${instructor}">
-		<br /> <a th:href="@{/questionmanager(userID=${userID})}">Go to
+		<div class="Button">
+			<br /> <a th:href="@{/questionmanager(userID=${userID})}">Go to
 			Question Manager Page</a>
+		</div>
 	</div>
 </body>
 </html>
