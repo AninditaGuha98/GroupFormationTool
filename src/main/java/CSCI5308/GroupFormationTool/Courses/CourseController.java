@@ -16,7 +16,7 @@ public class CourseController {
 	public String course(Model model, @RequestParam(name = ID) long courseID,
 			@RequestParam(name = "userID") long userID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse = new Course();
+		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("userID", userID);

@@ -25,7 +25,7 @@ public class InstructorAdminController {
 	@GetMapping("/course/instructoradmin")
 	public String instructorAdmin(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse = new Course();
+		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("displayresults", false);
@@ -43,7 +43,7 @@ public class InstructorAdminController {
 			@RequestParam(name = FAILURES, required = false) List<String> failures,
 			@RequestParam(name = DISPLAY_RESULTS) boolean displayResults) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse = new Course();
+		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("displayresults", false);
@@ -61,7 +61,7 @@ public class InstructorAdminController {
 	@GetMapping("/course/enrollta")
 	public String enrollTA(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse = new Course();
+		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		if (interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
@@ -80,7 +80,7 @@ public class InstructorAdminController {
 	@RequestMapping(value = "/course/uploadcsv", consumes = { "multipart/form-data" })
 	public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse = new Course();
+		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		IStudentCSVParser parser = new StudentCSVParser(file);
 		StudentCSVImport importer = new StudentCSVImport(parser, interfaceCourse);
@@ -94,7 +94,7 @@ public class InstructorAdminController {
 	@RequestMapping(value = "/course/assignTAtocourse")
 	public ModelAndView assignInstructorToCourse(@RequestParam(name = "ta") List<Integer> instructor,
 			@RequestParam(name = ID) long courseID) {
-		InterfaceCourse interfaceCourse = new Course();
+		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
 		interfaceCourse.setId(courseID);
 		Iterator<Integer> iter = instructor.iterator();
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
