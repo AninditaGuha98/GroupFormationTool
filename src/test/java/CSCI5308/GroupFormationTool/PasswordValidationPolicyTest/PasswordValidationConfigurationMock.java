@@ -16,7 +16,7 @@ public class PasswordValidationConfigurationMock implements IPasswordValidationC
 	private static final String HISTORY_CONSTRAINT = "history_constraint";
 	
 	@Override
-	public String getConfig(String configKey) throws Exception {
+	public String getConfig(String configKey) throws IllegalArgumentException {
 		Map<String, String> configMap = new HashMap<String, String>();
 		
 		configMap.put(MIN_LENGTH, "8");
@@ -28,7 +28,7 @@ public class PasswordValidationConfigurationMock implements IPasswordValidationC
 		configMap.put(HISTORY_CONSTRAINT, "0");
 		
 		if (null == configKey)
-			throw new Exception("Null Key");
+			throw new IllegalArgumentException("Null Key");
 		
 		if (configMap.containsKey(configKey))
 			return configMap.get(configKey);
