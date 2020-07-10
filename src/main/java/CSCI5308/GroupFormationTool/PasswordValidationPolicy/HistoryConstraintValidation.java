@@ -101,15 +101,15 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 
 	@Override
 	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
+		String message = null;
 		if (isValidPassword(password, config)) {
-			logger.info("password={}, action={}, message={}",
-					HISTORY_CONSTRAINT_LOG, "Get Validation Message", VALID_PASSWORD_MESSAGE);
-			return String.format(VALID_PASSWORD_MESSAGE, this.historyConstraint);
+			message = String.format(VALID_PASSWORD_MESSAGE, this.historyConstraint); 
 		} else {
-			logger.info("password={}, action={}, message={}",
-					HISTORY_CONSTRAINT_LOG, "Get Validation Message", VALID_PASSWORD_MESSAGE);
-			return String.format(INVALID_PASSWORD_MESSAGE, this.historyConstraint);
+			message = String.format(INVALID_PASSWORD_MESSAGE, this.historyConstraint);
 		}
+		logger.info("password={}, action={}, message={}",
+				HISTORY_CONSTRAINT_LOG, "Get Validation Message", message);
+		return message;
 	}
 
 }

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 public class MaxLengthValidation implements IPasswordValidation {
 
     private static final Logger logger = LoggerFactory.getLogger(MaxLengthValidation.class);
+    private static final String MAX_LENGTH_LOG = "MaxLengthPolicy";
 	
 	private static final String MAX_LENGTH_CONFIG = "max_length";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows maximum length of %d.";
@@ -14,6 +15,8 @@ public class MaxLengthValidation implements IPasswordValidation {
 	private int maxLength;
 
 	public MaxLengthValidation() {
+		logger.info("password={}, action={}, status={}",
+				MAX_LENGTH_LOG, "Create", "Success");
 	}
 
 	public int getMaxLength() {
@@ -24,8 +27,9 @@ public class MaxLengthValidation implements IPasswordValidation {
 		int intMaxLength;
 		try {
 			intMaxLength = Integer.parseInt(maxLength);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			logger.warn("password={}, action={}, message={}",
+					MAX_LENGTH_LOG, "Set Max Length", e.getMessage());
 			intMaxLength = 0;
 		}
 
@@ -34,6 +38,8 @@ public class MaxLengthValidation implements IPasswordValidation {
 		} else {
 			this.maxLength = intMaxLength;
 		}
+		logger.info("password={}, action={}, value={}",
+				MAX_LENGTH_LOG, "Set Max Length", getMaxLength());
 	}
 
 	@Override
@@ -42,35 +48,47 @@ public class MaxLengthValidation implements IPasswordValidation {
 
 		try {
 			configValue = config.getConfig(MAX_LENGTH_CONFIG);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			logger.warn("password={}, action={}, message={}",
+					MAX_LENGTH_LOG, "Get Configuration", e.getMessage());
 			configValue = null;
 		}
 
 		setMaxLength(configValue);
 
 		if (null == password) {
+			logger.info("password={}, action={}, status={}, message={}",
+					MAX_LENGTH_LOG, "Check Validity", "Fail", "Null Password");
 			return false;
 		}
 
 		if (this.maxLength == 0) {
+			logger.info("password={}, action={}, status={}",
+					MAX_LENGTH_LOG, "Check Validity", "Success");
 			return true;
 		}
 
 		if (password.length() > this.maxLength) {
+			logger.info("password={}, action={}, status={}",
+					MAX_LENGTH_LOG, "Check Validity", "Fail");
 			return false;
 		} else {
+			logger.info("password={}, action={}, status={}",
+					MAX_LENGTH_LOG, "Check Validity", "Success");
 			return true;
 		}
 	}
 
 	@Override
 	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
+		String message = null;
 		if (isValidPassword(password, config)) {
-			logger.warn("This is for logging");
-			return String.format(VALID_PASSWORD_MESSAGE, this.maxLength);
+			message = String.format(VALID_PASSWORD_MESSAGE, this.maxLength);
 		} else {
-			return String.format(INVALID_PASSWORD_MESSAGE, this.maxLength);
+			message = String.format(INVALID_PASSWORD_MESSAGE, this.maxLength); 
 		}
+		logger.info("password={}, action={}, message={}",
+				MAX_LENGTH_LOG, "Get Validation Message", message);
+		return message;
 	}
 }

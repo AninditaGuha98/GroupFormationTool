@@ -73,14 +73,14 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 
 	@Override
 	public String getValidationFailureMessage(String password, IPasswordValidationConfiguration config) {
+		String message = null;
 		if (isValidPassword(password, config)) {
-			logger.info("password={}, action={}, message={}",
-					FORBIDDEN_CHARSET_LOG, "Get Validation Message", VALID_PASSWORD_MESSAGE);
-			return String.format(VALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
+			message = String.format(VALID_PASSWORD_MESSAGE, this.forbiddenCharSet); 
 		} else {
-			logger.info("password={}, action={}, message={}",
-					FORBIDDEN_CHARSET_LOG, "Get Validation Message", INVALID_PASSWORD_MESSAGE);
-			return String.format(INVALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
+			message = String.format(INVALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
 		}
+		logger.info("password={}, action={}, message={}",
+				FORBIDDEN_CHARSET_LOG, "Get Validation Message", message);
+		return message;
 	}
 }
