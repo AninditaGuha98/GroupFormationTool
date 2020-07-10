@@ -19,7 +19,9 @@ import CSCI5308.GroupFormationTool.QuestionManager.SortingDB;
 import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
 
 
 public class SystemConfig {
@@ -29,7 +31,7 @@ public class SystemConfig {
 	private IDatabaseConfiguration databaseConfiguration;
 	private ICoursePersistence courseDB;
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
-	private IPasswordValidationConfiguration passwordValidationConfiguration;
+	private IPasswordValidationFactory passwordValidationFactory;
 	private IQuestionsPersistence questionDB;
 	private IQuestionSorters sortersDB;
 	private InterfaceListQuestionsRepo listQuestionsRepo;
@@ -41,7 +43,7 @@ public class SystemConfig {
 		databaseConfiguration = new DefaultDatabaseConfiguration();
 		courseDB = new CourseDB();
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
-		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
+		passwordValidationFactory = new DefaultPasswordValidationFactory();
 		questionDB = new QuestionDB();
 		sortersDB = new SortingDB();
 		listQuestionsRepo = new ListQuestionsRepo();
@@ -111,12 +113,12 @@ public class SystemConfig {
 		return courseUserRelationshipDB;
 	}
 
-	public IPasswordValidationConfiguration getPasswordValidationConfiguration() {
-		return passwordValidationConfiguration;
+	public IPasswordValidationFactory getPasswordValidationFactory() {
+		return passwordValidationFactory;
 	}
 
-	public void setPasswordValidationConfiguration(IPasswordValidationConfiguration passwordValidationConfiguration) {
-		this.passwordValidationConfiguration = passwordValidationConfiguration;
+	public void setPasswordValidationFactory(IPasswordValidationFactory passwordValidationFactory) {
+		this.passwordValidationFactory = passwordValidationFactory;
 	}
 
 	public IQuestionsPersistence getQuestionDB() {

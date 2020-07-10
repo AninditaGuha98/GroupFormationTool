@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationManager;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationManager;
 
@@ -39,8 +39,8 @@ public class SignupController {
 			@RequestParam(name = FIRST_NAME) String firstName, @RequestParam(name = LAST_NAME) String lastName,
 			@RequestParam(name = EMAIL) String email) {
 		boolean success = false;
-		IPasswordValidationConfiguration config = SystemConfig.instance().getPasswordValidationConfiguration();
-		IPasswordValidationManager passwordValidationManager = new DefaultPasswordValidationManager();
+		IPasswordValidationFactory pvFactory = SystemConfig.instance().getPasswordValidationFactory();
+		IPasswordValidationManager passwordValidationManager = pvFactory.createPasswordValidationManager();
 		List<String> failureMessages = new ArrayList<>();
 		
 		if (User.isBannerIDValid(bannerID) &&
@@ -49,7 +49,7 @@ public class SignupController {
 			 User.isLastNameValid(lastName) &&
 			 password.equals(passwordConfirm))
 		{
-			if (passwordValidationManager.isValidPassword(password, config)) {
+			if (passwordValidationManager.isValidPassword(password)) {
 				User u = new User();
 				u.setBannerID(bannerID);
 				u.setPassword(password);
@@ -60,7 +60,7 @@ public class SignupController {
 				IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
 				success = u.createUser(userDB, passwordEncryption, null);
 			} else {
-				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password, config));
+				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password));
 			}
 		}
 		ModelAndView m;
