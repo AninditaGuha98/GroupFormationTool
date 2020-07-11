@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MaxLengthValidation implements IPasswordValidation {
-
     private static final Logger logger = LoggerFactory.getLogger(MaxLengthValidation.class);
     private static final String MAX_LENGTH_LOG = "MaxLengthPolicy";
 	

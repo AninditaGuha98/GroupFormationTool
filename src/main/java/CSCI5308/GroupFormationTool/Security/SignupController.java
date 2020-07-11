@@ -57,7 +57,7 @@ public class SignupController {
 				u.setLastName(lastName);
 				u.setEmail(email);
 				IUserPersistence userDB = SystemConfig.instance().getUserDB();
-				IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
+				IPasswordEncryption passwordEncryption = SystemConfig.instance().getSecurityFactory().createPassworEncryption();
 				success = u.createUser(userDB, passwordEncryption, null);
 			} else {
 				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password));

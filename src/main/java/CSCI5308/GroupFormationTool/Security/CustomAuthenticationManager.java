@@ -3,6 +3,9 @@ package CSCI5308.GroupFormationTool.Security;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,19 +20,27 @@ import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public class CustomAuthenticationManager implements AuthenticationManager {
+	private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationManager.class);
+    private static final String CUSTOM_AUTH_MANAGER = "AuthenticationManager";
+    
 	private static final String ADMIN_BANNER_ID = "B-000000";
-
+	
 	private Authentication checkAdmin(String password, User u, Authentication authentication)
 			throws AuthenticationException {
+		ISecurityFactory secFactory = SystemConfig.instance().getSecurityFactory();
+
 		// The admin password is not encrypted because it is hardcoded in the DB.
 		if (password.equals(u.getPassword())) {
 			// Grant ADMIN rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
-			rights.add(new SimpleGrantedAuthority("ADMIN"));
+//			rights.add(new SimpleGrantedAuthority("ADMIN"));
+			rights.add(secFactory.createGrantedAuthority("ADMIN"));
 			// Return valid authentication token.
-			UsernamePasswordAuthenticationToken token;
-			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
-					authentication.getCredentials(), rights);
+//			UsernamePasswordAuthenticationToken token;
+//			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
+//					authentication.getCredentials(), rights);
+			AbstractAuthenticationToken token = secFactory.createAuthenticationToken(
+					authentication.getPrincipal(), authentication.getCredentials(), rights); 
 			return token;
 		} else {
 			throw new BadCredentialsException("1000");
@@ -38,15 +49,20 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
 	private Authentication checkNormal(String password, User u, Authentication authentication)
 			throws AuthenticationException {
-		IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
+		ISecurityFactory secFactory = SystemConfig.instance().getSecurityFactory();
+		IPasswordEncryption passwordEncryption = secFactory.createPassworEncryption();
+		
 		if (passwordEncryption.matches(password, u.getPassword())) {
 			// Grant USER rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
-			rights.add(new SimpleGrantedAuthority("USER"));
+//			rights.add(new SimpleGrantedAuthority("USER"));
+			rights.add(secFactory.createGrantedAuthority("USER"));
 			// Return valid authentication token.
-			UsernamePasswordAuthenticationToken token;
-			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
-					authentication.getCredentials(), rights);
+//			UsernamePasswordAuthenticationToken token;
+//			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
+//					authentication.getCredentials(), rights);
+			AbstractAuthenticationToken token = secFactory.createAuthenticationToken(
+					authentication.getPrincipal(), authentication.getCredentials(), rights); 
 			return token;
 		} else {
 			throw new BadCredentialsException("1000");

@@ -21,7 +21,7 @@ public class StudentCSVImport {
 		successResults = new ArrayList<String>();
 		failureResults = new ArrayList<String>();
 		userDB = SystemConfig.instance().getUserDB();
-		passwordEncryption = SystemConfig.instance().getPasswordEncryption();
+		passwordEncryption = SystemConfig.instance().getSecurityFactory().createPassworEncryption();
 		this.parser = parser;
 		enrollStudentFromRecord();
 	}
