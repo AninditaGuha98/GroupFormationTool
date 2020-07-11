@@ -5,7 +5,10 @@ import java.util.List;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
+import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
+import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 
 public class StudentCSVImport {
@@ -27,15 +30,15 @@ public class StudentCSVImport {
 	}
 
 	private void enrollStudentFromRecord() {
-		List<User> studentList = parser.parseCSVFile(failureResults);
-		for (User u : studentList) {
+		List<InterfaceUser> studentList = parser.parseCSVFile(failureResults);
+		for (InterfaceUser u : studentList) {
 			String bannerID = u.getBanner();
 			String firstName = u.getFirstName();
 			String lastName = u.getLastName();
 			String email = u.getEmail();
 			String userDetails = bannerID + " " + firstName + " " + lastName + " " + email;
 
-			User user = new User();
+			InterfaceUser user = UserObjectFactory.createObject(new UserFactory());
 			userDB.loadUserByBannerID(bannerID, user);
 			if (!user.isValidUser()) {
 				user.setBannerID(bannerID);

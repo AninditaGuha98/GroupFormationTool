@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Courses;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.AccessControl.CurrentUser;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public class Course implements InterfaceCourse {
@@ -57,7 +58,7 @@ public class Course implements InterfaceCourse {
 	}
 
 	@Override
-	public boolean enrollUserInCourse(Role role, User user) {
+	public boolean enrollUserInCourse(Role role, InterfaceUser user) {
 		return userRoleDecider.enrollUserInCourse(user, this, role);
 	}
 

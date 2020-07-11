@@ -5,12 +5,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
+import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
+import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class CourseUserRelationshipDB implements ICourseUserRelationshipPersistence {
-	public List<User> findAllUsersWithoutCourseRole(Role role, long courseID) {
-		List<User> users = new ArrayList<User>();
+	public List<InterfaceUser> findAllUsersWithoutCourseRole(Role role, long courseID) {
+		List<InterfaceUser> users = new ArrayList<InterfaceUser>();
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spFindUsersWithoutCourseRole(?, ?)");
@@ -23,7 +26,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 					String bannerID = results.getString(2);
 					String firstName = results.getString(3);
 					String lastName = results.getString(4);
-					User u = new User();
+					InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
 					u.setID(userID);
 					u.setBannerID(bannerID);
 					u.setFirstName(firstName);
@@ -41,8 +44,8 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 		return users;
 	}
 
-	public List<User> findAllUsersWithCourseRole(Role role, long courseID) {
-		List<User> users = new ArrayList<User>();
+	public List<InterfaceUser> findAllUsersWithCourseRole(Role role, long courseID) {
+		List<InterfaceUser> users = new ArrayList<InterfaceUser>();
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spFindUsersWithCourseRole(?, ?)");
@@ -52,7 +55,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 			if (null != results) {
 				while (results.next()) {
 					long userID = results.getLong(1);
-					User u = new User();
+					InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
 					u.setID(userID);
 					users.add(u);
 				}
@@ -67,7 +70,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 		return users;
 	}
 
-	public boolean enrollUser(InterfaceCourse course, User user, Role role) {
+	public boolean enrollUser(InterfaceCourse course, InterfaceUser user, Role role) {
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spEnrollUser(?, ?, ?)");
@@ -86,7 +89,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 		return true;
 	}
 
-	public List<Role> loadUserRolesForCourse(InterfaceCourse course, User user) {
+	public List<Role> loadUserRolesForCourse(InterfaceCourse course, InterfaceUser user) {
 		List<Role> roles = new ArrayList<Role>();
 		CallStoredProcedure proc = null;
 		try {
@@ -110,4 +113,5 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 		}
 		return roles;
 	}
+
 }

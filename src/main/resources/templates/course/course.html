@@ -17,7 +17,8 @@
 	<h1 th:text="'Course: ' + ${course.title}">Course: Title Not Found</h1>
 	<div th:if="${instructor} or ${ta}">
 		<br /> <a th:href="@{/course/instructoradmin(id=${course.id})}">Course
-			Administration</a>
+			Administration</a><br/>
+			<a th:href="@{/course/makegroups(id=${course.id})}">Make Groups</a>
 	</div>
 	<div th:if="${instructor}">
 		<br /> <a th:href="@{/questionmanager(userID=${userID})}">Go to

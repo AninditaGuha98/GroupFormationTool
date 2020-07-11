@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class UserDB implements IUserPersistence {
-	public void loadUserByID(long id, User user) {
+	public void loadUserByID(long id, InterfaceUser user) {
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spLoadUser(?)");
@@ -37,7 +37,7 @@ public class UserDB implements IUserPersistence {
 		}
 	}
 
-	public void loadUserByBannerID(String bannerID, User user) {
+	public void loadUserByBannerID(String bannerID, InterfaceUser user) {
 		CallStoredProcedure proc = null;
 		long userID = -1;
 		try {
@@ -62,7 +62,7 @@ public class UserDB implements IUserPersistence {
 		}
 	}
 
-	public boolean createUser(User user) {
+	public boolean createUser(InterfaceUser user) {
 		CallStoredProcedure proc = null;
 		try {
 			proc = new CallStoredProcedure("spCreateUser(?, ?, ?, ?, ?, ?)");
@@ -84,7 +84,7 @@ public class UserDB implements IUserPersistence {
 		return true;
 	}
 
-	public boolean updateUser(User user) {
+	public boolean updateUser(InterfaceUser user) {
 
 		return false;
 	}

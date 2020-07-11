@@ -1,5 +1,6 @@
 package CSCI5308.GroupFormationTool.Courses;
 
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface InterfaceCourse {
 
     boolean createCourse(ICoursePersistence courseDB);
 
-    boolean enrollUserInCourse(Role role, User user);
+    boolean enrollUserInCourse(Role role, InterfaceUser user);
 
     boolean isCurrentUserEnrolledAsRoleInCourse(Role role);
 

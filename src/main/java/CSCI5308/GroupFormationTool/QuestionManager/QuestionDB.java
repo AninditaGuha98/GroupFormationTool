@@ -116,4 +116,30 @@ public class QuestionDB implements IQuestionsPersistence {
             return true;
         }
     }
+
+    public List<InterfaceQuestionModel> loadAllQuestionsBycourseID(String courseID) {
+        List<InterfaceQuestionModel> questions = new ArrayList<>();
+        CallStoredProcedure proc = null;
+        try {
+            proc = new CallStoredProcedure("spLoadCourseQuestions(?)");
+            proc.setParameter(1, "3");
+            ResultSet results = proc.executeWithResults();
+            if (null != results) {
+                while (results.next()) {
+                	InterfaceQuestionModel interfaceQuestionModel = new QuestionModel();
+                    interfaceQuestionModel.setQuestionText(results.getString(1));
+                    interfaceQuestionModel.setTypeSelect(results.getString(2));
+                    questions.add(interfaceQuestionModel);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if (null != proc) {
+                proc.cleanup();
+            }
+        }
+        return questions;
+    }
+
 }

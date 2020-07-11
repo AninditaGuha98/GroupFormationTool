@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 
-public class User {
+public class User implements InterfaceUser{
 
 	private static final String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 

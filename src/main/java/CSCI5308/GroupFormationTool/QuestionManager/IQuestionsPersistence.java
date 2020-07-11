@@ -11,4 +11,6 @@ public interface IQuestionsPersistence {
     boolean insertResponses(InterfaceResponses response);
 
     boolean deleteQuestionsFromDB(long userId, String[] selectedQuestions);
+    
+    List<InterfaceQuestionModel> loadAllQuestionsBycourseID(String courseID);
 }

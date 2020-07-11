@@ -12,7 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
+import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
+import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
+import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
 
 @Controller
 public class InstructorAdminController {
@@ -35,6 +39,14 @@ public class InstructorAdminController {
 		} else {
 			return "logout";
 		}
+	}
+	
+	@GetMapping("/course/makegroups")
+	public String assignGroups(Model model, @RequestParam(name = ID) long courseID) {
+	
+		IQuestionsPersistence questionDB = SystemConfig.instance().getQuestionDB();		
+		model.addAttribute("questions", questionDB.loadAllQuestionsBycourseID(String.valueOf(courseID)));
+		return "QuestionManager/makesurvey";
 	}
 
 	@GetMapping("/course/instructoradminresults")
@@ -68,7 +80,7 @@ public class InstructorAdminController {
 				|| interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.TA)) {
 			ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
 					.getCourseUserRelationshipDB();
-			List<User> allUsersNotCurrentlyTA = courseUserRelationshipDB.findAllUsersWithoutCourseRole(Role.TA,
+			List<InterfaceUser> allUsersNotCurrentlyTA = courseUserRelationshipDB.findAllUsersWithoutCourseRole(Role.TA,
 					courseID);
 			model.addAttribute("users", allUsersNotCurrentlyTA);
 			return "course/enrollta";
@@ -100,7 +112,7 @@ public class InstructorAdminController {
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
 				.getCourseUserRelationshipDB();
 		while (iter.hasNext()) {
-			User u = new User();
+			InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
 			u.setId(iter.next().longValue());
 			courseUserRelationshipDB.enrollUser(interfaceCourse, u, Role.TA);
 		}
