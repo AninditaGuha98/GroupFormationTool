@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.MaxLengthValidation;
-
 public class BCryptPasswordEncryption implements IPasswordEncryption {
 	private static final Logger logger = LoggerFactory.getLogger(BCryptPasswordEncryption.class);
     private static final String BCRYPT_ENCRYPTION_LOG = "BcryptEncryption";

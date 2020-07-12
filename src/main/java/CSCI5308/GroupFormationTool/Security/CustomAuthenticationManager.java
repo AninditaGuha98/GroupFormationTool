@@ -9,11 +9,9 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
@@ -21,7 +19,7 @@ import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public class CustomAuthenticationManager implements AuthenticationManager {
 	private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationManager.class);
-    private static final String CUSTOM_AUTH_MANAGER = "AuthenticationManager";
+    private static final String CUSTOME_AUTH_MANAGER_LOG = "AuthenticationManager";
     
 	private static final String ADMIN_BANNER_ID = "B-000000";
 	
@@ -31,18 +29,20 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
 		// The admin password is not encrypted because it is hardcoded in the DB.
 		if (password.equals(u.getPassword())) {
+			logger.warn("user={}, action={}, status={}",
+					u.getBanner(), "Check Admin User Credentials", "Success");
 			// Grant ADMIN rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
-//			rights.add(new SimpleGrantedAuthority("ADMIN"));
 			rights.add(secFactory.createGrantedAuthority("ADMIN"));
 			// Return valid authentication token.
-//			UsernamePasswordAuthenticationToken token;
-//			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
-//					authentication.getCredentials(), rights);
 			AbstractAuthenticationToken token = secFactory.createAuthenticationToken(
-					authentication.getPrincipal(), authentication.getCredentials(), rights); 
+					authentication.getPrincipal(), authentication.getCredentials(), rights);
+			logger.info("user={}, action={}, status={}",
+					u.getBanner(), "Create Admin Authentication Token", "Success");
 			return token;
 		} else {
+			logger.warn("user={}, action={}, status={}",
+					u.getBanner(), "Check Admin User Credentials", "Fail");
 			throw new BadCredentialsException("1000");
 		}
 	}
@@ -53,18 +53,20 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 		IPasswordEncryption passwordEncryption = secFactory.createPassworEncryption();
 		
 		if (passwordEncryption.matches(password, u.getPassword())) {
+			logger.warn("user={}, action={}, status={}",
+					u.getBanner(), "Check User Credentials", "Success");
 			// Grant USER rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
-//			rights.add(new SimpleGrantedAuthority("USER"));
 			rights.add(secFactory.createGrantedAuthority("USER"));
 			// Return valid authentication token.
-//			UsernamePasswordAuthenticationToken token;
-//			token = new UsernamePasswordAuthenticationToken(authentication.getPrincipal(),
-//					authentication.getCredentials(), rights);
 			AbstractAuthenticationToken token = secFactory.createAuthenticationToken(
-					authentication.getPrincipal(), authentication.getCredentials(), rights); 
+					authentication.getPrincipal(), authentication.getCredentials(), rights);
+			logger.info("user={}, action={}, status={}",
+					u.getBanner(), "Create User Authentication Token", "Success");
 			return token;
 		} else {
+			logger.warn("user={}, action={}, status={}",
+					u.getBanner(), "Check User Credentials", "Fail");
 			throw new BadCredentialsException("1000");
 		}
 	}
@@ -75,12 +77,19 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 		String password = authentication.getCredentials().toString();
 		IUserPersistence userDB = SystemConfig.instance().getUserDB();
 		User u;
+		
 		try {
 			u = new User(bannerID, userDB);
 		} catch (Exception e) {
+			logger.warn("user={}, action={}, status={}, message={}",
+					CUSTOME_AUTH_MANAGER_LOG, "User Authentication", "Fail", e.getMessage());
 			throw new AuthenticationServiceException("1000");
 		}
+		logger.warn("user={}, action={}, status={}",
+				u.getBanner(), "User Authentication", "Starting...");
 		if (u.isValidUser()) {
+			logger.warn("user={}, action={}, status={}",
+					u.getBanner(), "Check User Validity", "Success");
 			if (bannerID.toUpperCase().equals(ADMIN_BANNER_ID)) {
 				return checkAdmin(password, u, authentication);
 			} else {
@@ -88,6 +97,8 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 			}
 		} else {
 			// No user with this banner id found.
+			logger.warn("user={}, action={}, status={}",
+					u.getBanner(), "Check User Validity", "Fail");
 			throw new BadCredentialsException("1001");
 		}
 	}

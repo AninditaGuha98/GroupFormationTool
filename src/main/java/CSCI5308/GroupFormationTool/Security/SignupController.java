@@ -3,6 +3,8 @@ package CSCI5308.GroupFormationTool.Security;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,9 @@ import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValid
 
 @Controller
 public class SignupController {
+	private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
+    private static final String SIGNUP_LOG = "SignUp";
+    
 	private final String USERNAME = "username";
 	private final String PASSWORD = "password";
 	private final String PASSWORD_CONFIRMATION = "passwordConfirmation";
@@ -65,8 +70,12 @@ public class SignupController {
 		}
 		ModelAndView m;
 		if (success) {
+			logger.warn("user={}, action={}, status={}",
+					SIGNUP_LOG, "Sign Up", "Success");
 			m = new ModelAndView("login");
 		} else {
+			logger.warn("user={}, action={}, status={}",
+					SIGNUP_LOG, "Sign Up", "Fail");
 			m = new ModelAndView("signup");
 			failureMessages.add("Invalid data, please check your values.");
 			m.addObject("errorMessages", failureMessages);
