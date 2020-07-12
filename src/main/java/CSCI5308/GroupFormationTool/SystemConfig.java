@@ -18,37 +18,38 @@ import CSCI5308.GroupFormationTool.QuestionManager.DeleteQuestionsRepo;
 import CSCI5308.GroupFormationTool.QuestionManager.ListQuestionsRepo;
 import CSCI5308.GroupFormationTool.QuestionManager.QuestionDB;
 import CSCI5308.GroupFormationTool.QuestionManager.SortingDB;
-import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
-import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
+import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
 
 
 public class SystemConfig {
 	private static SystemConfig uniqueInstance = null;
-	private IPasswordEncryption passwordEncryption;
 	private IUserPersistence userDB;
 	private IDatabaseConfiguration databaseConfiguration;
 	private ICoursePersistence courseDB;
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
-	private IPasswordValidationConfiguration passwordValidationConfiguration;
 	private IQuestionsPersistence questionDB;
 	private IQuestionSorters sortersDB;
 	private InterfaceListQuestionsRepo listQuestionsRepo;
 	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
+	private IPasswordValidationFactory passwordValidationFactory;
+	private ISecurityFactory securityFactory;
+
 
 	private SystemConfig() {
-		passwordEncryption = new BCryptPasswordEncryption();
 		userDB = new UserDB();
 		databaseConfiguration = new DefaultDatabaseConfiguration();
 		//courseDB = new CourseDB();
 		courseDB=ObjectFactory.createDBObject(new CourseDBFactory());
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
-		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
 		questionDB = new QuestionDB();
 		sortersDB = new SortingDB();
 		listQuestionsRepo = new ListQuestionsRepo();
 		deleteQuestionsRepo = new DeleteQuestionsRepo();
+		passwordValidationFactory = new DefaultPasswordValidationFactory();
+		securityFactory = new DefaultSecurityFactory();
 	}
 
 	public static SystemConfig instance() {
@@ -72,14 +73,6 @@ public class SystemConfig {
 
 	public void setDeleteQuestionsRepo(InterfaceDeleteQuestionsRepo deleteQuestionsRepo) {
 		this.deleteQuestionsRepo = deleteQuestionsRepo;
-	}
-
-	public IPasswordEncryption getPasswordEncryption() {
-		return passwordEncryption;
-	}
-
-	public void setPasswordEncryption(IPasswordEncryption passwordEncryption) {
-		this.passwordEncryption = passwordEncryption;
 	}
 
 	public IUserPersistence getUserDB() {
@@ -114,14 +107,6 @@ public class SystemConfig {
 		return courseUserRelationshipDB;
 	}
 
-	public IPasswordValidationConfiguration getPasswordValidationConfiguration() {
-		return passwordValidationConfiguration;
-	}
-
-	public void setPasswordValidationConfiguration(IPasswordValidationConfiguration passwordValidationConfiguration) {
-		this.passwordValidationConfiguration = passwordValidationConfiguration;
-	}
-
 	public IQuestionsPersistence getQuestionDB() {
 		return questionDB;
 	}
@@ -138,4 +123,19 @@ public class SystemConfig {
 		this.sortersDB = sortersDB;
 	}
 
+	public IPasswordValidationFactory getPasswordValidationFactory() {
+		return passwordValidationFactory;
+	}
+
+	public void setPasswordValidationFactory(IPasswordValidationFactory passwordValidationFactory) {
+		this.passwordValidationFactory = passwordValidationFactory;
+	}
+
+	public ISecurityFactory getSecurityFactory() {
+		return securityFactory;
+	}
+
+	public void setSecurityFactory(ISecurityFactory securityFactory) {
+		this.securityFactory = securityFactory;
+	}
 }
