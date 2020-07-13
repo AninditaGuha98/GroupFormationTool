@@ -20,6 +20,7 @@ import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.Survey.*;
 
 
 public class SystemConfig {
@@ -34,6 +35,17 @@ public class SystemConfig {
 	private IQuestionSorters sortersDB;
 	private InterfaceListQuestionsRepo listQuestionsRepo;
 	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
+	private ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
+//	private IUpdateQuestionsListService updateQuestionsListService;
+	private IQueryQuestionsRepo queryQuestionsRepo;
+
+	public ICreateSurveyQuestionsModel getiCreateSurveyQuestionsModel() {
+		return iCreateSurveyQuestionsModel;
+	}
+
+	public void setiCreateSurveyQuestionsModel(ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel) {
+		this.iCreateSurveyQuestionsModel = iCreateSurveyQuestionsModel;
+	}
 
 	private SystemConfig() {
 		passwordEncryption = new BCryptPasswordEncryption();
@@ -46,7 +58,26 @@ public class SystemConfig {
 		sortersDB = new SortingDB();
 		listQuestionsRepo = new ListQuestionsRepo();
 		deleteQuestionsRepo = new DeleteQuestionsRepo();
+		iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+//		updateQuestionsListService=new UpdateQuestionsListService();
+		queryQuestionsRepo=new QueryQuestionsRepo();
 	}
+
+	public IQueryQuestionsRepo getQueryQuestionsRepo() {
+		return queryQuestionsRepo;
+	}
+
+	public void setQueryQuestionsRepo(IQueryQuestionsRepo queryQuestionsRepo) {
+		this.queryQuestionsRepo = queryQuestionsRepo;
+	}
+
+//	public IUpdateQuestionsListService getUpdateQuestionsListService() {
+//		return updateQuestionsListService;
+//	}
+//
+//	public void setUpdateQuestionsListService(IUpdateQuestionsListService updateQuestionsListService) {
+//		this.updateQuestionsListService = updateQuestionsListService;
+//	}
 
 	public static SystemConfig instance() {
 		if (null == uniqueInstance) {

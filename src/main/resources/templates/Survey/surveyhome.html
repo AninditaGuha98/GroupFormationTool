@@ -29,6 +29,9 @@
             text-decoration: none;
             list-style-type: none;
         }
+        .headings{
+            padding: 0px;
+        }
         .types{
             margin-top: 56px;
             margin-left: 50px;
@@ -50,37 +53,57 @@
             <div class="radio">
 
                 <table>
-                    <tr>
-
-                        <td>
+                    <tr> <td>
                                <ul>
-                                   <li th:each=" que: ${questionsList}">
+                                   <li th:each=" que: ${questionsList}" class="headings">
                                        <input type="radio" name="selectedQue" th:value="${que}" />
                                        <label th:text="${que}"></label>
                                </ul>
-
                         </td>
-
                         <td >
                             <ul>
                                 <li th:each=" type: ${typeList}" class="types">
                                     <label th:text="${type}"></label>
                             </ul>
-
                         </td>
                     </tr>
                 </table>
 
             </div>
             <div class="Button">
-                <button type="submit">Add Question</button>
+                <button type="submit">Add Question to Survey</button>
             </div>
         </form>
 
+        <hr>
 <!--        For displaying the questions selected and  delete them-->
-        <form>
-            <div></div>
-        </form>
+
+        <div th:if="${flag}">
+            <form>
+                <div>
+                    <table>
+                        <tr> <td>
+                            <ul>
+                                <li th:each=" selectQue: ${selectedQuestions}" class="headings">
+                                    <input type="radio" name="removeQue" th:value="${selectQue}" />
+                                    <label th:text="${selectQue}"></label>
+                            </ul>
+                        </td>
+                            <td >
+                                <ul>
+                                    <li th:each=" selectedType: ${selectedType}" class="types">
+                                        <label th:text="${selectedType}"></label>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="Button">
+                    <button type="submit">Remove Question From Survey</button>
+                </div>
+
+            </form>
+        </div>
 <!--        Saving the questions or publish them -->
 
 

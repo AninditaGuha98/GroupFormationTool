@@ -17,4 +17,8 @@ public interface ICreateSurveyQuestionsModel {
     String[] getSelectedQuestions();
 
     void setSelectedQuestions(String[] selectedQuestions);
+
+    String[] getSelectedTypes();
+
+    void setSelectedTypes(String[] selectedTypes);
 }

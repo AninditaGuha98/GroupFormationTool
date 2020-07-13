@@ -6,6 +6,16 @@ public class CreateSurveyQuestionsModel implements ICreateSurveyQuestionsModel {
     private String[] questionType;
     private Integer[] questionID;
     private String [] selectedQuestions;
+    private String[] selectedTypes;
+
+    @Override
+    public String[] getSelectedTypes() {
+        return selectedTypes;
+    }
+
+    public void setSelectedTypes(String[] selectedTypes) {
+        this.selectedTypes = selectedTypes;
+    }
 
     @Override
     public String[] getQuestionType() {
