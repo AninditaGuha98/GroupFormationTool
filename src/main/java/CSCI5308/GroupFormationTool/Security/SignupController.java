@@ -3,6 +3,8 @@ package CSCI5308.GroupFormationTool.Security;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.User;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationManager;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationManager;
 
 @Controller
 public class SignupController {
+	private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
+    private static final String SIGNUP_LOG = "SignUp";
+    
 	private final String USERNAME = "username";
 	private final String PASSWORD = "password";
 	private final String PASSWORD_CONFIRMATION = "passwordConfirmation";
@@ -39,8 +44,8 @@ public class SignupController {
 			@RequestParam(name = FIRST_NAME) String firstName, @RequestParam(name = LAST_NAME) String lastName,
 			@RequestParam(name = EMAIL) String email) {
 		boolean success = false;
-		IPasswordValidationConfiguration config = SystemConfig.instance().getPasswordValidationConfiguration();
-		IPasswordValidationManager passwordValidationManager = new DefaultPasswordValidationManager();
+		IPasswordValidationFactory pvFactory = SystemConfig.instance().getPasswordValidationFactory();
+		IPasswordValidationManager passwordValidationManager = pvFactory.createPasswordValidationManager();
 		List<String> failureMessages = new ArrayList<>();
 		
 		if (User.isBannerIDValid(bannerID) &&
@@ -49,7 +54,7 @@ public class SignupController {
 			 User.isLastNameValid(lastName) &&
 			 password.equals(passwordConfirm))
 		{
-			if (passwordValidationManager.isValidPassword(password, config)) {
+			if (passwordValidationManager.isValidPassword(password)) {
 				User u = new User();
 				u.setBannerID(bannerID);
 				u.setPassword(password);
@@ -57,16 +62,20 @@ public class SignupController {
 				u.setLastName(lastName);
 				u.setEmail(email);
 				IUserPersistence userDB = SystemConfig.instance().getUserDB();
-				IPasswordEncryption passwordEncryption = SystemConfig.instance().getPasswordEncryption();
+				IPasswordEncryption passwordEncryption = SystemConfig.instance().getSecurityFactory().createPassworEncryption();
 				success = u.createUser(userDB, passwordEncryption, null);
 			} else {
-				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password, config));
+				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password));
 			}
 		}
 		ModelAndView m;
 		if (success) {
+			logger.warn("user={}, action={}, status={}",
+					SIGNUP_LOG, "Sign Up", "Success");
 			m = new ModelAndView("login");
 		} else {
+			logger.warn("user={}, action={}, status={}",
+					SIGNUP_LOG, "Sign Up", "Fail");
 			m = new ModelAndView("signup");
 			failureMessages.add("Invalid data, please check your values.");
 			m.addObject("errorMessages", failureMessages);

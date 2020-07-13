@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.SystemConfig;
 
 public class SortingDB implements IQuestionSorters {
-    IQuestionsPersistence interfaceQuestionDB = new QuestionDB();
+    IQuestionsPersistence interfaceQuestionDB = QManagerDbFactory.FactorySingleton().createQuestionDB();
 
     public List<InterfaceQuestionModel> sort(String bannerID, InterfaceSorters interfaceSorters) {
         List<InterfaceQuestionModel> questions = new ArrayList<>();
@@ -22,7 +23,7 @@ public class SortingDB implements IQuestionSorters {
             if (null != results) {
                 while (results.next()) {
                     String title = results.getString(1);
-                    InterfaceQuestionModel interfaceQuestionModel = new QuestionModel();
+                    InterfaceQuestionModel interfaceQuestionModel = QManagerModelFactory.FactorySingleton().createQuestionModel();
                     interfaceQuestionModel.setQuestionTitle(title);
                     questions.add(interfaceQuestionModel);
                 }

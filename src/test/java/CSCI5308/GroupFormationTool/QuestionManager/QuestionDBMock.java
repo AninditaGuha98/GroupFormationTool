@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 public class QuestionDBMock {
 	IQuestionsPersistence questionDBMock = mock(QuestionDB.class);
+	IQManagerModelFactory modelFactory = QManagerModelFactory.FactorySingleton();
 	InterfaceQuestionModel interfaceQuestionModelMock;
 	InterfaceResponses responseMock;
 	HashMap<String, String> hashMapObj = new HashMap<String, String>();
@@ -22,13 +23,13 @@ public class QuestionDBMock {
 	String[] selectedQuestions = {"Rate your java skills"};
 
 	QuestionDBMock() {
-		interfaceQuestionModelMock = new QuestionModel();
+		interfaceQuestionModelMock = modelFactory.createQuestionModel();
 		interfaceQuestionModelMock.setUserID((long) 1);
 		interfaceQuestionModelMock.setQuestionTitle("General");
 		interfaceQuestionModelMock.setQuestionText("How are your leadership skills");
 		hashMapObj.put("mcq1", "Multiple Choice Question, Choose One");
 		interfaceQuestionModelMock.setQuestionTypeList(hashMapObj);
-		responseMock = new Responses();
+		responseMock = modelFactory.createResponses();
 		responseMock.setResponse_txt("Beginner");
 		responseMock.setScore_txt("1");
 

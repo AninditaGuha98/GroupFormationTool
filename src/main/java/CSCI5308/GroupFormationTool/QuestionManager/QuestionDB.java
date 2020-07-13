@@ -17,6 +17,7 @@ import java.util.List;
 
 public class QuestionDB implements IQuestionsPersistence {
     private Long lastInsertedQuestion;
+    IQManagerModelFactory questionFactory = QManagerModelFactory.FactorySingleton();
 
     public List<InterfaceQuestionModel> loadAllQuestionsByID(String bannerID) {
         List<InterfaceQuestionModel> questions = new ArrayList<>();
@@ -28,7 +29,7 @@ public class QuestionDB implements IQuestionsPersistence {
             if (null != results) {
                 while (results.next()) {
                     String title = results.getString(1);
-                    InterfaceQuestionModel interfaceQuestionModel = new QuestionModel();
+                    InterfaceQuestionModel interfaceQuestionModel = questionFactory.createQuestionModel();
                     interfaceQuestionModel.setQuestionTitle(title);
                     questions.add(interfaceQuestionModel);
                 }
@@ -87,7 +88,6 @@ public class QuestionDB implements IQuestionsPersistence {
             }
         }
         return true;
-
     }
 
     public boolean deleteQuestionsFromDB(long userId, String[] selectedQuestions) {
@@ -128,7 +128,7 @@ public class QuestionDB implements IQuestionsPersistence {
             ResultSet results = proc.executeWithResults();
             if (null != results) {
                 while (results.next()) {
-                	InterfaceQuestionModel interfaceQuestionModel = new QuestionModel();
+                	InterfaceQuestionModel interfaceQuestionModel = questionFactory.createQuestionModel();
                     interfaceQuestionModel.setQuestionText(results.getString(1));
                     interfaceQuestionModel.setTypeSelect(results.getString(2));
                     questions.add(interfaceQuestionModel);

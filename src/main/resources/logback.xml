@@ -8,6 +8,10 @@
             </Pattern>
         </layout>
     </appender>
+    
+    <logger name="CSCI5308.GroupFormationTool.PasswordValidationPolicy.MinLengthValidation" level="info" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
 
     <root level="warn">
         <appender-ref ref="CONSOLE"/>

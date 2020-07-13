@@ -1,81 +1,70 @@
 package CSCI5308.GroupFormationTool.PasswordValidationPolicy;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-// Temporary solution until we refactor with an abstract factory
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import CSCI5308.GroupFormationTool.SystemConfig;
+
 public class DefaultPasswordValidationManager implements IPasswordValidationManager {
 
-	private static final String MIN_LENGTH =
-			"CSCI5308.GroupFormationTool.PasswordValidationPolicy.MinLengthValidation";
-	private static final String MAX_LENGTH = 
-			"CSCI5308.GroupFormationTool.PasswordValidationPolicy.MaxLengthValidation";
-	private static final String MIN_LOWERCASE = 
-			"CSCI5308.GroupFormationTool.PasswordValidationPolicy.MinLowercaseValidation";
-	private static final String MIN_UPPERCASE = 
-			"CSCI5308.GroupFormationTool.PasswordValidationPolicy.MinUppercaseValidation";
-	private static final String MIN_NON_ALPHANUM = 
-			"CSCI5308.GroupFormationTool.PasswordValidationPolicy.MinNonAlphaNumValidation";
-	private static final String FORBIDDEN_CHARSET = 
-			"CSCI5308.GroupFormationTool.PasswordValidationPolicy.ForbiddenCharSetValidation";
-	private static final String HISTORY_CONSTRAINT = 
-			"CSCI5308.GroupFormationTool.PasswordValidationPolicy.HistoryConstraintValidation";
-
-	private static List<String> moduleNameList = Arrays.asList(
-			MIN_LENGTH, MAX_LENGTH, MIN_LOWERCASE, MIN_UPPERCASE, MIN_NON_ALPHANUM, FORBIDDEN_CHARSET);
-	 
+	private static final Logger logger = LoggerFactory.getLogger(DefaultPasswordValidationManager.class); 
+	private IPasswordValidationFactory factory;
 	private List<IPasswordValidation> moduleList;
-	private IPasswordHistoryPersistence passwordHistory;
-
+	
 	public DefaultPasswordValidationManager() {
+		factory = SystemConfig.instance().getPasswordValidationFactory();
 		moduleList = new ArrayList<IPasswordValidation>();
-		passwordHistory = new PasswordHistoryDB();
-
-		try {
-			for (String validationName : moduleNameList) {
-				Class<?> c = Class.forName(validationName);
-				Constructor<?> constructor = c.getConstructor();
-				IPasswordValidation passwordValidation = (IPasswordValidation) constructor.newInstance();
-				moduleList.add(passwordValidation);
-			}
-		} catch (Exception e) {
-			// Log the exception
-			e.printStackTrace();
-		}
-
-		try {
-			Class<?> c = Class.forName(HISTORY_CONSTRAINT);
-			Constructor<?> constructor = c.getConstructor(IPasswordHistoryPersistence.class);
-			IPasswordValidation passwordValidation = 
-					(IPasswordValidation) constructor.newInstance(passwordHistory);
-			moduleList.add(passwordValidation);
-		} catch (Exception e) {
-			// Log the exception
-			e.printStackTrace();
-		}
+		
+		logger.info("password={}, action={}, status={}",
+				"ValidationManager", "Add Policies", "Starting...");
+		moduleList.add(factory.createMinLengthValidation());
+		moduleList.add(factory.createMaxLenghtValidation());
+		moduleList.add(factory.createMinLowerCaseValidation());
+		moduleList.add(factory.createMinUpperCaseValidation());
+		moduleList.add(factory.createMinNonAlphaNumValidation());
+		moduleList.add(factory.createForbiddenCharSetValidation());
+		moduleList.add(factory.createHistoryConstraintValidation());
+		logger.info("password={}, action={}, status={}",
+				"ValidationManager", "Add Policies", "Done");
 	}
 
 	@Override
-	public boolean isValidPassword(String password, IPasswordValidationConfiguration configuration) {
+	public boolean isValidPassword(String password) {
+		IPasswordValidationConfiguration configuration = factory.createPasswordValidationConfig();
+		
+		logger.info("password={}, action={}, status={}",
+				"ValidationManager", "Check Password Validity", "Starting...");
 		for (IPasswordValidation validationModule: moduleList) {
-			if (!validationModule.isValidPassword(password, configuration))
+			if (validationModule.isValidPassword(password, configuration)) {
+			} else {
+				logger.info("password={}, action={}, status={}",
+						"ValidationManager", "Check Password Validity", "Failed");
 				return false;
+			}
 		}
+		logger.info("password={}, action={}, status={}",
+				"ValidationManager", "Check Password Validity", "Success");
 		return true;
 	}
 
 	@Override
-	public List<String> getPasswordValidationFailures(
-			String password, IPasswordValidationConfiguration configuration) {
+	public List<String> getPasswordValidationFailures(String password) {
+		IPasswordValidationConfiguration configuration = factory.createPasswordValidationConfig();
 		List<String> failureMessages = new ArrayList<String>();
 
+		logger.info("password={}, action={}, status={}",
+				"ValidationManager", "Get Validity Messages", "Starting...");
 		for (IPasswordValidation validationModule : moduleList) {
-			if (!validationModule.isValidPassword(password, configuration))
+			if (validationModule.isValidPassword(password, configuration)) {
+			} else {
 				failureMessages.add(validationModule.getValidationFailureMessage(password, configuration));
+			}
 		}
-
+		logger.info("password={}, action={}, status={}",
+				"ValidationManager", "Get Validity Messages", "Done");
 		return failureMessages;
 	}
 }

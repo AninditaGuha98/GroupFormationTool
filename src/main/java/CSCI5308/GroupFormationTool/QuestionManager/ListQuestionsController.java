@@ -16,9 +16,10 @@ import CSCI5308.GroupFormationTool.SystemConfig;
 
 @Controller
 public class ListQuestionsController {
-    IQuestionsPersistence interfaceQuestionDB = SystemConfig.instance().getQuestionDB();
-    IQuestionSorters interfaceSortersDB = SystemConfig.instance().getSortersDB();
-    InterfaceSorters interfaceSorters = new Sorters();
+    IQManagerDbFactory dbFactory = QManagerDbFactory.FactorySingleton();
+    IQuestionsPersistence interfaceQuestionDB = dbFactory.createQuestionDB();
+    IQuestionSorters interfaceSortersDB = dbFactory.createSortingDB();
+    InterfaceSorters interfaceSorters = QManagerModelFactory.FactorySingleton().createSorters();
     Map<String, String> sortingFields = interfaceSorters.sortingFieldList();
     Map<String, String> sortingOrders = interfaceSorters.sortingOrderList();
     String bannerID;
@@ -38,8 +39,8 @@ public class ListQuestionsController {
         this.interfaceSorters = sorters;
         setModelForSorting(model);
         model.addAttribute("questions", interfaceSortersDB.sort(bannerID, interfaceSorters));
-        model.addAttribute("message", "Table is sorted by " + sortingFields.get(interfaceSorters.getSortField()) + " in "
-                + sortingOrders.get(interfaceSorters.getSortOrder()) + " Order");
+        model.addAttribute("message", "Table is sorted by " + sortingFields.get(sorters.getSortField()) + " in "
+                + sortingOrders.get(sorters.getSortOrder()) + " Order");
         return new ModelAndView("QuestionManager/listquestions", model);
     }
 

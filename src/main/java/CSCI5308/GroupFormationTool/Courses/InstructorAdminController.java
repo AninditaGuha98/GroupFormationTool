@@ -3,6 +3,8 @@ package CSCI5308.GroupFormationTool.Courses;
 import java.util.Iterator;
 import java.util.List;
 
+import CSCI5308.GroupFormationTool.QuestionManager.QManagerDbFactory;
+import CSCI5308.GroupFormationTool.QuestionManager.QManagerModelFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +46,7 @@ public class InstructorAdminController {
 	@GetMapping("/course/makegroups")
 	public String assignGroups(Model model, @RequestParam(name = ID) long courseID) {
 	
-		IQuestionsPersistence questionDB = SystemConfig.instance().getQuestionDB();		
+		IQuestionsPersistence questionDB = QManagerDbFactory.FactorySingleton().createQuestionDB();
 		model.addAttribute("questions", questionDB.loadAllQuestionsBycourseID(String.valueOf(courseID)));
 		return "QuestionManager/makesurvey";
 	}

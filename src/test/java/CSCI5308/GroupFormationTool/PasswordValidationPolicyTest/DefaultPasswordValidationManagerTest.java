@@ -6,8 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationManager;
+import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationManager;
 
 class DefaultPasswordValidationManagerTest {
@@ -22,51 +23,53 @@ class DefaultPasswordValidationManagerTest {
 	
 	@Test
 	void isPasswordValidTest() {
-		IPasswordValidationConfiguration config = new PasswordValidationConfigurationMock();
-		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
+		IPasswordValidationFactory factory = new PasswordValidtionFactoryMock();
+		SystemConfig.instance().setPasswordValidationFactory(factory);
+		IPasswordValidationManager passwordPolicyManager = factory.createPasswordValidationManager();
 		
 		// No lowercase & uppercase & special chars
-		assertFalse(passwordPolicyManager.isValidPassword("12345678", config)); 
+		assertFalse(passwordPolicyManager.isValidPassword("12345678")); 
 		// Less than 8 chars & No lowercase & uppercase & special chars 
-		assertFalse(passwordPolicyManager.isValidPassword("1234567", config));
+		assertFalse(passwordPolicyManager.isValidPassword("1234567"));
 		// No uppercase & special chars
-		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijkl", config));
+		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijkl"));
 		// More than 12 chars & No uppercase & special chars
-		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijklm", config)); 
+		assertFalse(passwordPolicyManager.isValidPassword("abcdefghijklm")); 
 		// Less than 2 lowercase & no special chars
-		assertFalse(passwordPolicyManager.isValidPassword("aBCDEFGHIJKL", config));
+		assertFalse(passwordPolicyManager.isValidPassword("aBCDEFGHIJKL"));
 		// Less than 2 uppercase & no special chars
-		assertFalse(passwordPolicyManager.isValidPassword("Abcdefghijkl", config));
+		assertFalse(passwordPolicyManager.isValidPassword("Abcdefghijkl"));
 		// Less than 2 special chars
-		assertFalse(passwordPolicyManager.isValidPassword("abCDE12345!", config));
+		assertFalse(passwordPolicyManager.isValidPassword("abCDE12345!"));
 		// has & as forbidden chars
-		assertFalse(passwordPolicyManager.isValidPassword("&abCDE12345!", config));
+		assertFalse(passwordPolicyManager.isValidPassword("&abCDE12345!"));
 		// has \ and " as forbidden chars
-		assertFalse(passwordPolicyManager.isValidPassword("\"abCD1}234\\", config));
+		assertFalse(passwordPolicyManager.isValidPassword("\"abCD1}234\\"));
 		// has ' as forbidden chars
-		assertFalse(passwordPolicyManager.isValidPassword("abCD%EFG\'HI", config));
+		assertFalse(passwordPolicyManager.isValidPassword("abCD%EFG\'HI"));
 		// Accepted
-		assertTrue(passwordPolicyManager.isValidPassword("abCD%EFGHI`", config));
+		assertTrue(passwordPolicyManager.isValidPassword("abCD%EFGHI`"));
 		
-		assertFalse(passwordPolicyManager.isValidPassword("", config));
-		assertFalse(passwordPolicyManager.isValidPassword(null, config));
+		assertFalse(passwordPolicyManager.isValidPassword(""));
+		assertFalse(passwordPolicyManager.isValidPassword(null));
 	}
 	
 	@Test
 	void getPasswordValidationFailures() {
-		IPasswordValidationConfiguration config = new PasswordValidationConfigurationMock();
-		IPasswordValidationManager passwordPolicyManager = new DefaultPasswordValidationManager();
+		IPasswordValidationFactory factory = new PasswordValidtionFactoryMock();
+		SystemConfig.instance().setPasswordValidationFactory(factory);
+		IPasswordValidationManager passwordPolicyManager = factory.createPasswordValidationManager();
 		List<String> outputList;
 		String output = "";
 		
-		outputList = passwordPolicyManager.getPasswordValidationFailures("MEssi!@#4", config);
+		outputList = passwordPolicyManager.getPasswordValidationFailures("MEssi!@#4");
 		for( String str: outputList) {
 			output += str;
 		}
 		assertEquals(VALID_OUTPUT_DEFCONFIG, output);
 		
 		output = "";
-		outputList = passwordPolicyManager.getPasswordValidationFailures("aC%123\\", config);
+		outputList = passwordPolicyManager.getPasswordValidationFailures("aC%123\\");
 		for( String str: outputList) {
 			output+=str;
 		}
