@@ -30,10 +30,6 @@ public class SystemConfig {
 	private IDatabaseConfiguration databaseConfiguration;
 	private ICoursePersistence courseDB;
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
-	private IQuestionsPersistence questionDB;
-	private IQuestionSorters sortersDB;
-	private InterfaceListQuestionsRepo listQuestionsRepo;
-	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
 	private IPasswordValidationFactory passwordValidationFactory;
 	private ISecurityFactory securityFactory;
 
@@ -41,13 +37,8 @@ public class SystemConfig {
 	private SystemConfig() {
 		userDB = new UserDB();
 		databaseConfiguration = new DefaultDatabaseConfiguration();
-		//courseDB = new CourseDB();
 		courseDB=ObjectFactory.createDBObject(new CourseDBFactory());
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
-		questionDB = new QuestionDB();
-		sortersDB = new SortingDB();
-		listQuestionsRepo = new ListQuestionsRepo();
-		deleteQuestionsRepo = new DeleteQuestionsRepo();
 		passwordValidationFactory = new DefaultPasswordValidationFactory();
 		securityFactory = new DefaultSecurityFactory();
 	}
@@ -57,22 +48,6 @@ public class SystemConfig {
 			uniqueInstance = new SystemConfig();
 		}
 		return uniqueInstance;
-	}
-
-	public InterfaceListQuestionsRepo getListQuestionsRepo() {
-		return listQuestionsRepo;
-	}
-
-	public void setListQuestionsRepo(InterfaceListQuestionsRepo listQuestionsRepo) {
-		this.listQuestionsRepo = listQuestionsRepo;
-	}
-
-	public InterfaceDeleteQuestionsRepo getDeleteQuestionsRepo() {
-		return deleteQuestionsRepo;
-	}
-
-	public void setDeleteQuestionsRepo(InterfaceDeleteQuestionsRepo deleteQuestionsRepo) {
-		this.deleteQuestionsRepo = deleteQuestionsRepo;
 	}
 
 	public IUserPersistence getUserDB() {
@@ -105,22 +80,6 @@ public class SystemConfig {
 
 	public ICourseUserRelationshipPersistence getCourseUserRelationshipDB() {
 		return courseUserRelationshipDB;
-	}
-
-	public IQuestionsPersistence getQuestionDB() {
-		return questionDB;
-	}
-
-	public void setQuestionDB(IQuestionsPersistence questionDB) {
-		this.questionDB = questionDB;
-	}
-
-	public IQuestionSorters getSortersDB() {
-		return sortersDB;
-	}
-
-	public void setSortersDB(IQuestionSorters sortersDB) {
-		this.sortersDB = sortersDB;
 	}
 
 	public IPasswordValidationFactory getPasswordValidationFactory() {
