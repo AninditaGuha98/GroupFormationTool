@@ -10,6 +10,8 @@ public class QuestionModel implements InterfaceQuestionModel {
     private String questionTitle;
     private String questionText;
     private String responseText;
+    private long questionID;
+    private String questionType;
     private int responseScore;
     private Long userID;
 
@@ -70,6 +72,22 @@ public class QuestionModel implements InterfaceQuestionModel {
     @Override
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
+    }
+
+    public long getQuestionID() {
+        return questionID;
+    }
+
+    public void setQuestionID(long questionID) {
+        this.questionID = questionID;
+    }
+
+    public String getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
     }
 
     @Override

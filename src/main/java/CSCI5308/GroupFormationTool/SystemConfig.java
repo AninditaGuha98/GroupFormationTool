@@ -22,7 +22,12 @@ import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
 import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
-
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyResponseDB;
+import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyresult;
+import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
+import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResultDB;
 
 public class SystemConfig {
 	private static SystemConfig uniqueInstance = null;
@@ -32,7 +37,13 @@ public class SystemConfig {
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
 	private IPasswordValidationFactory passwordValidationFactory;
 	private ISecurityFactory securityFactory;
-
+	private IPasswordValidationConfiguration passwordValidationConfiguration;
+	private IQuestionsPersistence questionDB;
+	private IQuestionSorters sortersDB;
+	private InterfaceListQuestionsRepo listQuestionsRepo;
+	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
+	private ISurveyResponseDB surveyResponseDB;
+	private ISurveyresult surveyresult;
 
 	private SystemConfig() {
 		userDB = new UserDB();
@@ -41,6 +52,13 @@ public class SystemConfig {
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		passwordValidationFactory = new DefaultPasswordValidationFactory();
 		securityFactory = new DefaultSecurityFactory();
+		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
+		questionDB = new QuestionDB();
+		sortersDB = new SortingDB();
+		listQuestionsRepo = new ListQuestionsRepo();
+		deleteQuestionsRepo = new DeleteQuestionsRepo();
+		surveyResponseDB = new SurveyResponseDB();
+		surveyresult = new SurveyResultDB();
 	}
 
 	public static SystemConfig instance() {
@@ -96,5 +114,29 @@ public class SystemConfig {
 
 	public void setSecurityFactory(ISecurityFactory securityFactory) {
 		this.securityFactory = securityFactory;
+	}
+
+	public IQuestionSorters getSortersDB() {
+		return sortersDB;
+	}
+
+	public void setSortersDB(IQuestionSorters sortersDB) {
+		this.sortersDB = sortersDB;
+	}
+
+	public ISurveyResponseDB getSurveyResponseDB() {
+		return surveyResponseDB;
+	}
+
+	public void setSurveyResponseDB(ISurveyResponseDB surveyResponseDB) {
+		this.surveyResponseDB = surveyResponseDB;
+	}
+
+	public ISurveyresult getSurveyresult() {
+		return surveyresult;
+	}
+
+	public void setSurveyresult(ISurveyresult surveyresult) {
+		this.surveyresult = surveyresult;
 	}
 }

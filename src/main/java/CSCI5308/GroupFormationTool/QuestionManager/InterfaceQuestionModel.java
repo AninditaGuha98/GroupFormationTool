@@ -23,6 +23,14 @@ public interface InterfaceQuestionModel {
 
     void setQuestionText(String questionText);
 
+    long getQuestionID();
+
+    void setQuestionID(long questionID);
+
+    String getQuestionType();
+
+    void setQuestionType(String questionType);
+
     String getResponseText();
 
     void setResponseText(String responseText);
