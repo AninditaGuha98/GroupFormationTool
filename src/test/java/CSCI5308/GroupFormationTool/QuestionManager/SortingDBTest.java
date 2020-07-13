@@ -1,7 +1,6 @@
 package CSCI5308.GroupFormationTool.QuestionManager;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

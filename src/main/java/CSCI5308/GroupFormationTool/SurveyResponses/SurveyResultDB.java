@@ -5,16 +5,17 @@ import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SurveyResultDB implements ISurveyresult{
+public class SurveyResultDB implements ISurveyresultDB {
 
     @Override
-    public boolean checkIfResponseSubmitted(long userID) {
+    public boolean checkIfResponseSubmitted(long userID, long surveyID) {
         CallStoredProcedure proc = null;
         ResultSet results;
         Boolean present;
         try {
-            proc = new CallStoredProcedure("spFindSurveyResponse(?)");
+            proc = new CallStoredProcedure("spFindSurveyResponse(?,?)");
             proc.setParameter(1, userID);
+            proc.setParameter(2,surveyID);
             results= proc.executeWithResults();
             present= results.next();
         } catch (SQLException throwables) {
