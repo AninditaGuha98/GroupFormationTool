@@ -30,6 +30,7 @@ class SortingDBTest {
     @Mock
     private SortingDB sortingDB;
     private InterfaceSorters interfaceSorters;
+    private IQManagerModelFactory modelFactory;
     String bannerID;
     List<InterfaceQuestionModel> questionList = new ArrayList<>();
 
@@ -38,12 +39,13 @@ class SortingDBTest {
         MockitoAnnotations.initMocks(this);
         assertNotNull(procedure);
 
-        interfaceSorters = new Sorters();
+        modelFactory= QManagerModelFactory.FactorySingleton();
+        interfaceSorters = modelFactory.createSorters();
         interfaceSorters.setSortField("question_title");
         interfaceSorters.setSortOrder("ASC");
         bannerID = "B999999";
-        InterfaceQuestionModel q1 = new QuestionModel();
-        InterfaceQuestionModel q2 = new QuestionModel();
+        InterfaceQuestionModel q1 = modelFactory.createQuestionModel();
+        InterfaceQuestionModel q2 = modelFactory.createQuestionModel();
         q1.setQuestionTitle("Skills");
         q2.setQuestionTitle("Credits");
         questionList.add(q1);
@@ -53,7 +55,7 @@ class SortingDBTest {
         when(procedure.executeWithResults()).thenReturn(rs);
         when(sortingDB.sort(bannerID, interfaceSorters)).thenReturn(questionList);
 
-        InterfaceQuestionModel q3 = new QuestionModel();
+        InterfaceQuestionModel q3 = modelFactory.createQuestionModel();
         q3.setQuestionTitle("Project");
         questionList.add(q3);
         when(sortingDB.clearSort(bannerID)).thenReturn(questionList);

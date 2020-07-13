@@ -10,31 +10,32 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SortersTest {
+    IQManagerModelFactory modelFactory = QManagerModelFactory.FactorySingleton();
 
     @Test
     void getSortField() {
-        InterfaceSorters interfaceSorters = new Sorters();
+        InterfaceSorters interfaceSorters = modelFactory.createSorters();
         interfaceSorters.setSortField("questionID");
         assertTrue(interfaceSorters.getSortField().equals("questionID"));
     }
 
     @Test
     void setSortField() {
-        InterfaceSorters interfaceSorters = new Sorters();
+        InterfaceSorters interfaceSorters = modelFactory.createSorters();
         interfaceSorters.setSortField("questionID");
         assertTrue(interfaceSorters.getSortField().equals("questionID"));
     }
 
     @Test
     void getSortOrder() {
-        InterfaceSorters interfaceSorters = new Sorters();
+        InterfaceSorters interfaceSorters = modelFactory.createSorters();
         interfaceSorters.setSortOrder("ASC");
         assertTrue(interfaceSorters.getSortOrder().equals("ASC"));
     }
 
     @Test
     void setSortOrder() {
-        InterfaceSorters interfaceSorters = new Sorters();
+        InterfaceSorters interfaceSorters = modelFactory.createSorters();
         interfaceSorters.setSortOrder("ASC");
         assertTrue(interfaceSorters.getSortOrder().equals("ASC"));
     }

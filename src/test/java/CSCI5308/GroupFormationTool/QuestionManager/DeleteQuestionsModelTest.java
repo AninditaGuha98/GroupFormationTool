@@ -12,7 +12,7 @@ class DeleteQuestionsModelTest {
     @Test
     void getListQuestions() {
         String[] questions={"test"};
-        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=new DeleteQuestionsModel();
+        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=QManagerModelFactory.FactorySingleton().createDeleteQuestionsModel();
         interfaceDeleteQuestionsModel.setListQuestions(questions);
         assertEquals(questions,interfaceDeleteQuestionsModel.getListQuestions());
     }
@@ -20,7 +20,7 @@ class DeleteQuestionsModelTest {
     @Test
     void setListQuestions() {
         String[] questions={"test"};
-        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=new DeleteQuestionsModel();
+        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=QManagerModelFactory.FactorySingleton().createDeleteQuestionsModel();
         interfaceDeleteQuestionsModel.setListQuestions(questions);
         assertEquals(questions,interfaceDeleteQuestionsModel.getListQuestions());
     }
@@ -28,7 +28,7 @@ class DeleteQuestionsModelTest {
     @Test
     void getSelectedQuestions() {
         String[] questions={"question1"};
-        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=new DeleteQuestionsModel();
+        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=QManagerModelFactory.FactorySingleton().createDeleteQuestionsModel();
         interfaceDeleteQuestionsModel.setSelectedQuestions(questions);
         assertSame(questions,interfaceDeleteQuestionsModel.getSelectedQuestions());
     }
@@ -36,7 +36,7 @@ class DeleteQuestionsModelTest {
     @Test
     void setSelectedQuestions() {
         String[] questions={"question1"};
-        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=new DeleteQuestionsModel();
+        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel=QManagerModelFactory.FactorySingleton().createDeleteQuestionsModel();
         interfaceDeleteQuestionsModel.setSelectedQuestions(questions);
         assertSame(questions,interfaceDeleteQuestionsModel.getSelectedQuestions());
     }

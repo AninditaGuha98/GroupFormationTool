@@ -9,15 +9,15 @@ import CSCI5308.GroupFormationTool.SystemConfig;
 
 @Controller
 public class CreateQuestionsController {
-
-    InterfaceQuestionModel interfaceQuestionModel = new QuestionModel();
-    InterfaceResponses interfaceResponses = new Responses();
-    IQuestionsPersistence interfaceQuestionDB = SystemConfig.instance().getQuestionDB();
+    InterfaceQuestionModel interfaceQuestionModel;
+    IQuestionsPersistence interfaceQuestionDB = QManagerDbFactory.FactorySingleton().createQuestionDB();
+    InterfaceResponses interfaceResponses = QManagerModelFactory.FactorySingleton().createResponses();
     private long userID;
 
     @RequestMapping("/questioneditor")
     public ModelAndView questionEditor(Model model, @RequestParam(name = "userID") long userID) {
         ModelAndView mv = new ModelAndView();
+        interfaceQuestionModel = QManagerModelFactory.FactorySingleton().createQuestionModel();
         mv.addObject("questionModel", interfaceQuestionModel);
         this.userID = userID;
         mv.setViewName("QuestionManager/questioneditor");
@@ -28,7 +28,7 @@ public class CreateQuestionsController {
     public String answerEditor(QuestionModel questionModel, Model model) {
         this.interfaceQuestionModel = questionModel;
         this.interfaceQuestionModel.setUserID(this.userID);
-        if (interfaceQuestionModel.getTypeSelect().equals("mcq1") || interfaceQuestionModel.getTypeSelect().equals("mcq2")) {
+        if (questionModel.getTypeSelect().equals("mcq1") || questionModel.getTypeSelect().equals("mcq2")) {
             model.addAttribute("question_type", true);
         }
         return "QuestionManager/answereditor";

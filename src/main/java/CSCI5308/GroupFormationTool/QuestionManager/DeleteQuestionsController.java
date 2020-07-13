@@ -9,10 +9,11 @@ import CSCI5308.GroupFormationTool.SystemConfig;
 
 @Controller
 public class DeleteQuestionsController {
-    InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo = SystemConfig.instance().getDeleteQuestionsRepo();
-    InterfaceListQuestionsRepo interfaceListQuestionsRepo = SystemConfig.instance().getListQuestionsRepo();
-    IQuestionsPersistence interfaceQuestionDB = SystemConfig.instance().getQuestionDB();
-    InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel = new DeleteQuestionsModel();
+    IQManagerDbFactory dbFactory = QManagerDbFactory.FactorySingleton();
+    InterfaceDeleteQuestionsRepo interfaceDeleteQuestionsRepo = dbFactory.createDeleteQuestionRepo();
+    InterfaceListQuestionsRepo interfaceListQuestionsRepo = dbFactory.createListQuestionsRepo();
+    IQuestionsPersistence interfaceQuestionDB = dbFactory.createQuestionDB();
+    InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel = QManagerModelFactory.FactorySingleton().createDeleteQuestionsModel();
 
     @RequestMapping("/deletequestionspage")
     public ModelAndView deleteQuestions(Model model, @RequestParam(name = "userID") long userID) {

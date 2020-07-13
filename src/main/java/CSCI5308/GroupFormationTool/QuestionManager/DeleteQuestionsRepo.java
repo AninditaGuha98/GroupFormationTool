@@ -10,7 +10,6 @@ public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 
     @Override
     public boolean checkIfResponsesExistInDB(long userId, String[] selectedQuestions) {
-
         CallStoredProcedure procedure = null;
         CallStoredProcedure proc = null;
 

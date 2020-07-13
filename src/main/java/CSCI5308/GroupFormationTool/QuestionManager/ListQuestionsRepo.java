@@ -32,7 +32,7 @@ public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
             }
         }
         String[] array = questionText.toArray(new String[0]);
-        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel = new DeleteQuestionsModel();
+        InterfaceDeleteQuestionsModel interfaceDeleteQuestionsModel = QManagerModelFactory.FactorySingleton().createDeleteQuestionsModel();
         interfaceDeleteQuestionsModel.setListQuestions(array);
         return interfaceDeleteQuestionsModel;
     }
