@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyResponseDB;
+import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDBFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class CourseController {
     public String course(Model model, @RequestParam(name = ID) long courseID,
                          @RequestParam(name = "userID") long userID) {
         ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-        ISurveyResponseDB surveyResponseDB = SystemConfig.instance().getSurveyResponseDB();
+        ISurveyResponseDB surveyResponseDB = SurveyResponseDBFactory.FactorySingleton().createSurveyResponseDB();
         InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
         courseDB.loadCourseByID(courseID, interfaceCourse);
         model.addAttribute("course", interfaceCourse);

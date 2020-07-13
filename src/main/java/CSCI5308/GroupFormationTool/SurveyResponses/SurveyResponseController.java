@@ -16,8 +16,9 @@ import java.util.Set;
 
 @Controller
 public class SurveyResponseController {
-    ISurveyResponseDB surveyResponseDB = SystemConfig.instance().getSurveyResponseDB();
-    ISurveyresult surveyresult = SystemConfig.instance().getSurveyresult();
+    ISurveyResponseDBFactory dbFactory = SurveyResponseDBFactory.FactorySingleton();
+    ISurveyResponseDB surveyResponseDB = dbFactory.createSurveyResponseDB();
+    ISurveyresultDB surveyresult = dbFactory.createSurveyResultDB();
     private static final String ID = "surveyID";
     private static final String user = "userID";
 
@@ -32,7 +33,7 @@ public class SurveyResponseController {
 
     @RequestMapping(value ="/surveyresponse/surveyresponse", method = RequestMethod.POST)
     public String submitSurveyResponse(Model model, HttpServletRequest httpServletRequest, HttpServletResponse res, @RequestParam(name = ID) long surveyID, @RequestParam(name = user) long userID){
-        if(surveyresult.checkIfResponseSubmitted(userID)){
+        if(surveyresult.checkIfResponseSubmitted(userID, surveyID)){
             model.addAttribute("message","You have already submitted your response");
         } else {
             Map m= httpServletRequest.getParameterMap();

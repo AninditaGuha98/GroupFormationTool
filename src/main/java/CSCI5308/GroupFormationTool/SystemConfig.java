@@ -3,7 +3,6 @@ package CSCI5308.GroupFormationTool;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.UserDB;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
-import CSCI5308.GroupFormationTool.Courses.CourseDB;
 import CSCI5308.GroupFormationTool.Courses.CourseDBFactory;
 import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.ObjectFactory;
@@ -25,7 +24,7 @@ import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValid
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyResponseDB;
-import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyresult;
+import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyresultDB;
 import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
 import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResultDB;
 
@@ -42,8 +41,6 @@ public class SystemConfig {
 	private IQuestionSorters sortersDB;
 	private InterfaceListQuestionsRepo listQuestionsRepo;
 	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
-	private ISurveyResponseDB surveyResponseDB;
-	private ISurveyresult surveyresult;
 
 	private SystemConfig() {
 		userDB = new UserDB();
@@ -57,8 +54,6 @@ public class SystemConfig {
 		sortersDB = new SortingDB();
 		listQuestionsRepo = new ListQuestionsRepo();
 		deleteQuestionsRepo = new DeleteQuestionsRepo();
-		surveyResponseDB = new SurveyResponseDB();
-		surveyresult = new SurveyResultDB();
 	}
 
 	public static SystemConfig instance() {
@@ -122,21 +117,5 @@ public class SystemConfig {
 
 	public void setSortersDB(IQuestionSorters sortersDB) {
 		this.sortersDB = sortersDB;
-	}
-
-	public ISurveyResponseDB getSurveyResponseDB() {
-		return surveyResponseDB;
-	}
-
-	public void setSurveyResponseDB(ISurveyResponseDB surveyResponseDB) {
-		this.surveyResponseDB = surveyResponseDB;
-	}
-
-	public ISurveyresult getSurveyresult() {
-		return surveyresult;
-	}
-
-	public void setSurveyresult(ISurveyresult surveyresult) {
-		this.surveyresult = surveyresult;
 	}
 }
