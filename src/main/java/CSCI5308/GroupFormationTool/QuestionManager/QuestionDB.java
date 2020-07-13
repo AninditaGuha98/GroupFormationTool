@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.QuestionManager;
 
 
+import CSCI5308.GroupFormationTool.ComputeSurvey.SurveyResponse;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
 import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
@@ -10,6 +11,7 @@ import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -139,7 +141,46 @@ public class QuestionDB implements IQuestionsPersistence {
                 proc.cleanup();
             }
         }
-        return questions;
+        return questions;    	
     }
 
+    public List<SurveyResponse> loadResponses(int surveyID) {
+    	CallStoredProcedure proc = null;
+    	List<SurveyResponse> surveyResponses=new ArrayList<SurveyResponse>();
+        try {
+            proc = new CallStoredProcedure("spLoadSurveyUsers(?)");
+            proc.setParameter(1, "1");
+            ResultSet responseResults;
+            ResultSet results = proc.executeWithResults();            
+            SurveyResponse surveyResponseObj;
+            HashMap<String,String> responseObj;
+            if (null != results) {
+                while (results.next()) {
+                	surveyResponseObj=new SurveyResponse();
+                	surveyResponseObj.setBannerID(results.getString(1));
+                	surveyResponseObj.setFirstName(results.getString(2));
+                	surveyResponseObj.setLastName(results.getString(3));
+                		proc = new CallStoredProcedure("spGetUserResponses(?,?)");
+                		proc.setParameter(1, "1");
+                		proc.setParameter(2, results.getString(4));
+                		responseResults = proc.executeWithResults();
+                		if(null!=responseResults) {
+                			responseObj=new HashMap<String,String>();
+                			while(responseResults.next()) {                				
+                        		responseObj.put(responseResults.getString(1), responseResults.getString(2));
+                			}
+                			surveyResponseObj.setQuestionResponses(responseObj);
+                		}
+                	surveyResponses.add(surveyResponseObj);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            if (null != proc) {
+                proc.cleanup();
+            }
+        }
+    	return surveyResponses;
+    }
 }
