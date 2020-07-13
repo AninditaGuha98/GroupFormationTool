@@ -17,6 +17,22 @@
             font-family: cursive;
             font-size: large;
         }
+
+        ul{
+            text-align: left;
+            padding: 0px;
+            text-decoration: none;
+            list-style-type: none;
+        }
+        li{
+            padding: 0px;
+            text-decoration: none;
+            list-style-type: none;
+        }
+        .types{
+            margin-top: 56px;
+            margin-left: 50px;
+        }
     </style>
 </head>
 <body>
@@ -29,8 +45,46 @@
             <h2> Please select your questions for the survey.</h2>
         </div>
 
-        <div class="DropDown">
+        <form th:action="@{/addQuestions(id=${courseID},userID=${userID})}" th:object="${questionsList}"
+               method="post">
+            <div class="radio">
 
+                <table>
+                    <tr>
+
+                        <td>
+                               <ul>
+                                   <li th:each=" que: ${questionsList}">
+                                       <input type="radio" name="selectedQue" th:value="${que}" />
+                                       <label th:text="${que}"></label>
+                               </ul>
+
+                        </td>
+
+                        <td >
+                            <ul>
+                                <li th:each=" type: ${typeList}" class="types">
+                                    <label th:text="${type}"></label>
+                            </ul>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="Button">
+                <button type="submit">Add Question</button>
+            </div>
+        </form>
+
+<!--        For displaying the questions selected and  delete them-->
+        <form>
+            <div></div>
+        </form>
+<!--        Saving the questions or publish them -->
+
+
+        <div class="DisplayDropDown">
 
         </div>
 
