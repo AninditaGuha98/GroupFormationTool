@@ -13,7 +13,6 @@ public interface ICreateSurveyQuestionsModel {
 
     void setQuestionID(Integer[] questionID);
 
-
     String[] getSelectedQuestions();
 
     void setSelectedQuestions(String[] selectedQuestions);
@@ -21,4 +20,6 @@ public interface ICreateSurveyQuestionsModel {
     String[] getSelectedTypes();
 
     void setSelectedTypes(String[] selectedTypes);
+
 }
+

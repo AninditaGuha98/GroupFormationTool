@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UpdateQuestionsListService implements IUpdateQuestionsListService {
 
-    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel= SystemConfig.instance().getiCreateSurveyQuestionsModel();
+    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel= SystemConfig.instance().getCreateSurveyQuestionsModel();
 
     @Override
     public ICreateSurveyQuestionsModel displayUpdatedQuestionList(String[] heading, String[] type, String que){

@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.Survey;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.SystemConfig;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class QueryQuestionsRepo implements IQueryQuestionsRepo {
 
         String[] questionsList = questionHeading.toArray(new String[0]);
         String[] questionsType = questionType.toArray(new String[0]);
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel =new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setQuestionHeading(questionsList);
         iCreateSurveyQuestionsModel.setQuestionType(questionsType);
 

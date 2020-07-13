@@ -1,5 +1,7 @@
 package CSCI5308.GroupFormationTool.Survey;
 
+import CSCI5308.GroupFormationTool.SystemConfig;
+
 public class CreateSurveyQuestionsModel implements ICreateSurveyQuestionsModel {
 
     private String[] questionHeading;
@@ -7,6 +9,7 @@ public class CreateSurveyQuestionsModel implements ICreateSurveyQuestionsModel {
     private Integer[] questionID;
     private String [] selectedQuestions;
     private String[] selectedTypes;
+
 
     @Override
     public String[] getSelectedTypes() {
@@ -56,4 +59,5 @@ public class CreateSurveyQuestionsModel implements ICreateSurveyQuestionsModel {
     public void setSelectedQuestions(String[] selectedQuestions) {
         this.selectedQuestions = selectedQuestions;
     }
+
 }

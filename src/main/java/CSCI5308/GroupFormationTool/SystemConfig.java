@@ -35,16 +35,15 @@ public class SystemConfig {
 	private IQuestionSorters sortersDB;
 	private InterfaceListQuestionsRepo listQuestionsRepo;
 	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
-	private ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
-//	private IUpdateQuestionsListService updateQuestionsListService;
+	private ICreateSurveyQuestionsModel createSurveyQuestionsModel;
 	private IQueryQuestionsRepo queryQuestionsRepo;
 
-	public ICreateSurveyQuestionsModel getiCreateSurveyQuestionsModel() {
-		return iCreateSurveyQuestionsModel;
+	public ICreateSurveyQuestionsModel getCreateSurveyQuestionsModel() {
+		return createSurveyQuestionsModel;
 	}
 
-	public void setiCreateSurveyQuestionsModel(ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel) {
-		this.iCreateSurveyQuestionsModel = iCreateSurveyQuestionsModel;
+	public void setCreateSurveyQuestionsModel(ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel) {
+		this.createSurveyQuestionsModel = iCreateSurveyQuestionsModel;
 	}
 
 	private SystemConfig() {
@@ -58,8 +57,7 @@ public class SystemConfig {
 		sortersDB = new SortingDB();
 		listQuestionsRepo = new ListQuestionsRepo();
 		deleteQuestionsRepo = new DeleteQuestionsRepo();
-		iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
-//		updateQuestionsListService=new UpdateQuestionsListService();
+		createSurveyQuestionsModel=new CreateSurveyQuestionsModel();
 		queryQuestionsRepo=new QueryQuestionsRepo();
 	}
 
@@ -71,13 +69,6 @@ public class SystemConfig {
 		this.queryQuestionsRepo = queryQuestionsRepo;
 	}
 
-//	public IUpdateQuestionsListService getUpdateQuestionsListService() {
-//		return updateQuestionsListService;
-//	}
-//
-//	public void setUpdateQuestionsListService(IUpdateQuestionsListService updateQuestionsListService) {
-//		this.updateQuestionsListService = updateQuestionsListService;
-//	}
 
 	public static SystemConfig instance() {
 		if (null == uniqueInstance) {
