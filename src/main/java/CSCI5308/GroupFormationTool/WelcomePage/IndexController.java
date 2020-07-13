@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,8 +31,9 @@ public class IndexController {
 				model.addAttribute("questionbutton", "visible");
 				model.addAttribute("userID", userID);
 			} else {
+				User u = new User(httpServletRequest.getRemoteUser(), userDB);
 				model.addAttribute("questionbutton", "hidden");
-				model.addAttribute("userID", 0);
+				model.addAttribute("userID", u.getID());
 			}
 		}
 		return "index";

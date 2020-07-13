@@ -22,6 +22,10 @@ import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyResponseDB;
+import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyresult;
+import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
+import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResultDB;
 
 
 public class SystemConfig {
@@ -36,6 +40,8 @@ public class SystemConfig {
 	private IQuestionSorters sortersDB;
 	private InterfaceListQuestionsRepo listQuestionsRepo;
 	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
+	private ISurveyResponseDB surveyResponseDB;
+	private ISurveyresult surveyresult;
 
 	private SystemConfig() {
 		passwordEncryption = new BCryptPasswordEncryption();
@@ -49,6 +55,8 @@ public class SystemConfig {
 		sortersDB = new SortingDB();
 		listQuestionsRepo = new ListQuestionsRepo();
 		deleteQuestionsRepo = new DeleteQuestionsRepo();
+		surveyResponseDB = new SurveyResponseDB();
+		surveyresult = new SurveyResultDB();
 	}
 
 	public static SystemConfig instance() {
@@ -138,4 +146,19 @@ public class SystemConfig {
 		this.sortersDB = sortersDB;
 	}
 
+	public ISurveyResponseDB getSurveyResponseDB() {
+		return surveyResponseDB;
+	}
+
+	public void setSurveyResponseDB(ISurveyResponseDB surveyResponseDB) {
+		this.surveyResponseDB = surveyResponseDB;
+	}
+
+	public ISurveyresult getSurveyresult() {
+		return surveyresult;
+	}
+
+	public void setSurveyresult(ISurveyresult surveyresult) {
+		this.surveyresult = surveyresult;
+	}
 }
