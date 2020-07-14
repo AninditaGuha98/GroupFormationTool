@@ -1,16 +1,14 @@
 package CSCI5308.GroupFormationTool.SurveyResponses;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
-import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Responses;
+import CSCI5308.GroupFormationTool.QuestionManager.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
 public class SurveyResponseDB implements ISurveyResponseDB {
+    IQManagerModelFactory modelFactory = QManagerModelFactory.FactorySingleton();
     List<Long> question_id = new ArrayList<>();
 
     @Override
@@ -45,7 +43,7 @@ public class SurveyResponseDB implements ISurveyResponseDB {
             ResultSet results = proc.executeWithResults();
             if (null != results) {
                 while (results.next()) {
-                    InterfaceQuestionModel interfaceQuestionModel = new QuestionModel();
+                    InterfaceQuestionModel interfaceQuestionModel = modelFactory.createQuestionModel();
                     long id = results.getLong("question_id");
                     String question_type = results.getString("question_type");
                     interfaceQuestionModel.setQuestionID(id);
@@ -79,7 +77,7 @@ public class SurveyResponseDB implements ISurveyResponseDB {
                     ResultSet results = proc.executeWithResults();
                     if (null != results) {
                         while (results.next()) {
-                            InterfaceResponses interfaceResponses = new Responses();
+                            InterfaceResponses interfaceResponses = modelFactory.createResponses();
                             interfaceResponses.setResponse_txt(results.getString(1));
                             interfaceResponses.setScore_txt(Integer.toString(results.getInt(2)));
                             responses.add(interfaceResponses);

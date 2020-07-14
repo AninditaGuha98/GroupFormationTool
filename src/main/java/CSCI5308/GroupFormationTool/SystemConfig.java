@@ -9,24 +9,12 @@ import CSCI5308.GroupFormationTool.Courses.ObjectFactory;
 import CSCI5308.GroupFormationTool.Courses.CourseUserRelationshipDB;
 import CSCI5308.GroupFormationTool.Database.DefaultDatabaseConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseConfiguration;
-import CSCI5308.GroupFormationTool.QuestionManager.IQuestionSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceDeleteQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceListQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.DeleteQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.ListQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.QuestionDB;
-import CSCI5308.GroupFormationTool.QuestionManager.SortingDB;
 import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
 import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyResponseDB;
-import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyresultDB;
-import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
-import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResultDB;
 
 public class SystemConfig {
 	private static SystemConfig uniqueInstance = null;
@@ -37,10 +25,6 @@ public class SystemConfig {
 	private IPasswordValidationFactory passwordValidationFactory;
 	private ISecurityFactory securityFactory;
 	private IPasswordValidationConfiguration passwordValidationConfiguration;
-	private IQuestionsPersistence questionDB;
-	private IQuestionSorters sortersDB;
-	private InterfaceListQuestionsRepo listQuestionsRepo;
-	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
 
 	private SystemConfig() {
 		userDB = new UserDB();
@@ -50,10 +34,6 @@ public class SystemConfig {
 		passwordValidationFactory = new DefaultPasswordValidationFactory();
 		securityFactory = new DefaultSecurityFactory();
 		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
-		questionDB = new QuestionDB();
-		sortersDB = new SortingDB();
-		listQuestionsRepo = new ListQuestionsRepo();
-		deleteQuestionsRepo = new DeleteQuestionsRepo();
 	}
 
 	public static SystemConfig instance() {
@@ -111,11 +91,4 @@ public class SystemConfig {
 		this.securityFactory = securityFactory;
 	}
 
-	public IQuestionSorters getSortersDB() {
-		return sortersDB;
-	}
-
-	public void setSortersDB(IQuestionSorters sortersDB) {
-		this.sortersDB = sortersDB;
-	}
 }

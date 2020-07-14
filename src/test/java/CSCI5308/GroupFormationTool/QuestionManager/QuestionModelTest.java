@@ -99,4 +99,46 @@ class QuestionModelTest {
         interfaceQuestionModel.setResponseScore(3);
         assertSame(3, interfaceQuestionModel.getResponseScore());
     }
+
+    @Test
+    void getQuestionID() {
+        InterfaceQuestionModel interfaceQuestionModel = modelFactory.createQuestionModel();
+        interfaceQuestionModel.setQuestionID((long)3);
+        assertSame((long)3, interfaceQuestionModel.getQuestionID());
+    }
+
+    @Test
+    void setQuestionID() {
+        InterfaceQuestionModel interfaceQuestionModel = modelFactory.createQuestionModel();
+        interfaceQuestionModel.setQuestionID((long)3);
+        assertSame((long)3, interfaceQuestionModel.getQuestionID());
+    }
+
+    @Test
+    void getQuestionType() {
+        InterfaceQuestionModel interfaceQuestionModel = modelFactory.createQuestionModel();
+        interfaceQuestionModel.setQuestionType("text");
+        assertSame("text", interfaceQuestionModel.getQuestionType());
+    }
+
+    @Test
+    void setQuestionType() {
+        InterfaceQuestionModel interfaceQuestionModel = modelFactory.createQuestionModel();
+        interfaceQuestionModel.setQuestionType("text");
+        assertSame("text", interfaceQuestionModel.getQuestionType());
+    }
+
+    @Test
+    void getUserID() {
+        InterfaceQuestionModel interfaceQuestionModel = modelFactory.createQuestionModel();
+        interfaceQuestionModel.setUserID((long) 101);
+        assertSame((long) 101, interfaceQuestionModel.getUserID());
+    }
+
+    @Test
+    void setUserID() {
+        InterfaceQuestionModel interfaceQuestionModel = modelFactory.createQuestionModel();
+        interfaceQuestionModel.setUserID((long) 101);
+        assertSame((long) 101, interfaceQuestionModel.getUserID());
+    }
 }

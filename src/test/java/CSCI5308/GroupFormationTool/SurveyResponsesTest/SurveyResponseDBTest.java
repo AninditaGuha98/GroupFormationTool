@@ -1,10 +1,7 @@
 package CSCI5308.GroupFormationTool.SurveyResponsesTest;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
-import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Responses;
+import CSCI5308.GroupFormationTool.QuestionManager.*;
 import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,6 +31,7 @@ class SurveyResponseDBTest {
     private SurveyResponseDB surveyResponseDB;
     InterfaceQuestionModel interfaceQuestionModel;
     InterfaceResponses interfaceResponses;
+    IQManagerModelFactory modelFactory;
 
     HashMap<Integer, Integer> surveyAvailable = new HashMap<>();
     List<InterfaceQuestionModel> surveyQuestions = new ArrayList<>();
@@ -48,14 +46,15 @@ class SurveyResponseDBTest {
         when(procedure.executeWithResults()).thenReturn(rs);
         when(surveyResponseDB.checkIfSurveyPublished(8)).thenReturn(surveyAvailable);
 
-        interfaceQuestionModel= new QuestionModel();
+        modelFactory= QManagerModelFactory.FactorySingleton();
+        interfaceQuestionModel= modelFactory.createQuestionModel();
         interfaceQuestionModel.setQuestionText("Rate your java skills");
         interfaceQuestionModel.setQuestionID(1);
         interfaceQuestionModel.setQuestionType("numeric");
         surveyQuestions.add(interfaceQuestionModel);
         when(surveyResponseDB.getSurveyQuestions(1)).thenReturn(surveyQuestions);
 
-        interfaceResponses= new Responses();
+        interfaceResponses= modelFactory.createResponses();
         interfaceResponses.setResponse_txt("Java");
         interfaceResponses.setScore_txt("1");
         responses.add(interfaceResponses);
