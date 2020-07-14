@@ -18,13 +18,12 @@ import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationManager;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationManager;
 
 @Controller
 public class SignupController {
 	private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
-    private static final String SIGNUP_LOG = "SignUp";
-    
+	private static final String SIGNUP_LOG = "SignUp";
+
 	private final String USERNAME = "username";
 	private final String PASSWORD = "password";
 	private final String PASSWORD_CONFIRMATION = "passwordConfirmation";
@@ -47,13 +46,9 @@ public class SignupController {
 		IPasswordValidationFactory pvFactory = SystemConfig.instance().getPasswordValidationFactory();
 		IPasswordValidationManager passwordValidationManager = pvFactory.createPasswordValidationManager();
 		List<String> failureMessages = new ArrayList<>();
-		
-		if (User.isBannerIDValid(bannerID) &&
-			 User.isEmailValid(email) &&
-			 User.isFirstNameValid(firstName) &&
-			 User.isLastNameValid(lastName) &&
-			 password.equals(passwordConfirm))
-		{
+
+		if (User.isBannerIDValid(bannerID) && User.isEmailValid(email) && User.isFirstNameValid(firstName)
+				&& User.isLastNameValid(lastName) && password.equals(passwordConfirm)) {
 			if (passwordValidationManager.isValidPassword(password)) {
 				User u = new User();
 				u.setBannerID(bannerID);
@@ -62,7 +57,8 @@ public class SignupController {
 				u.setLastName(lastName);
 				u.setEmail(email);
 				IUserPersistence userDB = SystemConfig.instance().getUserDB();
-				IPasswordEncryption passwordEncryption = SystemConfig.instance().getSecurityFactory().createPassworEncryption();
+				IPasswordEncryption passwordEncryption = SystemConfig.instance().getSecurityFactory()
+						.createPassworEncryption();
 				success = u.createUser(userDB, passwordEncryption, null);
 			} else {
 				failureMessages.addAll(passwordValidationManager.getPasswordValidationFailures(password));
@@ -70,12 +66,10 @@ public class SignupController {
 		}
 		ModelAndView m;
 		if (success) {
-			logger.warn("user={}, action={}, status={}",
-					SIGNUP_LOG, "Sign Up", "Success");
+			logger.warn("user={}, action={}, status={}", SIGNUP_LOG, "Sign Up", "Success");
 			m = new ModelAndView("login");
 		} else {
-			logger.warn("user={}, action={}, status={}",
-					SIGNUP_LOG, "Sign Up", "Fail");
+			logger.warn("user={}, action={}, status={}", SIGNUP_LOG, "Sign Up", "Fail");
 			m = new ModelAndView("signup");
 			failureMessages.add("Invalid data, please check your values.");
 			m.addObject("errorMessages", failureMessages);

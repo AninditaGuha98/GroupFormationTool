@@ -12,33 +12,31 @@ public class PasswordHistoryDB implements IPasswordHistoryPersistence {
 
 	private static final Logger logger = LoggerFactory.getLogger(PasswordHistoryDB.class);
 	private static final String PASSWORD_HISTORY_DB_LOG = "PasswordHistoryDB";
-	
+
 	@Override
 	public boolean followedHistoryConstraint(String bannerID, String password, int history) {
 		CallStoredProcedure proc = null;
 		boolean isValid = false;
-		
+
 		try {
 			proc = new CallStoredProcedure("spFindPasswordHistory(?, ?, ?)");
 			proc.setParameter(1, bannerID);
-			proc.setParameter(2,  password);
-			proc.setParameter(3,  history);
+			proc.setParameter(2, password);
+			proc.setParameter(3, history);
 			ResultSet results = proc.executeWithResults();
 			if (results.next() == false) {
 				isValid = true;
 			}
-		}
-		catch (SQLException e)	{
-			logger.error("password={}, user={}, action={}, state={}, message={}",
-					PASSWORD_HISTORY_DB_LOG, bannerID, "Check History Constraint", "Fail", e.getMessage());
-		}
-		finally	{
+		} catch (SQLException e) {
+			logger.error("password={}, user={}, action={}, state={}, message={}", PASSWORD_HISTORY_DB_LOG, bannerID,
+					"Check History Constraint", "Fail", e.getMessage());
+		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
-		logger.info("password={}, user={}, action={}, valid={}, state={}",
-				PASSWORD_HISTORY_DB_LOG, bannerID, "Check History Constraint", isValid, "Success");
+		logger.info("password={}, user={}, action={}, valid={}, state={}", PASSWORD_HISTORY_DB_LOG, bannerID,
+				"Check History Constraint", isValid, "Success");
 		return isValid;
 	}
 }

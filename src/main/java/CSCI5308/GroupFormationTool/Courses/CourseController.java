@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import CSCI5308.GroupFormationTool.SystemConfig;
 
 @Controller
@@ -16,7 +17,7 @@ public class CourseController {
 	public String course(Model model, @RequestParam(name = ID) long courseID,
 			@RequestParam(name = "userID") long userID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("userID", userID);

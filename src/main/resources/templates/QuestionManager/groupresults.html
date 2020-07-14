@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Group results</title>
+<script type="text/javascript">
+	function prepareTableData(data) {
+		debugger;
+		var s = 4;
+		var gNo = 1;
+		var tableElement = document.getElementById("result");
+		var c = 0;
+		for (var i = 0; i < data.length; i++) {
+			if(c == 0) {
+				var groupNumberRow = document.createElement("tr");
+				var groupNumberTd = document.createElement("td");
+				var label = document.createElement("label");
+				label.innerHTML = "Group Number "+gNo;
+				groupNumberTd.appendChild(label);
+				groupNumberRow.appendChild(groupNumberTd);
+				tableElement.appendChild(groupNumberRow);
+				gNo++;
+			}
+			if (c < s) {
+				var row = document.createElement("tr");
+				var bannerIdTd = document.createElement("td");
+				var nameTd = document.createElement("td");
+				var bannerIdLabel = document.createElement("label");
+				var nameLabel = document.createElement("label");
+				bannerIdLabel.innerHTML = data[i].bannerID;
+				nameLabel.innerHTML = data[i].firstName;
+				bannerIdTd.appendChild(bannerIdLabel);
+				nameTd.appendChild(nameLabel);
+				row.appendChild(bannerIdTd);
+				row.appendChild(nameTd);
+				tableElement.appendChild(row);
+				if(c+1 == s) {
+					c = 0;
+				} else {
+					c++;
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body th:onload="prepareTableData([[${groupResults}]])">
+	<table id="result"></table>
+	
+	<table th:each="groupResults,iter: ${groupResults}">
+		<td><p th:text="${'GROUP NO:'+ iter.index}" /></td>
+		<tr>
+		<tr>
+			<th>Banner ID</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Responses</th>
+		</tr>
+		<tr>
+			<td><p th:text="${groupResults.bannerID}" /></td>
+			<td><p th:text="${groupResults.firstName}" /></td>
+			<td><p th:text="${groupResults.lastName}" /></td>
+		</tr>
+	</table>
+</body>
+</html>

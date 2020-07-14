@@ -13,14 +13,14 @@ public class DefaultSecurityFactory implements ISecurityFactory {
 	public IPasswordEncryption createPassworEncryption() {
 		return new BCryptPasswordEncryption();
 	}
-	
+
 	@Override
-	public AbstractAuthenticationToken createAuthenticationToken(Object principal, Object credentials, 
+	public AbstractAuthenticationToken createAuthenticationToken(Object principal, Object credentials,
 			Collection<? extends GrantedAuthority> rights) {
 		return new UsernamePasswordAuthenticationToken(principal, credentials, rights);
 	}
-	
-	@Override 
+
+	@Override
 	public GrantedAuthority createGrantedAuthority(String role) {
 		return new SimpleGrantedAuthority("ADMIN");
 	}

@@ -7,7 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
 
 public interface ISecurityFactory {
 	public IPasswordEncryption createPassworEncryption();
-	public AbstractAuthenticationToken createAuthenticationToken(Object principal, Object credentials, 
+
+	public AbstractAuthenticationToken createAuthenticationToken(Object principal, Object credentials,
 			Collection<? extends GrantedAuthority> authorities);
+
 	public GrantedAuthority createGrantedAuthority(String role);
 }

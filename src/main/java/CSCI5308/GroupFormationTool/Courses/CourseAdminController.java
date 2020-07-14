@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
-import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
 import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 
@@ -33,7 +33,7 @@ public class CourseAdminController {
 	@RequestMapping(value = "/admin/assigninstructor")
 	public String assignInstructor(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()
@@ -47,7 +47,7 @@ public class CourseAdminController {
 	@GetMapping("/admin/deletecourse")
 	public ModelAndView deleteCourse(@RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		interfaceCourse.setId(courseID);
 		interfaceCourse.delete(courseDB);
 		ModelAndView mav = new ModelAndView("redirect:/admin/course");
@@ -57,7 +57,7 @@ public class CourseAdminController {
 	@RequestMapping(value = "/admin/createcourse", method = RequestMethod.POST)
 	public ModelAndView createCourse(@RequestParam(name = TITLE) String title) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		interfaceCourse.setTitle(title);
 		interfaceCourse.createCourse(courseDB);
 		ModelAndView mav = new ModelAndView("redirect:/admin/course");
@@ -67,7 +67,7 @@ public class CourseAdminController {
 	@RequestMapping(value = "/admin/assigninstructortocourse")
 	public ModelAndView assignInstructorToCourse(@RequestParam(name = INSTRUCTOR) List<Integer> instructor,
 			@RequestParam(name = ID) long courseID) {
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		interfaceCourse.setId(courseID);
 		Iterator<Integer> iter = instructor.iterator();
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()

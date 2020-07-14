@@ -6,7 +6,7 @@ public class DefaultPasswordValidationFactory implements IPasswordValidationFact
 	public IPasswordValidationConfiguration createPasswordValidationConfig() {
 		return new DefaultPasswordValidationConfiguration();
 	}
-	
+
 	@Override
 	public IPasswordValidationManager createPasswordValidationManager() {
 		return new DefaultPasswordValidationManager();

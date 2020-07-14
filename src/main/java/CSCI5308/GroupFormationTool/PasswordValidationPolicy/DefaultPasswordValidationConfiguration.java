@@ -6,10 +6,10 @@ import java.util.Properties;
 
 import org.slf4j.LoggerFactory;
 
-
 public class DefaultPasswordValidationConfiguration implements IPasswordValidationConfiguration {
 
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DefaultPasswordValidationConfiguration.class); 
+	private static final org.slf4j.Logger logger = LoggerFactory
+			.getLogger(DefaultPasswordValidationConfiguration.class);
 	private static final String CONFIG_FILE = "passwordValidation.properties";
 
 	@Override
@@ -24,11 +24,10 @@ public class DefaultPasswordValidationConfiguration implements IPasswordValidati
 			Properties p = new Properties();
 			p.load(input);
 			configValue = p.getProperty(configKey);
-			logger.info("password={}, action={}, status={}",
-					"ValidationConfiguration", "Get Key/Value", "Success");
+			logger.info("password={}, action={}, status={}", "ValidationConfiguration", "Get Key/Value", "Success");
 		} catch (IOException e) {
-			logger.warn("password={}, action={}, status={}, message={}",
-					"ValidationConfiguration", "Get Key/Value", "Fail", e.getMessage());
+			logger.warn("password={}, action={}, status={}, message={}", "ValidationConfiguration", "Get Key/Value",
+					"Fail", e.getMessage());
 			configValue = null;
 		}
 		return configValue;
