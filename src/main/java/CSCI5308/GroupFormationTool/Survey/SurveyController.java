@@ -17,6 +17,7 @@ public class SurveyController {
     private IQueryQuestionsRepo iQueryQuestionsRepo = SystemConfig.instance().getQueryQuestionsRepo();
     private IUpdateQuestionsListService iUpdateQuestionsListService= new UpdateQuestionsListService();
     private IListQuestionsService IlistQuestionsService=new ListQuestionsService();
+    private SaveSurveyRepo saveSurveyRepo=new SaveSurveyRepo();
 
     @RequestMapping("/surveyhome")
     public ModelAndView surveyHome(Model model, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID) {
@@ -26,6 +27,7 @@ public class SurveyController {
         mv.addObject("userID",userID);
         mv.addObject("questionsList",hashMap);
         mv.addObject("flag", false);
+        mv.addObject("publish",false);
         return mv;
     }
 
@@ -35,6 +37,7 @@ public class SurveyController {
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.displayUpdatedQuestionList(iCreateSurveyQuestionsModel.getQuestionHeading(),iCreateSurveyQuestionsModel.getQuestionType(),que);
         mv.addObject("flag", true);
+        mv.addObject("publish",false);
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
         mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
@@ -48,11 +51,30 @@ public class SurveyController {
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.removeQuestions(que);
         mv.addObject("flag", true);
+        mv.addObject("publish",false);
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
         mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
         mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
+        return mv;
+    }
+
+    @RequestMapping("/save")
+    public ModelAndView saveSurvey(Model model, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        ModelAndView mv = new ModelAndView("Survey/surveyhome");
+        int status=0;
+        mv.addObject("flag", true);
+        mv.addObject("publish",true);
+        mv.addObject("courseID",courseID);
+        mv.addObject("userID", userID);
+        mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
+        mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
+        mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
+//        if(saveSurveyRepo.saveSurvey(courseID,status)){
+//            mv.addObject("msgFlag",0);
+//            mv.addObject("message","Questions have been saved successfuly, you can edit later.");
+//        }
         return mv;
     }
 }

@@ -12,10 +12,11 @@ public class ListQuestionsService implements IListQuestionsService {
     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=SystemConfig.instance().getCreateSurveyQuestionsModel();
 
 
-    Dictionary hashmap= new Hashtable<>();
+
+
     @Override
     public Dictionary listAllQuestionsforUser(long userID){
-
+        Dictionary hashmap= new Hashtable<>();
         iCreateSurveyQuestionsModel=iQueryQuestionsRepo.listQuestionsForUser(userID);
         for(int i =0; i<iCreateSurveyQuestionsModel.getQuestionHeading().length;i++)
         {
@@ -26,6 +27,7 @@ public class ListQuestionsService implements IListQuestionsService {
 
     @Override
     public Dictionary listRepeatQuestions(){
+        Dictionary hashmap= new Hashtable<>();
         for(int i =0; i<iCreateSurveyQuestionsModel.getQuestionHeading().length;i++)
         {
             hashmap.put(iCreateSurveyQuestionsModel.getQuestionHeading()[i],iCreateSurveyQuestionsModel.getQuestionType()[i]);

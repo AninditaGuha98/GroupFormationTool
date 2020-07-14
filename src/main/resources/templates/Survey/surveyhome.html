@@ -52,6 +52,15 @@
         label{
             margin-right:50px;
         }
+        .Save{
+            float: left;
+            display: inline-block;
+        }
+        .Publish{
+            display: inline-block;
+
+        }
+
     </style>
 </head>
 <body>
@@ -63,61 +72,78 @@
         <div class="Label">
             <h2> Please select your questions for the survey.</h2>
         </div>
+        <div class="Buttons">
+            <div class="Save">
+                <form th:action="@{/save(id=${courseID},userID=${userID})}"
+                      method="post">
+                    <input type="submit" value="Save">
+                </form>
+            </div>
 
-        <div class="addDiv">
-            <form th:action="@{/addQuestions(id=${courseID},userID=${userID})}"
-                  method="post">
-                <div class="radio">
-                            <ul>
-                                <li th:each="i: ${questionsList}" class="headings">
-                                    <input type="radio" name="selectedQue" th:value="${i.key}" />
-                                    <label th:text="${i.key}" ></label>
-                                    <label th:text="${i.value}"></label>
-                                </li>
-                            </ul>
-                </div>
-                <div class="Button">
-                    <button type="submit">Add Question to Survey</button>
-                </div>
-            </form>
+            <div th:if="${publish==true}" class="Publish">
+                <form th:action="@{/publish(id=${courseID},userID=${userID})}"
+                      method="post">
+                    <input type="submit" value="Publish">
+                </form>
+            </div>
         </div>
 
-<!--        For displaying the questions selected and  delete them-->
+        <div th:if="${msgFlag==0}">
+            <p th:text="${message}"></p>
+        </div>
+        <div th:if="${msgFlag==1}">
+            <p th:text="${message}"></p>
+        </div>
 
-        <div th:if="${flag}" class="removeDiv">
-            <form th:action="@{/removeQuestions(id=${courseID},userID=${userID})}"
-                  method="post">
-                <div>
-                    <table>
-                        <tr> <td>
-                            <ul>
-                                <li th:each=" selectQue: ${selectedQuestions}" class="headings">
-                                    <input type="radio" name="removeQue" th:value="${selectQue}" />
-                                    <label th:text="${selectQue}"></label>
-                            </ul>
-                        </td>
-                            <td >
+
+        <div class="mainAction">
+            <div class="addDiv">
+                <form th:action="@{/addQuestions(id=${courseID},userID=${userID})}"
+                      method="post">
+                    <div class="radio">
+                        <ul>
+                            <li th:each="i: ${questionsList}" class="headings">
+                                <input type="radio" name="selectedQue" th:value="${i.key}" />
+                                <label th:text="${i.key}" ></label>
+                                <label th:text="${i.value}"></label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="Button">
+                        <button type="submit">Add Question to Survey</button>
+                    </div>
+                </form>
+            </div>
+
+            <!--        For displaying the questions selected and  delete them-->
+
+            <div th:if="${flag}" class="removeDiv">
+                <form th:action="@{/removeQuestions(id=${courseID},userID=${userID})}"
+                      method="post">
+                    <div>
+                        <table>
+                            <tr> <td>
                                 <ul>
-                                    <li th:each=" selectedType: ${selectedType}" class="types">
-                                        <label th:text="${selectedType}"></label>
+                                    <li th:each=" selectQue: ${selectedQuestions}" class="headings">
+                                        <input type="radio" name="removeQue" th:value="${selectQue}" />
+                                        <label th:text="${selectQue}"></label>
                                 </ul>
                             </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="Button">
-                    <button type="submit">Remove Question From Survey</button>
-                </div>
-            </form>
+                                <td >
+                                    <ul>
+                                        <li th:each=" selectedType: ${selectedType}" class="types">
+                                            <label th:text="${selectedType}"></label>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="Button">
+                        <button type="submit">Remove Question From Survey</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-<!--        Saving the questions or publish them -->
-
-
-        <div class="DisplayDropDown">
-
-        </div>
-
     </div>
 
 </body>
