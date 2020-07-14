@@ -3,11 +3,8 @@ package CSCI5308.GroupFormationTool.QuestionManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyResponse;
 
 public class QuestionDB implements IQuestionsPersistence {
 	private Long lastInsertedQuestion;
