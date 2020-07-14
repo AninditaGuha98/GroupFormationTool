@@ -23,7 +23,8 @@ public class CurrentUser {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication.isAuthenticated()) {
 			String bannerID = authentication.getPrincipal().toString();
-			InterfaceUser u = new User(bannerID,userDB);//UserObjectFactory.createObject(new UserFactory());
+			InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
+			userDB.loadUserByBannerID(bannerID, u);
 			if (u.isValidUser()) {
 				return u;
 			}
