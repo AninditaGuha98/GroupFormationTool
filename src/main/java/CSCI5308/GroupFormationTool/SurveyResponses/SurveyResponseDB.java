@@ -2,6 +2,10 @@ package CSCI5308.GroupFormationTool.SurveyResponses;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.QuestionManager.*;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
+import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.Responses;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

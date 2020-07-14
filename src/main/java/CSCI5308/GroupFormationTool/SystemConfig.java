@@ -90,5 +90,4 @@ public class SystemConfig {
 	public void setSecurityFactory(ISecurityFactory securityFactory) {
 		this.securityFactory = securityFactory;
 	}
-
 }

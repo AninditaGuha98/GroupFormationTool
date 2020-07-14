@@ -2,6 +2,10 @@ package CSCI5308.GroupFormationTool.SurveyResponsesTest;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.QuestionManager.*;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
+import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.Responses;
 import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,6 +52,7 @@ class SurveyResponseDBTest {
 
         modelFactory= QManagerModelFactory.FactorySingleton();
         interfaceQuestionModel= modelFactory.createQuestionModel();
+        interfaceQuestionModel= new QuestionModel();
         interfaceQuestionModel.setQuestionText("Rate your java skills");
         interfaceQuestionModel.setQuestionID(1);
         interfaceQuestionModel.setQuestionType("numeric");
@@ -55,6 +60,7 @@ class SurveyResponseDBTest {
         when(surveyResponseDB.getSurveyQuestions(1)).thenReturn(surveyQuestions);
 
         interfaceResponses= modelFactory.createResponses();
+        interfaceResponses= new Responses();
         interfaceResponses.setResponse_txt("Java");
         interfaceResponses.setScore_txt("1");
         responses.add(interfaceResponses);
