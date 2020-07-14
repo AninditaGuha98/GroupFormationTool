@@ -25,6 +25,16 @@ public interface InterfaceQuestionModel {
 
 	String getResponseText();
 
+    long getQuestionID();
+
+    void setQuestionID(long questionID);
+
+    String getQuestionType();
+
+    void setQuestionType(String questionType);
+
+ 
+
 	void setResponseText(String responseText);
 
 	int getResponseScore();

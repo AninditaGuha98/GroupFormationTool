@@ -2,6 +2,8 @@ package CSCI5308.GroupFormationTool;
 
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.UserDB;
+
+import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 import CSCI5308.GroupFormationTool.Courses.CourseDBFactory;
 import CSCI5308.GroupFormationTool.Courses.CourseUserRelationshipDB;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
@@ -13,6 +15,13 @@ import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValid
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
 import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
+import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
+import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
+
 
 public class SystemConfig {
 
@@ -24,6 +33,9 @@ public class SystemConfig {
 	private IPasswordValidationFactory passwordValidationFactory;
 	private ISecurityFactory securityFactory;
 
+	private IPasswordValidationConfiguration passwordValidationConfiguration;
+
+
 	private SystemConfig() {
 		userDB = new UserDB();
 		databaseConfiguration = new DefaultDatabaseConfiguration();
@@ -31,6 +43,7 @@ public class SystemConfig {
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		passwordValidationFactory = new DefaultPasswordValidationFactory();
 		securityFactory = new DefaultSecurityFactory();
+		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
 	}
 
 	public static SystemConfig instance() {
