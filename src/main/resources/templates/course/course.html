@@ -24,5 +24,16 @@
 		<br /> <a th:href="@{/questionmanager(userID=${userID})}">Go to
 			Question Manager Page</a>
 	</div>
+	<div th:if="${student}">
+		<div th:if="${enrolled}">
+			<div th:if="${published}">
+				<br /> <a th:href="@{/surveyresponse/surveyresponse(surveyID=${surveyID},userID=${userID})}"> Survey available: Click here to fill the survey</a>
+			</div>
+			<div th:if="${not published}">
+				<br /> <p> Survey is not available or not published</p>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

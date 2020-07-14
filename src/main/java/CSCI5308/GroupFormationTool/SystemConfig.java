@@ -3,26 +3,18 @@ package CSCI5308.GroupFormationTool;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.UserDB;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
-import CSCI5308.GroupFormationTool.Courses.CourseDB;
 import CSCI5308.GroupFormationTool.Courses.CourseDBFactory;
 import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.ObjectFactory;
 import CSCI5308.GroupFormationTool.Courses.CourseUserRelationshipDB;
 import CSCI5308.GroupFormationTool.Database.DefaultDatabaseConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseConfiguration;
-import CSCI5308.GroupFormationTool.QuestionManager.IQuestionSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceDeleteQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceListQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.DeleteQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.ListQuestionsRepo;
-import CSCI5308.GroupFormationTool.QuestionManager.QuestionDB;
-import CSCI5308.GroupFormationTool.QuestionManager.SortingDB;
 import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
 import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
-
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
 
 public class SystemConfig {
 	private static SystemConfig uniqueInstance = null;
@@ -32,7 +24,7 @@ public class SystemConfig {
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
 	private IPasswordValidationFactory passwordValidationFactory;
 	private ISecurityFactory securityFactory;
-
+	private IPasswordValidationConfiguration passwordValidationConfiguration;
 
 	private SystemConfig() {
 		userDB = new UserDB();
@@ -41,6 +33,7 @@ public class SystemConfig {
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		passwordValidationFactory = new DefaultPasswordValidationFactory();
 		securityFactory = new DefaultSecurityFactory();
+		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
 	}
 
 	public static SystemConfig instance() {
