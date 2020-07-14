@@ -43,4 +43,16 @@ public class SurveyController {
         return mv;
     }
 
+    @RequestMapping("/removeQuestions")
+    public ModelAndView removeQuestions(Model model, @RequestParam(name="removeQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        ModelAndView mv = new ModelAndView("Survey/surveyhome");
+        iCreateSurveyQuestionsModel= iUpdateQuestionsListService.removeQuestions(que);
+        mv.addObject("flag", true);
+        mv.addObject("courseID",courseID);
+        mv.addObject("userID", userID);
+        mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
+        mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
+        mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
+        return mv;
+    }
 }

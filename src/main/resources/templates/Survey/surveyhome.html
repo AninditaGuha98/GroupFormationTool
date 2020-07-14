@@ -85,7 +85,8 @@
 <!--        For displaying the questions selected and  delete them-->
 
         <div th:if="${flag}" class="removeDiv">
-            <form>
+            <form th:action="@{/removeQuestions(id=${courseID},userID=${userID})}"
+                  method="post">
                 <div>
                     <table>
                         <tr> <td>

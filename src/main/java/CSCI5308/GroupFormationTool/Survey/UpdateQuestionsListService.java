@@ -45,5 +45,34 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
         return iCreateSurveyQuestionsModel;
     }
 
+    public ICreateSurveyQuestionsModel removeQuestions(String que){
+        int index=0;
+        List<String> sQue = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedQuestions()));
+        List<String> sType = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedTypes()));
+        List<String> queHead=(Arrays.asList(iCreateSurveyQuestionsModel.getQuestionHeading()));
+        List<String> queType=(Arrays.asList(iCreateSurveyQuestionsModel.getQuestionType()));
+        sQue=new ArrayList<>(sQue);
+        sType=new ArrayList<>(sType);
+        queHead=new ArrayList<>(queHead);
+        queType=new ArrayList<>(queType);
+
+        for(int i =0; i<sQue.size();i++){
+            if(sQue.get(i).equals(que)){
+                index=i;
+                break;
+            }
+        }
+        queHead.add(sQue.get(index));
+        queType.add(sType.get(index));
+        sQue.remove(index);
+        sType.remove(index);
+
+        iCreateSurveyQuestionsModel.setSelectedQuestions(sQue.toArray(new String[sQue.size()]));
+        iCreateSurveyQuestionsModel.setSelectedTypes(sType.toArray(new String[sType.size()]));
+        iCreateSurveyQuestionsModel.setQuestionHeading(queHead.toArray(new String[queHead.size()]));
+        iCreateSurveyQuestionsModel.setQuestionType(queType.toArray(new String[queType.size()]));
+        return iCreateSurveyQuestionsModel;
+
+    }
 
 }
