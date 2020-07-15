@@ -18,5 +18,14 @@ public interface ISurveyScale {
 
 	public void setThreshold(String threshold) ;
 	
+	public String getOptionscount() ;
+
+	public void setOptionscount(String optionscount) ;
+
+	public String getQuestionid() ;
+
+	public void setQuestionid(String questionid) ;
+	
 	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index);
+
 }

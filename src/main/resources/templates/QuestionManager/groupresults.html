@@ -46,21 +46,5 @@
 </head>
 <body th:onload="prepareTableData([[${groupResults}]])">
 	<table id="result"></table>
-	
-	<table th:each="groupResults,iter: ${groupResults}">
-		<td><p th:text="${'GROUP NO:'+ iter.index}" /></td>
-		<tr>
-		<tr>
-			<th>Banner ID</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Responses</th>
-		</tr>
-		<tr>
-			<td><p th:text="${groupResults.bannerID}" /></td>
-			<td><p th:text="${groupResults.firstName}" /></td>
-			<td><p th:text="${groupResults.lastName}" /></td>
-		</tr>
-	</table>
 </body>
 </html>

@@ -4,7 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
+
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class GroupAlgorithmDB implements IGroupAlgorithmDB {
@@ -13,12 +19,13 @@ public class GroupAlgorithmDB implements IGroupAlgorithmDB {
 		CallStoredProcedure proc = null;
 		List<ISurveyResponse> surveyResponses = new ArrayList<ISurveyResponse>();
 		try {
-			proc = new CallStoredProcedure("spLoadSurveyUsers(?)");
+			proc = new CallStoredProcedure("spLoadSurveyUsers(?)");			
 			proc.setParameter(1, "1");
-			ResultSet responseResults;
+			ResultSet responseResults,optionsCountResult;
 			ResultSet results = proc.executeWithResults();
 			ISurveyResponse surveyResponseObj;
-			HashMap<String, String> responseObj;
+			List<String> questionsList;
+			List<String> studentresponsesList;
 			if (null != results) {
 				while (results.next()) {
 					surveyResponseObj =SurveyScaleObjectFactory.createObject(new SurveyResponseObjectFactory());
@@ -30,11 +37,23 @@ public class GroupAlgorithmDB implements IGroupAlgorithmDB {
 					proc.setParameter(2, results.getString(4));
 					responseResults = proc.executeWithResults();
 					if (null != responseResults) {
-						responseObj = new HashMap<String, String>();
-						while (responseResults.next()) {
-							responseObj.put(responseResults.getString(1), responseResults.getString(2));
-						}
-						surveyResponseObj.setQuestionResponses(responseObj);
+						questionsList=new ArrayList<String>();
+						studentresponsesList=new ArrayList<String>();
+						while (responseResults.next()) 
+						{							
+							if (questionsList.contains(responseResults.getString(1))) {
+								int index=questionsList.indexOf(responseResults.getString(1));
+								String value=studentresponsesList.get(index);
+								studentresponsesList.set(index,value+","+responseResults.getString(2));
+								
+							}else {
+								questionsList.add(responseResults.getString(1));
+								int index=questionsList.indexOf(responseResults.getString(1));
+								studentresponsesList.add(index,responseResults.getString(2));
+							}
+						}								
+						surveyResponseObj.setQuestions(questionsList);
+						surveyResponseObj.setResponses(studentresponsesList);
 					}
 					surveyResponses.add(surveyResponseObj);
 				}
