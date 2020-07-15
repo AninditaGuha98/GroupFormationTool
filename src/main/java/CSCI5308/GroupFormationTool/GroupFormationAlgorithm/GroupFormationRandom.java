@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.GroupForma	tionAlgorithm;
+package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,6 @@ public class GroupFormationRandom implements IGroupFormatiomAlgorithm {
 				}
 			}
 		}
-		
 		return groups;
 	}
 
