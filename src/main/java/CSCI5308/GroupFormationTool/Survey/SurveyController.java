@@ -12,8 +12,7 @@ import java.util.Dictionary;
 public class SurveyController {
 
      ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
-     ICreateSurveyDB ICreateSurveyDB = SystemConfig.instance().getCreateSurveyDB()
-             ;
+     ICreateSurveyDB ICreateSurveyDB = SystemConfig.instance().getCreateSurveyDB();
      IUpdateQuestionsListService iUpdateQuestionsListService= new UpdateQuestionsListService();
      IListQuestionsService IlistQuestionsService=new ListQuestionsService();
 

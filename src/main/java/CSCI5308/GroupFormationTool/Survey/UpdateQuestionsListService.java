@@ -40,6 +40,10 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
             headingList.remove(index);
             typeList.remove(index);
         }
+        return setDataInModel(headingList, typeList, selectedQue, selectedType);
+    }
+
+    private ICreateSurveyQuestionsModel setDataInModel(List<String> headingList, List<String> typeList, List<String> selectedQue, List<String> selectedType) {
         iCreateSurveyQuestionsModel.setSelectedQuestions(selectedQue.toArray(new String[selectedQue.size()]));
         iCreateSurveyQuestionsModel.setSelectedTypes(selectedType.toArray(new String[selectedType.size()]));
         iCreateSurveyQuestionsModel.setQuestionHeading(headingList.toArray(new String[headingList.size()]));
@@ -71,12 +75,6 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
         sQue.remove(index);
         sType.remove(index);
 
-        iCreateSurveyQuestionsModel.setSelectedQuestions(sQue.toArray(new String[sQue.size()]));
-        iCreateSurveyQuestionsModel.setSelectedTypes(sType.toArray(new String[sType.size()]));
-        iCreateSurveyQuestionsModel.setQuestionHeading(queHead.toArray(new String[queHead.size()]));
-        iCreateSurveyQuestionsModel.setQuestionType(queType.toArray(new String[queType.size()]));
-        return iCreateSurveyQuestionsModel;
-
+        return setDataInModel(queHead, queType, sQue, sType);
     }
-
 }
