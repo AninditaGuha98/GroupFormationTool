@@ -68,7 +68,11 @@
         <h1>Welcome to Survey Creation</h1>
     </header>
 
-    <div class="Main">
+    <div th:if="${surveyFlag}==false">
+        <p th:text="${surveyMessage}"></p>
+    </div>
+
+    <div  th:if="${surveyFlag}==true" class="Main">
         <div class="Label">
             <h2> Please select your questions for the survey.</h2>
         </div>
@@ -95,7 +99,6 @@
             <p th:text="${message}"></p>
         </div>
 
-
         <div class="mainAction">
             <div class="addDiv">
                 <form th:action="@{/addQuestions(id=${courseID},userID=${userID})}"
@@ -117,24 +120,25 @@
 
             <!--        For displaying the questions selected and  delete them-->
 
-            <div th:if="${flag}" class="removeDiv">
+            <div  class="removeDiv">
                 <form th:action="@{/removeQuestions(id=${courseID},userID=${userID})}"
                       method="post">
                     <div>
                         <table>
-                            <tr> <td>
+                            <tr>
+                            <td>
                                 <ul>
                                     <li th:each=" selectQue: ${selectedQuestions}" class="headings">
                                         <input type="radio" name="removeQue" th:value="${selectQue}" />
                                         <label th:text="${selectQue}"></label>
                                 </ul>
                             </td>
-                                <td >
-                                    <ul>
-                                        <li th:each=" selectedType: ${selectedType}" class="types">
-                                            <label th:text="${selectedType}"></label>
-                                    </ul>
-                                </td>
+                            <td>
+                                <ul>
+                                    <li th:each=" selectedType: ${selectedType}" class="types">
+                                        <label th:text="${selectedType}"></label>
+                                </ul>
+                            </td>
                             </tr>
                         </table>
                     </div>
@@ -144,7 +148,7 @@
                 </form>
             </div>
         </div>
-    </div>
 
+    </div>
 </body>
 </html>

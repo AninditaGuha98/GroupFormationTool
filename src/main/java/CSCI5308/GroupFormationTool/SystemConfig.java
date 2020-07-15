@@ -37,6 +37,8 @@ public class SystemConfig {
 	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
 	private ICreateSurveyQuestionsModel createSurveyQuestionsModel;
 	private IQueryQuestionsRepo queryQuestionsRepo;
+	private ISurveyExistRepo surveyExistRepo;
+	private ISaveSurveyRepo saveSurveyRepo;
 
 	public ICreateSurveyQuestionsModel getCreateSurveyQuestionsModel() {
 		return createSurveyQuestionsModel;
@@ -44,6 +46,14 @@ public class SystemConfig {
 
 	public void setCreateSurveyQuestionsModel(ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel) {
 		this.createSurveyQuestionsModel = iCreateSurveyQuestionsModel;
+	}
+
+	public ISurveyExistRepo getSurveyExistRepo() {
+		return surveyExistRepo;
+	}
+
+	public void setSurveyExistRepo(ISurveyExistRepo surveyExistRepo) {
+		this.surveyExistRepo = surveyExistRepo;
 	}
 
 	private SystemConfig() {
@@ -59,6 +69,16 @@ public class SystemConfig {
 		deleteQuestionsRepo = new DeleteQuestionsRepo();
 		createSurveyQuestionsModel=new CreateSurveyQuestionsModel();
 		queryQuestionsRepo=new QueryQuestionsRepo();
+		surveyExistRepo=new SurveyExistRepo();
+		saveSurveyRepo=new SaveSurveyRepo();
+	}
+
+	public ISaveSurveyRepo getSaveSurveyRepo() {
+		return saveSurveyRepo;
+	}
+
+	public void setSaveSurveyRepo(ISaveSurveyRepo saveSurveyRepo) {
+		this.saveSurveyRepo = saveSurveyRepo;
 	}
 
 	public IQueryQuestionsRepo getQueryQuestionsRepo() {
@@ -70,7 +90,7 @@ public class SystemConfig {
 	}
 
 
-	public static SystemConfig instance() {
+	public static SystemConfig instance(){
 		if (null == uniqueInstance) {
 			uniqueInstance = new SystemConfig();
 		}

@@ -27,11 +27,11 @@ public class ListQuestionsService implements IListQuestionsService {
 
     @Override
     public Dictionary listRepeatQuestions(){
-        Dictionary hashmap= new Hashtable<>();
+        Dictionary hashmap1= new Hashtable<>();
         for(int i =0; i<iCreateSurveyQuestionsModel.getQuestionHeading().length;i++)
         {
-            hashmap.put(iCreateSurveyQuestionsModel.getQuestionHeading()[i],iCreateSurveyQuestionsModel.getQuestionType()[i]);
+            hashmap1.put(iCreateSurveyQuestionsModel.getQuestionHeading()[i],iCreateSurveyQuestionsModel.getQuestionType()[i]);
         }
-        return hashmap;
+        return hashmap1;
     }
 }

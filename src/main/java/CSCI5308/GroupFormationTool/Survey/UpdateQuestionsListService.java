@@ -31,6 +31,8 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
             selectedType=new ArrayList<>(sType);
             selectedQue.add(headingList.get(index));
             selectedType.add(typeList.get(index));
+            headingList.remove(index);
+            typeList.remove(index);
         }
         else{
             selectedQue.add(headingList.get(index));
