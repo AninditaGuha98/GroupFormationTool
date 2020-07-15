@@ -76,6 +76,9 @@
 
     <div th:if="${surveyFlag}==false">
         <p th:text="${surveyMessage}"></p>
+        <a th:href="@{/unpublish(id=${courseID},userID=${userID})}">
+            <button type="submit">Un-Publish Survey</button>
+        </a>
     </div>
 
     <div  th:if="${surveyFlag}==true" class="Main">

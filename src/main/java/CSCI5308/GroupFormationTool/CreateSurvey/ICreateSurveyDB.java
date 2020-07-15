@@ -10,4 +10,6 @@ public interface ICreateSurveyDB {
     int fetchSurveyID(long courseID,int state);
 
     boolean fetchSavedQuestions(long courseID);
+
+    boolean updatePublishStatus(long courseID);
 }

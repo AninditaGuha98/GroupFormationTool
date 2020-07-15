@@ -182,4 +182,23 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         }
     return true;
     }
+
+    @Override
+    public boolean updatePublishStatus(long courseID){
+
+        CallStoredProcedure callStoredProcedure=null;
+        try{
+            callStoredProcedure = new CallStoredProcedure("spChangePublishStatus(?)");
+            callStoredProcedure.setParameter(1,courseID);
+            callStoredProcedure.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(null!=callStoredProcedure){
+                callStoredProcedure.cleanup();
+            }
+        }
+        return true;
+    }
 }

@@ -21,6 +21,8 @@ public class SurveyController {
         boolean surveyFlag;
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         surveyFlag= ICreateSurveyDB.fetchSavedQuestions(courseID);
+        mv.addObject("courseID", courseID);
+        mv.addObject("userID",userID);
         if(surveyFlag==false){
             mv.addObject("surveyFlag",false);
             mv.addObject("surveyMessage", "A Survey is already published.");
@@ -95,4 +97,21 @@ public class SurveyController {
         }
         return mv;
     }
+
+    @RequestMapping("/unpublish")
+    public ModelAndView unpublishSurvey (@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        ModelAndView mv = new ModelAndView("Survey/surveyhome");
+        ICreateSurveyDB.updatePublishStatus(courseID);
+        ICreateSurveyDB.fetchSavedQuestions(courseID);
+        Dictionary hashMap= IlistQuestionsService.listAllQuestionsforUser(userID);
+        mv.addObject("surveyFlag",true);
+        mv.addObject("courseID", courseID);
+        mv.addObject("userID",userID);
+        mv.addObject("questionsList",hashMap);
+        mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
+        mv.addObject("publish",false);
+        return mv;
+    }
+
+
 }
