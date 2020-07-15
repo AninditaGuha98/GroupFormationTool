@@ -25,4 +25,9 @@ public class DefaultGroupFormationFactory implements IGroupFormationFactory {
 	public ISurveyScale createSurveyScaleText() {
 		return new SurveyScaleText();
 	}
+	
+	@Override
+	public IGroupFormatiomAlgorithm createGroupFormationAlgorithm() {
+		return new GroupFormationRandom();
+	}
 }

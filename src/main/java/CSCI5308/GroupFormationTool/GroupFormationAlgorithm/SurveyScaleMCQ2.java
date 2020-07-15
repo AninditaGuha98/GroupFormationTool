@@ -48,7 +48,7 @@ public class SurveyScaleMCQ2 extends SurveyScale {
 		for (String strRpValue: strRpValues) {
 			int value = 0;
 			try {
-				value = Integer.parseInt(strRpValue.strip());
+				value = Integer.parseInt(strRpValue.trim());
 			}
 			catch(NumberFormatException e) {
 				// Log Error
