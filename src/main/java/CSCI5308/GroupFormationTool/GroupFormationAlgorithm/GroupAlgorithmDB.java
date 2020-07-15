@@ -15,12 +15,12 @@ import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class GroupAlgorithmDB implements IGroupAlgorithmDB {
 
-	public List<ISurveyResponse> loadResponses(int surveyID) {
+	public List<ISurveyResponse> loadResponses(long courseID) {
 		CallStoredProcedure proc = null;
 		List<ISurveyResponse> surveyResponses = new ArrayList<ISurveyResponse>();
 		try {
 			proc = new CallStoredProcedure("spLoadSurveyUsers(?)");			
-			proc.setParameter(1, "1");
+			proc.setParameter(1, courseID);
 			ResultSet responseResults,optionsCountResult;
 			ResultSet results = proc.executeWithResults();
 			ISurveyResponse surveyResponseObj;
@@ -33,7 +33,7 @@ public class GroupAlgorithmDB implements IGroupAlgorithmDB {
 					surveyResponseObj.setFirstName(results.getString(2));
 					surveyResponseObj.setLastName(results.getString(3));
 					proc = new CallStoredProcedure("spGetUserResponses(?,?)");
-					proc.setParameter(1, "1");
+					proc.setParameter(1, courseID);
 					proc.setParameter(2, results.getString(4));
 					responseResults = proc.executeWithResults();
 					if (null != responseResults) {

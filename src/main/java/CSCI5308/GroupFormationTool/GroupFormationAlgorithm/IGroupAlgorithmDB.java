@@ -3,6 +3,6 @@ import java.util.List;
 
 public interface IGroupAlgorithmDB {
 
-	public List<ISurveyResponse> loadResponses(int surveyID);
+	public List<ISurveyResponse> loadResponses(long surveyID);
 	
 }

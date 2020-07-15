@@ -37,7 +37,7 @@ public class SurveyFormulaController {
 		//algorithm
 		
 		//
-		List<ISurveyResponse> surveyResponses=GroupFormationDBFactory.FactorySingleton().createGroupFormationDB().loadResponses(1);
+		List<ISurveyResponse> surveyResponses=GroupFormationDBFactory.FactorySingleton().createGroupFormationDB().loadResponses(courseID);
 		model.addAttribute("groupResults", surveyResponses);
 		return "QuestionManager/groupresults";
 
