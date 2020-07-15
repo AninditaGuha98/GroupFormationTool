@@ -24,7 +24,6 @@ public class SurveyController {
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         boolean surveyFlag;
         surveyFlag=ISaveSurveyRepo.getSavedQuestions(courseID);
-        System.out.println(courseID);
         if(surveyFlag==false){
             mv.addObject("surveyFlag",false);
             mv.addObject("surveyMessage", "A Survey is already published.");

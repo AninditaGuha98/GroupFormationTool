@@ -14,7 +14,9 @@ public class SaveSurveyRepo implements ISaveSurveyRepo {
     @Override
     public boolean saveSurvey(long courseID, long userID, int status){
         ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=SystemConfig.instance().getCreateSurveyQuestionsModel();
+        ISurveyExistRepo iSurveyExistRepo= SystemConfig.instance().getSurveyExistRepo();
         int surveyID;
+        int state;
         CallStoredProcedure proc=null;
         CallStoredProcedure procedure=null;
         CallStoredProcedure procedure1=null;
@@ -23,9 +25,13 @@ public class SaveSurveyRepo implements ISaveSurveyRepo {
         String [] selectedQuestions;
         try{
             if(status==0){
-                surveyID = fetchSurveyID(courseID, status);
+                state=iSurveyExistRepo.checkSurveyStatus(courseID);
                 selectedQuestions=iCreateSurveyQuestionsModel.getSelectedQuestions();
 
+                if(state==2){
+                    createNewSurvey(courseID,status);
+                }
+                surveyID = fetchSurveyID(courseID, status);
                 proc=new CallStoredProcedure("spDeleteSavedQuestions(?)");
                 proc.setParameter(1,surveyID);
                 proc.execute();
@@ -80,6 +86,24 @@ public class SaveSurveyRepo implements ISaveSurveyRepo {
             }
         }
         return false;
+    }
+
+    public void createNewSurvey(long courseID,long status){
+        CallStoredProcedure callStoredProcedure=null;
+        try{
+            callStoredProcedure=new CallStoredProcedure("spCreateNewSurvey(?,?)");
+            callStoredProcedure.setParameter(1,courseID);
+            callStoredProcedure.setParameter(2,status);
+            callStoredProcedure.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(null!=callStoredProcedure){
+                callStoredProcedure.cleanup();
+            }
+        }
     }
 
     public int fetchSurveyID(long courseID,int state){
@@ -148,14 +172,13 @@ public class SaveSurveyRepo implements ISaveSurveyRepo {
         e.printStackTrace();
     }
         finally {
-            if (null != procedure) {
+            if (null!= procedure) {
                 procedure.cleanup();
             }
             if(null!=procedure1){
                 procedure1.cleanup();
             }
         }
-
     return true;
     }
 }

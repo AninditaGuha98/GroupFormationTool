@@ -41,6 +41,7 @@
         }
         .addDiv{
             margin-bottom: 50px;
+            margin-right: 10px;
             border: 2px solid black;
             float: left;
             display: inline-block;
@@ -60,6 +61,10 @@
             display: inline-block;
 
         }
+        .backButton{
+            margin-top: 30px;
+            padding-top: 10px;
+        }
 
     </style>
 </head>
@@ -67,18 +72,10 @@
     <header class="bodyGridRow headerGridContainer">
         <h1>Welcome to Survey Creation</h1>
     </header>
+<div>
 
     <div th:if="${surveyFlag}==false">
         <p th:text="${surveyMessage}"></p>
-<!--        <div>-->
-<!--            <a th:href="@{/course/course(id=${courseID},userID=${userID})}">-->
-<!--&lt;!&ndash;                <div class="Button">&ndash;&gt;-->
-<!--                    Go to Home Page-->
-<!--&lt;!&ndash;                    <button type="submit">Go to Home Page</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            </a>-->
-
-<!--        </div>-->
     </div>
 
     <div  th:if="${surveyFlag}==true" class="Main">
@@ -135,19 +132,19 @@
                     <div>
                         <table>
                             <tr>
-                            <td>
-                                <ul>
-                                    <li th:each=" selectQue: ${selectedQuestions}" class="headings">
-                                        <input type="radio" name="removeQue" th:value="${selectQue}" />
-                                        <label th:text="${selectQue}"></label>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li th:each=" selectedType: ${selectedType}" class="types">
-                                        <label th:text="${selectedType}"></label>
-                                </ul>
-                            </td>
+                                <td>
+                                    <ul>
+                                        <li th:each=" selectQue: ${selectedQuestions}" class="headings">
+                                            <input type="radio" name="removeQue" th:value="${selectQue}" />
+                                            <label th:text="${selectQue}"></label>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li th:each=" selectedType: ${selectedType}" class="types">
+                                            <label th:text="${selectedType}"></label>
+                                    </ul>
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -157,17 +154,14 @@
                 </form>
             </div>
         </div>
-
-<!--        <div>-->
-<!--            <form th:action="@{/course/course(id=${courseID},userID=${userID})}" method="get">-->
-<!--                <div class="Button">-->
-<!--                    <button type="submit">Go to Home Page</button>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-
-
-
     </div>
+
+  <div class="backButton">
+      <a th:href="@{/}">
+          <button>Go to Home Page</button>
+      </a>
+  </div>
+</div>
+
 </body>
 </html>
