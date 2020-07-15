@@ -7,7 +7,7 @@ public class MinLengthValidation implements IPasswordValidation {
 
 	private static final Logger logger = LoggerFactory.getLogger(MinLengthValidation.class);
 	private static final String MIN_LENGTH_LOG = "MinLengthPolicy";
-	
+
 	private static final String MIN_LENGTH_CONFIG = "min_length";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum length of %d.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum length of %d.";
@@ -15,8 +15,7 @@ public class MinLengthValidation implements IPasswordValidation {
 	private int minLength;
 
 	public MinLengthValidation() {
-		logger.info("password={}, action={}, status={}",
-				MIN_LENGTH_LOG, "Create", "Success");
+		logger.info("password={}, action={}, status={}", MIN_LENGTH_LOG, "Create", "Success");
 	}
 
 	public int getMinLength() {
@@ -28,8 +27,7 @@ public class MinLengthValidation implements IPasswordValidation {
 		try {
 			intMinLength = Integer.parseInt(minLength);
 		} catch (NumberFormatException e) {
-			logger.warn("password={}, action={}, message={}",
-					MIN_LENGTH_LOG, "Set Min Length", e.getMessage());
+			logger.warn("password={}, action={}, message={}", MIN_LENGTH_LOG, "Set Min Length", e.getMessage());
 			intMinLength = 0;
 		}
 
@@ -38,8 +36,7 @@ public class MinLengthValidation implements IPasswordValidation {
 		} else {
 			this.minLength = intMinLength;
 		}
-		logger.info("password={}, action={}, value={}",
-				MIN_LENGTH_LOG, "Set Min Length", getMinLength());
+		logger.info("password={}, action={}, value={}", MIN_LENGTH_LOG, "Set Min Length", getMinLength());
 	}
 
 	@Override
@@ -47,33 +44,29 @@ public class MinLengthValidation implements IPasswordValidation {
 		String configValue;
 
 		if (null == password) {
-			logger.info("password={}, action={}, status={}, message={}",
-					MIN_LENGTH_LOG, "Check Validity", "Fail", "Null Password");
+			logger.info("password={}, action={}, status={}, message={}", MIN_LENGTH_LOG, "Check Validity", "Fail",
+					"Null Password");
 			return false;
 		}
 
 		try {
 			configValue = config.getConfig(MIN_LENGTH_CONFIG);
 		} catch (IllegalArgumentException e) {
-			logger.warn("password={}, action={}, message={}",
-					MIN_LENGTH_LOG, "Get Configuration", e.getMessage());
+			logger.warn("password={}, action={}, message={}", MIN_LENGTH_LOG, "Get Configuration", e.getMessage());
 			configValue = null;
 		}
 		setMinLength(configValue);
 
 		if (this.minLength == 0) {
-			logger.info("password={}, action={}, status={}",
-					MIN_LENGTH_LOG, "Check Validity", "Success");
+			logger.info("password={}, action={}, status={}", MIN_LENGTH_LOG, "Check Validity", "Success");
 			return true;
 		}
 
 		if (password.length() >= this.minLength) {
-			logger.info("password={}, action={}, status={}",
-					MIN_LENGTH_LOG, "Check Validity", "Success");
+			logger.info("password={}, action={}, status={}", MIN_LENGTH_LOG, "Check Validity", "Success");
 			return true;
 		} else {
-			logger.info("password={}, action={}, status={}",
-					MIN_LENGTH_LOG, "Check Validity", "Fail");
+			logger.info("password={}, action={}, status={}", MIN_LENGTH_LOG, "Check Validity", "Fail");
 			return false;
 		}
 	}
@@ -86,8 +79,7 @@ public class MinLengthValidation implements IPasswordValidation {
 		} else {
 			message = String.format(INVALID_PASSWORD_MESSAGE, this.minLength);
 		}
-		logger.info("password={}, action={}, message={}",
-				MIN_LENGTH_LOG, "Get Validation Message", message);
+		logger.info("password={}, action={}, message={}", MIN_LENGTH_LOG, "Get Validation Message", message);
 		return message;
 	}
 }

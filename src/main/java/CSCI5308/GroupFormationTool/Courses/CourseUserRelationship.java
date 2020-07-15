@@ -4,7 +4,6 @@ import java.util.List;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
-import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public class CourseUserRelationship implements ICourseUserRelationship {
 	public boolean userHasRoleInCourse(InterfaceUser user, Role role, InterfaceCourse course) {
@@ -39,5 +38,4 @@ public class CourseUserRelationship implements ICourseUserRelationship {
 		return userCourseRelationshipDB.enrollUser(course, user, role);
 	}
 
-	
 }

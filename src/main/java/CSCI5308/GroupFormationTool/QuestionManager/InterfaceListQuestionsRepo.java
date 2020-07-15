@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.QuestionManager;
 
-
 public interface InterfaceListQuestionsRepo {
-    InterfaceDeleteQuestionsModel listQuestionsFromDB(long userId);
+	InterfaceDeleteQuestionsModel listQuestionsFromDB(long userId);
 }

@@ -3,25 +3,27 @@ package CSCI5308.GroupFormationTool.QuestionManager;
 import java.util.HashMap;
 
 public interface InterfaceQuestionModel {
-    Long getUserID();
+	Long getUserID();
 
-    void setUserID(Long userID);
+	void setUserID(Long userID);
 
-    String getTypeSelect();
+	String getTypeSelect();
 
-    void setTypeSelect(String typeSelect);
+	void setTypeSelect(String typeSelect);
 
-    HashMap<String, String> getQuestionTypeList();
+	HashMap<String, String> getQuestionTypeList();
 
-    void setQuestionTypeList(HashMap<String, String> questionTypeList);
+	void setQuestionTypeList(HashMap<String, String> questionTypeList);
 
-    String getQuestionTitle();
+	String getQuestionTitle();
 
-    void setQuestionTitle(String questionTitle);
+	void setQuestionTitle(String questionTitle);
 
-    String getQuestionText();
+	String getQuestionText();
 
-    void setQuestionText(String questionText);
+	void setQuestionText(String questionText);
+
+	String getResponseText();
 
     long getQuestionID();
 
@@ -31,13 +33,13 @@ public interface InterfaceQuestionModel {
 
     void setQuestionType(String questionType);
 
-    String getResponseText();
+ 
 
-    void setResponseText(String responseText);
+	void setResponseText(String responseText);
 
-    int getResponseScore();
+	int getResponseScore();
 
-    void setResponseScore(int responseScore);
+	void setResponseScore(int responseScore);
 
-    boolean createQuestion(IQuestionsPersistence questionDB);
+	boolean createQuestion(IQuestionsPersistence questionDB);
 }

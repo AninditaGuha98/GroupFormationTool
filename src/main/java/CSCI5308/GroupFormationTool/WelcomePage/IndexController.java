@@ -3,7 +3,6 @@ package CSCI5308.GroupFormationTool.WelcomePage;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 import CSCI5308.GroupFormationTool.AccessControl.*;
 import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 import org.springframework.security.core.Authentication;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
+import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 
 @Controller
 public class IndexController {

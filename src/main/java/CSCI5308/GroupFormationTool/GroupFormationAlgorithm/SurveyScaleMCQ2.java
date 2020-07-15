@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.ComputeSurvey;
+package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
 import CSCI5308.GroupFormationTool.MyGroupFormation.ISurveyResponse;
 
