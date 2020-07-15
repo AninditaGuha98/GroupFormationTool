@@ -20,7 +20,7 @@ import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.Survey.*;
+import CSCI5308.GroupFormationTool.CreateSurvey.*;
 
 
 public class SystemConfig {

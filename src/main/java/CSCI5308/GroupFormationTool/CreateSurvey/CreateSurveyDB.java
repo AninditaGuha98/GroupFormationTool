@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Survey;
+package CSCI5308.GroupFormationTool.CreateSurvey;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.SystemConfig;

@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.Survey;
+package CSCI5308.GroupFormationTool.CreateSurvey;
 
 
 public interface ICreateSurveyDB {
