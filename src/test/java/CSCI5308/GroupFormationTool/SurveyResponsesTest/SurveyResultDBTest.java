@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
+package CSCI5308.GroupFormationTool.SurveyResponsesTest;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResultDB;

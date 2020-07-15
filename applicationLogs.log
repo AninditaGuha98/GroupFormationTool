@@ -1,0 +1,3 @@
+2020-07-15 13:56:33.584 [http-nio-8080-exec-10] WARN  C.G.S.CustomAuthenticationManager.authenticate(82) - user=B00929919, action=User Authentication, status=Starting...
+2020-07-15 13:56:33.595 [http-nio-8080-exec-10] WARN  C.G.S.CustomAuthenticationManager.authenticate(84) - user=B00929919, action=Check User Validity, status=Success
+2020-07-15 13:56:33.681 [http-nio-8080-exec-10] WARN  C.G.S.CustomAuthenticationManager.checkNormal(53) - user=B00929919, action=Check User Credentials, status=Success
