@@ -8,12 +8,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Set;
 import java.util.TreeMap;
 
+import CSCI5308.GroupFormationTool.GroupFormationToolApplication;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class GroupAlgorithmDB implements IGroupAlgorithmDB {
+	
+	static final Logger logger = LoggerFactory.getLogger(GroupFormationToolApplication.class);
 
 	public List<ISurveyResponse> loadResponses(long courseID) {
 		CallStoredProcedure proc = null;
@@ -59,7 +66,8 @@ public class GroupAlgorithmDB implements IGroupAlgorithmDB {
 				}
 			}
 		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+			logger.error(" Exception encountered" + throwables.getMessage());
+			
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
