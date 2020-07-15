@@ -12,7 +12,5 @@ public class GroupFormationToolApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GroupFormationToolApplication.class, args);
-		//log.warn("This is a Log Example.");
 	}
-
 }
