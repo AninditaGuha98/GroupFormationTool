@@ -12,7 +12,8 @@ import java.util.Dictionary;
 public class SurveyController {
 
      ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
-     ISaveSurveyRepo ISaveSurveyRepo = SystemConfig.instance().getSaveSurveyRepo();
+     ICreateSurveyDB ICreateSurveyDB = SystemConfig.instance().getCreateSurveyDB()
+             ;
      IUpdateQuestionsListService iUpdateQuestionsListService= new UpdateQuestionsListService();
      IListQuestionsService IlistQuestionsService=new ListQuestionsService();
 
@@ -20,7 +21,7 @@ public class SurveyController {
     public ModelAndView surveyHome(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID) throws SQLException {
         boolean surveyFlag;
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
-        surveyFlag=ISaveSurveyRepo.getSavedQuestions(courseID);
+        surveyFlag= ICreateSurveyDB.fetchSavedQuestions(courseID);
         if(surveyFlag==false){
             mv.addObject("surveyFlag",false);
             mv.addObject("surveyMessage", "A Survey is already published.");
@@ -76,7 +77,7 @@ public class SurveyController {
         mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
         mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
-        if(ISaveSurveyRepo.saveSurvey(courseID,userID,status)){
+        if(ICreateSurveyDB.saveSurvey(courseID,userID,status)){
             mv.addObject("msgFlag",0);
             mv.addObject("message","Questions have been saved successfully, you can edit later else publish it now.");
         }
@@ -89,7 +90,7 @@ public class SurveyController {
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
-        if(ISaveSurveyRepo.saveSurvey(courseID,userID,status)){
+        if(ICreateSurveyDB.saveSurvey(courseID,userID,status)){
             mv.addObject("surveyFlag",false);
             mv.addObject("surveyMessage","Questions have been published.");
         }

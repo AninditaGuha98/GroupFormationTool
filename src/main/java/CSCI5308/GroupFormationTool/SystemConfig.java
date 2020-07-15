@@ -38,7 +38,7 @@ public class SystemConfig {
 	private ICreateSurveyQuestionsModel createSurveyQuestionsModel;
 	private IQueryQuestionsRepo queryQuestionsRepo;
 	private ISurveyExistRepo surveyExistRepo;
-	private ISaveSurveyRepo saveSurveyRepo;
+	private ICreateSurveyDB createSurveyDB;
 
 	public ICreateSurveyQuestionsModel getCreateSurveyQuestionsModel() {
 		return createSurveyQuestionsModel;
@@ -70,15 +70,15 @@ public class SystemConfig {
 		createSurveyQuestionsModel=new CreateSurveyQuestionsModel();
 		queryQuestionsRepo=new QueryQuestionsRepo();
 		surveyExistRepo=new SurveyExistRepo();
-		saveSurveyRepo=new SaveSurveyRepo();
+		createSurveyDB=new CreateSurveyDB();
 	}
 
-	public ISaveSurveyRepo getSaveSurveyRepo() {
-		return saveSurveyRepo;
+	public ICreateSurveyDB getCreateSurveyDB() {
+		return createSurveyDB;
 	}
 
-	public void setSaveSurveyRepo(ISaveSurveyRepo saveSurveyRepo) {
-		this.saveSurveyRepo = saveSurveyRepo;
+	public void setCreateSurveyDB(ICreateSurveyDB createSurveyDB) {
+		this.createSurveyDB = createSurveyDB;
 	}
 
 	public IQueryQuestionsRepo getQueryQuestionsRepo() {

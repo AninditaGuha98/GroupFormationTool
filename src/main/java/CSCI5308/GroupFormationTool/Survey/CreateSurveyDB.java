@@ -5,11 +5,10 @@ import CSCI5308.GroupFormationTool.SystemConfig;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class SaveSurveyRepo implements ISaveSurveyRepo {
+public class CreateSurveyDB implements ICreateSurveyDB {
 
     @Override
     public boolean saveSurvey(long courseID, long userID, int status){
@@ -88,6 +87,7 @@ public class SaveSurveyRepo implements ISaveSurveyRepo {
         return false;
     }
 
+    @Override
     public void createNewSurvey(long courseID,long status){
         CallStoredProcedure callStoredProcedure=null;
         try{
@@ -106,6 +106,7 @@ public class SaveSurveyRepo implements ISaveSurveyRepo {
         }
     }
 
+    @Override
     public int fetchSurveyID(long courseID,int state){
         int surveyID=0;
         CallStoredProcedure procedure=null;
@@ -135,7 +136,7 @@ public class SaveSurveyRepo implements ISaveSurveyRepo {
     }
 
     @Override
-    public boolean getSavedQuestions(long courseID) {
+    public boolean fetchSavedQuestions(long courseID) {
         ISurveyExistRepo iSurveyExistRepo= SystemConfig.instance().getSurveyExistRepo();
         int state;
         int surveyID=0;

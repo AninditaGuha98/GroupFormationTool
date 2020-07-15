@@ -12,7 +12,7 @@ public class QueryQuestionsRepo implements IQueryQuestionsRepo {
     @Override
     public ICreateSurveyQuestionsModel listQuestionsForUser (long userID){
         ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
-        ArrayList<Integer> questionID=new ArrayList<>();
+
         ArrayList<String> questionHeading=new ArrayList<>();
         ArrayList<String> questionType=new ArrayList<>();
         String [] savedQuestions;
@@ -38,7 +38,6 @@ public class QueryQuestionsRepo implements IQueryQuestionsRepo {
                 procedure.cleanup();
             }
         }
-
         if(savedQuestions!=null){
             for(int i=0;i<savedQuestions.length;i++){
                 if(questionHeading.contains(savedQuestions[i])){
@@ -47,13 +46,11 @@ public class QueryQuestionsRepo implements IQueryQuestionsRepo {
                 }
             }
         }
-
         String[] questionsList = questionHeading.toArray(new String[0]);
         String[] questionsType = questionType.toArray(new String[0]);
 
         iCreateSurveyQuestionsModel.setQuestionHeading(questionsList);
         iCreateSurveyQuestionsModel.setQuestionType(questionsType);
-
         return iCreateSurveyQuestionsModel;
     }
 }

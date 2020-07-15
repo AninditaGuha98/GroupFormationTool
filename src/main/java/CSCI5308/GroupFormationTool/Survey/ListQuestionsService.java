@@ -1,18 +1,13 @@
 package CSCI5308.GroupFormationTool.Survey;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
-
 import java.util.Dictionary;
-import java.util.HashMap;
 import java.util.Hashtable;
 
 public class ListQuestionsService implements IListQuestionsService {
 
     IQueryQuestionsRepo iQueryQuestionsRepo= SystemConfig.instance().getQueryQuestionsRepo();
     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=SystemConfig.instance().getCreateSurveyQuestionsModel();
-
-
-
 
     @Override
     public Dictionary listAllQuestionsforUser(long userID){
