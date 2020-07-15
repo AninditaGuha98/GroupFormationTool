@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.MyGroupFormation;
+package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
 import java.util.List;
 
