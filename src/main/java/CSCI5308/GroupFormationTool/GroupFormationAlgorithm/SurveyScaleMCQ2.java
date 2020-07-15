@@ -1,41 +1,65 @@
 package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
-import CSCI5308.GroupFormationTool.MyGroupFormation.ISurveyResponse;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class SurveyScaleMCQ2 extends AbstractSurveyScale {
+public class SurveyScaleMCQ2 extends SurveyScale {
 
 	@Override
 	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index) {
-		int rpValue1 = convertValue(rp1.getResponse(index));
-		int rpValue2 = convertValue(rp2.getResponse(index));
+//		int rpValue1 = convertValue(rp1.getResponse(index));
+//		int rpValue2 = convertValue(rp2.getResponse(index));
 		
+		
+//		Convert the String to Bit Representation
+//		Find you need similar or dissimilar
 		
 		return 0;
 	}
 	
-	private static int convertValue(String rpString) {
-		return 0;
+	public static int convertValue(String rpString) {
+		List<String> strRpValues = Arrays.asList(rpString.split(","));
+		List<Integer> intRpValues = new ArrayList<Integer>();
+		
+		for (String strRpValue: strRpValues) {
+			int value = 0;
+			try {
+				value = Integer.parseInt(strRpValue.strip());
+			}
+			catch(NumberFormatException e) {
+				// Log Error
+			}
+			intRpValues.add(1 << (value-1));
+		}
+		
+		int finalValue = 0;
+		for (Integer rpValue: intRpValues) {
+			finalValue |= rpValue;
+		}
+		
+		return finalValue;
 	}
 	
-	private int distanceSimilar(int val1, int val2) {
+	public static int distanceSimilar(int val1, int val2) {
 		int distance = 0;
-		int bitVal1 = 1 >> val1;
-		int bitVal2 = 1 >> val2;
+		int bitVal1 = val1;
+		int bitVal2 = val2;
 		
 		distance = countSetBits(bitVal1 ^ bitVal2);
 		return distance;
 	}
 	
-	private int distanceDissimilar(int val1, int val2) {
+	public static int distanceDissimilar(int val1, int val2, int MSB) {
 		int distance = 0;
-		int bitVal1 = 1 >> val1;
-		int bitVal2 = 1 >> val2;
+		int bitVal1 = val1;
+		int bitVal2 = val2;
 		
-		distance = countSetBits(~(bitVal1 ^ bitVal2));
+		distance = countSetBits((~(bitVal1 ^ bitVal2) & getMask(MSB)));
 		return distance;
 	}
 	
-	private static int countSetBits(int n) 
+	public static int countSetBits(int n) 
     { 
 	        int count = 0; 
 	        while (n > 0) { 
@@ -43,5 +67,14 @@ public class SurveyScaleMCQ2 extends AbstractSurveyScale {
 	            n >>= 1; 
 	        } 
 	        return count; 
-	} 
+	}
+	
+	public static int getMask(int MSB) {
+		int mask = 0;
+		for (int i=0; i < MSB; i++) {
+			mask <<= 1;
+			mask |= 1;
+		}
+		return mask;
+	}
 }

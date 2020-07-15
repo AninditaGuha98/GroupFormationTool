@@ -17,4 +17,6 @@ public interface ISurveyScale {
 	public String getThreshold() ;
 
 	public void setThreshold(String threshold) ;
+	
+	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index);
 }

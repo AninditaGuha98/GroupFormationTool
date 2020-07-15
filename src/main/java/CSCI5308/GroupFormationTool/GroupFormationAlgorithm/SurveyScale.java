@@ -37,5 +37,8 @@ public class SurveyScale implements ISurveyScale {
 	public void setThreshold(String threshold) {
 		this.threshold = threshold;
 	}
-
+	
+	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index) {
+		return 0;
+	}
 }
