@@ -4,12 +4,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyScale;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyScaleMCQ2;
 
 class SurveyScaleMCQ2Test {
 
 	@Test
 	public void distanceTest() {
+		ISurveyResponse sr1 = new SurveyResponseMock1();
+		ISurveyResponse sr2 = new SurveyResponseMock5();
+		ISurveyScale sc = new SurveyScaleMock2();
+		
+		assertEquals(4.0, sc.distance(sr1, sr1, 1));
+		assertEquals(4.0, sc.distance(sr2, sr2, 1));
+		assertEquals(2.0, sc.distance(sr1, sr2, 1));
+		assertEquals(2.0, sc.distance(sr2, sr1, 1));
 	}
 	
 	@Test

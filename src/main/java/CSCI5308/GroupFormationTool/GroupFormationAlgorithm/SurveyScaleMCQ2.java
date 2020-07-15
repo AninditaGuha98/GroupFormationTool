@@ -8,14 +8,37 @@ public class SurveyScaleMCQ2 extends SurveyScale {
 
 	@Override
 	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index) {
-//		int rpValue1 = convertValue(rp1.getResponse(index));
-//		int rpValue2 = convertValue(rp2.getResponse(index));
+		int rpValue1 = convertValue(rp1.getResponses().get(index));
+		int rpValue2 = convertValue(rp2.getResponses().get(index));
+		double distance = 0;
+		int msb;
+		List<String> criteria;
 		
+		try {
+			msb = Integer.parseInt(this.getOptionscount());
+		} catch (NumberFormatException e) {
+			// log error
+			msb = 0;
+		}
 		
-//		Convert the String to Bit Representation
-//		Find you need similar or dissimilar
+		criteria = Arrays.asList(this.getCriteria().toLowerCase().split(","));
+		for(String criterion: criteria) {
+			switch(criterion) {
+				case "similar":
+					distance += (double) distanceSimilar(rpValue1, rpValue2);
+					break;
+				case "dissimilar":
+					distance += (double) distanceDissimilar(rpValue1, rpValue2, msb);
+					break;
+				case "grtx":
+					break;
+				case "lessx":
+					break;
+				default:
+			}
+		}
 		
-		return 0;
+		return distance;
 	}
 	
 	public static int convertValue(String rpString) {
@@ -50,12 +73,12 @@ public class SurveyScaleMCQ2 extends SurveyScale {
 		return distance;
 	}
 	
-	public static int distanceDissimilar(int val1, int val2, int MSB) {
+	public static int distanceDissimilar(int val1, int val2, int msb) {
 		int distance = 0;
 		int bitVal1 = val1;
 		int bitVal2 = val2;
 		
-		distance = countSetBits((~(bitVal1 ^ bitVal2) & getMask(MSB)));
+		distance = countSetBits((~(bitVal1 ^ bitVal2) & getMask(msb)));
 		return distance;
 	}
 	
