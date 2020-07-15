@@ -116,6 +116,7 @@ public class QuestionDB implements IQuestionsPersistence {
 	public List<InterfaceQuestionModel> loadAllQuestionsBycourseID(String courseID) {
 		List<InterfaceQuestionModel> questions = new ArrayList<>();
 		CallStoredProcedure proc = null;
+		CallStoredProcedure procOptionsCount=null;
 		try {
 			proc = new CallStoredProcedure("spLoadCourseQuestions(?)");
 			proc.setParameter(1, "3");
@@ -125,6 +126,18 @@ public class QuestionDB implements IQuestionsPersistence {
 					InterfaceQuestionModel interfaceQuestionModel = questionFactory.createQuestionModel();
 					interfaceQuestionModel.setQuestionText(results.getString(1));
 					interfaceQuestionModel.setTypeSelect(results.getString(2));
+					interfaceQuestionModel.setQuestionID(Long.parseLong(results.getString(3)));
+					//get responses count
+					procOptionsCount=new CallStoredProcedure("spGetNumberOfQuestionResponses(?)");
+					procOptionsCount.setParameter(1, results.getString(3));
+					procOptionsCount.executeWithResults();
+					ResultSet responsesCount = procOptionsCount.executeWithResults();
+					if(null!=responsesCount) {
+						while(responsesCount.next()) {
+							interfaceQuestionModel.setResponseText(responsesCount.getString(1));
+						}						
+					}
+					//
 					questions.add(interfaceQuestionModel);
 				}
 			}

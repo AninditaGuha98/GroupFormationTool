@@ -5,6 +5,24 @@ public class SurveyScale implements ISurveyScale {
 	private String questiontype;
 	private String criteria;
 	private String threshold;
+	private String optionscount;
+	private String questionid;
+
+	public String getOptionscount() {
+		return optionscount;
+	}
+
+	public void setOptionscount(String optionscount) {
+		this.optionscount = optionscount;
+	}
+
+	public String getQuestionid() {
+		return questionid;
+	}
+
+	public void setQuestionid(String questionid) {
+		this.questionid = questionid;
+	}
 
 	public String getQuestiontext() {
 		return questiontext;

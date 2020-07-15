@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface ISurveyResponse {
 
@@ -15,9 +16,13 @@ public interface ISurveyResponse {
 	public String getLastName() ;
 
 	public void setLastName(String lastName) ;
-
-	public HashMap<String, String> getQuestionResponses() ;
-
-	public void setQuestionResponses(HashMap<String, String> questionResponses) ;
+	
+	public void setQuestions(List<String> questions);
+	
+	public List<String> getQuestions();
+	
+	public void setResponses(List<String> responses);
+	
+	public List<String> getResponses();
 	
 }

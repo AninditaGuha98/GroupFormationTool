@@ -17,4 +17,12 @@ public interface ISurveyScale {
 	public String getThreshold() ;
 
 	public void setThreshold(String threshold) ;
+	
+	public String getOptionscount() ;
+
+	public void setOptionscount(String optionscount) ;
+
+	public String getQuestionid() ;
+
+	public void setQuestionid(String questionid) ;
 }
