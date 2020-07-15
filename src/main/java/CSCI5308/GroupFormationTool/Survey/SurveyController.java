@@ -2,11 +2,9 @@ package CSCI5308.GroupFormationTool.Survey;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.sql.SQLException;
 import java.util.Dictionary;
 
@@ -14,15 +12,14 @@ import java.util.Dictionary;
 public class SurveyController {
 
      ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
-     IQueryQuestionsRepo iQueryQuestionsRepo = SystemConfig.instance().getQueryQuestionsRepo();
+     ISaveSurveyRepo ISaveSurveyRepo = SystemConfig.instance().getSaveSurveyRepo();
      IUpdateQuestionsListService iUpdateQuestionsListService= new UpdateQuestionsListService();
      IListQuestionsService IlistQuestionsService=new ListQuestionsService();
-     ISaveSurveyRepo ISaveSurveyRepo = SystemConfig.instance().getSaveSurveyRepo();
 
     @RequestMapping("/surveyhome")
-    public ModelAndView surveyHome(Model model, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID) throws SQLException {
-        ModelAndView mv = new ModelAndView("Survey/surveyhome");
+    public ModelAndView surveyHome(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID) throws SQLException {
         boolean surveyFlag;
+        ModelAndView mv = new ModelAndView("Survey/surveyhome");
         surveyFlag=ISaveSurveyRepo.getSavedQuestions(courseID);
         if(surveyFlag==false){
             mv.addObject("surveyFlag",false);
@@ -41,7 +38,7 @@ public class SurveyController {
 
 
     @RequestMapping("/addQuestions")
-    public ModelAndView addQuestions(Model model, @RequestParam(name="selectedQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+    public ModelAndView addQuestions(@RequestParam(name="selectedQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.displayUpdatedQuestionList(iCreateSurveyQuestionsModel.getQuestionHeading(),iCreateSurveyQuestionsModel.getQuestionType(),que);
         mv.addObject("publish",false);
@@ -55,7 +52,7 @@ public class SurveyController {
     }
 
     @RequestMapping("/removeQuestions")
-    public ModelAndView removeQuestions(Model model, @RequestParam(name="removeQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+    public ModelAndView removeQuestions(@RequestParam(name="removeQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.removeQuestions(que);
         mv.addObject("publish",false);
@@ -69,9 +66,9 @@ public class SurveyController {
     }
 
     @RequestMapping("/save")
-    public ModelAndView saveSurvey(Model model, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
-        ModelAndView mv = new ModelAndView("Survey/surveyhome");
+    public ModelAndView saveSurvey(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         int status=0;
+        ModelAndView mv = new ModelAndView("Survey/surveyhome");
         mv.addObject("publish",true);
         mv.addObject("surveyFlag",true);
         mv.addObject("courseID",courseID);
@@ -87,9 +84,9 @@ public class SurveyController {
     }
 
     @RequestMapping("/publish")
-    public ModelAndView publishSurvey(Model model, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
-        ModelAndView mv = new ModelAndView("Survey/surveyhome");
+    public ModelAndView publishSurvey(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         int status=1;
+        ModelAndView mv = new ModelAndView("Survey/surveyhome");
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
         if(ISaveSurveyRepo.saveSurvey(courseID,userID,status)){

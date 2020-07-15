@@ -4,10 +4,8 @@ public class CreateSurveyQuestionsModel implements ICreateSurveyQuestionsModel {
 
     private String[] questionHeading;
     private String[] questionType;
-    private Integer[] questionID;
     private String [] selectedQuestions;
     private String[] selectedTypes;
-
 
     @Override
     public String[] getSelectedTypes() {
@@ -37,16 +35,6 @@ public class CreateSurveyQuestionsModel implements ICreateSurveyQuestionsModel {
     @Override
     public void setQuestionHeading(String[] questionHeading) {
         this.questionHeading = questionHeading;
-    }
-
-    @Override
-    public Integer[] getQuestionID() {
-        return questionID;
-    }
-
-    @Override
-    public void setQuestionID(Integer[] questionID) {
-        this.questionID = questionID;
     }
 
     @Override

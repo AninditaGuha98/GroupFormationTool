@@ -9,10 +9,6 @@ public interface ICreateSurveyQuestionsModel {
 
     void setQuestionHeading(String[] questionHeading);
 
-    Integer[] getQuestionID();
-
-    void setQuestionID(Integer[] questionID);
-
     String[] getSelectedQuestions();
 
     void setSelectedQuestions(String[] selectedQuestions);
