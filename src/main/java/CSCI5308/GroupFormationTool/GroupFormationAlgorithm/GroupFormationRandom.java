@@ -1,19 +1,17 @@
-package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
+package CSCI5308.GroupFormationTool.GroupForma	tionAlgorithm;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import CSCI5308.GroupFormationTool.ComputeSurvey.AbstractSurveyScale;
-
 public class GroupFormationRandom implements IGroupFormatiomAlgorithm {
 
 	@Override
 	public List<IGroup> formGroup(List<ISurveyResponse> surveryResults, 
-			List<AbstractSurveyScale> surveyScales,	int groupSize) {
+			List<ISurveyScale> surveyScales, int groupSize) {
 		List<IGroup> groups;
 		List<ISurveyResponse> newStudentList;
-		int numberOfGroups = (int) Math.ceil(surveryResults.size()/ (double) groupSize);
+		int numberOfGroups = (int) Math.ceil((double) surveryResults.size()/ (double) groupSize);
 		
 		newStudentList = new ArrayList<ISurveyResponse>();
 		for (int i = 0; i < surveryResults.size(); i++) {
@@ -30,10 +28,12 @@ public class GroupFormationRandom implements IGroupFormatiomAlgorithm {
     	Random randGen = new Random();
     	for (int i = 0; i < numberOfGroups; i++) {
 			for (int j = 0; j < groupSize; j++) {
-				int randNumber = randGen.nextInt(newStudentList.size());
-				ISurveyResponse student = newStudentList.get(randNumber);
-				groups.get(i).addGroupMember(student);
-				newStudentList.remove(randNumber);
+				if (newStudentList.size() > 0) {
+					int randNumber = randGen.nextInt(newStudentList.size());
+					ISurveyResponse student = newStudentList.get(randNumber);
+					groups.get(i).addGroupMember(student);
+					newStudentList.remove(randNumber);
+				}
 			}
 		}
 		
