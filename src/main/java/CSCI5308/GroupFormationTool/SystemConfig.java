@@ -11,6 +11,8 @@ import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.ObjectFactory;
 import CSCI5308.GroupFormationTool.Database.DefaultDatabaseConfiguration;
 import CSCI5308.GroupFormationTool.Database.IDatabaseConfiguration;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.DefaultGroupFormationFactory;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
@@ -32,9 +34,7 @@ public class SystemConfig {
 	private ICourseUserRelationshipPersistence courseUserRelationshipDB;
 	private IPasswordValidationFactory passwordValidationFactory;
 	private ISecurityFactory securityFactory;
-
-	private IPasswordValidationConfiguration passwordValidationConfiguration;
-
+	private IGroupFormationFactory groupFormationFactory;
 
 	private SystemConfig() {
 		userDB = new UserDB();
@@ -43,7 +43,7 @@ public class SystemConfig {
 		courseUserRelationshipDB = new CourseUserRelationshipDB();
 		passwordValidationFactory = new DefaultPasswordValidationFactory();
 		securityFactory = new DefaultSecurityFactory();
-		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
+		groupFormationFactory = new DefaultGroupFormationFactory();
 	}
 
 	public static SystemConfig instance() {
@@ -99,5 +99,13 @@ public class SystemConfig {
 
 	public void setSecurityFactory(ISecurityFactory securityFactory) {
 		this.securityFactory = securityFactory;
+	}
+	
+	public IGroupFormationFactory getGroupFormationFactory() {
+		return this.groupFormationFactory;
+	}
+	
+	public void setGroupFormationFactory(IGroupFormationFactory groupFormationFactory) {
+		this.groupFormationFactory = groupFormationFactory;
 	}
 }

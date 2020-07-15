@@ -1,4 +1,4 @@
-package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
+package CSCI5308.GroupFormationTool.GroupFormationAlgorithmTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupAlgorithmDB;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupAlgorithmDB;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyResponseObjectFactory;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyScaleObjectFactory;
+
 public class GroupAlgorithmDBTest {
 	IGroupAlgorithmDB algorithmDBMock = mock(GroupAlgorithmDB.class);
 	List<ISurveyResponse> responses;
