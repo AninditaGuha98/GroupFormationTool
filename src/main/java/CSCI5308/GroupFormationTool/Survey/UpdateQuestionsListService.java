@@ -53,6 +53,7 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
         List<String> sType = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedTypes()));
         List<String> queHead=(Arrays.asList(iCreateSurveyQuestionsModel.getQuestionHeading()));
         List<String> queType=(Arrays.asList(iCreateSurveyQuestionsModel.getQuestionType()));
+
         sQue=new ArrayList<>(sQue);
         sType=new ArrayList<>(sType);
         queHead=new ArrayList<>(queHead);

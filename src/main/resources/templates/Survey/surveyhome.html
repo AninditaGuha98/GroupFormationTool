@@ -70,6 +70,15 @@
 
     <div th:if="${surveyFlag}==false">
         <p th:text="${surveyMessage}"></p>
+<!--        <div>-->
+<!--            <a th:href="@{/course/course(id=${courseID},userID=${userID})}">-->
+<!--&lt;!&ndash;                <div class="Button">&ndash;&gt;-->
+<!--                    Go to Home Page-->
+<!--&lt;!&ndash;                    <button type="submit">Go to Home Page</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </a>-->
+
+<!--        </div>-->
     </div>
 
     <div  th:if="${surveyFlag}==true" class="Main">
@@ -148,6 +157,16 @@
                 </form>
             </div>
         </div>
+
+<!--        <div>-->
+<!--            <form th:action="@{/course/course(id=${courseID},userID=${userID})}" method="get">-->
+<!--                <div class="Button">-->
+<!--                    <button type="submit">Go to Home Page</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+
+
 
     </div>
 </body>

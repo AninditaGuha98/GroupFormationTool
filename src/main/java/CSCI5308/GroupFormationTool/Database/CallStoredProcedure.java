@@ -1,9 +1,7 @@
 package CSCI5308.GroupFormationTool.Database;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 
 public class CallStoredProcedure {
 	private String storedProcedureName;
@@ -61,6 +59,7 @@ public class CallStoredProcedure {
 		statement.setLong(paramIndex, value);
 	}
 
+
 	public void registerOutputParameterLong(int paramIndex) throws SQLException {
 		statement.registerOutParameter(paramIndex, java.sql.Types.BIGINT);
 	}
@@ -74,5 +73,10 @@ public class CallStoredProcedure {
 
 	public void execute() throws SQLException {
 		statement.execute();
+	}
+
+
+	public void setParameter(int paramIndex, Timestamp timestamp) throws SQLException {
+		statement.setTimestamp(paramIndex, timestamp);
 	}
 }

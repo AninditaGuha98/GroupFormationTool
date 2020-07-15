@@ -24,15 +24,15 @@ public class SurveyController {
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         boolean surveyFlag;
         surveyFlag=ISaveSurveyRepo.getSavedQuestions(courseID);
+        System.out.println(courseID);
         if(surveyFlag==false){
             mv.addObject("surveyFlag",false);
             mv.addObject("surveyMessage", "A Survey is already published.");
             return mv;
         }
-
         Dictionary hashMap= IlistQuestionsService.listAllQuestionsforUser(userID);
         mv.addObject("surveyFlag",true);
-        mv.addObject("courseID",courseID);
+        mv.addObject("courseID", courseID);
         mv.addObject("userID",userID);
         mv.addObject("questionsList",hashMap);
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
@@ -73,16 +73,29 @@ public class SurveyController {
     public ModelAndView saveSurvey(Model model, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         ModelAndView mv = new ModelAndView("Survey/surveyhome");
         int status=0;
-        mv.addObject("flag", true);
         mv.addObject("publish",true);
+        mv.addObject("surveyFlag",true);
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
         mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
         mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
-        if(ISaveSurveyRepo.saveSurvey(courseID,status)){
+        if(ISaveSurveyRepo.saveSurvey(courseID,userID,status)){
             mv.addObject("msgFlag",0);
-            mv.addObject("message","Questions have been saved successfully, you can edit later.");
+            mv.addObject("message","Questions have been saved successfully, you can edit later else publish it now.");
+        }
+        return mv;
+    }
+
+    @RequestMapping("/publish")
+    public ModelAndView publishSurvey(Model model, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        ModelAndView mv = new ModelAndView("Survey/surveyhome");
+        int status=1;
+        mv.addObject("courseID",courseID);
+        mv.addObject("userID", userID);
+        if(ISaveSurveyRepo.saveSurvey(courseID,userID,status)){
+            mv.addObject("surveyFlag",false);
+            mv.addObject("surveyMessage","Questions have been published.");
         }
         return mv;
     }
