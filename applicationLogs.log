@@ -845,3 +845,287 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2020-07-16 19:54:35.914 [http-nio-8080-exec-5] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
 2020-07-16 19:55:24.617 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(159) - Application shutdown requested.
 2020-07-16 19:55:24.619 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown(208) - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-16 19:55:28.412 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStarting(55) - Starting GroupFormationToolApplication on LAPTOP-2UHEDR0T with PID 18712 (C:\Coursework\AdvSDC\Project\Milestone2\group7\bin\main started by Ryan in C:\Coursework\AdvSDC\Project\Milestone2\group7)
+2020-07-16 19:55:28.413 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStartupProfileInfo(651) - No active profile set, falling back to default profiles: default
+2020-07-16 19:55:28.440 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo(225) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-16 19:55:28.440 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo(225) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-16 19:55:29.125 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize(92) - Tomcat initialized with port(s): 8080 (http)
+2020-07-16 19:55:29.132 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol.log(173) - Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-16 19:55:29.133 [restartedMain] INFO  o.a.catalina.core.StandardService.log(173) - Starting service [Tomcat]
+2020-07-16 19:55:29.133 [restartedMain] INFO  o.a.catalina.core.StandardEngine.log(173) - Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-16 19:55:29.215 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log(173) - Initializing Spring embedded WebApplicationContext
+2020-07-16 19:55:29.215 [restartedMain] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext(284) - Root WebApplicationContext: initialization completed in 775 ms
+2020-07-16 19:55:29.338 [restartedMain] INFO  C.G.Security.SecurityConfiguration.configure(26) - user=SecurityConfiguration, action=Resource Authorization
+2020-07-16 19:55:29.346 [restartedMain] INFO  C.G.Security.SecurityConfiguration.configure(20) - user=SecurityConfiguration, action=Resource Authorization
+2020-07-16 19:55:29.347 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain.<init>(43) - Creating filter chain: Ant [pattern='/resources/**'], []
+2020-07-16 19:55:29.361 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain.<init>(43) - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@548b9a29, org.springframework.security.web.context.SecurityContextPersistenceFilter@5e98a288, org.springframework.security.web.header.HeaderWriterFilter@4d7497ea, org.springframework.security.web.csrf.CsrfFilter@6f5dd9ae, org.springframework.security.web.authentication.logout.LogoutFilter@21bb0053, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@59898fef, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@282eb202, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@124c3a7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71ac1dfc, org.springframework.security.web.session.SessionManagementFilter@695cc0c9, org.springframework.security.web.access.ExceptionTranslationFilter@39c67673, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@29dda017]
+2020-07-16 19:55:29.418 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor.initialize(171) - Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-16 19:55:29.459 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping.<init>(58) - Adding welcome page template: index
+2020-07-16 19:55:29.559 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer.startServer(58) - LiveReload server is running on port 35729
+2020-07-16 19:55:29.573 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol.log(173) - Starting ProtocolHandler ["http-nio-8080"]
+2020-07-16 19:55:29.595 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start(204) - Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-16 19:55:29.597 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStarted(61) - Started GroupFormationToolApplication in 1.348 seconds (JVM running for 1.867)
+2020-07-16 19:55:35.690 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log(173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-16 19:55:35.691 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(525) - Initializing Servlet 'dispatcherServlet'
+2020-07-16 19:55:35.694 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(547) - Completed initialization in 3 ms
+2020-07-16 19:55:35.724 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 19:55:36.256 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 19:55:36.549 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 19:55:36.771 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 19:55:37.068 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 19:55:37.294 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 19:55:37.470 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 19:55:37.777 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 19:55:38.085 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 19:55:38.308 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 19:55:38.597 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 19:55:38.820 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 19:55:39.109 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 19:55:39.362 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 19:55:39.449 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:38.629 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:38.729 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:38.801 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:38.801 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:38.867 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:38.946 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:40.572 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:40.738 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:40.945 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:40.946 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:41.162 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:41.343 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:44.762 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:44.845 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:44.962 [http-nio-8080-exec-10] INFO  C.G.Courses.CourseDB.loadCourseByID(55) - Course loaded courseID= 3, Title =TestCourse
+2020-07-16 20:21:44.964 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:44.964 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:45.149 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:45.445 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:45.445 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:45.652 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:45.858 [http-nio-8080-exec-10] INFO  C.G.AccessControl.UserDB.loadUserByID(36) - User loaded for ID= 18,Banner id =B00929919 
+2020-07-16 20:21:45.859 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:45.859 [http-nio-8080-exec-10] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B00929919
+2020-07-16 20:21:45.859 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:45.927 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:46.067 [http-nio-8080-exec-10] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(112) - User = B00929919 has  Roles=[Instructor] in the CourseID= 3 CourseTitle=TestCourse
+2020-07-16 20:21:46.068 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:21:46.068 [http-nio-8080-exec-10] INFO  C.G.Courses.CourseController.course(65) - User roles in the courses = [Instructor]
+2020-07-16 20:21:47.870 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:47.936 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:48.005 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:48.074 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:48.153 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:48.221 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:48.300 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:48.370 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:48.447 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:48.516 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:48.595 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:48.664 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:48.743 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:21:48.812 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:21:48.891 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:22:05.255 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:05.413 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:05.614 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:05.678 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:05.836 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:06.021 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:06.249 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:06.533 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:06.752 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:06.919 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:07.107 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:07.372 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:07.510 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:07.777 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:07.845 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:07.913 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:07.983 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:22:08.052 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:22:08.121 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:22:08.130 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet].log(175) - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IndexOutOfBoundsException: Index 5 out of bounds for length 5] with root cause
+java.lang.IndexOutOfBoundsException: Index 5 out of bounds for length 5
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248)
+	at java.base/java.util.Objects.checkIndex(Objects.java:373)
+	at java.base/java.util.ArrayList.get(ArrayList.java:426)
+	at CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyScaleNumeric.distance(SurveyScaleNumeric.java:10)
+	at CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationMinDistance.computeDistance(GroupFormationMinDistance.java:48)
+	at CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationMinDistance.formGroup(GroupFormationMinDistance.java:70)
+	at CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyFormulaController.computeformula(SurveyFormulaController.java:26)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:888)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:200)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:141)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1598)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2020-07-16 20:38:18.043 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(159) - Application shutdown requested.
+2020-07-16 20:38:18.049 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown(208) - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-07-16 20:38:26.000 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStarting(55) - Starting GroupFormationToolApplication on LAPTOP-2UHEDR0T with PID 18580 (C:\Coursework\AdvSDC\Project\Milestone2\group7\bin\main started by Ryan in C:\Coursework\AdvSDC\Project\Milestone2\group7)
+2020-07-16 20:38:26.002 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStartupProfileInfo(651) - No active profile set, falling back to default profiles: default
+2020-07-16 20:38:26.028 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo(225) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-16 20:38:26.028 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo(225) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-16 20:38:26.700 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize(92) - Tomcat initialized with port(s): 8080 (http)
+2020-07-16 20:38:26.705 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol.log(173) - Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-16 20:38:26.705 [restartedMain] INFO  o.a.catalina.core.StandardService.log(173) - Starting service [Tomcat]
+2020-07-16 20:38:26.706 [restartedMain] INFO  o.a.catalina.core.StandardEngine.log(173) - Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-16 20:38:26.768 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log(173) - Initializing Spring embedded WebApplicationContext
+2020-07-16 20:38:26.769 [restartedMain] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext(284) - Root WebApplicationContext: initialization completed in 741 ms
+2020-07-16 20:38:26.885 [restartedMain] INFO  C.G.Security.SecurityConfiguration.configure(26) - user=SecurityConfiguration, action=Resource Authorization
+2020-07-16 20:38:26.893 [restartedMain] INFO  C.G.Security.SecurityConfiguration.configure(20) - user=SecurityConfiguration, action=Resource Authorization
+2020-07-16 20:38:26.894 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain.<init>(43) - Creating filter chain: Ant [pattern='/resources/**'], []
+2020-07-16 20:38:26.908 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain.<init>(43) - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e93c1b4, org.springframework.security.web.context.SecurityContextPersistenceFilter@124c3a7, org.springframework.security.web.header.HeaderWriterFilter@2ea41fff, org.springframework.security.web.csrf.CsrfFilter@39c67673, org.springframework.security.web.authentication.logout.LogoutFilter@4239eccd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@53d18a6b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@57d87dec, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52d8f4bb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27dde8df, org.springframework.security.web.session.SessionManagementFilter@c2d4300, org.springframework.security.web.access.ExceptionTranslationFilter@73ccdc32, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b4dde1a]
+2020-07-16 20:38:26.965 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor.initialize(171) - Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-16 20:38:27.009 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping.<init>(58) - Adding welcome page template: index
+2020-07-16 20:38:27.107 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer.startServer(58) - LiveReload server is running on port 35729
+2020-07-16 20:38:27.120 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol.log(173) - Starting ProtocolHandler ["http-nio-8080"]
+2020-07-16 20:38:27.137 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start(204) - Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-16 20:38:27.140 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStarted(61) - Started GroupFormationToolApplication in 1.308 seconds (JVM running for 1.83)
+2020-07-16 20:38:32.472 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log(173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-16 20:38:32.473 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(525) - Initializing Servlet 'dispatcherServlet'
+2020-07-16 20:38:32.478 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(547) - Completed initialization in 5 ms
+2020-07-16 20:38:32.517 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:32.815 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:33.018 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:33.020 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:33.096 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:33.376 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:34.273 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:34.501 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:34.638 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:34.639 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:34.820 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:35.041 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:37.268 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:37.336 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:37.408 [http-nio-8080-exec-7] INFO  C.G.Courses.CourseDB.loadCourseByID(55) - Course loaded courseID= 3, Title =TestCourse
+2020-07-16 20:38:37.410 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:37.415 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:37.495 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:37.574 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:37.574 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:37.651 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:37.721 [http-nio-8080-exec-7] INFO  C.G.AccessControl.UserDB.loadUserByID(36) - User loaded for ID= 18,Banner id =B00929919 
+2020-07-16 20:38:37.723 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:37.723 [http-nio-8080-exec-7] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B00929919
+2020-07-16 20:38:37.724 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:37.799 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:37.873 [http-nio-8080-exec-7] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(112) - User = B00929919 has  Roles=[Instructor] in the CourseID= 3 CourseTitle=TestCourse
+2020-07-16 20:38:37.874 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:38:37.875 [http-nio-8080-exec-7] INFO  C.G.Courses.CourseController.course(65) - User roles in the courses = [Instructor]
+2020-07-16 20:38:40.495 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:40.607 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:40.765 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:40.980 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:41.267 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:41.502 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:41.778 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:41.976 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:42.291 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:42.517 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:42.694 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:38:43.000 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:38:43.309 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
+2020-07-16 20:39:02.453 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:02.680 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:02.869 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:03.094 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:03.212 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:03.377 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:03.519 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:03.635 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:03.744 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:03.914 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:03.980 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:04.049 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:04.118 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:04.186 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:04.278 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:04.358 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:04.439 [http-nio-8080-exec-9] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 20:39:04.578 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.openConnection(46) - DB connection open
+2020-07-16 20:39:04.653 [http-nio-8080-exec-9] INFO  C.G.Database.CallStoredProcedure.cleanup(60) - Closing DB connection
