@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.GroupFormationAlgorithmTest;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroup;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormationAlgorithm;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyScale;
 
@@ -14,4 +15,5 @@ public interface IGroupFormationTestFactory {
 	public ISurveyScale createSurveyScaleNumericMock();
 	public ISurveyScale createSurveyScaleTextMock();
 	public IGroup createGroup();
+	public IGroupFormationAlgorithm getRandomAlgorithm();
 }

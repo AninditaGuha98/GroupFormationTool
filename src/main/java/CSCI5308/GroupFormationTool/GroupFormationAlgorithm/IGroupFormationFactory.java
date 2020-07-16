@@ -6,4 +6,5 @@ public interface IGroupFormationFactory {
 	public ISurveyScale createSurveyScaleMCQ2();
 	public ISurveyScale createSurveyScaleNumeric();
 	public ISurveyScale createSurveyScaleText();
+	public IGroup createGroup();
 }

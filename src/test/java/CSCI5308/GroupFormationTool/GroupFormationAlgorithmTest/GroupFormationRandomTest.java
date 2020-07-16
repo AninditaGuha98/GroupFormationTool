@@ -2,18 +2,29 @@ package CSCI5308.GroupFormationTool.GroupFormationAlgorithmTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationRandom;
-import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormatiomAlgorithm;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroup;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormationAlgorithm;
 
 class GroupFormationRandomTest {
 
 	@Test
 	void formGroupTest() {
 		IGroupFormationTestFactory factory = new GroupFormationTestFactory();
-		IGroupFormatiomAlgorithm algo = new GroupFormationRandom();
+		IGroupFormationAlgorithm algo = factory.getRandomAlgorithm();
+		List<IGroup> groups;
 		
-		algo.formGroup(factory.createSurveyResponsesMock(), factory.createSurveyScalsesMock(), 3);
+		groups = algo.formGroup(factory.createSurveyResponsesMock(), factory.createSurveyScalsesMock(), 0);
+		assertEquals(0, groups.size());
+		
+		groups = algo.formGroup(factory.createSurveyResponsesMock(), factory.createSurveyScalsesMock(), 1);
+		assertEquals(5, groups.size());
+		
+		groups = algo.formGroup(factory.createSurveyResponsesMock(), factory.createSurveyScalsesMock(), 2);
+		assertEquals(3, groups.size());
 	}
 }

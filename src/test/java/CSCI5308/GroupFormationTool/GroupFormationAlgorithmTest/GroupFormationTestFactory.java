@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.Group;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationRandom;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroup;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormationAlgorithm;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyScale;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyResponse;
@@ -116,4 +118,10 @@ public class GroupFormationTestFactory implements IGroupFormationTestFactory {
 	public IGroup createGroup() {
 		return new Group();
 	}
+	
+	@Override
+	public IGroupFormationAlgorithm getRandomAlgorithm() {
+		return new GroupFormationRandom();
+	}
+
 }
