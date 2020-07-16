@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.Group;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationMinDistance;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationRandom;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroup;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormationAlgorithm;
@@ -122,6 +123,11 @@ public class GroupFormationTestFactory implements IGroupFormationTestFactory {
 	@Override
 	public IGroupFormationAlgorithm getRandomAlgorithm() {
 		return new GroupFormationRandom();
+	}
+
+	@Override
+	public IGroupFormationAlgorithm getMinDistance() {
+		return new GroupFormationMinDistance();
 	}
 
 }

@@ -16,4 +16,5 @@ public interface IGroupFormationTestFactory {
 	public ISurveyScale createSurveyScaleTextMock();
 	public IGroup createGroup();
 	public IGroupFormationAlgorithm getRandomAlgorithm();
+	public IGroupFormationAlgorithm getMinDistance();
 }
