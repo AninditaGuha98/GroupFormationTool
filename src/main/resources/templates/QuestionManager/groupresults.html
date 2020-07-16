@@ -9,7 +9,7 @@
     margin: 1%;
     width: 35%;" th:each="group : ${groupresult}">
 		<tr>
-			<td><p th:text="'Group '+ ${group.groupNumber}"></p></td>
+			<td><p th:text="'Group '+ ${group.groupNumber+1}"></p></td>
 		</tr>
 		<tr>
     			<th>BannerID</th>
