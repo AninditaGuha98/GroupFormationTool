@@ -12,9 +12,9 @@ public class SurveyExistRepo implements ISurveyExistRepo {
         int state=2;
         CallStoredProcedure procedure = null;
         try {
-                procedure= new CallStoredProcedure("spCheckSurveyExist(?)");
-                procedure.setParameter(1,courseID);
-                ResultSet results=procedure.executeWithResults();
+            procedure= new CallStoredProcedure("spCheckSurveyExist(?)");
+            procedure.setParameter(1,courseID);
+            ResultSet results=procedure.executeWithResults();
 
             if (null != results) {
                 while (results.next()) {

@@ -11,16 +11,26 @@ import java.util.Dictionary;
 @Controller
 public class SurveyController {
 
-     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
-     ICreateSurveyDB ICreateSurveyDB = SystemConfig.instance().getCreateSurveyDB();
+     ICreateSurveyModelFactory iCreateSurveyModelFactory;
+     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
+     ICreateSurveyDBFactory iCreateSurveyDBFactory;
+     ICreateSurveyDB iCreateSurveyDB;
+
+//     ICreateSurveyDB ICreateSurveyDB = SystemConfig.instance().getCreateSurveyDB();
      IUpdateQuestionsListService iUpdateQuestionsListService= new UpdateQuestionsListService();
      IListQuestionsService IlistQuestionsService=new ListQuestionsService();
 
     @RequestMapping("/surveyhome")
     public ModelAndView surveyHome(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID) throws SQLException {
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
+        iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
+        iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
+
         boolean surveyFlag;
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
-        surveyFlag= ICreateSurveyDB.fetchSavedQuestions(courseID);
+        surveyFlag= iCreateSurveyDB.fetchSavedQuestions(courseID);
         mv.addObject("courseID", courseID);
         mv.addObject("userID",userID);
         if(surveyFlag==false){
@@ -41,6 +51,9 @@ public class SurveyController {
 
     @RequestMapping("/addQuestions")
     public ModelAndView addQuestions(@RequestParam(name="selectedQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.displayUpdatedQuestionList(iCreateSurveyQuestionsModel.getQuestionHeading(),iCreateSurveyQuestionsModel.getQuestionType(),que);
         mv.addObject("publish",false);
@@ -55,6 +68,9 @@ public class SurveyController {
 
     @RequestMapping("/removeQuestions")
     public ModelAndView removeQuestions(@RequestParam(name="removeQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.removeQuestions(que);
         mv.addObject("publish",false);
@@ -69,6 +85,11 @@ public class SurveyController {
 
     @RequestMapping("/save")
     public ModelAndView saveSurvey(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
+        iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
+        iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
         int status=0;
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         mv.addObject("publish",true);
@@ -78,7 +99,7 @@ public class SurveyController {
         mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
         mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
-        if(ICreateSurveyDB.saveSurvey(courseID,userID,status)){
+        if(iCreateSurveyDB.saveSurvey(courseID,userID,status)){
             mv.addObject("msgFlag",0);
             mv.addObject("message","Questions have been saved successfully, you can edit later else publish it now.");
         }
@@ -87,11 +108,14 @@ public class SurveyController {
 
     @RequestMapping("/publish")
     public ModelAndView publishSurvey(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
+        iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
+
         int status=1;
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
-        if(ICreateSurveyDB.saveSurvey(courseID,userID,status)){
+        if(iCreateSurveyDB.saveSurvey(courseID,userID,status)){
             mv.addObject("surveyFlag",false);
             mv.addObject("surveyMessage","Questions have been published.");
         }
@@ -100,9 +124,15 @@ public class SurveyController {
 
     @RequestMapping("/unpublish")
     public ModelAndView unpublishSurvey (@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
+        iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
+        iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
+
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
-        ICreateSurveyDB.updatePublishStatus(courseID);
-        ICreateSurveyDB.fetchSavedQuestions(courseID);
+        iCreateSurveyDB.updatePublishStatus(courseID);
+        iCreateSurveyDB.fetchSavedQuestions(courseID);
         Dictionary hashMap= IlistQuestionsService.listAllQuestionsforUser(userID);
         mv.addObject("surveyFlag",true);
         mv.addObject("courseID", courseID);

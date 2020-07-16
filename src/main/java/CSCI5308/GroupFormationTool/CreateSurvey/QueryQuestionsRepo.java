@@ -8,10 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QueryQuestionsRepo implements IQueryQuestionsRepo {
+    ICreateSurveyModelFactory iCreateSurveyModelFactory;
+    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
 
     @Override
     public ICreateSurveyQuestionsModel listQuestionsForUser (long userID){
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
 
         ArrayList<String> questionHeading=new ArrayList<>();
         ArrayList<String> questionType=new ArrayList<>();

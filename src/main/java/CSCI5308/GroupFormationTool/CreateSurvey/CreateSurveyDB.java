@@ -9,11 +9,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreateSurveyDB implements ICreateSurveyDB {
+    ICreateSurveyModelFactory iCreateSurveyModelFactory;
+    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
+
+    ICreateSurveyDBFactory iCreateSurveyDBFactory;
+    ISurveyExistRepo iSurveyExistRepo;
 
     @Override
     public boolean saveSurvey(long courseID, long userID, int status){
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=SystemConfig.instance().getCreateSurveyQuestionsModel();
-        ISurveyExistRepo iSurveyExistRepo= SystemConfig.instance().getSurveyExistRepo();
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
+        iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
+        iSurveyExistRepo=iCreateSurveyDBFactory.surveyExistRepo();
+
         int surveyID;
         int state;
         CallStoredProcedure proc=null;
@@ -137,7 +146,12 @@ public class CreateSurveyDB implements ICreateSurveyDB {
 
     @Override
     public boolean fetchSavedQuestions(long courseID) {
-        ISurveyExistRepo iSurveyExistRepo= SystemConfig.instance().getSurveyExistRepo();
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
+        iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
+        iSurveyExistRepo=iCreateSurveyDBFactory.surveyExistRepo();
+
         int state;
         int surveyID=0;
         ArrayList<String> questions=new ArrayList<>();
@@ -158,7 +172,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
                         questions.add(resultSet1.getString(1));
                         questionType.add(resultSet1.getString(2));
                     }
-                    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel = SystemConfig.instance().getCreateSurveyQuestionsModel();
+
                     iCreateSurveyQuestionsModel.setSelectedQuestions(questions.toArray(new String[questions.size()]));
                     iCreateSurveyQuestionsModel.setSelectedTypes(questionType.toArray(new String[questionType.size()]));
                 }
@@ -201,4 +215,5 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         }
         return true;
     }
+
 }

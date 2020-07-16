@@ -1,17 +1,19 @@
 package CSCI5308.GroupFormationTool.CreateSurvey;
 
-import CSCI5308.GroupFormationTool.SystemConfig;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class UpdateQuestionsListService implements IUpdateQuestionsListService {
 
-    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel= SystemConfig.instance().getCreateSurveyQuestionsModel();
+    ICreateSurveyModelFactory iCreateSurveyModelFactory;
+    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
 
     @Override
     public ICreateSurveyQuestionsModel displayUpdatedQuestionList(String[] heading, String[] type, String que){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
         int index=0;
         List<String> headingList = new ArrayList<>(Arrays.asList(heading));
         List<String> typeList = new ArrayList<>(Arrays.asList(type));
@@ -44,6 +46,9 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
     }
 
     private ICreateSurveyQuestionsModel setDataInModel(List<String> headingList, List<String> typeList, List<String> selectedQue, List<String> selectedType) {
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
         iCreateSurveyQuestionsModel.setSelectedQuestions(selectedQue.toArray(new String[selectedQue.size()]));
         iCreateSurveyQuestionsModel.setSelectedTypes(selectedType.toArray(new String[selectedType.size()]));
         iCreateSurveyQuestionsModel.setQuestionHeading(headingList.toArray(new String[headingList.size()]));
@@ -53,6 +58,9 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
 
     @Override
     public ICreateSurveyQuestionsModel removeQuestions(String que){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
         int index=0;
         List<String> sQue = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedQuestions()));
         List<String> sType = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedTypes()));

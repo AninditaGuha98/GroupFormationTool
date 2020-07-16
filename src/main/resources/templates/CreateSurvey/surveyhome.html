@@ -32,6 +32,11 @@
             text-decoration: none;
             list-style-type: none;
         }
+        p{
+            text-align: center;
+            font-size:large ;
+            font-family: cursive;
+        }
         .headings{
             padding: 0px;
         }
@@ -65,6 +70,10 @@
             margin-top: 30px;
             padding-top: 10px;
         }
+        .Button{
+            text-align: center;
+
+        }
 
     </style>
 </head>
@@ -73,7 +82,7 @@
         <h1>Welcome to Survey Creation</h1>
     </header>
 <div>
-
+<!-- Block if survey is published -->
     <div th:if="${surveyFlag}==false">
         <p th:text="${surveyMessage}"></p>
         <a th:href="@{/unpublish(id=${courseID},userID=${userID})}">
@@ -81,10 +90,15 @@
         </a>
     </div>
 
+<!-- Main Block-->
+
     <div  th:if="${surveyFlag}==true" class="Main">
         <div class="Label">
             <h2> Please select your questions for the survey.</h2>
         </div>
+
+<!--        Save and Publish button  -->
+
         <div class="Buttons">
             <div class="Save">
                 <form th:action="@{/save(id=${courseID},userID=${userID})}"
@@ -100,7 +114,7 @@
                 </form>
             </div>
         </div>
-
+<!-- Message block -->
         <div th:if="${msgFlag==0}">
             <p th:text="${message}"></p>
         </div>
@@ -109,7 +123,11 @@
         </div>
 
         <div class="mainAction">
+
+<!--            For displaying all the questions and add them -->
             <div class="addDiv">
+                <p> Add Questions </p>
+                <hr>
                 <form th:action="@{/addQuestions(id=${courseID},userID=${userID})}"
                       method="post">
                     <div class="radio">
@@ -127,9 +145,11 @@
                 </form>
             </div>
 
-            <!--        For displaying the questions selected and  delete them-->
+            <!--        For displaying the questions selected and removing them-->
 
             <div  class="removeDiv">
+                <p> Remove Questions </p>
+                <hr>
                 <form th:action="@{/removeQuestions(id=${courseID},userID=${userID})}"
                       method="post">
                     <div>

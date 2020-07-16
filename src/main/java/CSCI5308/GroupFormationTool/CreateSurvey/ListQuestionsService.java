@@ -6,11 +6,19 @@ import java.util.Hashtable;
 
 public class ListQuestionsService implements IListQuestionsService {
 
-    IQueryQuestionsRepo iQueryQuestionsRepo= SystemConfig.instance().getQueryQuestionsRepo();
-    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=SystemConfig.instance().getCreateSurveyQuestionsModel();
+
+    ICreateSurveyModelFactory iCreateSurveyModelFactory;
+    ICreateSurveyDBFactory iCreateSurveyDBFactory;
+    ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
+    IQueryQuestionsRepo iQueryQuestionsRepo;
 
     @Override
     public Dictionary listAllQuestionsforUser(long userID){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+        iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
+        iQueryQuestionsRepo= iCreateSurveyDBFactory.queryQuestionsRepo();
+
         Dictionary hashmap= new Hashtable<>();
         iCreateSurveyQuestionsModel=iQueryQuestionsRepo.listQuestionsForUser(userID);
         for(int i =0; i<iCreateSurveyQuestionsModel.getQuestionHeading().length;i++)
@@ -22,6 +30,8 @@ public class ListQuestionsService implements IListQuestionsService {
 
     @Override
     public Dictionary listRepeatQuestions(){
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
         Dictionary hashmap1= new Hashtable<>();
         for(int i =0; i<iCreateSurveyQuestionsModel.getQuestionHeading().length;i++)
         {
