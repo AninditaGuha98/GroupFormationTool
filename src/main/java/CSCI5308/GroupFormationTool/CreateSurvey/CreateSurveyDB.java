@@ -5,12 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class CreateSurveyDB implements ICreateSurveyDB {
     ICreateSurveyModelFactory iCreateSurveyModelFactory;
     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
     ICreateSurveyDBFactory iCreateSurveyDBFactory;
     ISurveyExistRepo iSurveyExistRepo;
+    private static final Logger logger = LoggerFactory.getLogger(CreateSurveyDB.class);
 
     @Override
     public boolean saveSurvey(long courseID, long userID, int status){
@@ -73,7 +77,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
             }
         }
         catch(SQLException e){
-            e.printStackTrace();
+            logger.error(" Survey could not be saved  state= {}, message={}","Fail", e.getMessage());
         }
         finally {
             if (null!=proc){
@@ -89,6 +93,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
                 procedure2.cleanup();
             }
         }
+        logger.info("Survey saved status={}","Success");
         return false;
     }
 
@@ -102,7 +107,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
             callStoredProcedure.execute();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(" Survey could not be created  state= {}, message={}","Fail", e.getMessage());
         }
         finally {
             if(null!=callStoredProcedure){
@@ -129,7 +134,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
             }
         }
         catch (SQLException e){
-            e.printStackTrace();
+            logger.error(" ID could not be retrieved  state= {}, message={}","Fail", e.getMessage());
         }
 
         finally {
@@ -151,7 +156,6 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         ArrayList<String> questions=new ArrayList<>();
         ArrayList<String> questionType=new ArrayList<>();
         state=iSurveyExistRepo.checkSurveyStatus(courseID);
-        CallStoredProcedure procedure=null;
         CallStoredProcedure procedure1=null;
 
         try{
@@ -177,12 +181,9 @@ public class CreateSurveyDB implements ICreateSurveyDB {
             }
         }
         catch(SQLException e){
-        e.printStackTrace();
+            logger.error(" Saved questions can not be retrieved state= {}, message={}","Fail", e.getMessage());
     }
         finally {
-            if(null!= procedure) {
-                procedure.cleanup();
-            }
             if(null!=procedure1){
                 procedure1.cleanup();
             }
@@ -199,13 +200,14 @@ public class CreateSurveyDB implements ICreateSurveyDB {
             callStoredProcedure.setParameter(1,courseID);
             callStoredProcedure.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(" Survey can not be unpublished  state= {}, message={}","Fail", e.getMessage());
         }
         finally {
             if(null!=callStoredProcedure){
                 callStoredProcedure.cleanup();
             }
         }
+        logger.info("Survey unpublished status={}","Success");
         return true;
     }
 

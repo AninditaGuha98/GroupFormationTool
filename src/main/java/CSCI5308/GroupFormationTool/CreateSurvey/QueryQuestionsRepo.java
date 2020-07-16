@@ -5,10 +5,13 @@ import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QueryQuestionsRepo implements IQueryQuestionsRepo {
     ICreateSurveyModelFactory iCreateSurveyModelFactory;
     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
+    private static final Logger logger = LoggerFactory.getLogger(CreateSurveyDB.class);
 
     @Override
     public ICreateSurveyQuestionsModel listQuestionsForUser (long userID){
@@ -34,7 +37,7 @@ public class QueryQuestionsRepo implements IQueryQuestionsRepo {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(" Listing Questions from Database state= {}, message={}","Fail", e.getMessage());
         } finally {
             if (null != procedure) {
                 procedure.cleanup();
