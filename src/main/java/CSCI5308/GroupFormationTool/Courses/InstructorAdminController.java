@@ -16,6 +16,7 @@ import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
 import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
 import CSCI5308.GroupFormationTool.QuestionManager.QManagerDbFactory;
 
 @Controller
@@ -45,7 +46,8 @@ public class InstructorAdminController {
 	public String assignGroups(Model model, @RequestParam(name = ID) long courseID) {
 
 		IQuestionsPersistence questionDB = QManagerDbFactory.FactorySingleton().createQuestionDB();
-		model.addAttribute("questions", questionDB.loadAllQuestionsBycourseID(String.valueOf(courseID)));
+		List<InterfaceQuestionModel> questions=questionDB.loadAllQuestionsBycourseID(String.valueOf(courseID));
+		model.addAttribute("questions",questions );
 		model.addAttribute("courseid", courseID);
 		return "QuestionManager/makesurvey";
 	}
