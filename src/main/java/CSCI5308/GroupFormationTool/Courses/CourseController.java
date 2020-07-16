@@ -6,15 +6,17 @@ import java.util.Map;
 
 import CSCI5308.GroupFormationTool.SurveyResponses.ISurveyResponseDB;
 import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDBFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import CSCI5308.GroupFormationTool.SystemConfig;
 
 @Controller
 public class CourseController {
+    private static final Logger log = LoggerFactory.getLogger(CourseController.class);
     private static final String ID = "id";
 
     @GetMapping("/course/course")
@@ -53,11 +55,13 @@ public class CourseController {
             model.addAttribute("ta", false);
             model.addAttribute("student", false);
             model.addAttribute("guest", true);
+            log.warn("User has no roles for courses: GUEST ROLE");
         } else {
             model.addAttribute("instructor", userRoles.contains(Role.INSTRUCTOR));
             model.addAttribute("ta", userRoles.contains(Role.TA));
             model.addAttribute("student", userRoles.contains(Role.STUDENT));
             model.addAttribute("guest", userRoles.isEmpty());
+            log.info("User roles in the courses:", userRoles);
         }
         return "course/course";
     }

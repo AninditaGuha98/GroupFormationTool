@@ -4,14 +4,16 @@ import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import CSCI5308.GroupFormationTool.QuestionManager.*;
 import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
 import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
-import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Responses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
 public class SurveyResponseDB implements ISurveyResponseDB {
+    private static final Logger log = LoggerFactory.getLogger(SurveyResponseDB.class);
+
     IQManagerModelFactory modelFactory = QManagerModelFactory.FactorySingleton();
     List<Long> question_id = new ArrayList<>();
 
@@ -27,6 +29,7 @@ public class SurveyResponseDB implements ISurveyResponseDB {
                 while (results.next()) {
                     surveyAvailable.put(results.getInt("surveyID"), results.getInt("published"));
                 }
+                log.info("Checked if survey exists for CourseID = {}",courseID);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -58,9 +61,10 @@ public class SurveyResponseDB implements ISurveyResponseDB {
                         question_id.add(id);
                     }
                 }
+                log.info("Fetching survey questions for SurveyID = {}",surveyID);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            log.error("Sql Exception",e.getMessage());
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -89,8 +93,8 @@ public class SurveyResponseDB implements ISurveyResponseDB {
                         surveyResponse.put(question_id.get(i), responses);
                     }
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                log.error("Sql Exception",e.getMessage());
             } finally {
                 if (null != proc) {
                     proc.cleanup();

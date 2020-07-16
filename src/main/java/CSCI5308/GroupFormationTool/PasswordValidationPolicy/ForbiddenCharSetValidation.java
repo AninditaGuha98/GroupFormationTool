@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 public class ForbiddenCharSetValidation implements IPasswordValidation {
 
-	private static final Logger logger = LoggerFactory.getLogger(ForbiddenCharSetValidation.class);
+	private static final Logger log = LoggerFactory.getLogger(ForbiddenCharSetValidation.class);
 	private static final String FORBIDDEN_CHARSET_LOG = "ForbiddenCharSetPolicy";
 
 	private static final String FORBIDDEN_CHARSET_CONFIG = "forbidden_charset";
@@ -15,7 +15,7 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 	private String forbiddenCharSet;
 
 	public ForbiddenCharSetValidation() {
-		logger.info("password={}, action={}, status={}", FORBIDDEN_CHARSET_LOG, "Create", "Success");
+		log.info("password={}, action={}, status={}", FORBIDDEN_CHARSET_LOG, "Create", "Success");
 	}
 
 	public String getForbiddenCharSet() {
@@ -28,7 +28,7 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 		} else {
 			this.forbiddenCharSet = forbiddernCharSet;
 		}
-		logger.info("password={}, action={}, value={}", FORBIDDEN_CHARSET_LOG, "Set CharSet", getForbiddenCharSet());
+		log.info("password={}, action={}, value={}", FORBIDDEN_CHARSET_LOG, "Set CharSet", getForbiddenCharSet());
 	}
 
 	@Override
@@ -38,31 +38,31 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 		try {
 			configValue = config.getConfig(FORBIDDEN_CHARSET_CONFIG);
 		} catch (IllegalArgumentException e) {
-			logger.warn("password={}, action={}, message={}", FORBIDDEN_CHARSET_LOG, "Get Configuration",
+			log.warn("password={}, action={}, message={}", FORBIDDEN_CHARSET_LOG, "Get Configuration",
 					e.getMessage());
 			configValue = null;
 		}
 		setForbiddernCharSet(configValue);
 
 		if (null == password) {
-			logger.info("password={}, action={}, status={}, message={}", FORBIDDEN_CHARSET_LOG, "Check Validity",
+			log.info("password={}, action={}, status={}, message={}", FORBIDDEN_CHARSET_LOG, "Check Validity",
 					"Fail", "Null Password");
 			return false;
 		}
 
 		if (this.forbiddenCharSet.isEmpty()) {
-			logger.info("password={}, action={}, status={}, message={}", FORBIDDEN_CHARSET_LOG, "Check Validity",
+			log.info("password={}, action={}, status={}, message={}", FORBIDDEN_CHARSET_LOG, "Check Validity",
 					"Success", "Empty CharSet");
 			return true;
 		}
 
 		for (int i = 0; i < this.forbiddenCharSet.length(); i++) {
 			if (password.contains(String.valueOf(this.forbiddenCharSet.charAt(i)))) {
-				logger.info("password={}, action={}, status={}", FORBIDDEN_CHARSET_LOG, "Check Validity", "Fail");
+				log.info("password={}, action={}, status={}", FORBIDDEN_CHARSET_LOG, "Check Validity", "Fail");
 				return false;
 			}
 		}
-		logger.info("password={}, action={}, status={}", FORBIDDEN_CHARSET_LOG, "Check Validity", "Success");
+		log.info("password={}, action={}, status={}", FORBIDDEN_CHARSET_LOG, "Check Validity", "Success");
 		return true;
 	}
 
@@ -74,7 +74,7 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 		} else {
 			message = String.format(INVALID_PASSWORD_MESSAGE, this.forbiddenCharSet);
 		}
-		logger.info("password={}, action={}, message={}", FORBIDDEN_CHARSET_LOG, "Get Validation Message", message);
+		log.info("password={}, action={}, message={}", FORBIDDEN_CHARSET_LOG, "Get Validation Message", message);
 		return message;
 	}
 }

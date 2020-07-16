@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 public class MinLowercaseValidation implements IPasswordValidation {
 
-	private static final Logger logger = LoggerFactory.getLogger(MinLowercaseValidation.class);
+	private static final Logger log = LoggerFactory.getLogger(MinLowercaseValidation.class);
 	private static final String MIN_LOWERCASE_LOG = "MinLowercasePolicy";
 
 	private static final String MIN_LOWERCASE_CONFIG = "min_lowercase";
@@ -15,7 +15,7 @@ public class MinLowercaseValidation implements IPasswordValidation {
 	private int minLowercase;
 
 	public MinLowercaseValidation() {
-		logger.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Create", "Success");
+		log.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Create", "Success");
 	}
 
 	public int getMinLowercase() {
@@ -27,7 +27,7 @@ public class MinLowercaseValidation implements IPasswordValidation {
 		try {
 			intMinLowercase = Integer.parseInt(minLowercase);
 		} catch (NumberFormatException e) {
-			logger.warn("password={}, action={}, message={}", MIN_LOWERCASE_LOG, "Set Min Lowercase", e.getMessage());
+			log.warn("password={}, action={}, message={}", MIN_LOWERCASE_LOG, "Set Min Lowercase", e.getMessage());
 			intMinLowercase = 0;
 		}
 
@@ -36,7 +36,7 @@ public class MinLowercaseValidation implements IPasswordValidation {
 		} else {
 			this.minLowercase = intMinLowercase;
 		}
-		logger.info("password={}, action={}, value={}", MIN_LOWERCASE_LOG, "Set Min Lowercase", getMinLowercase());
+		log.info("password={}, action={}, value={}", MIN_LOWERCASE_LOG, "Set Min Lowercase", getMinLowercase());
 	}
 
 	@Override
@@ -47,20 +47,20 @@ public class MinLowercaseValidation implements IPasswordValidation {
 		try {
 			configValue = config.getConfig(MIN_LOWERCASE_CONFIG);
 		} catch (IllegalArgumentException e) {
-			logger.warn("password={}, action={}, message={}", MIN_LOWERCASE_LOG, "Get Configuration", e.getMessage());
+			log.warn("password={}, action={}, message={}", MIN_LOWERCASE_LOG, "Get Configuration", e.getMessage());
 			configValue = null;
 		}
 
 		setMinLowercase(configValue);
 
 		if (null == password) {
-			logger.info("password={}, action={}, status={}, message={}", MIN_LOWERCASE_LOG, "Check Validity", "Fail",
+			log.info("password={}, action={}, status={}, message={}", MIN_LOWERCASE_LOG, "Check Validity", "Fail",
 					"Null Password");
 			return false;
 		}
 
 		if (this.minLowercase == 0) {
-			logger.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Check Validity", "Success");
+			log.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Check Validity", "Success");
 			return true;
 		}
 
@@ -70,10 +70,10 @@ public class MinLowercaseValidation implements IPasswordValidation {
 			}
 		}
 		if (lowerCase < this.minLowercase) {
-			logger.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Check Validity", "Fail");
+			log.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Check Validity", "Fail");
 			return false;
 		} else {
-			logger.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Check Validity", "Success");
+			log.info("password={}, action={}, status={}", MIN_LOWERCASE_LOG, "Check Validity", "Success");
 			return true;
 		}
 	}
@@ -86,7 +86,7 @@ public class MinLowercaseValidation implements IPasswordValidation {
 		} else {
 			message = String.format(INVALID_PASSWORD_MESSAGE, this.minLowercase);
 		}
-		logger.info("password={}, action={}, message={}", MIN_LOWERCASE_LOG, "Get Validation Message", message);
+		log.info("password={}, action={}, message={}", MIN_LOWERCASE_LOG, "Get Validation Message", message);
 		return message;
 	}
 }

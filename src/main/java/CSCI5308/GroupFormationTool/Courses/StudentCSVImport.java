@@ -9,8 +9,12 @@ import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
 import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StudentCSVImport {
+	private static final Logger log = LoggerFactory.getLogger(StudentCSVImport.class);
+
 	private List<String> successResults;
 	private List<String> failureResults;
 	private InterfaceCourse course;
@@ -54,8 +58,10 @@ public class StudentCSVImport {
 			}
 			if (course.enrollUserInCourse(Role.STUDENT, user)) {
 				successResults.add("User enrolled in course: " + userDetails);
+				log.info("User enrolled in course:", userDetails);
 			} else {
 				failureResults.add("Unable to enroll user in course: " + userDetails);
+				log.warn("Unable to enroll user in course: ", userDetails);
 			}
 		}
 	}

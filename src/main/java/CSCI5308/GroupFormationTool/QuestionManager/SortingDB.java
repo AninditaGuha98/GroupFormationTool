@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SortingDB implements IQuestionSorters {
+	private static final Logger log = LoggerFactory.getLogger(SortingDB.class);
+
 	IQuestionsPersistence interfaceQuestionDB = QManagerDbFactory.FactorySingleton().createQuestionDB();
 
 	public List<InterfaceQuestionModel> sort(String bannerID, InterfaceSorters interfaceSorters) {
@@ -27,9 +31,10 @@ public class SortingDB implements IQuestionSorters {
 					interfaceQuestionModel.setQuestionTitle(title);
 					questions.add(interfaceQuestionModel);
 				}
+				log.info("Questions sorted by SortField = {} in order SortOrder={} for User ={}",interfaceSorters.getSortField(),interfaceSorters.getSortOrder(),bannerID);
 			}
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
+		} catch (SQLException e) {
+			log.error("Sql Exception",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

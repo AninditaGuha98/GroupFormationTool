@@ -1,9 +1,17 @@
 package CSCI5308.GroupFormationTool.Database;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CallStoredProcedure {
+	private static final Logger log = LoggerFactory.getLogger(CallStoredProcedure.class);
+
 	private String storedProcedureName;
 	private Connection connection;
 	private CallableStatement statement;
@@ -24,12 +32,21 @@ public class CallStoredProcedure {
 		createStatement();
 	}
 
-	private void createStatement() throws SQLException {
-		statement = connection.prepareCall("{call " + storedProcedureName + "}");
+	private void createStatement(){
+		try {
+			statement = connection.prepareCall("{call " + storedProcedureName + "}");
+		} catch (SQLException e) {
+			log.error("SQL Exception while creating sql statement", e.getMessage());
+		}
 	}
 
-	private void openConnection() throws SQLException {
-		connection = ConnectionManager.instance().getDBConnection();
+	private void openConnection() {
+		try {
+			connection = ConnectionManager.instance().getDBConnection();
+			log.info("DB connection open");
+		} catch (SQLException e) {
+			log.error("SQL Exception while connection setup", e.getMessage());
+		}
 	}
 
 	public void cleanup() {
@@ -40,23 +57,32 @@ public class CallStoredProcedure {
 			if (null != connection) {
 				if (!connection.isClosed()) {
 					connection.close();
+					log.info("Closing DB connection");
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("SQL Exception",e.getMessage());
 		}
 	}
 
-	public void setParameter(int paramIndex, String value) throws SQLException {
-		statement.setString(paramIndex, value);
+	public void setParameter(int paramIndex, String value){
+		try {
+			statement.setString(paramIndex, value);
+		} catch (SQLException e) {
+			log.error("SQL Exception while setting parameters",e.getMessage());
+		}
 	}
 
 	public void registerOutputParameterString(int paramIndex) throws SQLException {
 		statement.registerOutParameter(paramIndex, java.sql.Types.VARCHAR);
 	}
 
-	public void setParameter(int paramIndex, long value) throws SQLException {
-		statement.setLong(paramIndex, value);
+	public void setParameter(int paramIndex, long value){
+		try {
+			statement.setLong(paramIndex, value);
+		} catch (SQLException e) {
+			log.error("SQL Exception while setting parameters",e.getMessage());
+		}
 	}
 
 
@@ -64,15 +90,23 @@ public class CallStoredProcedure {
 		statement.registerOutParameter(paramIndex, java.sql.Types.BIGINT);
 	}
 
-	public ResultSet executeWithResults() throws SQLException {
-		if (statement.execute()) {
-			return statement.getResultSet();
+	public ResultSet executeWithResults(){
+		try {
+			if (statement.execute()) {
+				return statement.getResultSet();
+			}
+		} catch (SQLException e) {
+			log.error("SQL Exception while execution", e.getMessage());
 		}
 		return null;
 	}
 
-	public void execute() throws SQLException {
-		statement.execute();
+	public void execute(){
+		try {
+			statement.execute();
+		} catch (SQLException e) {
+			log.error("SQL Exception while execution", e.getMessage());
+		}
 	}
 
 
