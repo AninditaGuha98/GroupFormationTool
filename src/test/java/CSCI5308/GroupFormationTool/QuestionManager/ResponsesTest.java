@@ -1,10 +1,8 @@
 package CSCI5308.GroupFormationTool.QuestionManager;
 
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
-import CSCI5308.GroupFormationTool.QuestionManager.Responses;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ResponsesTest {
     IQManagerModelFactory modelFactory = QManagerModelFactory.FactorySingleton();

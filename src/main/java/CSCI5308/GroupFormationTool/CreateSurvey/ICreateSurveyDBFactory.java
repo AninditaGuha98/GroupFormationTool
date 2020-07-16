@@ -1,9 +1,11 @@
 package CSCI5308.GroupFormationTool.CreateSurvey;
 
 public interface ICreateSurveyDBFactory {
-	public ICreateSurveyDB createSurveyDB();
+    ICreateSurveyDB createSurveyDB();
 
-	public IQueryQuestionsRepo queryQuestionsRepo();
+    IQueryQuestionsRepo queryQuestionsRepo();
 
-	public ISurveyExistRepo surveyExistRepo();
+    ISurveyExistRepo surveyExistRepo();
+
+    void setQueryQuestionsRepo(IQueryQuestionsRepo queryQuestionsRepo);
 }

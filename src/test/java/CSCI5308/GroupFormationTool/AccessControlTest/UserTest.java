@@ -1,10 +1,11 @@
 package CSCI5308.GroupFormationTool.AccessControlTest;
 
-import CSCI5308.GroupFormationTool.AccessControl.*;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
+
+import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.User;
 
 @SpringBootTest
 @SuppressWarnings("deprecation")

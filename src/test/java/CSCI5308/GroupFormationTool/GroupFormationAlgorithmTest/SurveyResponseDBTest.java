@@ -1,17 +1,10 @@
 package CSCI5308.GroupFormationTool.GroupFormationAlgorithmTest;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.QuestionManager.*;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
-import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.Responses;
-import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.validateMockitoUsage;
+import static org.mockito.Mockito.when;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,9 +13,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.validateMockitoUsage;
-import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import CSCI5308.GroupFormationTool.QuestionManager.IQManagerModelFactory;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.InterfaceResponses;
+import CSCI5308.GroupFormationTool.QuestionManager.QManagerModelFactory;
+import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
+import CSCI5308.GroupFormationTool.QuestionManager.Responses;
+import CSCI5308.GroupFormationTool.SurveyResponses.SurveyResponseDB;
 
 class SurveyResponseDBTest {
     @Mock

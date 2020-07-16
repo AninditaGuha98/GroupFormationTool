@@ -1,13 +1,11 @@
 package CSCI5308.GroupFormationTool.QuestionManager;
 
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceSorters;
-import CSCI5308.GroupFormationTool.QuestionManager.Sorters;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class SortersTest {
     IQManagerModelFactory modelFactory = QManagerModelFactory.FactorySingleton();

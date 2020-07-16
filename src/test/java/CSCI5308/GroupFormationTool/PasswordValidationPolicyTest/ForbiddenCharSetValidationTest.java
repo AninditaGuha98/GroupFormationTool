@@ -1,13 +1,15 @@
 package CSCI5308.GroupFormationTool.PasswordValidationPolicyTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.ForbiddenCharSetValidation;
+import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 
 class ForbiddenCharSetValidationTest {
 

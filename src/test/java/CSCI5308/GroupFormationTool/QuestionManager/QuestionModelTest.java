@@ -1,13 +1,11 @@
 package CSCI5308.GroupFormationTool.QuestionManager;
 
 
-import CSCI5308.GroupFormationTool.QuestionManager.InterfaceQuestionModel;
-import CSCI5308.GroupFormationTool.QuestionManager.QuestionModel;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class QuestionModelTest {
     IQManagerModelFactory modelFactory = QManagerModelFactory.FactorySingleton();

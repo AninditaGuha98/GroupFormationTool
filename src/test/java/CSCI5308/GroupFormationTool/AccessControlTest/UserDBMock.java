@@ -1,6 +1,7 @@
 package CSCI5308.GroupFormationTool.AccessControlTest;
 
-import CSCI5308.GroupFormationTool.AccessControl.*;
+import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 
 public class UserDBMock implements IUserPersistence
 {

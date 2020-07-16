@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupAlgorithmDB;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupAlgorithmDB;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupAlgorithmDB;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyResponseObjectFactory;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyScaleObjectFactory;
