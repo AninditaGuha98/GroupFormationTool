@@ -30,7 +30,7 @@ public class QuestionDB implements IQuestionsPersistence {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -52,7 +52,7 @@ public class QuestionDB implements IQuestionsPersistence {
 			lastInsertedQuestion = proc.getStatement().getLong(5);
 			log.info("Question created: User ID = {} QuestionTitle = {}", interfaceQuestionModel.getUserID(), interfaceQuestionModel.getQuestionTitle());
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -74,9 +74,9 @@ public class QuestionDB implements IQuestionsPersistence {
 				proc.setParameter(3, score_text[i]);
 				proc.execute();
 			}
-			log.info("Multiple choice recorded for Question ID :",lastInsertedQuestion);
+			log.info("Multiple choice recorded for Question ID= {}",lastInsertedQuestion);
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception={}",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -101,10 +101,10 @@ public class QuestionDB implements IQuestionsPersistence {
 				procedure.setParameter(1, userId);
 				procedure.setParameter(2, selectedQuestions[i]);
 				procedure.execute();
-				log.warn("Deleted Question for User ID ={}",userId, selectedQuestions[i]);
+				log.warn("Deleted Question for User ID ={} Question = {}",userId, selectedQuestions[i]);
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception={}",e.getMessage());
 			return false;
 		} finally {
 			if (null != procedure) {
@@ -142,7 +142,7 @@ public class QuestionDB implements IQuestionsPersistence {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception={}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

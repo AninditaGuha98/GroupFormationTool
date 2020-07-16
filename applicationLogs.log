@@ -1,0 +1,212 @@
+2020-07-16 15:33:55.608 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStarting(55) - Starting GroupFormationToolApplication on DESKTOP-IJU288N with PID 12772 (started by PALINDROME in D:\MACS\Adv SDC\Project\group7)
+2020-07-16 15:33:55.610 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStartupProfileInfo(651) - No active profile set, falling back to default profiles: default
+2020-07-16 15:33:55.654 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo(225) - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-07-16 15:33:55.654 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor.logTo(225) - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-07-16 15:33:56.535 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer.initialize(92) - Tomcat initialized with port(s): 8080 (http)
+2020-07-16 15:33:56.538 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol.log(173) - Initializing ProtocolHandler ["http-nio-8080"]
+2020-07-16 15:33:56.543 [restartedMain] INFO  o.a.catalina.core.StandardService.log(173) - Starting service [Tomcat]
+2020-07-16 15:33:56.543 [restartedMain] INFO  o.a.catalina.core.StandardEngine.log(173) - Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-07-16 15:33:56.637 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log(173) - Initializing Spring embedded WebApplicationContext
+2020-07-16 15:33:56.637 [restartedMain] INFO  o.s.web.context.ContextLoader.prepareWebApplicationContext(284) - Root WebApplicationContext: initialization completed in 982 ms
+2020-07-16 15:33:56.771 [restartedMain] INFO  C.G.Security.SecurityConfiguration.configure(26) - user=SecurityConfiguration, action=Resource Authorization
+2020-07-16 15:33:56.781 [restartedMain] INFO  C.G.Security.SecurityConfiguration.configure(20) - user=SecurityConfiguration, action=Resource Authorization
+2020-07-16 15:33:56.784 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain.<init>(43) - Creating filter chain: Ant [pattern='/resources/**'], []
+2020-07-16 15:33:56.805 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain.<init>(43) - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4caeafb3, org.springframework.security.web.context.SecurityContextPersistenceFilter@29910d3f, org.springframework.security.web.header.HeaderWriterFilter@7d5168a5, org.springframework.security.web.csrf.CsrfFilter@37e55ac3, org.springframework.security.web.authentication.logout.LogoutFilter@1c3ce01e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@67f14137, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ecc9f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4203772a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@213ba7e8, org.springframework.security.web.session.SessionManagementFilter@4216e0cf, org.springframework.security.web.access.ExceptionTranslationFilter@4e6afca0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@ef48bb]
+2020-07-16 15:33:56.893 [restartedMain] INFO  o.s.s.c.ThreadPoolTaskExecutor.initialize(171) - Initializing ExecutorService 'applicationTaskExecutor'
+2020-07-16 15:33:56.947 [restartedMain] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping.<init>(58) - Adding welcome page template: index
+2020-07-16 15:33:57.056 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer.startServer(58) - LiveReload server is running on port 35729
+2020-07-16 15:33:57.076 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol.log(173) - Starting ProtocolHandler ["http-nio-8080"]
+2020-07-16 15:33:57.254 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer.start(204) - Tomcat started on port(s): 8080 (http) with context path ''
+2020-07-16 15:33:57.257 [restartedMain] INFO  C.G.GroupFormationToolApplication.logStarted(61) - Started GroupFormationToolApplication in 1.883 seconds (JVM running for 2.688)
+2020-07-16 15:34:08.297 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/].log(173) - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-07-16 15:34:08.299 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(525) - Initializing Servlet 'dispatcherServlet'
+2020-07-16 15:34:08.313 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet.initServletBean(547) - Completed initialization in 13 ms
+2020-07-16 15:34:08.384 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:08.892 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:08.892 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:09.401 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:09.406 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:09.642 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:10.096 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:10.598 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:10.599 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:10.907 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:10.907 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:11.157 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:12.977 [http-nio-8080-exec-9] WARN  o.a.c.util.SessionIdGeneratorBase.log(173) - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [422] milliseconds.
+2020-07-16 15:34:18.242 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:18.471 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:18.471 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:18.772 [http-nio-8080-exec-4] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 8,Banner id =B999999 
+2020-07-16 15:34:18.774 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:18.775 [http-nio-8080-exec-4] WARN  C.G.S.CustomAuthenticationManager.authenticate(79) - user=B999999, action=User Authentication, status=Starting...
+2020-07-16 15:34:18.775 [http-nio-8080-exec-4] WARN  C.G.S.CustomAuthenticationManager.authenticate(81) - user=B999999, action=Check User Validity, status=Success
+2020-07-16 15:34:18.781 [http-nio-8080-exec-4] INFO  C.G.S.BCryptPasswordEncryption.<init>(15) - password=BcryptEncryption, action=Create Encoder, status=Success
+2020-07-16 15:34:18.989 [http-nio-8080-exec-4] INFO  C.G.S.BCryptPasswordEncryption.matches(26) - password=BcryptEncryption, action=Match Passwords, result=true
+2020-07-16 15:34:18.990 [http-nio-8080-exec-4] WARN  C.G.S.CustomAuthenticationManager.checkNormal(52) - user=B999999, action=Check User Credentials, status=Success
+2020-07-16 15:34:18.990 [http-nio-8080-exec-4] INFO  C.G.S.CustomAuthenticationManager.checkNormal(58) - user=B999999, action=Create User Authentication Token, status=Success
+2020-07-16 15:34:19.002 [http-nio-8080-exec-3] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:19.215 [http-nio-8080-exec-3] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:19.216 [http-nio-8080-exec-3] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:19.448 [http-nio-8080-exec-3] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:25.815 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:26.086 [http-nio-8080-exec-8] INFO  C.G.Courses.CourseDB.loadCourseByID(53) - Course loaded courseID= 3, Title =TestCourse
+2020-07-16 15:34:26.088 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:26.091 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:26.360 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:26.369 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:26.721 [http-nio-8080-exec-8] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 8,Banner id =B999999 
+2020-07-16 15:34:26.723 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:26.724 [http-nio-8080-exec-8] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B999999
+2020-07-16 15:34:26.725 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:27.044 [http-nio-8080-exec-8] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(109) - User = B999999 has  Roles=[Instructor] in the CourseID= 3 CourseTitle=TestCourse
+2020-07-16 15:34:27.046 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:27.047 [http-nio-8080-exec-8] INFO  C.G.Courses.CourseController.course(64) - User roles in the courses = [Instructor]
+2020-07-16 15:34:41.882 [http-nio-8080-exec-3] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:42.195 [http-nio-8080-exec-3] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:43.719 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:43.961 [http-nio-8080-exec-2] INFO  C.G.QuestionManager.SortingDB.sort(34) - Questions sorted by SortField = question_title in SortOrder=ASC for User =B999999
+2020-07-16 15:34:43.962 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:34:51.346 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:34:51.625 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:35:11.427 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:35:11.684 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:35:12.178 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:35:12.178 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:35:12.178 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:35:12.385 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:35:13.621 [http-nio-8080-exec-4] ERROR C.G.Database.CallStoredProcedure.execute(105) - SQL Exception while execution = Cannot delete or update a parent row: a foreign key constraint fails (`CSCI5308_7_DEVINT`.`Survey_questions`, CONSTRAINT `Survey_questions_ibfk_2` FOREIGN KEY (`questionID`) REFERENCES `Question` (`question_id`))
+2020-07-16 15:35:13.621 [http-nio-8080-exec-4] WARN  C.G.QuestionManager.QuestionDB.deleteQuestionsFromDB(104) - Deleted Question for User ID =8 Question = how many years of experience you have in java
+2020-07-16 15:35:13.621 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:35:13.625 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:35:50.307 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:35:50.638 [http-nio-8080-exec-4] INFO  C.G.QuestionManager.QuestionDB.createQuestion(53) - Question created: User ID = 8 QuestionTitle = Experience
+2020-07-16 15:35:50.640 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:04.769 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:05.044 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:05.044 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:05.307 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:05.331 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:05.589 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:05.590 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:05.828 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:28.316 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:28.583 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:28.584 [http-nio-8080-exec-2] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:28.820 [http-nio-8080-exec-2] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:36:28.822 [http-nio-8080-exec-2] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:28.822 [http-nio-8080-exec-2] WARN  C.G.S.CustomAuthenticationManager.authenticate(79) - user=B00191919, action=User Authentication, status=Starting...
+2020-07-16 15:36:28.823 [http-nio-8080-exec-2] WARN  C.G.S.CustomAuthenticationManager.authenticate(81) - user=B00191919, action=Check User Validity, status=Success
+2020-07-16 15:36:28.823 [http-nio-8080-exec-2] INFO  C.G.S.BCryptPasswordEncryption.<init>(15) - password=BcryptEncryption, action=Create Encoder, status=Success
+2020-07-16 15:36:29.018 [http-nio-8080-exec-2] INFO  C.G.S.BCryptPasswordEncryption.matches(26) - password=BcryptEncryption, action=Match Passwords, result=true
+2020-07-16 15:36:29.018 [http-nio-8080-exec-2] WARN  C.G.S.CustomAuthenticationManager.checkNormal(52) - user=B00191919, action=Check User Credentials, status=Success
+2020-07-16 15:36:29.018 [http-nio-8080-exec-2] INFO  C.G.S.CustomAuthenticationManager.checkNormal(58) - user=B00191919, action=Create User Authentication Token, status=Success
+2020-07-16 15:36:29.029 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:29.336 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:29.337 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:29.605 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:29.605 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:29.816 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:29.817 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:30.052 [http-nio-8080-exec-8] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:36:30.053 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:35.820 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:36.061 [http-nio-8080-exec-10] INFO  C.G.Courses.CourseDB.loadCourseByID(53) - Course loaded courseID= 3, Title =TestCourse
+2020-07-16 15:36:36.063 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:36.064 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:36.286 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:36.287 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:36.563 [http-nio-8080-exec-10] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:36:36.566 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:36.567 [http-nio-8080-exec-10] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B00191919
+2020-07-16 15:36:36.567 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:36.913 [http-nio-8080-exec-10] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(109) - User = B00191919 has  Roles=[Student] in the CourseID= 3 CourseTitle=TestCourse
+2020-07-16 15:36:36.914 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:36.914 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:37.195 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:37.203 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:37.538 [http-nio-8080-exec-10] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:36:37.539 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:37.540 [http-nio-8080-exec-10] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B00191919
+2020-07-16 15:36:37.541 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:37.781 [http-nio-8080-exec-10] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(109) - User = B00191919 has  Roles=[Student] in the CourseID= 3 CourseTitle=TestCourse
+2020-07-16 15:36:37.781 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:37.781 [http-nio-8080-exec-10] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:38.009 [http-nio-8080-exec-10] INFO  C.G.SurveyResponses.SurveyResponseDB.checkIfSurveyPublished(32) - Checked if survey exists for CourseID = 3
+2020-07-16 15:36:38.010 [http-nio-8080-exec-10] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:38.011 [http-nio-8080-exec-10] INFO  C.G.Courses.CourseController.course(64) - User roles in the courses = [Student]
+2020-07-16 15:36:42.879 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:44.138 [http-nio-8080-exec-1] INFO  C.G.SurveyResponses.SurveyResponseDB.getSurveyQuestions(64) - Fetching survey questions for SurveyID = 1
+2020-07-16 15:36:44.138 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:36:44.138 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:44.418 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:44.671 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:36:44.880 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:17.197 [http-nio-8080-exec-3] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:17.494 [http-nio-8080-exec-3] WARN  C.G.SurveyResponses.SurveyResultDB.checkIfResponseSubmitted(24) - Response alrady Present=true for UserID = 19 for SurveyID = 1
+2020-07-16 15:37:17.499 [http-nio-8080-exec-3] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:23.908 [http-nio-8080-exec-5] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:24.157 [http-nio-8080-exec-5] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:24.158 [http-nio-8080-exec-5] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:24.455 [http-nio-8080-exec-5] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:24.457 [http-nio-8080-exec-5] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:24.669 [http-nio-8080-exec-5] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:24.670 [http-nio-8080-exec-5] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:24.913 [http-nio-8080-exec-5] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:37:24.915 [http-nio-8080-exec-5] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:28.076 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:28.288 [http-nio-8080-exec-8] INFO  C.G.Courses.CourseDB.loadCourseByID(53) - Course loaded courseID= 5, Title =biology
+2020-07-16 15:37:28.289 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:28.290 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:28.558 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:28.558 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:28.789 [http-nio-8080-exec-8] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:37:28.791 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:28.791 [http-nio-8080-exec-8] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B00191919
+2020-07-16 15:37:28.791 [http-nio-8080-exec-8] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:29.063 [http-nio-8080-exec-8] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(109) - User = B00191919 has  Roles=[] in the CourseID= 5 CourseTitle=biology
+2020-07-16 15:37:29.065 [http-nio-8080-exec-8] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:29.066 [http-nio-8080-exec-8] INFO  C.G.Courses.CourseController.course(64) - User roles in the courses = []
+2020-07-16 15:37:31.402 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:31.632 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:31.632 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:31.885 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:31.885 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:32.095 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:32.096 [http-nio-8080-exec-7] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:32.347 [http-nio-8080-exec-7] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:37:32.348 [http-nio-8080-exec-7] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:34.538 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:34.762 [http-nio-8080-exec-1] INFO  C.G.Courses.CourseDB.loadCourseByID(53) - Course loaded courseID= 12, Title =DWM
+2020-07-16 15:37:34.764 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:34.765 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:34.995 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:34.996 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:35.419 [http-nio-8080-exec-1] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:37:35.419 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:35.419 [http-nio-8080-exec-1] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B00191919
+2020-07-16 15:37:35.419 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:35.719 [http-nio-8080-exec-1] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(109) - User = B00191919 has  Roles=[Student] in the CourseID= 12 CourseTitle=DWM
+2020-07-16 15:37:35.725 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:35.726 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:35.952 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:35.952 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:36.159 [http-nio-8080-exec-1] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:37:36.160 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:36.160 [http-nio-8080-exec-1] INFO  C.G.AccessControl.CurrentUser.getCurrentAuthenticatedUser(32) - Valid user bannerID = B00191919
+2020-07-16 15:37:36.161 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:36.430 [http-nio-8080-exec-1] INFO  C.G.Courses.CourseUserRelationshipDB.loadUserRolesForCourse(109) - User = B00191919 has  Roles=[Student] in the CourseID= 12 CourseTitle=DWM
+2020-07-16 15:37:36.432 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:36.432 [http-nio-8080-exec-1] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:37:36.730 [http-nio-8080-exec-1] INFO  C.G.SurveyResponses.SurveyResponseDB.checkIfSurveyPublished(32) - Checked if survey exists for CourseID = 12
+2020-07-16 15:37:36.738 [http-nio-8080-exec-1] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:37:36.740 [http-nio-8080-exec-1] INFO  C.G.Courses.CourseController.course(64) - User roles in the courses = [Student]
+2020-07-16 15:38:04.052 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:38:04.264 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:38:04.264 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:38:04.624 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:38:04.624 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:38:04.879 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection
+2020-07-16 15:38:04.880 [http-nio-8080-exec-4] INFO  C.G.Database.ConnectionManager.getDBConnection(36) - Opening the db connection for = CSCI5308_7_DEVINT_USER
+2020-07-16 15:38:05.111 [http-nio-8080-exec-4] INFO  C.G.AccessControl.UserDB.loadUserByID(35) - User loaded for ID= 19,Banner id =B00191919 
+2020-07-16 15:38:05.112 [http-nio-8080-exec-4] INFO  C.G.Database.CallStoredProcedure.cleanup(58) - Closing DB connection

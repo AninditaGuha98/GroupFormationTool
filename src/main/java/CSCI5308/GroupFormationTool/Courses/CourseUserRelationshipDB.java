@@ -37,7 +37,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -63,7 +63,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -82,7 +82,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 			proc.execute();
 			log.info("User = {} has enrolled as Role ={} in the Course={}",user.getBannerID(),role.toString(),course.getId());
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception= {}",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -106,9 +106,9 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 					roles.add(role);
 				}
 			}
-			log.info("User = {} has  Roles={} in the Course= {}", user.getBannerID(), roles, course.getId(), course.getTitle());
+			log.info("User = {} has  Roles={} in the CourseID= {} CourseTitle={}", user.getBannerID(), roles, course.getId(), course.getTitle());
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception ={}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

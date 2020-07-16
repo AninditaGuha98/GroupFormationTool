@@ -35,16 +35,15 @@ public class CallStoredProcedure {
 		try {
 			statement = connection.prepareCall("{call " + storedProcedureName + "}");
 		} catch (SQLException e) {
-			log.error("SQL Exception while creating sql statement", e.getMessage());
+			log.error("SQL Exception while creating sql statement = {}", e.getMessage());
 		}
 	}
 
 	private void openConnection() {
 		try {
 			connection = ConnectionManager.instance().getDBConnection();
-			log.info("DB connection open");
 		} catch (SQLException e) {
-			log.error("SQL Exception while connection setup", e.getMessage());
+			log.error("SQL Exception while connection setup ={}", e.getMessage());
 		}
 	}
 
@@ -60,7 +59,7 @@ public class CallStoredProcedure {
 				}
 			}
 		} catch (Exception e) {
-			log.error("SQL Exception",e.getMessage());
+			log.error("SQL Exception = {}",e.getMessage());
 		}
 	}
 
@@ -68,7 +67,7 @@ public class CallStoredProcedure {
 		try {
 			statement.setString(paramIndex, value);
 		} catch (SQLException e) {
-			log.error("SQL Exception while setting parameters",e.getMessage());
+			log.error("SQL Exception while setting parameters = {}",e.getMessage());
 		}
 	}
 
@@ -94,7 +93,7 @@ public class CallStoredProcedure {
 				return statement.getResultSet();
 			}
 		} catch (SQLException e) {
-			log.error("SQL Exception while execution", e.getMessage());
+			log.error("SQL Exception while execution = {}", e.getMessage());
 		}
 		return null;
 	}
@@ -103,7 +102,7 @@ public class CallStoredProcedure {
 		try {
 			statement.execute();
 		} catch (SQLException e) {
-			log.error("SQL Exception while execution", e.getMessage());
+			log.error("SQL Exception while execution = {}", e.getMessage());
 		}
 	}
 }

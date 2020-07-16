@@ -61,7 +61,7 @@ public class CourseController {
             model.addAttribute("ta", userRoles.contains(Role.TA));
             model.addAttribute("student", userRoles.contains(Role.STUDENT));
             model.addAttribute("guest", userRoles.isEmpty());
-            log.info("User roles in the courses:", userRoles);
+            log.info("User roles in the courses = {}", userRoles);
         }
         return "course/course";
     }

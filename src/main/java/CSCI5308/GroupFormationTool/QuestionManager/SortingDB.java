@@ -31,10 +31,10 @@ public class SortingDB implements IQuestionSorters {
 					interfaceQuestionModel.setQuestionTitle(title);
 					questions.add(interfaceQuestionModel);
 				}
-				log.info("Questions sorted by SortField = {} in order SortOrder={} for User ={}",interfaceSorters.getSortField(),interfaceSorters.getSortOrder(),bannerID);
+				log.info("Questions sorted by SortField = {} in SortOrder={} for User ={}",interfaceSorters.getSortField(),interfaceSorters.getSortOrder(),bannerID);
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
