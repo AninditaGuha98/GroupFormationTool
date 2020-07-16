@@ -14,17 +14,17 @@ public class SurveyFormulaController {
 	ISurveyScale surveyScale = SurveyScaleObjectFactory.createObject(new SurveyScaleFactory());
 
 	@RequestMapping("/computeformula")
-	public String computeformula(SurveyScale surveyscaleobj, Model model, @RequestParam(name = "id") long courseID,@RequestParam(name = "size") long size) {
+	public String computeformula(SurveyScale surveyscaleobj, Model model, @RequestParam(name = "id") long courseID,@RequestParam(name = "size") int size) {
 		List<ISurveyScale> surveyScales;
 		surveyScale = surveyscaleobj;
-		Long groupsize=size;
-		
+		int groupsize=size;
+		List<ISurveyResponse> surveyResponses=GroupFormationDBFactory.FactorySingleton().createGroupFormationDB().loadResponses(courseID);
 		surveyScales = surveyScale.convertor();
 		//algorithm
-		
+		GroupFormationRandom groupObj=new GroupFormationRandom();
+		List <IGroup> groupresults=groupObj.formGroup(surveyResponses, surveyScales, groupsize);
 		//
-		List<ISurveyResponse> surveyResponses=GroupFormationDBFactory.FactorySingleton().createGroupFormationDB().loadResponses(1);
-		model.addAttribute("groupResults", surveyResponses);
+		model.addAttribute("groupresult", groupresults);
 		return "QuestionManager/groupresults";
 
 	}
