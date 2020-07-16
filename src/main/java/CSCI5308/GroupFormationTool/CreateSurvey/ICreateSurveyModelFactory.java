@@ -1,10 +1,10 @@
 package CSCI5308.GroupFormationTool.CreateSurvey;
 
 public interface ICreateSurveyModelFactory {
-	ICreateSurveyQuestionsModel createSurveyQuestionsModel();
+    ICreateSurveyQuestionsModel createSurveyQuestionsModel();
 
-	IUpdateQuestionsListService getUpdateQuestionsListService();
+    IUpdateQuestionsListService getUpdateQuestionsListService();
 
-	IListQuestionsService getListQuestionsService();
+    IListQuestionsService getListQuestionsService();
 
 }

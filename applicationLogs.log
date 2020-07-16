@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/CreateSurvey
 2020-07-15 13:56:33.584 [http-nio-8080-exec-10] WARN  C.G.S.CustomAuthenticationManager.authenticate(82) - user=B00929919, action=User Authentication, status=Starting...
 2020-07-15 13:56:33.595 [http-nio-8080-exec-10] WARN  C.G.S.CustomAuthenticationManager.authenticate(84) - user=B00929919, action=Check User Validity, status=Success
 2020-07-15 13:56:33.681 [http-nio-8080-exec-10] WARN  C.G.S.CustomAuthenticationManager.checkNormal(53) - user=B00929919, action=Check User Credentials, status=Success
@@ -1052,6 +1055,7 @@ org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property o
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:832)
+<<<<<<< HEAD
 2020-07-16 12:05:50.163 [http-nio-8080-exec-1] WARN  C.G.S.CustomAuthenticationManager.authenticate(82) - user=B00929919, action=User Authentication, status=Starting...
 2020-07-16 12:05:50.210 [http-nio-8080-exec-1] WARN  C.G.S.CustomAuthenticationManager.authenticate(84) - user=B00929919, action=Check User Validity, status=Success
 2020-07-16 12:05:50.314 [http-nio-8080-exec-1] WARN  C.G.S.CustomAuthenticationManager.checkNormal(53) - user=B00929919, action=Check User Credentials, status=Success
@@ -19434,3 +19438,8 @@ org.springframework.expression.spel.SpelEvaluationException: EL1030E: The operat
 2020-07-16 16:35:04.862 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping.<init>(58) - Adding welcome page template: index
 2020-07-16 16:35:05.171 [main] INFO  C.G.CoursesTest.StudentCSVImportTest.logStarted(61) - Started StudentCSVImportTest in 2.652 seconds (JVM running for 3.548)
 2020-07-16 16:35:05.389 [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor.shutdown(208) - Shutting down ExecutorService 'applicationTaskExecutor'
+=======
+2020-07-16 05:44:18.585 [http-nio-8080-exec-8] WARN  C.G.S.CustomAuthenticationManager.authenticate(82) - user=B999999, action=User Authentication, status=Starting...
+2020-07-16 05:44:18.590 [http-nio-8080-exec-8] WARN  C.G.S.CustomAuthenticationManager.authenticate(84) - user=B999999, action=Check User Validity, status=Success
+2020-07-16 05:44:18.684 [http-nio-8080-exec-8] WARN  C.G.S.CustomAuthenticationManager.checkNormal(53) - user=B999999, action=Check User Credentials, status=Success
+>>>>>>> origin/CreateSurvey

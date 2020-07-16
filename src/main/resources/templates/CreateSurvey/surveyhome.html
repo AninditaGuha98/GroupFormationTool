@@ -126,7 +126,7 @@
 
 <!--            For displaying all the questions and add them -->
             <div class="addDiv">
-                <p> Add Questions </p>
+                <p> Add Questions to the survey </p>
                 <hr>
                 <form th:action="@{/addQuestions(id=${courseID},userID=${userID})}"
                       method="post">
@@ -148,7 +148,7 @@
             <!--        For displaying the questions selected and removing them-->
 
             <div  class="removeDiv">
-                <p> Remove Questions </p>
+                <p> Questions in your current survey </p>
                 <hr>
                 <form th:action="@{/removeQuestions(id=${courseID},userID=${userID})}"
                       method="post">

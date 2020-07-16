@@ -9,6 +9,7 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
 	ICreateSurveyModelFactory iCreateSurveyModelFactory;
 	ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
 
+<<<<<<< HEAD
 	@Override
 	public ICreateSurveyQuestionsModel displayUpdatedQuestionList(String[] heading, String[] type, String que) {
 		iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
@@ -53,6 +54,42 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
 		iCreateSurveyQuestionsModel.setQuestionType(typeList.toArray(new String[typeList.size()]));
 		return iCreateSurveyQuestionsModel;
 	}
+=======
+    @Override
+    public ICreateSurveyQuestionsModel displayUpdatedQuestionList(String[] heading, String[] type, String que) {
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
+        int index = 0;
+        List<String> headingList = new ArrayList<>(Arrays.asList(heading));
+        List<String> typeList = new ArrayList<>(Arrays.asList(type));
+        List<String> selectedQue = new ArrayList<>();
+        List<String> selectedType = new ArrayList<>();
+
+        for (int i = 0; i < heading.length; i++) {
+            if (heading[i].equals(que)) {
+                index = i;
+                break;
+            }
+        }
+        if (iCreateSurveyQuestionsModel.getSelectedQuestions() != null) {
+            List<String> sQue = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedQuestions()));
+            List<String> sType = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedTypes()));
+            selectedQue = new ArrayList<>(sQue);
+            selectedType = new ArrayList<>(sType);
+            selectedQue.add(headingList.get(index));
+            selectedType.add(typeList.get(index));
+            headingList.remove(index);
+            typeList.remove(index);
+        } else {
+            selectedQue.add(headingList.get(index));
+            selectedType.add(typeList.get(index));
+            headingList.remove(index);
+            typeList.remove(index);
+        }
+        return setDataInModel(headingList, typeList, selectedQue, selectedType);
+    }
+>>>>>>> origin/CreateSurvey
 
 	@Override
 	public ICreateSurveyQuestionsModel removeQuestions(String que) {
@@ -79,6 +116,38 @@ public class UpdateQuestionsListService implements IUpdateQuestionsListService {
 		sQue.remove(index);
 		sType.remove(index);
 
+<<<<<<< HEAD
 		return setDataInModel(queHead, queType, sQue, sType);
 	}
+=======
+    @Override
+    public ICreateSurveyQuestionsModel removeQuestions(String que) {
+        iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
+        iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
+        int index = 0;
+        List<String> sQue = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedQuestions()));
+        List<String> sType = (Arrays.asList(iCreateSurveyQuestionsModel.getSelectedTypes()));
+        List<String> queHead = (Arrays.asList(iCreateSurveyQuestionsModel.getQuestionHeading()));
+        List<String> queType = (Arrays.asList(iCreateSurveyQuestionsModel.getQuestionType()));
+
+        sQue = new ArrayList<>(sQue);
+        sType = new ArrayList<>(sType);
+        queHead = new ArrayList<>(queHead);
+        queType = new ArrayList<>(queType);
+
+        for (int i = 0; i < sQue.size(); i++) {
+            if (sQue.get(i).equals(que)) {
+                index = i;
+                break;
+            }
+        }
+        queHead.add(sQue.get(index));
+        queType.add(sType.get(index));
+        sQue.remove(index);
+        sType.remove(index);
+
+        return setDataInModel(queHead, queType, sQue, sType);
+    }
+>>>>>>> origin/CreateSurvey
 }
