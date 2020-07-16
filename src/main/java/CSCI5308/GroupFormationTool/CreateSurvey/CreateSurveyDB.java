@@ -1,8 +1,6 @@
 package CSCI5308.GroupFormationTool.CreateSurvey;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import CSCI5308.GroupFormationTool.SystemConfig;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +9,6 @@ import java.util.Calendar;
 public class CreateSurveyDB implements ICreateSurveyDB {
     ICreateSurveyModelFactory iCreateSurveyModelFactory;
     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
-
     ICreateSurveyDBFactory iCreateSurveyDBFactory;
     ISurveyExistRepo iSurveyExistRepo;
 
@@ -19,10 +16,8 @@ public class CreateSurveyDB implements ICreateSurveyDB {
     public boolean saveSurvey(long courseID, long userID, int status){
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
-
         iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
         iSurveyExistRepo=iCreateSurveyDBFactory.surveyExistRepo();
-
         int surveyID;
         int state;
         CallStoredProcedure proc=null;
@@ -31,6 +26,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         CallStoredProcedure procedure2=null;
         ArrayList<Integer> questionsID=new ArrayList<>();
         String [] selectedQuestions;
+
         try{
             if(status==0){
                 state=iSurveyExistRepo.checkSurveyStatus(courseID);
@@ -81,7 +77,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         }
         finally {
             if (null!=proc){
-                procedure.cleanup();
+                proc.cleanup();
             }
             if (null!=procedure){
                 procedure.cleanup();
@@ -148,10 +144,8 @@ public class CreateSurveyDB implements ICreateSurveyDB {
     public boolean fetchSavedQuestions(long courseID) {
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
-
         iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
         iSurveyExistRepo=iCreateSurveyDBFactory.surveyExistRepo();
-
         int state;
         int surveyID=0;
         ArrayList<String> questions=new ArrayList<>();
@@ -159,6 +153,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         state=iSurveyExistRepo.checkSurveyStatus(courseID);
         CallStoredProcedure procedure=null;
         CallStoredProcedure procedure1=null;
+
         try{
             if(state==0){
 
@@ -176,9 +171,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
                     iCreateSurveyQuestionsModel.setSelectedQuestions(questions.toArray(new String[questions.size()]));
                     iCreateSurveyQuestionsModel.setSelectedTypes(questionType.toArray(new String[questionType.size()]));
                 }
-
             }
-
             else if(state==1){
                 return false;
             }
@@ -187,7 +180,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         e.printStackTrace();
     }
         finally {
-            if (null!= procedure) {
+            if(null!= procedure) {
                 procedure.cleanup();
             }
             if(null!=procedure1){

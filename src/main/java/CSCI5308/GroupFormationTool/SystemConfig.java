@@ -20,7 +20,7 @@ import CSCI5308.GroupFormationTool.Security.BCryptPasswordEncryption;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.CreateSurvey.*;
+
 
 
 public class SystemConfig {
@@ -35,25 +35,7 @@ public class SystemConfig {
 	private IQuestionSorters sortersDB;
 	private InterfaceListQuestionsRepo listQuestionsRepo;
 	private InterfaceDeleteQuestionsRepo deleteQuestionsRepo;
-//	private IQueryQuestionsRepo queryQuestionsRepo;
-//	private ISurveyExistRepo surveyExistRepo;
-//	private ICreateSurveyDB createSurveyDB;
 
-//	public ICreateSurveyQuestionsModel getCreateSurveyQuestionsModel() {
-//		return createSurveyQuestionsModel;
-//	}
-//
-//	public void setCreateSurveyQuestionsModel(ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel) {
-//		this.createSurveyQuestionsModel = iCreateSurveyQuestionsModel;
-//	}
-
-//	public ISurveyExistRepo getSurveyExistRepo() {
-//		return surveyExistRepo;
-//	}
-//
-//	public void setSurveyExistRepo(ISurveyExistRepo surveyExistRepo) {
-//		this.surveyExistRepo = surveyExistRepo;
-//	}
 
 	private SystemConfig() {
 		passwordEncryption = new BCryptPasswordEncryption();
@@ -66,28 +48,7 @@ public class SystemConfig {
 		sortersDB = new SortingDB();
 		listQuestionsRepo = new ListQuestionsRepo();
 		deleteQuestionsRepo = new DeleteQuestionsRepo();
-//		createSurveyQuestionsModel=new CreateSurveyQuestionsModel();
-//		queryQuestionsRepo=new QueryQuestionsRepo();
-//		surveyExistRepo=new SurveyExistRepo();
-//		createSurveyDB=new CreateSurveyDB();
 	}
-//
-//	public ICreateSurveyDB getCreateSurveyDB() {
-//		return createSurveyDB;
-//	}
-//
-//	public void setCreateSurveyDB(ICreateSurveyDB createSurveyDB) {
-//		this.createSurveyDB = createSurveyDB;
-//	}
-//
-//	public IQueryQuestionsRepo getQueryQuestionsRepo() {
-//		return queryQuestionsRepo;
-//	}
-//
-//	public void setQueryQuestionsRepo(IQueryQuestionsRepo queryQuestionsRepo) {
-//		this.queryQuestionsRepo = queryQuestionsRepo;
-//	}
-
 
 	public static SystemConfig instance(){
 		if (null == uniqueInstance) {

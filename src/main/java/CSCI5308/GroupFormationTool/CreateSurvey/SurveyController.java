@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.CreateSurvey;
 
-import CSCI5308.GroupFormationTool.SystemConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +14,6 @@ public class SurveyController {
      ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
      ICreateSurveyDBFactory iCreateSurveyDBFactory;
      ICreateSurveyDB iCreateSurveyDB;
-
-//     ICreateSurveyDB ICreateSurveyDB = SystemConfig.instance().getCreateSurveyDB();
      IUpdateQuestionsListService iUpdateQuestionsListService= new UpdateQuestionsListService();
      IListQuestionsService IlistQuestionsService=new ListQuestionsService();
 
@@ -87,10 +84,10 @@ public class SurveyController {
     public ModelAndView saveSurvey(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
-
         iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
         iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
         int status=0;
+
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         mv.addObject("publish",true);
         mv.addObject("surveyFlag",true);
@@ -126,7 +123,6 @@ public class SurveyController {
     public ModelAndView unpublishSurvey (@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
-
         iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
         iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
 

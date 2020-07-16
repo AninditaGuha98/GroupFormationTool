@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.CreateSurvey;
 
-import CSCI5308.GroupFormationTool.SystemConfig;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -32,6 +31,7 @@ public class ListQuestionsService implements IListQuestionsService {
     public Dictionary listRepeatQuestions(){
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+
         Dictionary hashmap1= new Hashtable<>();
         for(int i =0; i<iCreateSurveyQuestionsModel.getQuestionHeading().length;i++)
         {
