@@ -3,7 +3,12 @@ package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SurveyScaleNumeric extends SurveyScale {
+	private static final Logger log = LoggerFactory.getLogger(SurveyScaleNumeric.class);
+	private static final String SURVEY_SCALE_NUMERIC = "numeric";
 
 	@Override
 	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index) {
@@ -12,6 +17,8 @@ public class SurveyScaleNumeric extends SurveyScale {
 		double distance = 0;
 		List<String> criteria;
 
+		log.info("SurveyScale={}, action={}, status={}", 
+				SURVEY_SCALE_NUMERIC, "Compute Distance", "Starting...");
 		criteria = Arrays.asList(this.getCriteria().toLowerCase().split(","));
 		for (String criterion : criteria) {
 			switch (criterion) {
@@ -27,6 +34,8 @@ public class SurveyScaleNumeric extends SurveyScale {
 			default:
 			}
 		}
+		log.info("SurveyScale={}, action={}, status={}, value={}", 
+				SURVEY_SCALE_NUMERIC, "Compute Distance", "Success", distance);
 		return distance;
 	}
 
@@ -36,7 +45,9 @@ public class SurveyScaleNumeric extends SurveyScale {
 		try {
 			rpValue = Integer.parseInt(rpString);
 		} catch (NumberFormatException e) {
-			// Log Error
+			log.error("SurveyScale={}, action={}, status={}", 
+					SURVEY_SCALE_NUMERIC, "ConvertValue", "Fail");
+			rpValue = 0;
 		}
 		return rpValue;
 	}

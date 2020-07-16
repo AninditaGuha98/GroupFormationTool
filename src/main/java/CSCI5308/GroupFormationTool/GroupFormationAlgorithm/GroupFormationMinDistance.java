@@ -6,9 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import CSCI5308.GroupFormationTool.SystemConfig;
 
 public class GroupFormationMinDistance implements IGroupFormationAlgorithm {
+	private static final Logger log = LoggerFactory.getLogger(GroupFormationMinDistance.class);
+	private static final String GROUP_FORMATION_ALGORITHM = "NearestNeighbor";
 
 	private PriorityQueue<DistanceNode> pq;
 	private Map<ISurveyResponse, IGroup> groupAssociation;
@@ -32,10 +37,16 @@ public class GroupFormationMinDistance implements IGroupFormationAlgorithm {
 		@Override
 		public int compareTo(DistanceNode that) {
 			if (this.distance < that.distance) {
+				log.info("GroupFormation={}, action={}, status={}", 
+						GROUP_FORMATION_ALGORITHM, "Compare the Distance", "Less than");
 				return -1;
 			} else if (this.distance > that.distance) {
+				log.info("GroupFormation={}, action={}, status={}", 
+						GROUP_FORMATION_ALGORITHM, "Compare the Distance", "Greater than");
 				return +1;
 			} else {
+				log.info("GroupFormation={}, action={}, status={}", 
+						GROUP_FORMATION_ALGORITHM, "Compare the Distance", "Equal");
 				return 0;
 			}
 		}
@@ -43,10 +54,14 @@ public class GroupFormationMinDistance implements IGroupFormationAlgorithm {
 	
 	public static double computeDistance(ISurveyResponse student1, ISurveyResponse student2, List<ISurveyScale> surveyScales) {
 		double distance = 0;
+		log.info("GroupFormation={}, action={}, status={}", 
+				GROUP_FORMATION_ALGORITHM, "Computing Distance", "Starting");
 		for(int k=0; k < surveyScales.size(); k++) {
 			ISurveyScale curScale = surveyScales.get(k);
 			distance += curScale.distance(student1,student2,k);
 		}
+		log.info("GroupFormation={}, action={}, value={}", 
+				GROUP_FORMATION_ALGORITHM, "Computing Distance", distance);
 		return distance;
 	}
 	
@@ -76,15 +91,25 @@ public class GroupFormationMinDistance implements IGroupFormationAlgorithm {
 		int assigned = 0;
 		List<DistanceNode> revisitedResponses = new ArrayList<DistanceNode>();
 		while(!pq.isEmpty()) {
+			log.info("GroupFormation={}, action={}, status={}", 
+					GROUP_FORMATION_ALGORITHM, "Finding Nearest Neighbors", "Starting...");
 			DistanceNode curNode = pq.poll();
 			ISurveyResponse student1 = curNode.student1;
 			ISurveyResponse student2 = curNode.student2;
 			if (groupAssociation.containsKey(student1) && groupAssociation.containsKey(student2)) {
-				// log warn because it should not have a pair which is added before
+				log.warn("GroupFormation={}, action={}, status={}", 
+						GROUP_FORMATION_ALGORITHM, "Finding Nearest Neighbors", 
+						String.format("%s,%s were visited again.", student1.getBannerID(), student2.getBannerID()));
 			} else if (groupAssociation.containsKey(student1)) {
 				curGroup = groupAssociation.get(student1);
 				if (curGroup.hasRoom()) {
-					curGroup.addGroupMember(student2);
+					try {
+						curGroup.addGroupMember(student2);
+					} catch (IllegalStateException e) {
+						log.error("GroupFormation={}, action={}, status={}, message{}", 
+								GROUP_FORMATION_ALGORITHM, "Adding student to the group", "Fail", e.getMessage());
+						continue;
+					}
 					groupAssociation.put(student2, curGroup);
 					assigned++;
 				} else {
@@ -95,14 +120,26 @@ public class GroupFormationMinDistance implements IGroupFormationAlgorithm {
 					curGroup.setGropuSize(groupSize);
 					groups.add(curGroup);
 					curGroup.setGroupNumber(groups.size());
-					curGroup.addGroupMember(student2);
+					try {
+						curGroup.addGroupMember(student2);
+					} catch (IllegalStateException e) {
+						log.error("GroupFormation={}, action={}, status={}, message{}", 
+								GROUP_FORMATION_ALGORITHM, "Adding student to the group", "Fail", e.getMessage());
+						continue;
+					}
 					groupAssociation.put(student2, curGroup);
 					assigned++;
 				}
 			} else if (groupAssociation.containsKey(student2)) {
 				curGroup = groupAssociation.get(student2);
 				if (curGroup.hasRoom()) {
-					curGroup.addGroupMember(student1);
+					try {
+						curGroup.addGroupMember(student1);
+					} catch (IllegalStateException e) {
+						log.error("GroupFormation={}, action={}, status={}, message{}", 
+								GROUP_FORMATION_ALGORITHM, "Adding student to the group", "Fail", e.getMessage());
+						continue;
+					}
 					groupAssociation.put(student1, curGroup);
 					assigned++;
 				} else {
@@ -113,7 +150,13 @@ public class GroupFormationMinDistance implements IGroupFormationAlgorithm {
 					curGroup.setGropuSize(groupSize);
 					groups.add(curGroup);
 					curGroup.setGroupNumber(groups.size());
-					curGroup.addGroupMember(student1);
+					try {
+						curGroup.addGroupMember(student1);
+					} catch (IllegalStateException e) {
+						log.error("GroupFormation={}, action={}, status={}, message{}", 
+							GROUP_FORMATION_ALGORITHM, "Adding student to the group", "Fail", e.getMessage());
+						continue;
+					}
 					groupAssociation.put(student1, curGroup);
 					assigned++;
 				}
@@ -123,11 +166,23 @@ public class GroupFormationMinDistance implements IGroupFormationAlgorithm {
 					curGroup.setGropuSize(groupSize);
 					groups.add(curGroup);
 					curGroup.setGroupNumber(groups.size());
-					curGroup.addGroupMember(student1);
+					try {
+						curGroup.addGroupMember(student1);
+					} catch (IllegalStateException e) {
+						log.error("GroupFormation={}, action={}, status={}, message{}", 
+								GROUP_FORMATION_ALGORITHM, "Adding student to the group", "Fail", e.getMessage());
+						continue;
+					}
 					groupAssociation.put(student1, curGroup);
 					assigned++;
 					if (curGroup.hasRoom()) {
-						curGroup.addGroupMember(student2);
+						try {
+							curGroup.addGroupMember(student2);
+						} catch (IllegalStateException e) {
+							log.error("GroupFormation={}, action={}, status={}, message{}", 
+									GROUP_FORMATION_ALGORITHM, "Adding student to the group", "Fail", e.getMessage());
+							continue;
+						}
 						groupAssociation.put(student2, curGroup);
 						assigned++;
 					}
