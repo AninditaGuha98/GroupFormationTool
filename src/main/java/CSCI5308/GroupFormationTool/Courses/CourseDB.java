@@ -28,7 +28,7 @@ public class CourseDB implements ICoursePersistence {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("SQL Exception:", e.getMessage());
+			log.error("SQL Exception= {} ", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -50,9 +50,9 @@ public class CourseDB implements ICoursePersistence {
 					course.setTitle(title);
 				}
 			}
-			log.info("Course loaded :", course.getId(), course.getTitle());
+			log.info("Course loaded courseID= {}, Title ={}", course.getId(), course.getTitle());
 		} catch (SQLException e) {
-			log.error("SQL Exception :", e.getMessage());
+			log.error("SQL Exception= {}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -67,9 +67,9 @@ public class CourseDB implements ICoursePersistence {
 			proc.setParameter(1, course.getTitle());
 			proc.registerOutputParameterLong(2);
 			proc.execute();
-			log.info("Course created :", course.getId(), course.getTitle());
+			log.info("Course created courseID= {}, Title ={}", course.getId(), course.getTitle());
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception ={}",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -85,9 +85,9 @@ public class CourseDB implements ICoursePersistence {
 			proc = new CallStoredProcedure("spDeleteCourse(?)");
 			proc.setParameter(1, id);
 			proc.execute();
-			log.info("Course Deleted :", id);
+			log.info("Course Deleted courseID={}", id);
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {

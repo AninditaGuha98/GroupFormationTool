@@ -26,7 +26,7 @@ public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != procedure) {
 				procedure.cleanup();

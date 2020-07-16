@@ -31,8 +31,8 @@ public class SurveyResponseDB implements ISurveyResponseDB {
                 }
                 log.info("Checked if survey exists for CourseID = {}",courseID);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            log.error("SQL Exception = {}",e.getMessage());
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -64,7 +64,7 @@ public class SurveyResponseDB implements ISurveyResponseDB {
                 log.info("Fetching survey questions for SurveyID = {}",surveyID);
             }
         } catch (SQLException e) {
-            log.error("Sql Exception",e.getMessage());
+            log.error("Sql Exception ={}",e.getMessage());
         } finally {
             if (null != proc) {
                 proc.cleanup();
@@ -94,7 +94,7 @@ public class SurveyResponseDB implements ISurveyResponseDB {
                     }
                 }
             } catch (SQLException e) {
-                log.error("Sql Exception",e.getMessage());
+                log.error("Sql Exception = {}",e.getMessage());
             } finally {
                 if (null != proc) {
                     proc.cleanup();

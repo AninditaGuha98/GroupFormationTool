@@ -32,9 +32,9 @@ public class UserDB implements IUserPersistence {
 					user.setEmail(email);
 				}
 			}
-			log.info("User loaded for ID:",user.getID(),"Banner id:",user.getBannerID());
+			log.info("User loaded for ID= {},Banner id ={} ",user.getID(),user.getBannerID());
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -55,7 +55,7 @@ public class UserDB implements IUserPersistence {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -78,9 +78,9 @@ public class UserDB implements IUserPersistence {
 			proc.setParameter(5, user.getEmail());
 			proc.registerOutputParameterLong(6);
 			proc.execute();
-			log.info("User Created for :", user.getBannerID());
+			log.info("User Created for = {}", user.getBannerID());
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -104,7 +104,7 @@ public class UserDB implements IUserPersistence {
 			proc.execute();
 			userId = proc.getStatement().getLong(2);
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception = {}",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

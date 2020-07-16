@@ -58,10 +58,10 @@ public class StudentCSVImport {
 			}
 			if (course.enrollUserInCourse(Role.STUDENT, user)) {
 				successResults.add("User enrolled in course: " + userDetails);
-				log.info("User enrolled in course:", userDetails);
+				log.info("User enrolled in course USER = {}", userDetails);
 			} else {
 				failureResults.add("Unable to enroll user in course: " + userDetails);
-				log.warn("Unable to enroll user in course: ", userDetails);
+				log.warn("Unable to enroll user in course USER={}", userDetails);
 			}
 		}
 	}

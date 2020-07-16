@@ -23,7 +23,7 @@ public class SurveyResultDB implements ISurveyresultDB {
             present= results.next();
             log.warn("Response alrady Present={} for UserID = {} for SurveyID = {}",present, userID, surveyID);
         } catch (SQLException e) {
-            log.error("Sql Exception",e.getMessage());
+            log.error("Sql Exception = {}",e.getMessage());
             return false;
         } finally {
             if (null != proc) {
@@ -45,7 +45,7 @@ public class SurveyResultDB implements ISurveyresultDB {
             proc.execute();
             log.info("Response submitted for UserID={} SurveyID={} questionID ={}",userID,surveyID,questionID);
         } catch (SQLException e) {
-            log.error("Sql Exception",e.getMessage());
+            log.error("Sql Exception ={}",e.getMessage());
             return false;
         } finally {
             if (null != proc) {

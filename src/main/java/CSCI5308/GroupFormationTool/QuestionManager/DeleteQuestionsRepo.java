@@ -33,7 +33,7 @@ public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception",e.getMessage());
+			log.error("Sql Exception ={}",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {

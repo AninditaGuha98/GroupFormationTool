@@ -33,7 +33,7 @@ public class ConnectionManager {
 	}
 
 	public Connection getDBConnection() throws SQLException {
-		log.info("Opening the db connection for", dbUserName);
+		log.info("Opening the db connection for = {}", dbUserName);
 		return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
 	}
 }
