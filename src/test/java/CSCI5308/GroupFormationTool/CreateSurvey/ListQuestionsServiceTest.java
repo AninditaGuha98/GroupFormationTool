@@ -13,7 +13,6 @@ class ListQuestionsServiceTest {
     @Mock
     IQueryQuestionsRepo iQueryQuestionsRepo;
 
-
     @InjectMocks
     IListQuestionsService iListQuestionsService;
 
@@ -34,9 +33,6 @@ class ListQuestionsServiceTest {
 //        when(iQueryQuestionsRepo.listQuestionsForUser(userID).thenReturn(questionHeadings));
 //        iListQuestionsService.listAllQuestionsforUser(userID);
 //        assertEquals(questionHeadings,)
-
-
-
     }
 
     @Test

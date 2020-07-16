@@ -8,7 +8,6 @@ import java.util.Calendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class CreateSurveyDB implements ICreateSurveyDB {
     ICreateSurveyModelFactory iCreateSurveyModelFactory;
     ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
@@ -65,7 +64,9 @@ public class CreateSurveyDB implements ICreateSurveyDB {
                     procedure1.setParameter(2,questionsID.get(i));
                     procedure1.setParameter(3,timestamp);
                     procedure1.execute();
+
                 }
+                logger.info(" Survey save state= {}","Success");
                 return true;
 
             }
@@ -73,6 +74,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
                 procedure2 = new CallStoredProcedure("spPublishSurvey(?)");
                 procedure2.setParameter(1,courseID);
                 procedure2.execute();
+                logger.info(" Survey has been published  state= {}","Success");
                 return true;
             }
         }
@@ -105,6 +107,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
             callStoredProcedure.setParameter(1,courseID);
             callStoredProcedure.setParameter(2,status);
             callStoredProcedure.execute();
+            logger.info(" New survey creation  state= {}","Success");
 
         } catch (SQLException e) {
             logger.error(" Survey could not be created  state= {}, message={}","Fail", e.getMessage());
@@ -175,6 +178,7 @@ public class CreateSurveyDB implements ICreateSurveyDB {
                     iCreateSurveyQuestionsModel.setSelectedQuestions(questions.toArray(new String[questions.size()]));
                     iCreateSurveyQuestionsModel.setSelectedTypes(questionType.toArray(new String[questionType.size()]));
                 }
+                logger.info(" Saved fetch status  state= {}","Success");
             }
             else if(state==1){
                 return false;
@@ -199,8 +203,10 @@ public class CreateSurveyDB implements ICreateSurveyDB {
             callStoredProcedure = new CallStoredProcedure("spChangePublishStatus(?)");
             callStoredProcedure.setParameter(1,courseID);
             callStoredProcedure.execute();
+            logger.info(" Survey publish status state= {}","Success");
         } catch (SQLException e) {
             logger.error(" Survey can not be unpublished  state= {}, message={}","Fail", e.getMessage());
+            return false;
         }
         finally {
             if(null!=callStoredProcedure){
@@ -210,5 +216,4 @@ public class CreateSurveyDB implements ICreateSurveyDB {
         logger.info("Survey unpublished status={}","Success");
         return true;
     }
-
 }

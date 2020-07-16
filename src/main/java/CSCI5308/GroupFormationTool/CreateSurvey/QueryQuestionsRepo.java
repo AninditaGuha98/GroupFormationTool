@@ -36,6 +36,7 @@ public class QueryQuestionsRepo implements IQueryQuestionsRepo {
                     questionType.add(results.getString(3));
                 }
             }
+            logger.info(" Listing Questions from Database state= {}","Success");
         } catch (SQLException e) {
             logger.error(" Listing Questions from Database state= {}, message={}","Fail", e.getMessage());
         } finally {

@@ -32,6 +32,7 @@ public class SurveyExistRepo implements ISurveyExistRepo {
                 procedure.cleanup();
             }
         }
+        logger.info(" Survey availability in Database state= {}",state);
         return state;
     }
 }
