@@ -2,6 +2,7 @@ package CSCI5308.GroupFormationTool.AccessControl;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
 import CSCI5308.GroupFormationTool.SystemConfig;
 
 public class CurrentUser {

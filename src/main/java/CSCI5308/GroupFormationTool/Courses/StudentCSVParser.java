@@ -13,7 +13,6 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
 import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
-import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
 import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 

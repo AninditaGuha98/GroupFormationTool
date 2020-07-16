@@ -9,10 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GroupFormationToolApplication {
 
 	static final Logger logger = LoggerFactory.getLogger(GroupFormationToolApplication.class);
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(GroupFormationToolApplication.class, args);
-		logger.warn("This is a Log Example.");
 	}
-
 }
+

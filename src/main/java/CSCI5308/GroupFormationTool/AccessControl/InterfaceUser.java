@@ -1,35 +1,32 @@
 package CSCI5308.GroupFormationTool.AccessControl;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 
 public interface InterfaceUser {
-	
-	public void setDefaults() ;
+
+	public void setDefaults();
 
 	public void setID(long id);
 
-	public long getID() ;
+	public long getID();
 
 	public void setId(long id);
 
-	public long getId() ;
+	public long getId();
 
 	public void setPassword(String password);
 
-	public String getPassword() ;
+	public String getPassword();
 
 	public void setBannerID(String bannerID);
 
-	public String getBannerID() ;
+	public String getBannerID();
 
-	public String getBanner() ;
+	public String getBanner();
 
-	public void setFirstName(String name) ;
+	public void setFirstName(String name);
 
-	public String getFirstName() ;
+	public String getFirstName();
 
 	public void setLastName(String name);
 
@@ -37,14 +34,14 @@ public interface InterfaceUser {
 
 	public void setEmail(String email);
 
-	public String getEmail() ;
+	public String getEmail();
 
-	public boolean isValidUser() ;
+	public boolean isValidUser();
 
 	public boolean createUser(IUserPersistence userDB, IPasswordEncryption passwordEncryption,
-			IUserNotifications notification) ;
+			IUserNotifications notification);
 
-	public boolean updateUser(IUserPersistence userDB) ;
+	public boolean updateUser(IUserPersistence userDB);
 
 //	private static boolean isStringNullOrEmpty(String s) ;
 //

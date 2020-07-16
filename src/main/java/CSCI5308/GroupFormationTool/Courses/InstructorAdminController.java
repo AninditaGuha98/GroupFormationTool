@@ -3,8 +3,6 @@ package CSCI5308.GroupFormationTool.Courses;
 import java.util.Iterator;
 import java.util.List;
 
-import CSCI5308.GroupFormationTool.QuestionManager.QManagerDbFactory;
-import CSCI5308.GroupFormationTool.QuestionManager.QManagerModelFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
-import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
 import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.QuestionManager.IQuestionsPersistence;
+import CSCI5308.GroupFormationTool.QuestionManager.QManagerDbFactory;
 
 @Controller
 public class InstructorAdminController {
@@ -31,7 +29,7 @@ public class InstructorAdminController {
 	@GetMapping("/course/instructoradmin")
 	public String instructorAdmin(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("displayresults", false);
@@ -42,12 +40,13 @@ public class InstructorAdminController {
 			return "logout";
 		}
 	}
-	
+
 	@GetMapping("/course/makegroups")
 	public String assignGroups(Model model, @RequestParam(name = ID) long courseID) {
-	
+
 		IQuestionsPersistence questionDB = QManagerDbFactory.FactorySingleton().createQuestionDB();
 		model.addAttribute("questions", questionDB.loadAllQuestionsBycourseID(String.valueOf(courseID)));
+		model.addAttribute("courseid",courseID);
 		return "QuestionManager/makesurvey";
 	}
 
@@ -57,7 +56,7 @@ public class InstructorAdminController {
 			@RequestParam(name = FAILURES, required = false) List<String> failures,
 			@RequestParam(name = DISPLAY_RESULTS) boolean displayResults) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		model.addAttribute("displayresults", false);
@@ -75,7 +74,7 @@ public class InstructorAdminController {
 	@GetMapping("/course/enrollta")
 	public String enrollTA(Model model, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		model.addAttribute("course", interfaceCourse);
 		if (interfaceCourse.isCurrentUserEnrolledAsRoleInCourse(Role.INSTRUCTOR)
@@ -94,7 +93,7 @@ public class InstructorAdminController {
 	@RequestMapping(value = "/course/uploadcsv", consumes = { "multipart/form-data" })
 	public ModelAndView upload(@RequestParam(name = FILE) MultipartFile file, @RequestParam(name = ID) long courseID) {
 		ICoursePersistence courseDB = SystemConfig.instance().getCourseDB();
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		courseDB.loadCourseByID(courseID, interfaceCourse);
 		IStudentCSVParser parser = new StudentCSVParser(file);
 		StudentCSVImport importer = new StudentCSVImport(parser, interfaceCourse);
@@ -108,7 +107,7 @@ public class InstructorAdminController {
 	@RequestMapping(value = "/course/assignTAtocourse")
 	public ModelAndView assignInstructorToCourse(@RequestParam(name = "ta") List<Integer> instructor,
 			@RequestParam(name = ID) long courseID) {
-		InterfaceCourse interfaceCourse=ObjectFactory.createObject(new CourseFactory());
+		InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 		interfaceCourse.setId(courseID);
 		Iterator<Integer> iter = instructor.iterator();
 		ICourseUserRelationshipPersistence courseUserRelationshipDB = SystemConfig.instance()

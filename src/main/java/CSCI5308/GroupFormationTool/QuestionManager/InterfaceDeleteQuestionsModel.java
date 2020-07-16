@@ -1,11 +1,11 @@
 package CSCI5308.GroupFormationTool.QuestionManager;
 
 public interface InterfaceDeleteQuestionsModel {
-    String[] getListQuestions();
+	String[] getListQuestions();
 
-    void setListQuestions(String[] listQuestions);
+	void setListQuestions(String[] listQuestions);
 
-    String[] getSelectedQuestions();
+	String[] getSelectedQuestions();
 
-    void setSelectedQuestions(String[] selectedQuestions);
+	void setSelectedQuestions(String[] selectedQuestions);
 }

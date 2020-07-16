@@ -27,6 +27,7 @@ public class ConnectionManager {
 		}
 		return uniqueInstance;
 	}
+
 	public Connection getDBConnection() throws SQLException {
 		return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
 	}
