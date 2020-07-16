@@ -10,7 +10,7 @@ import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 
 public class HistoryConstraintValidation implements IPasswordValidation {
 
-	private static final Logger logger = LoggerFactory.getLogger(HistoryConstraintValidation.class);
+	private static final Logger log = LoggerFactory.getLogger(HistoryConstraintValidation.class);
 	private static final String HISTORY_CONSTRAINT_LOG = "HistoryConstraintPolicy";
 
 	private static final String HISTORY_CONSTRAINT_CONFIG = "history_constraint";
@@ -22,7 +22,7 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 
 	public HistoryConstraintValidation(IPasswordHistoryPersistence persistence) {
 		this.passwordHistoryPersistence = persistence;
-		logger.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Create", "Success");
+		log.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Create", "Success");
 	}
 
 	public int getHistoryConstraint() {
@@ -34,7 +34,7 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		try {
 			intHistoryConstraint = Integer.parseInt(historyConstraint);
 		} catch (NumberFormatException e) {
-			logger.warn("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Set History", e.getMessage());
+			log.warn("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Set History", e.getMessage());
 			intHistoryConstraint = 0;
 		}
 
@@ -43,7 +43,7 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		else
 			this.historyConstraint = intHistoryConstraint;
 
-		logger.info("password={}, action={}, value={}", HISTORY_CONSTRAINT_LOG, "Set History", getHistoryConstraint());
+		log.info("password={}, action={}, value={}", HISTORY_CONSTRAINT_LOG, "Set History", getHistoryConstraint());
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		IPasswordEncryption passwordEncryption = new BCryptPasswordEncryption();
 
 		if (null == password) {
-			logger.info("password={}, action={}, status={}, message={}", HISTORY_CONSTRAINT_LOG, "Check Validity",
+			log.info("password={}, action={}, status={}, message={}", HISTORY_CONSTRAINT_LOG, "Check Validity",
 					"Fail", "Null Password");
 			return false;
 		}
@@ -62,31 +62,31 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		try {
 			configValue = config.getConfig(HISTORY_CONSTRAINT_CONFIG);
 		} catch (IllegalArgumentException e) {
-			logger.warn("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Get Configuration",
+			log.warn("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Get Configuration",
 					e.getMessage());
 			configValue = null;
 		}
 		setHistoryConstraint(configValue);
 
 		if (this.historyConstraint == 0) {
-			logger.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Success");
+			log.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Success");
 			return true;
 		}
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!authentication.isAuthenticated()) {
-			logger.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Success");
+			log.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Success");
 			return true;
 		}
 		bannerID = authentication.getPrincipal().toString();
 		encryptedPassword = passwordEncryption.encryptPassword(password);
 
 		if (passwordHistoryPersistence.followedHistoryConstraint(bannerID, encryptedPassword, historyConstraint)) {
-			logger.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Success");
+			log.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Success");
 			return true;
 		}
 
-		logger.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Fail");
+		log.info("password={}, action={}, status={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Fail");
 		return false;
 	}
 
@@ -98,7 +98,7 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		} else {
 			message = String.format(INVALID_PASSWORD_MESSAGE, this.historyConstraint);
 		}
-		logger.info("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Get Validation Message", message);
+		log.info("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Get Validation Message", message);
 		return message;
 	}
 

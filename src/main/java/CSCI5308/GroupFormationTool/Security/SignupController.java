@@ -3,6 +3,7 @@ package CSCI5308.GroupFormationTool.Security;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationM
 
 @Controller
 public class SignupController {
-	private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
+	private static final Logger log = LoggerFactory.getLogger(SignupController.class);
 	private static final String SIGNUP_LOG = "SignUp";
 
 	private final String USERNAME = "username";
@@ -66,10 +67,10 @@ public class SignupController {
 		}
 		ModelAndView m;
 		if (success) {
-			logger.warn("user={}, action={}, status={}", SIGNUP_LOG, "Sign Up", "Success");
+			log.warn("user={}, action={}, status={}", SIGNUP_LOG, "Sign Up", "Success");
 			m = new ModelAndView("login");
 		} else {
-			logger.warn("user={}, action={}, status={}", SIGNUP_LOG, "Sign Up", "Fail");
+			log.warn("user={}, action={}, status={}", SIGNUP_LOG, "Sign Up", "Fail");
 			m = new ModelAndView("signup");
 			failureMessages.add("Invalid data, please check your values.");
 			m.addObject("errorMessages", failureMessages);

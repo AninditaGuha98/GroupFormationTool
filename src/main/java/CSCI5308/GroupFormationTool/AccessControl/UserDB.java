@@ -4,8 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserDB implements IUserPersistence {
+	private static final Logger log = LoggerFactory.getLogger(UserDB.class);
+
 	public void loadUserByID(long id, InterfaceUser user) {
 		CallStoredProcedure proc = null;
 		try {
@@ -28,8 +32,9 @@ public class UserDB implements IUserPersistence {
 					user.setEmail(email);
 				}
 			}
+			log.info("User loaded for ID:",user.getID(),"Banner id:",user.getBannerID());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Sql Exception",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -50,7 +55,7 @@ public class UserDB implements IUserPersistence {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Sql Exception",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -73,8 +78,9 @@ public class UserDB implements IUserPersistence {
 			proc.setParameter(5, user.getEmail());
 			proc.registerOutputParameterLong(6);
 			proc.execute();
+			log.info("User Created for :", user.getBannerID());
 		} catch (SQLException e) {
-			// Logging needed
+			log.error("Sql Exception",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -85,7 +91,6 @@ public class UserDB implements IUserPersistence {
 	}
 
 	public boolean updateUser(InterfaceUser user) {
-
 		return false;
 	}
 
@@ -99,7 +104,7 @@ public class UserDB implements IUserPersistence {
 			proc.execute();
 			userId = proc.getStatement().getLong(2);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Sql Exception",e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

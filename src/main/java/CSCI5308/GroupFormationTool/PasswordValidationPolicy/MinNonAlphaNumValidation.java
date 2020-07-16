@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 public class MinNonAlphaNumValidation implements IPasswordValidation {
 
-	private static final Logger logger = LoggerFactory.getLogger(MinNonAlphaNumValidation.class);
+	private static final Logger log = LoggerFactory.getLogger(MinNonAlphaNumValidation.class);
 	private static final String MIN_NON_ALPHANUM_LOG = "MinNonAlphaNumPolicy";
 
 	private static final String MIN_NON_ALPHANUM_CONFIG = "min_non_alphanum";
@@ -18,7 +18,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 	private int minNonAlphaNum;
 
 	public MinNonAlphaNumValidation() {
-		logger.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Create", "Success");
+		log.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Create", "Success");
 	}
 
 	public int getMinNonAlphaNum() {
@@ -30,7 +30,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		try {
 			intMinNonAlphaNum = Integer.parseInt(minNonAlphaNum);
 		} catch (NumberFormatException e) {
-			logger.warn("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Set Min Non-AlphaNumeric",
+			log.warn("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Set Min Non-AlphaNumeric",
 					e.getMessage());
 			intMinNonAlphaNum = 0;
 		}
@@ -40,7 +40,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		} else {
 			this.minNonAlphaNum = intMinNonAlphaNum;
 		}
-		logger.info("password={}, action={}, value={}", MIN_NON_ALPHANUM_LOG, "Set Min Non-AlphaNumeric",
+		log.info("password={}, action={}, value={}", MIN_NON_ALPHANUM_LOG, "Set Min Non-AlphaNumeric",
 				getMinNonAlphaNum());
 	}
 
@@ -52,7 +52,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		try {
 			configValue = config.getConfig(MIN_NON_ALPHANUM_CONFIG);
 		} catch (IllegalArgumentException e) {
-			logger.warn("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Get Configuration",
+			log.warn("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Get Configuration",
 					e.getMessage());
 			configValue = null;
 		}
@@ -60,13 +60,13 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		setMinNonAlphaNum(configValue);
 
 		if (null == password) {
-			logger.info("password={}, action={}, status={}, message={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Fail",
+			log.info("password={}, action={}, status={}, message={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Fail",
 					"Null Password");
 			return false;
 		}
 
 		if (this.minNonAlphaNum == 0) {
-			logger.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Success");
+			log.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Success");
 			return true;
 		}
 
@@ -78,10 +78,10 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		}
 
 		if (nonAlphaNumChars < this.minNonAlphaNum) {
-			logger.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Fail");
+			log.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Fail");
 			return false;
 		} else {
-			logger.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Success");
+			log.info("password={}, action={}, status={}", MIN_NON_ALPHANUM_LOG, "Check Validity", "Success");
 			return true;
 		}
 	}
@@ -94,7 +94,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		} else {
 			message = String.format(INVALID_PASSWORD_MESSAGE, this.minNonAlphaNum);
 		}
-		logger.info("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Get Validation Message", message);
+		log.info("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Get Validation Message", message);
 		return message;
 	}
 }

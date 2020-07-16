@@ -4,8 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
+	private static final Logger log = LoggerFactory.getLogger(DeleteQuestionsRepo.class);
 
 	@Override
 	public boolean checkIfResponsesExistInDB(long userId, String[] selectedQuestions) {
@@ -30,7 +33,7 @@ public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.error("Sql Exception",e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {

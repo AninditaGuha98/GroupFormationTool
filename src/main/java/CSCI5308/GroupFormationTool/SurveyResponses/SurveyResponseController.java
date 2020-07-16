@@ -38,15 +38,15 @@ public class SurveyResponseController {
         } else {
             Map m= httpServletRequest.getParameterMap();
             Set s = m.entrySet();
-            boolean result = true;
+            boolean result= true;
             Iterator it = s.iterator();
-            while(it.hasNext() && result){
+            while(it.hasNext()){
                 Map.Entry<String,String[]> entry = (Map.Entry<String,String[]>)it.next();
                 String key = entry.getKey();
                 String[] value = entry.getValue();
                 if(!(key.equals("surveyID") || key.equals("userID") ||key.equals("_csrf"))){
                     Long questionID= Long.parseLong(key);
-                    if(value.length>1 && result){
+                    if(value.length>1){
                         for (int i = 0; i < value.length; i++) {
                             result = surveyresult.submitSurveyResponse(userID,surveyID,questionID,value[i]);
                         }

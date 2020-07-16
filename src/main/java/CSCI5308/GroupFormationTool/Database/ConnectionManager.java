@@ -4,10 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import CSCI5308.GroupFormationTool.Courses.StudentCSVImport;
 import CSCI5308.GroupFormationTool.SystemConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 // Singleton for retrieving connections.
 public class ConnectionManager {
+	private static final Logger log = LoggerFactory.getLogger(ConnectionManager.class);
 	private static ConnectionManager uniqueInstance = null;
 
 	private String dbURL;
@@ -29,6 +33,7 @@ public class ConnectionManager {
 	}
 
 	public Connection getDBConnection() throws SQLException {
+		log.info("Opening the db connection for", dbUserName);
 		return DriverManager.getConnection(dbURL, dbUserName, dbPassword);
 	}
 }
