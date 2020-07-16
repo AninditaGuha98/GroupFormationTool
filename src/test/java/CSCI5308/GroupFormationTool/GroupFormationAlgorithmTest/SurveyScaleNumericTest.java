@@ -12,9 +12,11 @@ class SurveyScaleNumericTest {
 
 	@Test
 	public void distanceTest() {
-		ISurveyResponse sr1 = new SurveyResponseMock2();
-		ISurveyResponse sr2 = new SurveyResponseMock4();
-		ISurveyScale sc = new SurveyScaleMock3();
+		GroupFormationTestFactory factory = new GroupFormationTestFactory();
+		ISurveyScale sc = factory.createSurveyScaleNumericMock();
+		
+		ISurveyResponse sr1 = factory.createSurveyResponsesMock().get(1);  
+		ISurveyResponse sr2 = factory.createSurveyResponsesMock().get(3); 
 		
 		assertEquals(0.0, sc.distance(sr1, sr1, 2));
 		assertEquals(0.0, sc.distance(sr2, sr2, 2));
