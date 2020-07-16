@@ -1,6 +1,5 @@
 package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface ISurveyResponse {

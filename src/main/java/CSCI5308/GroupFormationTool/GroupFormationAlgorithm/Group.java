@@ -10,6 +10,7 @@ public class Group implements IGroup {
 	private List<ISurveyResponse> groupList;
 	
 	public Group() {
+		this.groupNumber = -1;
 		this.groupSize = 0;
 		groupList = new ArrayList<ISurveyResponse>(); 
 	}
@@ -35,13 +36,29 @@ public class Group implements IGroup {
 	}
 
 	@Override
+	public int getCurrentSize() {
+		return this.groupList.size();
+	}
+	
+	@Override
 	public List<ISurveyResponse> getGroupMembers() {
 		return this.groupList;
 	}
 
 	@Override
-	public void addGroupMember(ISurveyResponse member) {
+	public void addGroupMember(ISurveyResponse member) throws IllegalStateException {
+		if (getCurrentSize() == getGroupSize()) {
+			throw new IllegalStateException("Group is full.");
+		}
 		groupList.add(member);
-		this.groupSize++;
+	}
+	
+	@Override
+	public boolean hasRoom() {
+		if (getCurrentSize() < getGroupSize()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

@@ -1,12 +1,13 @@
 package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import CSCI5308.GroupFormationTool.SystemConfig;
 
 @Controller
 public class SurveyFormulaController {
@@ -20,10 +21,10 @@ public class SurveyFormulaController {
 		int groupsize=size;
 		List<ISurveyResponse> surveyResponses=GroupFormationDBFactory.FactorySingleton().createGroupFormationDB().loadResponses(courseID);
 		surveyScales = surveyScale.convertor();
-		//algorithm
-		GroupFormationRandom groupObj=new GroupFormationRandom();
-		List <IGroup> groupresults=groupObj.formGroup(surveyResponses, surveyScales, groupsize);
-		//
+
+		IGroupFormationAlgorithm groupFormationAlgorithm = SystemConfig.instance().getGroupFormationFactory().createGroupFormationAlgorithm();
+		List <IGroup> groupresults=groupFormationAlgorithm.formGroup(surveyResponses, surveyScales, groupsize);
+		
 		model.addAttribute("groupresult", groupresults);
 		return "QuestionManager/groupresults";
 

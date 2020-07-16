@@ -12,9 +12,11 @@ class SurveyScaleMCQ1Test {
 
 	@Test
 	public void distanceTest() {
-		ISurveyResponse sr1 = new SurveyResponseMock1();
-		ISurveyResponse sr2 = new SurveyResponseMock4();
-		ISurveyScale sc = new SurveyScaleMock1();
+		IGroupFormationTestFactory factory = new GroupFormationTestFactory();
+		ISurveyScale sc = factory.createSurveyScaleMCQ1Mock();
+
+		ISurveyResponse sr1 = factory.createSurveyResponsesMock().get(0); 
+		ISurveyResponse sr2 = factory.createSurveyResponsesMock().get(3); 
 		
 		assertEquals(0.0, sc.distance(sr1, sr1, 0));
 		assertEquals(0.0, sc.distance(sr2, sr2, 0));

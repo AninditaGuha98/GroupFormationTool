@@ -27,7 +27,12 @@ public class DefaultGroupFormationFactory implements IGroupFormationFactory {
 	}
 	
 	@Override
-	public IGroupFormatiomAlgorithm createGroupFormationAlgorithm() {
-		return new GroupFormationRandom();
+	public IGroupFormationAlgorithm createGroupFormationAlgorithm() {
+		return new GroupFormationMinDistance();
+	}
+
+		@Override 
+	public IGroup createGroup() {
+		return new Group();
 	}
 }

@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroup;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormationAlgorithm;
 
-class GroupFormationRandomTest {
+class GroupFormationMinDistanceTest {
 
 	@Test
-	void formGroupTest() {
+	void fromGroupTest() {
 		IGroupFormationTestFactory factory = new GroupFormationTestFactory();
-		IGroupFormationAlgorithm algo = factory.getRandomAlgorithm();
+		IGroupFormationAlgorithm algo = factory.getMinDistance();
 		List<IGroup> groups;
-		
+
 		groups = algo.formGroup(factory.createSurveyResponsesMock(), factory.createSurveyScalsesMock(), 0);
 		assertEquals(0, groups.size());
 		
@@ -38,4 +38,5 @@ class GroupFormationRandomTest {
 		groups = algo.formGroup(factory.createSurveyResponsesMock(), factory.createSurveyScalsesMock(), 6);
 		assertEquals(1, groups.size());
 	}
+
 }
