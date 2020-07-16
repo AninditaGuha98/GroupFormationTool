@@ -16,6 +16,8 @@ import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValid
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
 
+
+
 public class SystemConfig {
 	private static SystemConfig uniqueInstance = null;
 	private IUserPersistence userDB;
@@ -25,6 +27,7 @@ public class SystemConfig {
 	private IPasswordValidationFactory passwordValidationFactory;
 	private ISecurityFactory securityFactory;
 	private IPasswordValidationConfiguration passwordValidationConfiguration;
+
 
 	private SystemConfig() {
 		userDB = new UserDB();
@@ -36,7 +39,7 @@ public class SystemConfig {
 		passwordValidationConfiguration = new DefaultPasswordValidationConfiguration();
 	}
 
-	public static SystemConfig instance() {
+	public static SystemConfig instance(){
 		if (null == uniqueInstance) {
 			uniqueInstance = new SystemConfig();
 		}

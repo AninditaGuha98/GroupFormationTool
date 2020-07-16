@@ -19,10 +19,17 @@
 		<br /> <a th:href="@{/course/instructoradmin(id=${course.id})}">Course
 			Administration</a><br/>
 			<a th:href="@{/course/makegroups(id=${course.id})}">Make Groups</a>
+			</a>
+		<div class="Button">
+			<br /> <a th:href="@{/surveyhome(id=${course.id},userID=${userID})}">Create Survey</a>
+		</div>
 	</div>
+
 	<div th:if="${instructor}">
-		<br /> <a th:href="@{/questionmanager(userID=${userID})}">Go to
+		<div class="Button">
+			<br /> <a th:href="@{/questionmanager(userID=${userID})}">Go to
 			Question Manager Page</a>
+		</div>
 	</div>
 	<div th:if="${student}">
 		<div th:if="${enrolled}">
