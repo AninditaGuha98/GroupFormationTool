@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationMinDistance;
+import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormatiomAlgorithm;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyScale;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyScaleMCQ1;
@@ -12,9 +14,11 @@ class SurveyScaleMCQ1Test {
 
 	@Test
 	public void distanceTest() {
-		ISurveyResponse sr1 = new SurveyResponseMock1();
-		ISurveyResponse sr2 = new SurveyResponseMock4();
-		ISurveyScale sc = new SurveyScaleMock1();
+		IGroupFormationTestFactory factory = new GroupFormationTestFactory();
+		ISurveyScale sc = factory.createSurveyScaleMCQ1Mock();
+
+		ISurveyResponse sr1 = factory.createSurveyResponsesMock().get(0); 
+		ISurveyResponse sr2 = factory.createSurveyResponsesMock().get(3); 
 		
 		assertEquals(0.0, sc.distance(sr1, sr1, 0));
 		assertEquals(0.0, sc.distance(sr2, sr2, 0));
