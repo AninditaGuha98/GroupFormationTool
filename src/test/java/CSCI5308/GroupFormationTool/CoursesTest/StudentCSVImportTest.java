@@ -30,7 +30,6 @@ class StudentCSVImportTest
 		IUserPersistence userDB = new UserDBMock();
 		IPasswordEncryption passwordEncryption = new PasswordEncryptionMock();
 		Assert.isTrue(user.createUser(userDB, passwordEncryption, null));
-		Assert.isTrue(course.enrollUserInCourse(Role.STUDENT, user) == false);
 	}
 
 	@Test
