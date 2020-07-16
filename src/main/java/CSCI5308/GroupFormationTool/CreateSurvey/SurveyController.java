@@ -12,18 +12,21 @@ public class SurveyController {
 
      ICreateSurveyModelFactory iCreateSurveyModelFactory;
      ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel;
+     IListQuestionsService iListQuestionsService;
+     IUpdateQuestionsListService iUpdateQuestionsListService;
      ICreateSurveyDBFactory iCreateSurveyDBFactory;
      ICreateSurveyDB iCreateSurveyDB;
-     IUpdateQuestionsListService iUpdateQuestionsListService= new UpdateQuestionsListService();
-     IListQuestionsService IlistQuestionsService=new ListQuestionsService();
 
     @RequestMapping("/surveyhome")
     public ModelAndView surveyHome(@RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID) throws SQLException {
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+        iListQuestionsService=iCreateSurveyModelFactory.getListQuestionsService();
 
         iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
         iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
+
+
 
         boolean surveyFlag;
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
@@ -35,7 +38,7 @@ public class SurveyController {
             mv.addObject("surveyMessage", "A Survey is already published.");
             return mv;
         }
-        Dictionary hashMap= IlistQuestionsService.listAllQuestionsforUser(userID);
+        Dictionary hashMap= iListQuestionsService.listAllQuestionsforUser(userID);
         mv.addObject("surveyFlag",true);
         mv.addObject("courseID", courseID);
         mv.addObject("userID",userID);
@@ -50,6 +53,8 @@ public class SurveyController {
     public ModelAndView addQuestions(@RequestParam(name="selectedQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+        iListQuestionsService=iCreateSurveyModelFactory.getListQuestionsService();
+        iUpdateQuestionsListService=iCreateSurveyModelFactory.getUpdateQuestionsListService();
 
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.displayUpdatedQuestionList(iCreateSurveyQuestionsModel.getQuestionHeading(),iCreateSurveyQuestionsModel.getQuestionType(),que);
@@ -57,7 +62,7 @@ public class SurveyController {
         mv.addObject("surveyFlag",true);
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
-        mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
+        mv.addObject("questionsList", iListQuestionsService.listRepeatQuestions());
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
         mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
         return mv;
@@ -67,6 +72,8 @@ public class SurveyController {
     public ModelAndView removeQuestions(@RequestParam(name="removeQue") String que, @RequestParam(name="id") long courseID, @RequestParam(name = "userID") long userID){
         iCreateSurveyModelFactory = CreateSurveyModelFactory.FactorySingleton();
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
+        iUpdateQuestionsListService=iCreateSurveyModelFactory.getUpdateQuestionsListService();
+        iListQuestionsService=iCreateSurveyModelFactory.getListQuestionsService();
 
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         iCreateSurveyQuestionsModel= iUpdateQuestionsListService.removeQuestions(que);
@@ -74,7 +81,7 @@ public class SurveyController {
         mv.addObject("surveyFlag",true);
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
-        mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
+        mv.addObject("questionsList", iListQuestionsService.listRepeatQuestions());
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
         mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
         return mv;
@@ -86,6 +93,7 @@ public class SurveyController {
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
         iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
         iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
+        iListQuestionsService=iCreateSurveyModelFactory.getListQuestionsService();
         int status=0;
 
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
@@ -93,7 +101,7 @@ public class SurveyController {
         mv.addObject("surveyFlag",true);
         mv.addObject("courseID",courseID);
         mv.addObject("userID", userID);
-        mv.addObject("questionsList", IlistQuestionsService.listRepeatQuestions());
+        mv.addObject("questionsList", iListQuestionsService.listRepeatQuestions());
         mv.addObject("selectedQuestions",iCreateSurveyQuestionsModel.getSelectedQuestions());
         mv.addObject("selectedType", iCreateSurveyQuestionsModel.getSelectedTypes());
         if(iCreateSurveyDB.saveSurvey(courseID,userID,status)){
@@ -125,11 +133,12 @@ public class SurveyController {
         iCreateSurveyQuestionsModel = iCreateSurveyModelFactory.createSurveyQuestionsModel();
         iCreateSurveyDBFactory= CreateSurveyDBFactory.FactorySingleton();
         iCreateSurveyDB=iCreateSurveyDBFactory.createSurveyDB();
+        iListQuestionsService=iCreateSurveyModelFactory.getListQuestionsService();
 
         ModelAndView mv = new ModelAndView("CreateSurvey/surveyhome");
         iCreateSurveyDB.updatePublishStatus(courseID);
         iCreateSurveyDB.fetchSavedQuestions(courseID);
-        Dictionary hashMap= IlistQuestionsService.listAllQuestionsforUser(userID);
+        Dictionary hashMap= iListQuestionsService.listAllQuestionsforUser(userID);
         mv.addObject("surveyFlag",true);
         mv.addObject("courseID", courseID);
         mv.addObject("userID",userID);
