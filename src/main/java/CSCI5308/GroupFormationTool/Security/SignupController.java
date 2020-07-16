@@ -15,7 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
+import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
+import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationManager;
 
@@ -50,7 +53,7 @@ public class SignupController {
 		if (User.isBannerIDValid(bannerID) && User.isEmailValid(email) && User.isFirstNameValid(firstName)
 				&& User.isLastNameValid(lastName) && password.equals(passwordConfirm)) {
 			if (passwordValidationManager.isValidPassword(password)) {
-				User u = new User();
+				InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
 				u.setBannerID(bannerID);
 				u.setPassword(password);
 				u.setFirstName(firstName);

@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
+import CSCI5308.GroupFormationTool.Courses.ObjectFactory;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
@@ -12,6 +14,7 @@ import org.springframework.util.Assert;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 import CSCI5308.GroupFormationTool.AccessControlTest.CurrentUserMock;
 import CSCI5308.GroupFormationTool.Courses.Course;
+import CSCI5308.GroupFormationTool.Courses.CourseFactory;
 import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.Role;
 
@@ -29,7 +32,7 @@ class CourseUserRelationshipTest
 	@Test
 	public void userHasRoleInCourse() 
 	{
-		InterfaceCourse course = new Course();
+		InterfaceCourse course = ObjectFactory.createObject(new CourseFactory());
 		course.setId(0);
 		CurrentUserMock currentUser = new CurrentUserMock();
 		User user = currentUser.getCurrentAuthenticatedUser();
@@ -42,7 +45,7 @@ class CourseUserRelationshipTest
 	@Test
 	public void loadAllRoluesForUserInCourse() 
 	{
-		InterfaceCourse course = new Course();
+		InterfaceCourse course = ObjectFactory.createObject(new CourseFactory());
 		course.setId(0);
 		CurrentUserMock currentUser = new CurrentUserMock();
 		User user = currentUser.getCurrentAuthenticatedUser();
@@ -53,7 +56,7 @@ class CourseUserRelationshipTest
 	@Test
 	public void enrollUserInCourse() 
 	{
-		InterfaceCourse interfaceCourse = new Course();
+		InterfaceCourse interfaceCourse =ObjectFactory.createObject(new CourseFactory());
 		CurrentUserMock currentUser = new CurrentUserMock();
 		User user = currentUser.getCurrentAuthenticatedUser();
 		boolean result = courseUserRelationshipDB.enrollUser(interfaceCourse, user, Role.STUDENT);

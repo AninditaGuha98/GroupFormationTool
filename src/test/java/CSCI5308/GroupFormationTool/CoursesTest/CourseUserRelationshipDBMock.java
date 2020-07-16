@@ -5,6 +5,8 @@ import java.util.List;
 
 import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
+import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
+import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.Courses.ICourseUserRelationshipPersistence;
 import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 import CSCI5308.GroupFormationTool.Courses.Role;
@@ -14,7 +16,7 @@ class CourseUserRelationshipDBMock implements ICourseUserRelationshipPersistence
 	public List<InterfaceUser> findAllUsersWithoutCourseRole(Role role, long courseID) 
 	{
 		List<InterfaceUser> userList = new ArrayList<>();
-		User u = new User();
+		InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
 		u.setId(0);
 		userList.add(u);
 		u = new User();
@@ -26,7 +28,7 @@ class CourseUserRelationshipDBMock implements ICourseUserRelationshipPersistence
 	public List<InterfaceUser> findAllUsersWithCourseRole(Role role, long courseID) 
 	{
 		List<InterfaceUser> userList = new ArrayList<>();
-		User u = new User();
+		InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
 		u.setId(0);
 		userList.add(u);
 		u = new User();

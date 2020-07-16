@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Courses.Course;
+import CSCI5308.GroupFormationTool.Courses.CourseFactory;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
+import CSCI5308.GroupFormationTool.Courses.ObjectFactory;
 
 public class CourseDBMock implements ICoursePersistence 
 {
 	public List<InterfaceCourse> loadAllCourses()
 	{
 		List<InterfaceCourse> courseList = new ArrayList<>();
-		InterfaceCourse course = new Course();
+		InterfaceCourse course = ObjectFactory.createObject(new CourseFactory());
 		course.setId(0);
 		course.setTitle("Software Engineering");
 		courseList.add(course);
@@ -38,7 +40,7 @@ public class CourseDBMock implements ICoursePersistence
 
 	public boolean deleteCourse(long id) 
 	{
-		InterfaceCourse course = new Course();
+		InterfaceCourse course = ObjectFactory.createObject(new CourseFactory());
 		course.setId(id);
 		course.setTitle("Software Engineering");
 		course.setDefaults();

@@ -23,7 +23,7 @@ public class CourseDB implements ICoursePersistence {
 				while (results.next()) {
 					long id = results.getLong(1);
 					String title = results.getString(2);
-					InterfaceCourse interfaceCourse = new Course();
+					InterfaceCourse interfaceCourse = ObjectFactory.createObject(new CourseFactory());
 					interfaceCourse.setId(id);
 					interfaceCourse.setTitle(title);
 					courses.add(interfaceCourse);

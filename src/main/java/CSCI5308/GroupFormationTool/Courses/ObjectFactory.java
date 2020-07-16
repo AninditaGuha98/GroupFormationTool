@@ -9,5 +9,9 @@ public class ObjectFactory {
 	public static ICoursePersistence createDBObject(CourseDBAbstractFactory courseAbsFObj) {
 		return courseAbsFObj.createCourseDBObject();
 	}
+	
+	public static InterfaceCourse createObject(CourseAbstractFactory courseAbsFObj,long id, ICoursePersistence courseDB) {
+		return courseAbsFObj.createCourseObject(id,courseDB);
+	}
 
 }

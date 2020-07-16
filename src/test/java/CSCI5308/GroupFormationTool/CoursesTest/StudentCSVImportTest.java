@@ -6,13 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
+import CSCI5308.GroupFormationTool.Courses.ObjectFactory;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
+import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
+import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.AccessControlTest.UserDBMock;
 import CSCI5308.GroupFormationTool.Courses.Course;
+import CSCI5308.GroupFormationTool.Courses.CourseFactory;
 import CSCI5308.GroupFormationTool.Courses.Role;
 import CSCI5308.GroupFormationTool.Security.IPasswordEncryption;
 import CSCI5308.GroupFormationTool.SecurityTest.PasswordEncryptionMock;
@@ -25,8 +31,8 @@ class StudentCSVImportTest
 	@Test
 	public void enrollStudentFromRecord() 
 	{
-		User user = new User();
-		InterfaceCourse course = new Course();
+		InterfaceUser user = UserObjectFactory.createObject(new UserFactory());
+		InterfaceCourse course = ObjectFactory.createObject(new CourseFactory());
 		IUserPersistence userDB = new UserDBMock();
 		IPasswordEncryption passwordEncryption = new PasswordEncryptionMock();
 		Assert.isTrue(user.createUser(userDB, passwordEncryption, null));
