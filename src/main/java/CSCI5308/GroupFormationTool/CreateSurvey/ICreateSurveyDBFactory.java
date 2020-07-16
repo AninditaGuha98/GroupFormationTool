@@ -6,4 +6,6 @@ public interface ICreateSurveyDBFactory {
     IQueryQuestionsRepo queryQuestionsRepo();
 
     ISurveyExistRepo surveyExistRepo();
+
+    void setQueryQuestionsRepo(IQueryQuestionsRepo queryQuestionsRepo);
 }

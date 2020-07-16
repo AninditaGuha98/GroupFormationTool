@@ -39,5 +39,10 @@ public class CreateSurveyDBFactory implements ICreateSurveyDBFactory {
         return surveyExistRepo;
     }
 
+    @Override
+    public void setQueryQuestionsRepo(IQueryQuestionsRepo queryQuestionsRepo) {
+        this.queryQuestionsRepo = queryQuestionsRepo;
+    }
+
 
 }
