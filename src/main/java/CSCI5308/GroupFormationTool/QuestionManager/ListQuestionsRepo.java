@@ -4,9 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
 	private static final Logger log = LoggerFactory.getLogger(ListQuestionsRepo.class);
@@ -26,7 +27,7 @@ public class ListQuestionsRepo implements InterfaceListQuestionsRepo {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 		} finally {
 			if (null != procedure) {
 				procedure.cleanup();

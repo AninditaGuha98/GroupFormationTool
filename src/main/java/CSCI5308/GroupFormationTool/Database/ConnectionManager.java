@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import CSCI5308.GroupFormationTool.Courses.StudentCSVImport;
-import CSCI5308.GroupFormationTool.SystemConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import CSCI5308.GroupFormationTool.SystemConfig;
 
 // Singleton for retrieving connections.
 public class ConnectionManager {

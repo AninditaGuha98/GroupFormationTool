@@ -11,31 +11,30 @@ public class SurveyScaleText extends SurveyScale {
 		int rpValue2 = convertValue(rp2.getResponses().get(index));
 		double distance = 0;
 		List<String> criteria;
-		
+
 		criteria = Arrays.asList(this.getCriteria().toLowerCase().split(","));
-		for(String criterion: criteria) {
-			switch(criterion) {
-				case "similar":
-					break;
-				case "dissimilar":
-					break;
-				case "grtx":
-					break;
-				case "lessx":
-					break;
-				default:
+		for (String criterion : criteria) {
+			switch (criterion) {
+			case "similar":
+				break;
+			case "dissimilar":
+				break;
+			case "grtx":
+				break;
+			case "lessx":
+				break;
+			default:
 			}
 		}
 		return distance;
 	}
-	
+
 	public static int convertValue(String rpString) {
 		int rpValue = 0;
-		
+
 		try {
 			rpValue = Integer.parseInt(rpString);
-		}
-		catch(NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			// Log Error
 		}
 		return rpValue;

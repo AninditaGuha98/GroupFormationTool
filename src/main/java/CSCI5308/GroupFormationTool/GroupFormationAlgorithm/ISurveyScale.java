@@ -3,32 +3,32 @@ package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 import java.util.List;
 
 public interface ISurveyScale {
-	
-	public String getQuestiontext() ;
 
-	public void setQuestiontext(String questiontext) ;
+	public String getQuestiontext();
 
-	public String getQuestiontype() ;
+	public void setQuestiontext(String questiontext);
 
-	public void setQuestiontype(String questiontype) ;
+	public String getQuestiontype();
 
-	public String getCriteria() ;
+	public void setQuestiontype(String questiontype);
 
-	public void setCriteria(String criteria) ;
+	public String getCriteria();
 
-	public String getThreshold() ;
+	public void setCriteria(String criteria);
 
-	public void setThreshold(String threshold) ;
-	
-	public String getOptionscount() ;
+	public String getThreshold();
 
-	public void setOptionscount(String optionscount) ;
+	public void setThreshold(String threshold);
 
-	public String getQuestionid() ;
+	public String getOptionscount();
 
-	public void setQuestionid(String questionid) ;
-	
+	public void setOptionscount(String optionscount);
+
+	public String getQuestionid();
+
+	public void setQuestionid(String questionid);
+
 	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index);
-	
+
 	public List<ISurveyScale> convertor();
 }

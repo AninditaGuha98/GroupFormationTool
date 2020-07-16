@@ -43,16 +43,6 @@ public interface InterfaceUser {
 
 	public boolean updateUser(IUserPersistence userDB);
 
-//	private static boolean isStringNullOrEmpty(String s) ;
-//
-//	public static boolean isBannerIDValid(String bannerID); 
-//
-//	public static boolean isFirstNameValid(String name);
-//
-//	public static boolean isLastNameValid(String name); 
-//
-//	public static boolean isEmailValid(String email); 
-
 	public boolean identifyRoleByBannerID(IUserPersistence userDB);
 
 }

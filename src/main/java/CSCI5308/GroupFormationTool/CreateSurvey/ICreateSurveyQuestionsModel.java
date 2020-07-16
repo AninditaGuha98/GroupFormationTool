@@ -1,21 +1,20 @@
 package CSCI5308.GroupFormationTool.CreateSurvey;
 
 public interface ICreateSurveyQuestionsModel {
-    String[] getQuestionType();
+	String[] getQuestionType();
 
-    void setQuestionType(String[] questionType);
+	void setQuestionType(String[] questionType);
 
-    String[] getQuestionHeading();
+	String[] getQuestionHeading();
 
-    void setQuestionHeading(String[] questionHeading);
+	void setQuestionHeading(String[] questionHeading);
 
-    String[] getSelectedQuestions();
+	String[] getSelectedQuestions();
 
-    void setSelectedQuestions(String[] selectedQuestions);
+	void setSelectedQuestions(String[] selectedQuestions);
 
-    String[] getSelectedTypes();
+	String[] getSelectedTypes();
 
-    void setSelectedTypes(String[] selectedTypes);
+	void setSelectedTypes(String[] selectedTypes);
 
 }
-

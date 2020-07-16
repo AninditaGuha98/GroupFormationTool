@@ -8,12 +8,12 @@ public class Group implements IGroup {
 	private int groupSize;
 	private int groupNumber;
 	private List<ISurveyResponse> groupList;
-	
+
 	public Group() {
 		this.groupSize = 0;
-		groupList = new ArrayList<ISurveyResponse>(); 
+		groupList = new ArrayList<ISurveyResponse>();
 	}
-	
+
 	@Override
 	public int getGroupSize() {
 		return this.groupSize;

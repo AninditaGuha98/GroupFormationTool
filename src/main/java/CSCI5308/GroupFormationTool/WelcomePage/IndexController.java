@@ -3,8 +3,7 @@ package CSCI5308.GroupFormationTool.WelcomePage;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import CSCI5308.GroupFormationTool.AccessControl.*;
-import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
+import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
+import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
+import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 import CSCI5308.GroupFormationTool.Courses.InterfaceCourse;
 
@@ -31,7 +34,7 @@ public class IndexController {
 				model.addAttribute("userID", userID);
 			} else {
 				InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
-				userDB.loadUserByBannerID(httpServletRequest.getRemoteUser(),u);
+				userDB.loadUserByBannerID(httpServletRequest.getRemoteUser(), u);
 				model.addAttribute("questionbutton", "hidden");
 				model.addAttribute("userID", u.getID());
 			}

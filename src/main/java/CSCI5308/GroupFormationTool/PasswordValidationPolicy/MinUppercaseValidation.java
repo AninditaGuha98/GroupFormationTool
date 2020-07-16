@@ -7,11 +7,9 @@ public class MinUppercaseValidation implements IPasswordValidation {
 
 	private static final Logger log = LoggerFactory.getLogger(MinUppercaseValidation.class);
 	private static final String MIN_UPPERCASE_LOG = "MinUppercasePolicy";
-
 	private static final String MIN_UPPERCASE_CONFIG = "min_uppercase";
 	public static final String VALID_PASSWORD_MESSAGE = "Password follows minimum %d uppercase letters.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d uppercase letters.";
-
 	private int minUppercase;
 
 	public MinUppercaseValidation() {

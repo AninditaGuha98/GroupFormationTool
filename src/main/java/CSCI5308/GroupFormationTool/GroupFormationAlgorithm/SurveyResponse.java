@@ -1,15 +1,14 @@
 package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-public class SurveyResponse implements ISurveyResponse{
+public class SurveyResponse implements ISurveyResponse {
 	String bannerID;
 	String firstName;
 	String lastName;
-	List <String> questions=new ArrayList<String>();
-	List <String> responses=new ArrayList<String>();
+	List<String> questions = new ArrayList<String>();
+	List<String> responses = new ArrayList<String>();
 
 	public String getBannerID() {
 		return bannerID;

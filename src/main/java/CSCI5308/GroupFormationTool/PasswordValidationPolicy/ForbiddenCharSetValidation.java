@@ -38,15 +38,14 @@ public class ForbiddenCharSetValidation implements IPasswordValidation {
 		try {
 			configValue = config.getConfig(FORBIDDEN_CHARSET_CONFIG);
 		} catch (IllegalArgumentException e) {
-			log.warn("password={}, action={}, message={}", FORBIDDEN_CHARSET_LOG, "Get Configuration",
-					e.getMessage());
+			log.warn("password={}, action={}, message={}", FORBIDDEN_CHARSET_LOG, "Get Configuration", e.getMessage());
 			configValue = null;
 		}
 		setForbiddernCharSet(configValue);
 
 		if (null == password) {
-			log.info("password={}, action={}, status={}, message={}", FORBIDDEN_CHARSET_LOG, "Check Validity",
-					"Fail", "Null Password");
+			log.info("password={}, action={}, status={}, message={}", FORBIDDEN_CHARSET_LOG, "Check Validity", "Fail",
+					"Null Password");
 			return false;
 		}
 

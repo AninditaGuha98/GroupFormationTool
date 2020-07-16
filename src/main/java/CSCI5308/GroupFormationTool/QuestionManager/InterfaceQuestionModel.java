@@ -25,15 +25,13 @@ public interface InterfaceQuestionModel {
 
 	String getResponseText();
 
-    long getQuestionID();
+	long getQuestionID();
 
-    void setQuestionID(long questionID);
+	void setQuestionID(long questionID);
 
-    String getQuestionType();
+	String getQuestionType();
 
-    void setQuestionType(String questionType);
-
- 
+	void setQuestionType(String questionType);
 
 	void setResponseText(String responseText);
 

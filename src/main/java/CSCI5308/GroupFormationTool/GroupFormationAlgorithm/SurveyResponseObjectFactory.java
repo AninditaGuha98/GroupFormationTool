@@ -1,6 +1,6 @@
 package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 
-public class SurveyResponseObjectFactory implements ISurveyResponseAbstractFactory{
+public class SurveyResponseObjectFactory implements ISurveyResponseAbstractFactory {
 
 	@Override
 	public ISurveyResponse createSurveyResponseObject() {

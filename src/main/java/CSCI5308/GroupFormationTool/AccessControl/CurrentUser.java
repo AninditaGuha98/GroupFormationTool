@@ -29,7 +29,7 @@ public class CurrentUser {
 			InterfaceUser u = UserObjectFactory.createObject(new UserFactory());
 			userDB.loadUserByBannerID(bannerID, u);
 			if (u.isValidUser()) {
-				log.info("Valid user bannerID = {}",bannerID);
+				log.info("Valid user bannerID = {}", bannerID);
 				return u;
 			}
 		}

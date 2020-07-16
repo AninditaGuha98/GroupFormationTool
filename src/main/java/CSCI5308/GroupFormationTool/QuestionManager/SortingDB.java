@@ -5,9 +5,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class SortingDB implements IQuestionSorters {
 	private static final Logger log = LoggerFactory.getLogger(SortingDB.class);
@@ -31,10 +32,11 @@ public class SortingDB implements IQuestionSorters {
 					interfaceQuestionModel.setQuestionTitle(title);
 					questions.add(interfaceQuestionModel);
 				}
-				log.info("Questions sorted by SortField = {} in SortOrder={} for User ={}",interfaceSorters.getSortField(),interfaceSorters.getSortOrder(),bannerID);
+				log.info("Questions sorted by SortField = {} in SortOrder={} for User ={}",
+						interfaceSorters.getSortField(), interfaceSorters.getSortOrder(), bannerID);
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

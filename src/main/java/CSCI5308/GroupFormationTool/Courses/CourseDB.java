@@ -5,12 +5,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
+
 public class CourseDB implements ICoursePersistence {
 	private static final Logger log = LoggerFactory.getLogger(CourseDB.class);
+
 	public List<InterfaceCourse> loadAllCourses() {
 		List<InterfaceCourse> courses = new ArrayList<InterfaceCourse>();
 		CallStoredProcedure proc = null;
@@ -69,7 +71,7 @@ public class CourseDB implements ICoursePersistence {
 			proc.execute();
 			log.info("Course created courseID= {}, Title ={}", course.getId(), course.getTitle());
 		} catch (SQLException e) {
-			log.error("Sql Exception ={}",e.getMessage());
+			log.error("Sql Exception ={}", e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -87,7 +89,7 @@ public class CourseDB implements ICoursePersistence {
 			proc.execute();
 			log.info("Course Deleted courseID={}", id);
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {

@@ -26,11 +26,8 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 	private Authentication checkAdmin(String password, User u, Authentication authentication)
 			throws AuthenticationException {
 		ISecurityFactory secFactory = SystemConfig.instance().getSecurityFactory();
-
-		// The admin password is not encrypted because it is hardcoded in the DB.
 		if (password.equals(u.getPassword())) {
 			log.warn("user={}, action={}, status={}", u.getBanner(), "Check Admin User Credentials", "Success");
-			// Grant ADMIN rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
 			rights.add(secFactory.createGrantedAuthority("ADMIN"));
 			AbstractAuthenticationToken token = secFactory.createAuthenticationToken(authentication.getPrincipal(),
@@ -50,7 +47,6 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
 		if (passwordEncryption.matches(password, u.getPassword())) {
 			log.warn("user={}, action={}, status={}", u.getBanner(), "Check User Credentials", "Success");
-			// Grant USER rights system-wide, this is used to protect controller mappings.
 			List<GrantedAuthority> rights = new ArrayList<GrantedAuthority>();
 			rights.add(secFactory.createGrantedAuthority("USER"));
 			AbstractAuthenticationToken token = secFactory.createAuthenticationToken(authentication.getPrincipal(),

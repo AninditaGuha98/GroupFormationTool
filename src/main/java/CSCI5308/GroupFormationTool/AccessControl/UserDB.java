@@ -3,9 +3,10 @@ package CSCI5308.GroupFormationTool.AccessControl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class UserDB implements IUserPersistence {
 	private static final Logger log = LoggerFactory.getLogger(UserDB.class);
@@ -32,9 +33,9 @@ public class UserDB implements IUserPersistence {
 					user.setEmail(email);
 				}
 			}
-			log.info("User loaded for ID= {},Banner id ={} ",user.getID(),user.getBannerID());
+			log.info("User loaded for ID= {},Banner id ={} ", user.getID(), user.getBannerID());
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -55,13 +56,12 @@ public class UserDB implements IUserPersistence {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
 			}
 		}
-		// If we found the ID load the full details.
 		if (userID > -1) {
 			loadUserByID(userID, user);
 		}
@@ -80,7 +80,7 @@ public class UserDB implements IUserPersistence {
 			proc.execute();
 			log.info("User Created for = {}", user.getBannerID());
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -104,7 +104,7 @@ public class UserDB implements IUserPersistence {
 			proc.execute();
 			userId = proc.getStatement().getLong(2);
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

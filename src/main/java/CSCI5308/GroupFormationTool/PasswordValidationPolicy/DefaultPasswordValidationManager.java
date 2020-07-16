@@ -37,8 +37,7 @@ public class DefaultPasswordValidationManager implements IPasswordValidationMana
 		for (IPasswordValidation validationModule : moduleList) {
 			if (validationModule.isValidPassword(password, configuration)) {
 			} else {
-				log.info("password={}, action={}, status={}", "ValidationManager", "Check Password Validity",
-						"Failed");
+				log.info("password={}, action={}, status={}", "ValidationManager", "Check Password Validity", "Failed");
 				return false;
 			}
 		}

@@ -14,4 +14,3 @@ public class GroupFormationToolApplication {
 		SpringApplication.run(GroupFormationToolApplication.class, args);
 	}
 }
-

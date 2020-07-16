@@ -54,16 +54,15 @@ public class HistoryConstraintValidation implements IPasswordValidation {
 		IPasswordEncryption passwordEncryption = new BCryptPasswordEncryption();
 
 		if (null == password) {
-			log.info("password={}, action={}, status={}, message={}", HISTORY_CONSTRAINT_LOG, "Check Validity",
-					"Fail", "Null Password");
+			log.info("password={}, action={}, status={}, message={}", HISTORY_CONSTRAINT_LOG, "Check Validity", "Fail",
+					"Null Password");
 			return false;
 		}
 
 		try {
 			configValue = config.getConfig(HISTORY_CONSTRAINT_CONFIG);
 		} catch (IllegalArgumentException e) {
-			log.warn("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Get Configuration",
-					e.getMessage());
+			log.warn("password={}, action={}, message={}", HISTORY_CONSTRAINT_LOG, "Get Configuration", e.getMessage());
 			configValue = null;
 		}
 		setHistoryConstraint(configValue);

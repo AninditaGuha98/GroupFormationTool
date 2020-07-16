@@ -3,9 +3,10 @@ package CSCI5308.GroupFormationTool.QuestionManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
 
 public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 	private static final Logger log = LoggerFactory.getLogger(DeleteQuestionsRepo.class);
@@ -33,7 +34,7 @@ public class DeleteQuestionsRepo implements InterfaceDeleteQuestionsRepo {
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception ={}",e.getMessage());
+			log.error("Sql Exception ={}", e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {

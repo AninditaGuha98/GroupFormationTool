@@ -46,7 +46,7 @@ public class InstructorAdminController {
 
 		IQuestionsPersistence questionDB = QManagerDbFactory.FactorySingleton().createQuestionDB();
 		model.addAttribute("questions", questionDB.loadAllQuestionsBycourseID(String.valueOf(courseID)));
-		model.addAttribute("courseid",courseID);
+		model.addAttribute("courseid", courseID);
 		return "QuestionManager/makesurvey";
 	}
 

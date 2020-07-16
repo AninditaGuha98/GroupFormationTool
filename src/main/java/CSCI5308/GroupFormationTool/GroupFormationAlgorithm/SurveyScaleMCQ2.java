@@ -13,88 +13,86 @@ public class SurveyScaleMCQ2 extends SurveyScale {
 		double distance = 0;
 		int msb;
 		List<String> criteria;
-		
+
 		try {
 			msb = Integer.parseInt(this.getOptionscount());
 		} catch (NumberFormatException e) {
 			// log error
 			msb = 0;
 		}
-		
+
 		criteria = Arrays.asList(this.getCriteria().toLowerCase().split(","));
-		for(String criterion: criteria) {
-			switch(criterion) {
-				case "similar":
-					distance += (double) distanceSimilar(rpValue1, rpValue2);
-					break;
-				case "dissimilar":
-					distance += (double) distanceDissimilar(rpValue1, rpValue2, msb);
-					break;
-				case "grtx":
-					break;
-				case "lessx":
-					break;
-				default:
+		for (String criterion : criteria) {
+			switch (criterion) {
+			case "similar":
+				distance += (double) distanceSimilar(rpValue1, rpValue2);
+				break;
+			case "dissimilar":
+				distance += (double) distanceDissimilar(rpValue1, rpValue2, msb);
+				break;
+			case "grtx":
+				break;
+			case "lessx":
+				break;
+			default:
 			}
 		}
-		
+
 		return distance;
 	}
-	
+
 	public static int convertValue(String rpString) {
 		List<String> strRpValues = Arrays.asList(rpString.split(","));
 		List<Integer> intRpValues = new ArrayList<Integer>();
-		
-		for (String strRpValue: strRpValues) {
+
+		for (String strRpValue : strRpValues) {
 			int value = 0;
 			try {
 				value = Integer.parseInt(strRpValue.trim());
-			}
-			catch(NumberFormatException e) {
+			} catch (NumberFormatException e) {
 				// Log Error
 			}
-			intRpValues.add(1 << (value-1));
+			intRpValues.add(1 << (value - 1));
 		}
-		
+
 		int finalValue = 0;
-		for (Integer rpValue: intRpValues) {
+		for (Integer rpValue : intRpValues) {
 			finalValue |= rpValue;
 		}
-		
+
 		return finalValue;
 	}
-	
+
 	public static int distanceSimilar(int val1, int val2) {
 		int distance = 0;
 		int bitVal1 = val1;
 		int bitVal2 = val2;
-		
+
 		distance = countSetBits(bitVal1 ^ bitVal2);
 		return distance;
 	}
-	
+
 	public static int distanceDissimilar(int val1, int val2, int msb) {
 		int distance = 0;
 		int bitVal1 = val1;
 		int bitVal2 = val2;
-		
+
 		distance = countSetBits((~(bitVal1 ^ bitVal2) & getMask(msb)));
 		return distance;
 	}
-	
-	public static int countSetBits(int n) 
-    { 
-	        int count = 0; 
-	        while (n > 0) { 
-	            count += n & 1; 
-	            n >>= 1; 
-	        } 
-	        return count; 
+
+	public static int countSetBits(int n) {
+		int count = 0;
+		while (n > 0) {
+			count += n & 1;
+			n >>= 1;
+		}
+		return count;
 	}
-	
+
 	public static int getMask(int MSB) {
 		int mask = 0;
-		for (int i=0; i < MSB; i++) {
+		for (int i = 0; i < MSB; i++) {
 			mask <<= 1;
 			mask |= 1;
 		}

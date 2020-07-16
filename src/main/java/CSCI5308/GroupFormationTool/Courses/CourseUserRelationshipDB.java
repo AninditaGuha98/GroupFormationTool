@@ -5,15 +5,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.UserFactory;
 import CSCI5308.GroupFormationTool.AccessControl.UserObjectFactory;
 import CSCI5308.GroupFormationTool.Database.CallStoredProcedure;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CourseUserRelationshipDB implements ICourseUserRelationshipPersistence {
 	private static final Logger log = LoggerFactory.getLogger(CourseUserRelationshipDB.class);
+
 	public List<InterfaceUser> findAllUsersWithoutCourseRole(Role role, long courseID) {
 		List<InterfaceUser> users = new ArrayList<InterfaceUser>();
 		CallStoredProcedure proc = null;
@@ -37,7 +39,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -63,7 +65,7 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 				}
 			}
 		} catch (SQLException e) {
-			log.error("Sql Exception = {}",e.getMessage());
+			log.error("Sql Exception = {}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();
@@ -80,9 +82,10 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 			proc.setParameter(2, user.getID());
 			proc.setParameter(3, role.toString());
 			proc.execute();
-			log.info("User = {} has enrolled as Role ={} in the Course={}",user.getBannerID(),role.toString(),course.getId());
+			log.info("User = {} has enrolled as Role ={} in the Course={}", user.getBannerID(), role.toString(),
+					course.getId());
 		} catch (SQLException e) {
-			log.error("Sql Exception= {}",e.getMessage());
+			log.error("Sql Exception= {}", e.getMessage());
 			return false;
 		} finally {
 			if (null != proc) {
@@ -106,9 +109,10 @@ public class CourseUserRelationshipDB implements ICourseUserRelationshipPersiste
 					roles.add(role);
 				}
 			}
-			log.info("User = {} has  Roles={} in the CourseID= {} CourseTitle={}", user.getBannerID(), roles, course.getId(), course.getTitle());
+			log.info("User = {} has  Roles={} in the CourseID= {} CourseTitle={}", user.getBannerID(), roles,
+					course.getId(), course.getTitle());
 		} catch (SQLException e) {
-			log.error("Sql Exception ={}",e.getMessage());
+			log.error("Sql Exception ={}", e.getMessage());
 		} finally {
 			if (null != proc) {
 				proc.cleanup();

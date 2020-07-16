@@ -2,8 +2,6 @@ package CSCI5308.GroupFormationTool;
 
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
 import CSCI5308.GroupFormationTool.AccessControl.UserDB;
-
-import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
 import CSCI5308.GroupFormationTool.Courses.CourseDBFactory;
 import CSCI5308.GroupFormationTool.Courses.CourseUserRelationshipDB;
 import CSCI5308.GroupFormationTool.Courses.ICoursePersistence;
@@ -17,14 +15,6 @@ import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValid
 import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
 import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
 import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
-import CSCI5308.GroupFormationTool.Security.DefaultSecurityFactory;
-import CSCI5308.GroupFormationTool.Security.ISecurityFactory;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationFactory;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationFactory;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.IPasswordValidationConfiguration;
-import CSCI5308.GroupFormationTool.PasswordValidationPolicy.DefaultPasswordValidationConfiguration;
-
-
 
 public class SystemConfig {
 
@@ -37,7 +27,6 @@ public class SystemConfig {
 	private ISecurityFactory securityFactory;
 	private IGroupFormationFactory groupFormationFactory;
 
-
 	private SystemConfig() {
 		userDB = new UserDB();
 		databaseConfiguration = new DefaultDatabaseConfiguration();
@@ -48,7 +37,7 @@ public class SystemConfig {
 		groupFormationFactory = new DefaultGroupFormationFactory();
 	}
 
-	public static SystemConfig instance(){
+	public static SystemConfig instance() {
 		if (null == uniqueInstance) {
 			uniqueInstance = new SystemConfig();
 		}
@@ -102,11 +91,11 @@ public class SystemConfig {
 	public void setSecurityFactory(ISecurityFactory securityFactory) {
 		this.securityFactory = securityFactory;
 	}
-	
+
 	public IGroupFormationFactory getGroupFormationFactory() {
 		return this.groupFormationFactory;
 	}
-	
+
 	public void setGroupFormationFactory(IGroupFormationFactory groupFormationFactory) {
 		this.groupFormationFactory = groupFormationFactory;
 	}

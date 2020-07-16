@@ -9,11 +9,9 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 
 	private static final Logger log = LoggerFactory.getLogger(MinNonAlphaNumValidation.class);
 	private static final String MIN_NON_ALPHANUM_LOG = "MinNonAlphaNumPolicy";
-
 	private static final String MIN_NON_ALPHANUM_CONFIG = "min_non_alphanum";
 	public static final String VALID_PASSWORD_MESSAGE = "Password has minimum %d special characters.";
 	public static final String INVALID_PASSWORD_MESSAGE = "Password must have minimum %d special characters.";
-
 	private final static String NON_ALPHA_NUM_PATTERN = "[^a-zA-Z0-9]";
 	private int minNonAlphaNum;
 
@@ -52,8 +50,7 @@ public class MinNonAlphaNumValidation implements IPasswordValidation {
 		try {
 			configValue = config.getConfig(MIN_NON_ALPHANUM_CONFIG);
 		} catch (IllegalArgumentException e) {
-			log.warn("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Get Configuration",
-					e.getMessage());
+			log.warn("password={}, action={}, message={}", MIN_NON_ALPHANUM_LOG, "Get Configuration", e.getMessage());
 			configValue = null;
 		}
 
