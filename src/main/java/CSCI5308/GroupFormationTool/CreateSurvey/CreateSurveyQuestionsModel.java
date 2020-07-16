@@ -4,7 +4,7 @@ public class CreateSurveyQuestionsModel implements ICreateSurveyQuestionsModel {
 
     private String[] questionHeading;
     private String[] questionType;
-    private String [] selectedQuestions;
+    private String[] selectedQuestions;
     private String[] selectedTypes;
 
     @Override

@@ -13,26 +13,26 @@ public class SurveyExistRepo implements ISurveyExistRepo {
 
     @Override
     public int checkSurveyStatus(long courseID) {
-        int state=2;
+        int state = 2;
         CallStoredProcedure procedure = null;
         try {
-            procedure= new CallStoredProcedure("spCheckSurveyExist(?)");
-            procedure.setParameter(1,courseID);
-            ResultSet results=procedure.executeWithResults();
+            procedure = new CallStoredProcedure("spCheckSurveyExist(?)");
+            procedure.setParameter(1, courseID);
+            ResultSet results = procedure.executeWithResults();
             if (null != results) {
                 while (results.next()) {
-                    state=results.getInt(1);
+                    state = results.getInt(1);
                 }
             }
 
         } catch (SQLException e) {
-            logger.error("Survey status could not be retrieved  state= {}, message={}","Fail", e.getMessage());
+            logger.error("Survey status could not be retrieved  state= {}, message={}", "Fail", e.getMessage());
         } finally {
             if (null != procedure) {
                 procedure.cleanup();
             }
         }
-        logger.info(" Survey availability in Database state= {}",state);
+        logger.info(" Survey availability in Database state= {}", state);
         return state;
     }
 }

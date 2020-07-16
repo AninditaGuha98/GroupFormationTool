@@ -9,7 +9,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void getSelectedTypes() {
         String[] selectedTypes={"test1","test2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel= CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setSelectedTypes(selectedTypes);
         assertEquals(selectedTypes,iCreateSurveyQuestionsModel.getSelectedTypes());
     }
@@ -17,7 +17,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void setSelectedTypes() {
         String[] selectedTypes={"test1","test2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setSelectedTypes(selectedTypes);
         assertEquals(selectedTypes,iCreateSurveyQuestionsModel.getSelectedTypes());
     }
@@ -25,7 +25,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void getQuestionType() {
         String[] questionType={"question1","question2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setQuestionType(questionType);
         assertEquals(questionType,iCreateSurveyQuestionsModel.getQuestionType());
     }
@@ -33,7 +33,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void setQuestionType() {
         String[] questionType={"question1","question2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setQuestionType(questionType);
         assertEquals(questionType,iCreateSurveyQuestionsModel.getQuestionType());
     }
@@ -41,7 +41,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void getQuestionHeading() {
         String[] questionHeading={"quehead1","quehead2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setQuestionHeading(questionHeading);
         assertEquals(questionHeading,iCreateSurveyQuestionsModel.getQuestionHeading());
     }
@@ -49,7 +49,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void setQuestionHeading() {
         String[] questionHeading={"quehead1","quehead2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setQuestionHeading(questionHeading);
         assertEquals(questionHeading,iCreateSurveyQuestionsModel.getQuestionHeading());
     }
@@ -57,7 +57,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void getSelectedQuestions() {
         String[] selectedQue={"quehead1","quehead2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setSelectedQuestions(selectedQue);
         assertEquals(selectedQue,iCreateSurveyQuestionsModel.getSelectedQuestions());
     }
@@ -65,7 +65,7 @@ class CreateSurveyQuestionsModelTest {
     @Test
     void setSelectedQuestions() {
         String[] selectedQue={"quehead1","quehead2"};
-        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=new CreateSurveyQuestionsModel();
+        ICreateSurveyQuestionsModel iCreateSurveyQuestionsModel=CreateSurveyModelFactory.FactorySingleton().createSurveyQuestionsModel();
         iCreateSurveyQuestionsModel.setSelectedQuestions(selectedQue);
         assertEquals(selectedQue,iCreateSurveyQuestionsModel.getSelectedQuestions());
     }
