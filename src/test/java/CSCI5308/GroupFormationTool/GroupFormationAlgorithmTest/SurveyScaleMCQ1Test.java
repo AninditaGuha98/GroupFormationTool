@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.GroupFormationMinDistance;
-import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.IGroupFormationAlgorithm;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyScale;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyScaleMCQ1;

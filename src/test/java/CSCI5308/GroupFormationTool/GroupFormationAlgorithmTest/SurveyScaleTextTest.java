@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyScale;
-import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.SurveyScaleText;
 
 class SurveyScaleTextTest {
 

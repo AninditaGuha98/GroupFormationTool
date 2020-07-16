@@ -2,8 +2,6 @@ package CSCI5308.GroupFormationTool.GroupFormationAlgorithmTest;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 
 import CSCI5308.GroupFormationTool.GroupFormationAlgorithm.ISurveyResponse;
