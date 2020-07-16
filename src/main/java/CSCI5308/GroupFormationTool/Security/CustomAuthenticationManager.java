@@ -9,12 +9,14 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.config.annotation.web.configurers.oauth2.client.OAuth2LoginConfigurer.UserInfoEndpointConfig;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 
 import CSCI5308.GroupFormationTool.SystemConfig;
 import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
 import CSCI5308.GroupFormationTool.AccessControl.User;
 
 public class CustomAuthenticationManager implements AuthenticationManager {
@@ -23,7 +25,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 	private static final String CUSTOME_AUTH_MANAGER_LOG = "AuthenticationManager";
 	private static final String ADMIN_BANNER_ID = "B-000000";
 
-	private Authentication checkAdmin(String password, User u, Authentication authentication)
+	private Authentication checkAdmin(String password, InterfaceUser u, Authentication authentication)
 			throws AuthenticationException {
 		ISecurityFactory secFactory = SystemConfig.instance().getSecurityFactory();
 		if (password.equals(u.getPassword())) {
@@ -40,7 +42,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 		}
 	}
 
-	private Authentication checkNormal(String password, User u, Authentication authentication)
+	private Authentication checkNormal(String password, InterfaceUser u, Authentication authentication)
 			throws AuthenticationException {
 		ISecurityFactory secFactory = SystemConfig.instance().getSecurityFactory();
 		IPasswordEncryption passwordEncryption = secFactory.createPassworEncryption();
@@ -63,10 +65,10 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 		String bannerID = authentication.getPrincipal().toString();
 		String password = authentication.getCredentials().toString();
 		IUserPersistence userDB = SystemConfig.instance().getUserDB();
-		User u;
+		InterfaceUser u;
 
 		try {
-			u = new User(bannerID, userDB);
+			u = SystemConfig.instance().getSecurityFactory().createUser(bannerID, userDB);
 		} catch (Exception e) {
 			log.warn("user={}, action={}, status={}, message={}", CUSTOME_AUTH_MANAGER_LOG, "User Authentication",
 					"Fail", e.getMessage());
