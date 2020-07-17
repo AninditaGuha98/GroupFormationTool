@@ -3,7 +3,12 @@ package CSCI5308.GroupFormationTool.GroupFormationAlgorithm;
 import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SurveyScaleMCQ1 extends SurveyScale {
+	private static final Logger log = LoggerFactory.getLogger(SurveyScaleMCQ1.class);
+	private static final String SURVEY_SCALE_MCQ1 = "MCQ1";
 
 	@Override
 	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index) {
@@ -11,6 +16,8 @@ public class SurveyScaleMCQ1 extends SurveyScale {
 		int rpValue2 = convertValue(rp2.getResponses().get(index));
 		double distance = 0;
 		List<String> criteria;
+		log.info("SurveyScale={}, action={}, status={}", 
+				SURVEY_SCALE_MCQ1, "Compute Distance", "Starting...");
 
 		criteria = Arrays.asList(this.getCriteria().toLowerCase().split(","));
 		for (String criterion : criteria) {
@@ -28,7 +35,8 @@ public class SurveyScaleMCQ1 extends SurveyScale {
 			default:
 			}
 		}
-
+		log.info("SurveyScale={}, action={}, status={}, value={}", 
+				SURVEY_SCALE_MCQ1, "Compute Distance", "Success", distance);
 		return distance;
 	}
 
@@ -38,7 +46,9 @@ public class SurveyScaleMCQ1 extends SurveyScale {
 		try {
 			rpValue = Integer.parseInt(rpString);
 		} catch (NumberFormatException e) {
-			// Log Error
+			log.error("SurveyScale={}, action={}, status={}", 
+					SURVEY_SCALE_MCQ1, "ConvertValue", "Fail");
+			rpValue = 0;
 		}
 		return (1 << (rpValue - 1));
 	}

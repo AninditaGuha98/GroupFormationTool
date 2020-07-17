@@ -7,6 +7,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import CSCI5308.GroupFormationTool.AccessControl.IUserPersistence;
+import CSCI5308.GroupFormationTool.AccessControl.InterfaceUser;
+import CSCI5308.GroupFormationTool.AccessControl.User;
+
 public class DefaultSecurityFactory implements ISecurityFactory {
 
 	@Override
@@ -23,5 +27,10 @@ public class DefaultSecurityFactory implements ISecurityFactory {
 	@Override
 	public GrantedAuthority createGrantedAuthority(String role) {
 		return new SimpleGrantedAuthority("ADMIN");
+	}
+	
+	@Override
+	public InterfaceUser createUser(String bannerID, IUserPersistence userDB) {
+		return new User(bannerID, userDB);
 	}
 }

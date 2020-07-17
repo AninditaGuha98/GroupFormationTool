@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SurveyScaleMCQ2 extends SurveyScale {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+public class SurveyScaleMCQ2 extends SurveyScale {
+	private static final Logger log = LoggerFactory.getLogger(SurveyScaleMCQ2.class);
+	private static final String SURVEY_SCALE_MCQ2 = "MCQ2";
+	
 	@Override
 	public double distance(ISurveyResponse rp1, ISurveyResponse rp2, int index) {
 		int rpValue1 = convertValue(rp1.getResponses().get(index));
@@ -17,10 +22,13 @@ public class SurveyScaleMCQ2 extends SurveyScale {
 		try {
 			msb = Integer.parseInt(this.getOptionscount());
 		} catch (NumberFormatException e) {
-			// log error
+			log.error("SurveyScale={}, action={}, status={}", 
+					SURVEY_SCALE_MCQ2, "ConvertValue", "Fail");
 			msb = 0;
 		}
-
+		
+		log.info("SurveyScale={}, action={}, status={}", 
+				SURVEY_SCALE_MCQ2, "Compute Distance", "Starting...");
 		criteria = Arrays.asList(this.getCriteria().toLowerCase().split(","));
 		for (String criterion : criteria) {
 			switch (criterion) {
@@ -38,6 +46,8 @@ public class SurveyScaleMCQ2 extends SurveyScale {
 			}
 		}
 
+		log.info("SurveyScale={}, action={}, status={}, value={}", 
+				SURVEY_SCALE_MCQ2, "Compute Distance", "Success", distance);
 		return distance;
 	}
 
@@ -50,7 +60,9 @@ public class SurveyScaleMCQ2 extends SurveyScale {
 			try {
 				value = Integer.parseInt(strRpValue.trim());
 			} catch (NumberFormatException e) {
-				// Log Error
+				log.error("SurveyScale={}, action={}, status={}", 
+						SURVEY_SCALE_MCQ2, "ConvertValue", "Fail");
+				value = 0;
 			}
 			intRpValues.add(1 << (value - 1));
 		}
